@@ -1,25 +1,30 @@
 <header class="flex items-center justify-between relative w-full p-2">
   {% comment %} Left List {% endcomment %}
-  <nav class="flex items-center gap-4">
-    <ul class="flex items-center gap-1">
-      {% for item in linklists['shop-menu'].links %}
-        <li>
-          <a href="{{ item.url }}" class="inline-block">
-            {{- item.title -}}
-          </a>
-          <span>--</span>
-          {% if item.links.size > 0 %}
-            {% for child in item.links %}
-              <a href="{{ child.url }}" class="inline-block">
-                {{- child.title -}}
-                {%- unless forloop.last %},{% endunless -%}
-              </a>
-            {% endfor %}
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  </nav>
+  <div>
+    {% comment %} Desktop List{% endcomment %}
+    <nav class="hidden lg:flex lg:items-center lg:gap-4">
+      <ul class="flex items-center gap-1">
+        {% for item in linklists['shop-menu'].links %}
+          <li>
+            <a href="{{ item.url }}" class="inline-block">
+              {{- item.title -}}
+            </a>
+            <span>--</span>
+            {% if item.links.size > 0 %}
+              {% for child in item.links %}
+                <a href="{{ child.url }}" class="inline-block">
+                  {{- child.title -}}
+                  {%- unless forloop.last %},{% endunless -%}
+                </a>
+              {% endfor %}
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+    {% comment %} Mobile Menu Button {% endcomment %}
+    <button type="button" class="lg:hidden flex items-center justify-center" aria-label="Toggle menu">Menu</button>
+  </div>
 
   {% comment %} Center Logo {% endcomment %}
   <div class="site-header-logo absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -35,9 +40,9 @@
     {% endif %}
   </div>
 
-  {% comment %} Rigth List {% endcomment %}
+  {% comment %} Right List {% endcomment %}
   <nav class="flex items-center gap-4">
-    <ul class="flex items-center gap-1">
+    <ul class="hidden lg:flex lg:items-center lg:gap-1">
       {% for item in linklists['learn-menu'].links %}
         <li>
           <a href="{{ item.url }}" class="inline-block">
