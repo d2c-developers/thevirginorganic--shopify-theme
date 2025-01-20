@@ -1,0 +1,18 @@
+<script src="{{ 'theme.min.js' | asset_url }}" defer="defer"></script>
+{% comment %}
+  {% if template == 'list-collections' %}
+    <script src="{{ 'list-collections.min.js' | asset_url }}" defer="defer"></script>
+  {% endif %}
+
+  {% if template == 'collection' %}
+    <script src="{{ 'collection.min.js' | asset_url }}" defer="defer"></script>
+  {% endif %}
+
+  {% if template == 'product' %}
+    <script src="{{ 'product.min.js' | asset_url }}" defer="defer"></script>
+  {% endif %}
+
+  {% if template == 'cart' %}
+    <script src="{{ 'cart.min.js' | asset_url }}" defer="defer"></script>
+  {% endif %}
+{% endcomment %}

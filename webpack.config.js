@@ -1,12 +1,13 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
     theme: './src/theme.ts',
-    'list-collections': './src/list-collections.ts',
-    collection: './src/collection.ts',
-    product: './src/product.ts',
-    cart: './src/cart.ts',
+    // 'list-collections': './src/list-collections.ts',
+    // collection: './src/collection.ts',
+    // product: './src/product.ts',
+    // cart: './src/cart.ts',
   },
   devtool: 'inline-source-map',
   module: {
@@ -32,7 +33,7 @@ module.exports = {
       {
         test: /\.css$/i,
         include: path.resolve(__dirname, 'src'),
-        use: ['style-loader', 'css-loader', 'postcss-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
       // SVG as React Component ? might be helpful?
       /*
@@ -43,6 +44,12 @@ module.exports = {
       */
     ],
   },
+  plugins: [
+    // Make the CSS files
+    new MiniCssExtractPlugin({
+      filename: '[name].min.css',
+    }),
+  ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
