@@ -1,0 +1,6 @@
+node_modules
+dawn
+.vscode/
+.github/
+.prettierrc.json
+.tailwind.config.js
