@@ -1,0 +1,112 @@
+<div class="relative min-h-screen flex flex-col md:flex-row md:items-center md:justify-between text-white">
+  {% if section.settings.background_image != blank %}
+    <div class="absolute {% if settings.enable_mobile %}mt-[25vh] md:mt-0{% endif %} inset-0 w-full h-full">
+      <img
+        src="{{ section.settings.background_image | image_url: width: 2000 }}"
+        width="2000"
+        height="{{ 2000 | divided_by: section.settings.background_image.aspect_ratio | round }}"
+        alt="{{ section.settings.background_image.alt | default: section.settings.heading }}"
+        class="w-full h-full object-cover"
+      >
+    </div>
+  {% endif %}
+
+  <div class="relative w-full md:w-1/3 p-4 md:p-8 text-center md:text-left">
+    {% if section.settings.heading != blank %}
+      <h1 class="text-4xl md:text-5xl font-bold">{{ section.settings.heading }}</h1>
+    {% endif %}
+  </div>
+
+  {% if section.settings.bottle_image != blank %}
+    <div class="relative w-full md:w-1/3 p-4 animate-slide-up">
+      <img
+        src="{{ section.settings.bottle_image | image_url: width: 800 }}"
+        width="800"
+        height="{{ 800 | divided_by: section.settings.bottle_image.aspect_ratio | round }}"
+        alt="{{ section.settings.bottle_image.alt | default: 'Product bottle' }}"
+        class="w-full h-auto"
+      >
+    </div>
+  {% else %}
+    <div class="relative w-full md:w-1/3 p-4 bg-[#808000] aspect-[3/4] animate-slide-up"></div>
+  {% endif %}
+
+  <div class="relative w-full md:w-1/3 p-4 md:p-8 text-center md:text-left">
+    {% if section.settings.text != blank %}
+      <div class="prose">{{ section.settings.text }}</div>
+    {% endif %}
+    {% if section.settings.button_text != blank %}
+      {% render 'ui-button', button_text: section.settings.button_text, href: routes.all_products_collection_url %}
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slideUp 7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Homepage Hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Text Content Settings"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Welcome to our store"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Subtext",
+      "default": "<p>Our belief in world-class olive oils starts from the ground up.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "header",
+      "content": "Background Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "header",
+      "content": "Bottle Render Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottle_image",
+      "label": "Bottle image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Homepage Hero"
+    }
+  ]
+}
+{% endschema %}
