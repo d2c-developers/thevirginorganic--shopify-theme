@@ -1,0 +1,40 @@
+<div class="relative min-h-screen flex items-center justify-center text-white">
+  {% if section.settings.background_image != blank %}
+    <div class="absolute inset-0 w-full h-full">
+      <img
+        src="{{ section.settings.background_image | image_url: width: 2000 }}"
+        width="2000"
+        height="{{ 2000 | divided_by: section.settings.background_image.aspect_ratio | round }}"
+        alt="404 background"
+        class="w-full h-full object-cover"
+      >
+      <div class="absolute inset-0 w-full h-full bg-lime-900/30"></div>
+    </div>
+  {% else %}
+    <div class="absolute inset-0 w-full h-full bg-lime-900"></div>
+  {% endif %}
+
+  <div class="relative text-center space-y-4">
+    <p class="text-2xl">Oops</p>
+    <h1 class="text-6xl font-bold">404</h1>
+    <a
+      href="{{ routes.all_products_collection_url }}"
+      class="inline-block px-8 py-3 bg-white text-lime-900 hover:bg-gray-100 transition"
+    >
+      Continue Shopping
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "404 Page",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    }
+  ]
+}
+{% endschema %}
