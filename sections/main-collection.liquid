@@ -1,0 +1,37 @@
+<div class="w-full px-4 py-12">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    {% for product in collection.products %}
+      <div class="group relative">
+        <div class="aspect-square overflow-hidden">
+          {% if product.featured_image != blank %}
+            <img
+              src="{{ product.featured_image | image_url: width: 800 }}"
+              alt="{{ product.featured_image.alt | default: product.title }}"
+              width="800"
+              height="{{ 800 | divided_by: product.featured_image.aspect_ratio | round }}"
+              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            >
+          {% else %}
+            <div class="h-full w-full bg-gray-100"></div>
+          {% endif %}
+        </div>
+
+        <div class="mt-4 space-y-2 text-center">
+          <h3
+            class="text-lg lg:text-2xl font-semibold uppercase"
+            style="color: {{ product.metafields.tvo.label_color | default: '#000000' }}"
+          >
+            {{ product.title }}
+          </h3>
+          <div>
+            {% if product.metafields.tvo.tagline != blank %}
+              <p class="text-sm text-gray-600">{{ product.metafields.tvo.tagline }}</p>
+            {% endif %}
+            <p class="text-sm text-gray-500">{{ product.price | money }}</p>
+          </div>
+          <a href="{{ product.url }}" class="absolute inset-0" aria-label="View {{ product.title }}"></a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
