@@ -8,9 +8,10 @@
           <img
             src="{{ product.featured_image | image_url: width: 1000 }}"
             alt="{{ product.featured_image.alt | default: product.title }}"
+            {% comment %} @TODO: make correct aspect ratio {% endcomment %}
             width="1000"
             height="{{ 1000 | divided_by: product.featured_image.aspect_ratio | round }}"
-            class="absolute w-full h-full object-cover"
+            class="absolute w-full h-full object-contain"
           >
         {% else %}
           <div class="absolute w-full h-full bg-gray-100"></div>

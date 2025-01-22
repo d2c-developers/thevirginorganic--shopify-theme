@@ -5,14 +5,14 @@
   <div class="pt-[50px] grid grid-cols-1 md:grid-cols-3 gap-8">
     {% for product in collection.products %}
       <div class="group relative {% if product.tags contains 'ui:plp-full-row' %}md:col-span-3{% endif %}">
-        <div class="{% if product.tags contains 'ui:plp-full-row' %}aspect-video{% else %}aspect-[3/4]{% endif %} overflow-hidden">
+        <div class="{% if product.tags contains 'ui:plp-full-row' %}aspect-video max-w-[75%] mx-auto{% else %}aspect-[3/4]{% endif %} overflow-hidden">
           {% if product.featured_image != blank %}
             <img
               src="{{ product.featured_image | image_url: width: 800 }}"
               alt="{{ product.featured_image.alt | default: product.title }}"
               width="800"
               height="{{ 800 | divided_by: product.featured_image.aspect_ratio | round }}"
-              class="h-full w-full object-cover bg-gray-100"
+              class="h-full w-full object-contain"
             >
           {% else %}
             <div class="h-full w-full bg-gray-100"></div>
