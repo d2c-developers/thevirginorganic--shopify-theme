@@ -128,18 +128,18 @@
             </div>
           {% endif %}
 
-          {% if product.metafields.tvo.polyphenial_count != blank %}
+          {% if product.metafields.tvo.polyhenial_count != blank %}
             <div class="flex justify-between">
               <span class="text-gray-500">POLYPHENIAL COUNT</span>
-              <span>{{ product.metafields.tvo.polyphenial_count }}</span>
+              <span>{{ product.metafields.tvo.polyhenial_count }}</span>
             </div>
           {% endif %}
 
-          {% if product.metafields.tvo.intensity_notes != blank %}
+          {% if product.metafields.tvo.intensity != blank %}
             <div class="flex justify-between items-start">
               <span class="text-gray-500">INTENSITY</span>
               <span class="text-right">
-                {{ product.metafields.tvo.intensity_notes | newline_to_br }}
+                {{ product.metafields.tvo.intensity | newline_to_br }}
               </span>
             </div>
           {% endif %}
