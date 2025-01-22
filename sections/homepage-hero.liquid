@@ -1,13 +1,13 @@
-<div class="mt-[72px] lg:!mt-0 text-center relative min-h-screen flex flex-col lg:flex-row lg:items-center lg:justify-between text-black lg:text-white lg:max-h-screen lg:mb-[90px]">
+<div class="mt-[72px] xl:!mt-0 text-center relative min-h-screen flex flex-col xl:flex-row xl:items-center xl:justify-between text-black xl:text-white xl:max-h-screen xl:mb-[90px]">
   {% comment %} H1 {% endcomment %}
-  <div class="relative w-full lg:w-1/3 mt-[50px] lg:p-8 text-center z-10 lg:mt-0">
+  <div class="relative w-full xl:w-1/3 mt-[50px] xl:p-8 text-center z-10 xl:mt-0">
     {% if section.settings.heading != blank %}
-      <h1 class="text-[40px] leading-[90%] font-bold uppercase lg:text-[65px]">{{ section.settings.heading }}</h1>
+      <h1 class="text-[40px] leading-[90%] font-bold uppercase xl:text-[65px]">{{ section.settings.heading }}</h1>
     {% endif %}
   </div>
 
   {% comment %} Text Content {% endcomment %}
-  <div class="relative w-full lg:w-1/3 p-4 lg:p-8 text-center lg:order-3 text-xl leading-[90%]">
+  <div class="relative w-full xl:w-1/3 p-4 xl:p-8 text-center xl:order-3 text-xl leading-[90%]">
     {% if section.settings.text != blank %}
       <div class="prose max-w-[400px] mx-auto">{{ section.settings.text }}</div>
     {% endif %}
@@ -16,7 +16,7 @@
         {% render 'ui-button',
           button_text: section.settings.button_text,
           href: routes.all_products_collection_url,
-          class_names: 'border-black lg:border-white lg:text-white text-black'
+          class_names: 'border-black xl:border-white xl:text-white text-black'
         %}
       </div>
     {% endif %}
@@ -24,7 +24,7 @@
 
   {% comment %} Background Image {% endcomment %}
   {% if section.settings.background_image != blank %}
-    <div class="absolute bottom-0 left-0 {% if settings.enable_mobile %}mt-[25vh] lg:mt-0{% endif %} lg:inset-0 w-full aspect-square lg:aspect-auto lg:h-full">
+    <div class="absolute bottom-0 left-0 {% if settings.enable_mobile %}mt-[25vh] xl:mt-0{% endif %} xl:inset-0 w-full aspect-square xl:aspect-auto xl:h-full">
       <img
         src="{{ section.settings.background_image | image_url: width: 2000 }}"
         width="2000"
@@ -37,7 +37,7 @@
 
   {% comment %} Bottle Render {% endcomment %}
   {% if section.settings.bottle_image != blank %}
-    <div class="relative z-10 lg:absolute lg:left-1/2 lg:-translate-x-1/2 w-full lg:w-1/3 lg:h-[calc(100%)] lg:order-2 lg:bottom-[-90px]">
+    <div class="relative z-10 xl:absolute xl:left-1/2 xl:-translate-x-1/2 w-full xl:w-1/3 xl:h-[calc(100%)] xl:order-2 xl:bottom-[-90px]">
       <img
         src="{{ section.settings.bottle_image | image_url: width: 800 }}"
         {% comment %} @TODO: make this correct {% endcomment %}
