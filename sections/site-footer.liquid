@@ -1,0 +1,78 @@
+<footer>
+  <div class="relative flex justify-between items-center p-16 text-center">
+    <div class="flex flex-col gap-1">
+      <h4>{{ section.settings.left_heading }}</h4>
+      <nav>
+        <ul class="flex gap-1">
+          {% for link in section.settings.left_menu.links %}
+            <li>
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      {% if section.settings.logo != blank %}
+        <img
+          src="{{ section.settings.logo | image_url: width: 200 }}"
+          alt="{{ shop.name }}"
+          width="200"
+          height="{{ 200 | divided_by: section.settings.logo.aspect_ratio | round }}"
+          class="w-auto h-12"
+        >
+      {% endif %}
+    </div>
+    <div class="flex flex-col gap-1">
+      <h4>{{ section.settings.right_heading }}</h4>
+      <nav>
+        <ul class="flex gap-1">
+          {% for link in section.settings.right_menu.links %}
+            <li>
+              <a href="{{ link.url }}">{{ link.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </div>
+  <p class="font-serif italic text-sm text-gray-500 text-center py-8">
+    Copyright {{ 'now' | date: '%Y' }}
+    The Virgin Organic
+  </p>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "left_heading",
+      "label": "Left Column Heading",
+      "default": "Navigation"
+    },
+    {
+      "type": "link_list",
+      "id": "left_menu",
+      "label": "Left Menu"
+    },
+    {
+      "type": "text",
+      "id": "right_heading",
+      "label": "Right Column Heading",
+      "default": "Company"
+    },
+    {
+      "type": "link_list",
+      "id": "right_menu",
+      "label": "Right Menu"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    }
+  ]
+}
+{% endschema %}

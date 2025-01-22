@@ -1,4 +1,4 @@
-<div class="text-center relative min-h-screen flex flex-col lg:flex-row lg:items-center lg:justify-between text-black lg:text-white lg:bg-lime-900/10 lg:max-h-screen lg:mb-[90px]">
+<div class="mt-[72px] lg:!mt-0 text-center relative min-h-screen flex flex-col lg:flex-row lg:items-center lg:justify-between text-black lg:text-white lg:max-h-screen lg:mb-[90px]">
   {% comment %} H1 {% endcomment %}
   <div class="relative w-full lg:w-1/3 mt-[50px] lg:p-8 text-center z-10 lg:mt-0">
     {% if section.settings.heading != blank %}
@@ -13,7 +13,11 @@
     {% endif %}
     {% if section.settings.button_text != blank %}
       <div class="flex justify-center mt-4">
-        {% render 'ui-button', button_text: section.settings.button_text, href: routes.all_products_collection_url %}
+        {% render 'ui-button',
+          button_text: section.settings.button_text,
+          href: routes.all_products_collection_url,
+          class_names: 'border-black lg:border-white lg:text-white text-black'
+        %}
       </div>
     {% endif %}
   </div>
@@ -46,40 +50,22 @@
   {% endif %}
 </div>
 
-<style>
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(100%);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-slide-up {
-    animation: slideUp 7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-</style>
-
 {% schema %}
 {
   "name": "Homepage Hero",
-  "class": "mt-[72px] lg:!mt-0",
   "settings": [
     {
       "type": "header",
       "content": "Text Content Settings"
     },
     {
-      "type": "richtext",
+      "type": "html",
       "id": "heading",
       "label": "Heading",
-      "default": "<span>Compromise <br/> Nothing</span>"
+      "default": "<p>Compromise <br/> Nothing</p>"
     },
     {
-      "type": "richtext",
+      "type": "html",
       "id": "text",
       "label": "Subtext",
       "default": "<p>Our belief in world-class olive oils starts from the ground up.</p>"

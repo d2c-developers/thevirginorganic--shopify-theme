@@ -28,7 +28,7 @@
       <main class="flex-1 {% if template != 'index' %}mt-[72px]{% endif %}">
         {{ content_for_layout }}
       </main>
-      {% render 'site-footer' %}
+      {% section 'site-footer' %}
     </div>
     {% render 'site-local-scripts' %}
   </body>

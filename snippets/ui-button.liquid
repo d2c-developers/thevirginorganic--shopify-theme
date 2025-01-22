@@ -5,6 +5,7 @@
   - button_text: {String} Text to display inside the button (required)
   - type: {String} Type of button - 'link', 'button', or 'submit' (default: 'button')
   - href: {String} URL for link buttons (required if type is 'link')
+  - class_names: {String} Additional classes to apply to button (optional)
 
   Usage:
   {% render 'ui-button',
@@ -20,19 +21,19 @@
 {%- endcomment -%}
 
 {% if type == 'link' %}
-  <a href="{{ href }}" class="border border-white flex items-center gap-2">
-    <span class="block px-4 py-2 uppercase text-sm leading-none text-white">{{ button_text }}</span>
-    <span class="border-l border-white px-4 py-2">
+  <a href="{{ href }}" class="{{ class_names }} border flex items-center gap-2">
+    <span class="block px-4 py-2 uppercase text-sm leading-none">{{ button_text }}</span>
+    <span class="border-l px-4 py-2">
       <span class="">→</span>
     </span>
   </a>
 {% else %}
   <button
     type="{% if type == 'submit' %}submit{% else %}button{% endif %}"
-    class="border border-white flex items-center gap-2"
+    class="{{ class_names }} border flex items-center gap-2"
   >
-    <span class="block px-4 py-2 uppercase text-sm leading-none text-white">{{ button_text }}</span>
-    <span class="border-l border-white px-4 py-2">
+    <span class="block px-4 py-2 uppercase text-sm leading-none">{{ button_text }}</span>
+    <span class="border-l px-4 py-2">
       <span class="">→</span>
     </span>
   </button>
