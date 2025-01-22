@@ -1,4 +1,4 @@
-<header class="fixed flex items-center justify-between w-full font-serif italic top-0 left-0 right-0 p-5 text-black {% if template == 'index' %}lg:text-white lg:bg-transparent{% endif %} z-50 bg-white lg:bg-transparent">
+<header class="fixed flex items-center justify-between w-full font-serif italic top-0 left-0 right-0 p-5 text-black {% if template == 'index' %}lg:text-white lg:bg-transparent{% endif %} z-50 bg-white">
   {% comment %} Left List {% endcomment %}
   <div>
     {% comment %} Desktop List{% endcomment %}
@@ -77,23 +77,25 @@
 
 {% comment %} @TODO: make this super performant {% endcomment %}
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const header = document.querySelector('header');
-    header.classList.add('transition-colors');
-    header.classList.add('duration-300');
+  {% if template == 'index' %}
+    document.addEventListener('DOMContentLoaded', () => {
+      const header = document.querySelector('header');
+      header.classList.add('transition-colors');
+      header.classList.add('duration-300');
 
-    // @TODO: this is a silly mess of class names
-    // put them in a variables that make sense
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
-        header.classList.remove('lg:bg-transparent', 'lg:text-white');
-        header.classList.add('lg:bg-white', 'lg:text-black');
-      } else {
-        header.classList.add('bg-white', 'text-black', 'lg:bg-transparent', 'lg:text-white');
-        header.classList.remove('lg:bg-white', 'lg:text-black');
-      }
+      // @TODO: this is a silly mess of class names
+      // put them in a variables that make sense
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+          header.classList.remove('lg:bg-transparent', 'lg:text-white');
+          header.classList.add('lg:bg-white', 'lg:text-black');
+        } else {
+          header.classList.add('bg-white', 'text-black', 'lg:bg-transparent', 'lg:text-white');
+          header.classList.remove('lg:bg-white', 'lg:text-black');
+        }
+      });
     });
-  });
+  {% endif %}
 </script>
 
 {% schema %}
