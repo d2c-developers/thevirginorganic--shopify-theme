@@ -1,0 +1,22 @@
+<div class="p-5 font-medium font-serif italic text-3xl md:text-5xl leading-tight {{ section.settings.custom_class }}">
+  {{ section.settings.text }}
+</div>
+
+{% schema %}
+{
+  "name": "Large Heading Text",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text Content",
+      "default": "Enter your text here"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Large Heading Text"
+    }
+  ]
+}
+{% endschema %}

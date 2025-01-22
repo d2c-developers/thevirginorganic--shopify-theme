@@ -1,5 +1,8 @@
-<div class="w-full px-4 py-12">
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="w-full p-5">
+  <h1 class="text-center text-2xl font-bold uppercase text-[40px] leading-[90%] lg:text-[65px]">
+    {{ collection.title }}
+  </h1>
+  <div class="pt-[50px] grid grid-cols-1 md:grid-cols-3 gap-8">
     {% for product in collection.products %}
       <div class="group relative">
         <div class="aspect-square overflow-hidden">
@@ -35,3 +38,9 @@
     {% endfor %}
   </div>
 </div>
+
+{% schema %}
+{
+  "name": "Main Collection"
+}
+{% endschema %}
