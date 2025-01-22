@@ -1,4 +1,4 @@
-<div class="text-center relative min-h-screen flex flex-col lg:flex-row lg:items-center lg:justify-between text-black lg:text-white lg:bg-lime-900/10 mt-[72px] lg:mt-0">
+<div class="text-center relative min-h-screen flex flex-col lg:flex-row lg:items-center lg:justify-between text-black lg:text-white lg:bg-lime-900/10">
   {% comment %} Background Image {% endcomment %}
   {% if section.settings.background_image != blank %}
     <div class="absolute {% if settings.enable_mobile %}mt-[25vh] lg:mt-0{% endif %} inset-0 w-full h-full">
@@ -68,6 +68,7 @@
 {% schema %}
 {
   "name": "Homepage Hero",
+  "class": "mt-[72px] lg:!mt-0",
   "settings": [
     {
       "type": "header",

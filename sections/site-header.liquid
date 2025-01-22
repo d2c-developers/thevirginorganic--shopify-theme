@@ -1,4 +1,4 @@
-<header class="flex items-center justify-between relative w-full p-2">
+<header class="fixed flex items-center justify-between w-full font-serif italic top-0 left-0 right-0 p-5 text-black {% if template == 'index' %}lg:text-white lg:bg-transparent{% endif %} z-50 bg-white lg:bg-transparent">
   {% comment %} Left List {% endcomment %}
   <div>
     {% comment %} Desktop List{% endcomment %}
@@ -9,7 +9,7 @@
             <a href="{{ item.url }}" class="inline-block">
               {{- item.title -}}
             </a>
-            <span>--</span>
+            <span>—</span>
             {% if item.links.size > 0 %}
               {% for child in item.links %}
                 <a href="{{ child.url }}" class="inline-block">
@@ -23,20 +23,29 @@
       </ul>
     </nav>
     {% comment %} Mobile Menu Button {% endcomment %}
-    <button type="button" class="lg:hidden flex items-center justify-center" aria-label="Toggle menu">Menu</button>
+    <button
+      type="button"
+      class="lg:hidden flex items-center justify-center relative after:absolute after:bottom-0 after:bg-black after:w-full after:h-px after:z-10"
+      aria-label="Toggle menu"
+    >
+      Menu
+    </button>
   </div>
 
   {% comment %} Center Logo {% endcomment %}
-  <div class="site-header-logo absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-    {% if settings.logo != blank %}
-      <img
-        src="{{ settings.logo | image_url: width: 100 }}"
-        alt="{{ settings.logo.alt | default: shop.name }}"
-        width="{{ settings.logo_width }}"
-        height="{{ settings.logo_width | divided_by: settings.logo.aspect_ratio | round }}"
-      >
+  <div class="site-header-logo absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-60 lg:max-w-80">
+    {% if template == 'index' %}
+      <h1>
+        <a href="/" class="block">
+          <span class="sr-only">The Virgin Organic</span>
+          {% render 'site-logo' %}
+        </a>
+      </h1>
     {% else %}
-      <span>{{ shop.name }}</span>
+      <a href="/" class="block">
+        <span class="sr-only">The Virgin Organic</span>
+        {% render 'site-logo' %}
+      </a>
     {% endif %}
   </div>
 
@@ -48,7 +57,7 @@
           <a href="{{ item.url }}" class="inline-block">
             {{- item.title -}}
           </a>
-          <span>--</span>
+          <span>—</span>
           {% if item.links.size > 0 %}
             {% for child in item.links %}
               <a href="{{ child.url }}" class="inline-block">
@@ -65,6 +74,27 @@
     </a>
   </nav>
 </header>
+
+{% comment %} @TODO: make this super performant {% endcomment %}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('header');
+    header.classList.add('transition-colors');
+    header.classList.add('duration-300');
+
+    // @TODO: this is a silly mess of class names
+    // put them in a variables that make sense
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        header.classList.remove('lg:bg-transparent', 'lg:text-white');
+        header.classList.add('lg:bg-white', 'lg:text-black');
+      } else {
+        header.classList.add('bg-white', 'text-black', 'lg:bg-transparent', 'lg:text-white');
+        header.classList.remove('lg:bg-white', 'lg:text-black');
+      }
+    });
+  });
+</script>
 
 {% schema %}
 {
