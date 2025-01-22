@@ -1,10 +1,33 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
-      "type": "homepage-hero"
+      "type": "homepage-hero",
+      "settings": {
+        "heading": "<span>Compromise<br/>Nothing</span>",
+        "text": "<p>Our belief in world-class olive oils starts from the ground up.</p>",
+        "button_text": "Shop Now",
+        "background_image": "shopify://shop_images/hero-image-bg-desktop.jpg",
+        "bottle_image": "shopify://shop_images/Home_Page_Bottle_Render_54d722a4-098a-42a4-b2e0-b9ccbe841362.png"
+      }
+    },
+    "large_heading_text_CYiDqW": {
+      "type": "large-heading-text",
+      "settings": {
+        "text": "Our certified organic extra virgin olive oils are grown from our National Wildlife Habitat orchard in Capay Valley, California. Certified by the California Organic Farmers (CCOF), we pride ourselves on using organic and regenerative farming practices."
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "large_heading_text_CYiDqW"
   ]
 }
