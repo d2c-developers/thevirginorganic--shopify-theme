@@ -1,0 +1,40 @@
+<div class="py-[100px]">
+  <div class="grid grid-cols-2 divide-x divide-gray-200">
+    <a href="{{ product_1.url }}" class="p-8 flex flex-col items-center">
+      <div class="w-64 h-96 bg-gray-100 flex items-center justify-center">
+        {% if product_1.featured_image %}
+          {{ product_1.featured_image | image_url: width: 256 | image_tag }}
+        {% else %}
+          <div class="text-sm text-gray-400">Olive Oil Image</div>
+        {% endif %}
+      </div>
+      <div class="mt-4 text-center">
+        <h3 class="text-lg font-medium">{{ product_1.title }}</h3>
+        <p class="text-sm text-gray-500">{{ product_1.description | truncate: 50 }}</p>
+      </div>
+    </a>
+
+    <a href="{{ product_2.url }}" class="p-8 flex flex-col items-center">
+      <div class="w-64 h-96 bg-gray-100 flex items-center justify-center">
+        {% if product_2.featured_image %}
+          {{ product_2.featured_image | image_url: width: 256 | image_tag }}
+        {% else %}
+          <div class="text-sm text-gray-400">Olive Oil Image</div>
+        {% endif %}
+      </div>
+      <div class="mt-4 text-center">
+        <h3 class="text-lg font-medium">{{ product_2.title }}</h3>
+        <p class="text-sm text-gray-500">{{ product_2.description | truncate: 50 }}</p>
+      </div>
+    </a>
+  </div>
+  <div class="flex items-center justify-center mt-8">
+    <a
+      href="{{ routes.all_products_collection_url }}"
+      class="uppercase border-none shrink-0 text-sm flex items-center gap-6"
+    >
+      <span>Shop Now</span>
+      {% render 'icon-arrow-right' %}
+    </a>
+  </div>
+</div>

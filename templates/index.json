@@ -24,10 +24,21 @@
       "settings": {
         "text": "Our certified organic extra virgin olive oils are grown from our National Wildlife Habitat orchard in Capay Valley, California. Certified by the California Organic Farmers (CCOF), we pride ourselves on using organic and regenerative farming practices."
       }
+    },
+    "featured_products": {
+      "type": "featured-products",
+      "settings": {
+      }
+    },
+    "certifcation_statement": {
+      "type": "certifcation-statement",
+      "settings": {}
     }
   },
   "order": [
     "main",
-    "large_heading_text_CYiDqW"
+    "large_heading_text_CYiDqW",
+    "featured_products",
+    "certifcation_statement"
   ]
 }
