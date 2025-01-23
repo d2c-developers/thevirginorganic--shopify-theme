@@ -1,51 +1,134 @@
-<footer>
-  <div class="relative flex justify-between items-center p-16 text-center">
-    <div class="flex flex-col gap-1">
-      <h4>{{ section.settings.left_heading }}</h4>
-      <nav>
-        <ul class="flex gap-1">
-          {% for link in section.settings.left_menu.links %}
-            <li>
-              <a href="{{ link.url }}">{{ link.title }}</a>
-            </li>
-          {% endfor %}
-        </ul>
-      </nav>
-    </div>
-    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-      {% if section.settings.logo != blank %}
-        <img
-          src="{{ section.settings.logo | image_url: width: 200 }}"
-          alt="{{ shop.name }}"
-          width="200"
-          height="{{ 200 | divided_by: section.settings.logo.aspect_ratio | round }}"
-          class="w-auto h-12"
-        >
+<footer class="py-[100px] px-5">
+  <div class="relative flex flex-col justify-between items-center space-y-[100px] text-center xl:flex-row xl:flex-wrap">
+    {% comment %} Mobile Logo {% endcomment %}
+    <div class="flex justify-center items-center xl:hidden">
+      {% if section.settings.logo %}
+        {{ section.settings.logo | image_url: width: 320 | image_tag }}
+      {% else %}
+        {% render 'site-logo--secondary' %}
       {% endif %}
     </div>
-    <div class="flex flex-col gap-1">
-      <h4>{{ section.settings.right_heading }}</h4>
-      <nav>
-        <ul class="flex gap-1">
-          {% for link in section.settings.right_menu.links %}
-            <li>
-              <a href="{{ link.url }}">{{ link.title }}</a>
-            </li>
-          {% endfor %}
-        </ul>
-      </nav>
+
+    {% comment %} Newsletter Section {% endcomment %}
+    <div class="w-full shrink-0 text-center mx-auto xl:order-0 max-w-[452px]">
+      <div>
+        <p class="uppercase mb-[10px] text-sm">{{ section.settings.newsletter_heading }}</p>
+        <p class="italic font-serif">
+          {{ section.settings.newsletter_text }}
+        </p>
+      </div>
+      {% form 'customer' %}
+        <div class="mt-10">
+          <fieldset class="border-b border-grey-400 flex focus-within:border-black">
+            <input
+              type="email"
+              name="contact[email]"
+              placeholder="{{ section.settings.newsletter_placeholder }}"
+              class="focus:outline-none border-none text-left w-full"
+            >
+            <button type="submit" class="uppercase border-none shrink-0">
+              {{ section.settings.newsletter_button }} →
+            </button>
+          </fieldset>
+        </div>
+      {% endform %}
     </div>
+
+    {% comment %} Link Lists {% endcomment %}
+    <div class="font-serif space-y-[55px] xl:w-full xl:shrink-0 xl:flex xl:flex-wrap xl:justify-between xl:items-center xl:relative xl:space-y-0">
+      {% comment %} left column {% endcomment %}
+      <div class="flex flex-col gap-1 max-w-[451px] w-full">
+        {% assign menu = linklists['shop-menu-footer'] %}
+        {% if menu.links.size > 0 %}
+          <h4>{{ menu.links.first.title }}</h4>
+          <nav>
+            <ul class="italic justify-center break-words">
+              {% for child_link in menu.links.first.links %}
+                <li class="break-words inline">
+                  <a href="{{ child_link.url }}" class="break-words">
+                    {{- child_link.title -}}
+                    {%- unless forloop.last -%},{%- endunless -%}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </nav>
+        {% endif %}
+      </div>
+
+      {% comment %} Desktop Logo {% endcomment %}
+      <div class="hidden xl:flex xl:justify-center xl:items-center xl:w-full xl:absolute xl:top-1/2 xl:-translate-y-1/2 xl:left-1/2 xl:-translate-x-1/2">
+        {% if section.settings.logo %}
+          {{ section.settings.logo | image_url: width: 320 | image_tag }}
+        {% else %}
+          {% render 'site-logo--secondary' %}
+        {% endif %}
+      </div>
+
+      {% comment %} right column {% endcomment %}
+      <div class="flex flex-col gap-1 max-w-[451px] w-full">
+        {% assign menu = linklists['learn-menu-footer'] %}
+        {% if menu.links.size > 0 %}
+          <h4>{{ menu.links.first.title }}</h4>
+          <nav>
+            <ul class="italic justify-center break-words">
+              {% for child_link in menu.links.first.links %}
+                <li class="break-words inline">
+                  <a href="{{ child_link.url }}" class="break-words">
+                    {{- child_link.title -}}
+                    {%- unless forloop.last -%},{%- endunless -%}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </nav>
+        {% endif %}
+      </div>
+    </div>
+
+    {% comment %} Copyright {% endcomment %}
+    <p class="mt-[55px] font-serif italic text-center xl:w-full xl:shrink-0">
+      Copyright {{ 'now' | date: '%Y' }} The Virgin Organic
+    </p>
   </div>
-  <p class="font-serif italic text-sm text-gray-500 text-center py-8">
-    Copyright {{ 'now' | date: '%Y' }}
-    The Virgin Organic
-  </p>
 </footer>
 
 {% schema %}
 {
   "name": "Footer",
   "settings": [
+    {
+      "type": "header",
+      "content": "Newsletter"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter Heading",
+      "default": "Sign up for our newsletter"
+    },
+    {
+      "type": "richtext",
+      "id": "newsletter_text",
+      "label": "Newsletter Text",
+      "default": "<p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo.</p>"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_placeholder",
+      "label": "Email Placeholder",
+      "default": "Email Address"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button",
+      "label": "Submit Button Text",
+      "default": "Sign Up"
+    },
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
     {
       "type": "text",
       "id": "left_heading",
@@ -58,15 +141,8 @@
       "label": "Left Menu"
     },
     {
-      "type": "text",
-      "id": "right_heading",
-      "label": "Right Column Heading",
-      "default": "Company"
-    },
-    {
-      "type": "link_list",
-      "id": "right_menu",
-      "label": "Right Menu"
+      "type": "header",
+      "content": "Branding"
     },
     {
       "type": "image_picker",
