@@ -24,10 +24,11 @@
               type="email"
               name="contact[email]"
               placeholder="{{ section.settings.newsletter_placeholder }}"
-              class="focus:outline-none border-none text-left w-full"
+              class="focus:outline-none border-none text-left w-full text-[22px] font-serif"
             >
-            <button type="submit" class="uppercase border-none shrink-0">
-              {{ section.settings.newsletter_button }} →
+            <button type="submit" class="uppercase border-none shrink-0 text-sm flex items-center gap-6">
+              <span>{{ section.settings.newsletter_button }}</span>
+              {% render 'icon-arrow-right' %}
             </button>
           </fieldset>
         </div>
@@ -57,7 +58,7 @@
       </div>
 
       {% comment %} Desktop Logo {% endcomment %}
-      <div class="hidden xl:flex xl:justify-center xl:items-center xl:w-full xl:absolute xl:top-1/2 xl:-translate-y-1/2 xl:left-1/2 xl:-translate-x-1/2">
+      <div class="hidden xl:flex xl:justify-center xl:items-center  xl:absolute xl:top-1/2 xl:-translate-y-1/2 xl:left-1/2 xl:-translate-x-1/2">
         {% if section.settings.logo %}
           {{ section.settings.logo | image_url: width: 320 | image_tag }}
         {% else %}
