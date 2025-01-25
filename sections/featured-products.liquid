@@ -1,40 +1,101 @@
 <div class="py-[100px]">
-  <div class="grid grid-cols-2 divide-x divide-gray-200">
-    <a href="{{ product_1.url }}" class="p-8 flex flex-col items-center">
-      <div class="w-64 h-96 bg-gray-100 flex items-center justify-center">
-        {% if product_1.featured_image %}
-          {{ product_1.featured_image | image_url: width: 256 | image_tag }}
-        {% else %}
-          <div class="text-sm text-gray-400">Olive Oil Image</div>
-        {% endif %}
-      </div>
-      <div class="mt-4 text-center">
-        <h3 class="text-lg font-medium">{{ product_1.title }}</h3>
-        <p class="text-sm text-gray-500">{{ product_1.description | truncate: 50 }}</p>
-      </div>
-    </a>
+  <div class="grid grid-cols-1 xl:grid-cols-2 xl:divide-x divide-gray-200">
+    {% for block in section.blocks %}
+      {% if block.type == 'product' %}
+        {% assign product = block.settings.product %}
+        <div class="flex flex-col items-center ">
+          <a href="{{ product.url }}" class="flex flex-col items-center max-w-md mx-auto">
+            <div class="relative flex items-center justify-center">
+              {% if product.featured_image %}
+                {{ product.featured_image | image_url: width: 800 | image_tag: class: 'w-full h-full object-contain' }}
+              {% else %}
+                <div class="text-sm text-gray-400"></div>
+              {% endif %}
+            </div>
+            <div class="mt-4 text-center pl-5 xl:pl-0 w-full">
+              <span class="text-gray-500 font-serif italic">{{ product.metafields.tvo.tagline }}</span>
+              <h3 class="text-2xl font-medium uppercase" style="color: {{ product.metafields.tvo.label_color }};">
+                {{ product.title }}
+              </h3>
 
-    <a href="{{ product_2.url }}" class="p-8 flex flex-col items-center">
-      <div class="w-64 h-96 bg-gray-100 flex items-center justify-center">
-        {% if product_2.featured_image %}
-          {{ product_2.featured_image | image_url: width: 256 | image_tag }}
-        {% else %}
-          <div class="text-sm text-gray-400">Olive Oil Image</div>
-        {% endif %}
-      </div>
-      <div class="mt-4 text-center">
-        <h3 class="text-lg font-medium">{{ product_2.title }}</h3>
-        <p class="text-sm text-gray-500">{{ product_2.description | truncate: 50 }}</p>
-      </div>
-    </a>
+              <div class="pt-5">
+                {% if product.metafields.tvo.harvest != blank %}
+                  <div class="flex justify-between border-b border-[#4C4C46]/25 py-[10px]">
+                    <span class="text-gray-500 text-sm">HARVEST</span>
+                    <span class="font-serif italic">{{ product.metafields.tvo.harvest }}</span>
+                  </div>
+                {% endif %}
+
+                {% if product.metafields.tvo.polyhenial_count != blank %}
+                  <div class="flex justify-between border-b border-[#4C4C46]/25 py-[10px]">
+                    <span class="text-gray-500 text-sm">POLYPHENIAL COUNT</span>
+                    <span class="font-serif italic">{{ product.metafields.tvo.polyhenial_count }}</span>
+                  </div>
+                {% endif %}
+
+                {% if product.metafields.tvo.intensity != blank %}
+                  <div class="flex justify-between items-start border-b border-[#4C4C46]/25 py-[10px]">
+                    <span class="text-gray-500 text-sm">INTENSITY</span>
+                    <span class="text-right max-w-[220px] font-serif italic">
+                      {{ product.metafields.tvo.intensity | newline_to_br }}
+                    </span>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endif %}
+    {% endfor %}
   </div>
-  <div class="flex items-center justify-center mt-8">
-    <a
-      href="{{ routes.all_products_collection_url }}"
-      class="uppercase border-none shrink-0 text-sm flex items-center gap-6"
-    >
-      <span>Shop Now</span>
-      {% render 'icon-arrow-right' %}
-    </a>
+
+  <div class="flex items-center justify-center mt-[50px]">
+    {%
+      render 'ui-button',
+      button_text: section.settings.button_text | default: 'Shop All',
+      type: 'link',
+      url: section.settings.button_url | default: routes.all_products_collection_url
+    %}
   </div>
 </div>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop All"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Featured Product",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Products",
+      "settings": {
+        "button_text": "Shop All"
+      }
+    }
+  ]
+}
+{% endschema %}

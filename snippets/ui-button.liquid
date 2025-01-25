@@ -6,6 +6,7 @@
   - type: {String} Type of button - 'link', 'button', or 'submit' (default: 'button')
   - href: {String} URL for link buttons (required if type is 'link')
   - class_names: {String} Additional classes to apply to button (optional)
+  - style: {String} Button style variant - 'primary' or 'faded' (default: 'primary')
 
   Usage:
   {% render 'ui-button',
@@ -16,25 +17,36 @@
 
   {% render 'ui-button',
     button_text: 'Add to Cart',
-    type: 'submit'
+    type: 'submit',
+    style: 'faded'
   %}
 {%- endcomment -%}
 
+{%- assign base_classes = 'border flex items-center gap-2 border-[#4C4C46]/25' -%}
+{%- assign text_classes = 'block p-5 uppercase text-sm leading-none' -%}
+{%- assign divider_classes = 'border-l px-5 py-6 border-l-[#4C4C46]/25' -%}
+{%- assign variant_classes = primary_classes -%}
+{% if style == 'faded' %}
+  {%- assign base_classes = base_classes | append: ' border-[#FEF8F2]/50 xl:border-[#FEF8F2]/50' -%}
+  {%- assign divider_classes = 'border-l border-[#FEF8F2]/50 px-5 py-6' -%}
+  {%- assign variant_classes = faded_classes -%}
+{% endif %}
+
 {% if type == 'link' %}
-  <a href="{{ href }}" class="{{ class_names }} border flex items-center gap-2">
-    <span class="block px-4 py-2 uppercase text-sm leading-none">{{ button_text }}</span>
-    <span class="border-l px-4 py-2">
-      <span class="">→</span>
+  <a href="{{ href }}" class="{{ base_classes }} {{ variant_classes }} {{ class_names }}">
+    <span class="{{ text_classes }}">{{ button_text }}</span>
+    <span class="{{ divider_classes }}">
+      <span class="">{% render 'icon-arrow-right' %}</span>
     </span>
   </a>
 {% else %}
   <button
     type="{% if type == 'submit' %}submit{% else %}button{% endif %}"
-    class="{{ class_names }} border flex items-center gap-2"
+    class="{{ base_classes }} {{ variant_classes }} {{ class_names }}"
   >
-    <span class="block px-4 py-2 uppercase text-sm leading-none">{{ button_text }}</span>
-    <span class="border-l px-4 py-2">
-      <span class="">→</span>
+    <span class="{{ text_classes }}">{{ button_text }}</span>
+    <span class="{{ divider_classes }}">
+      <span class="">{% render 'icon-arrow-right' %}</span>
     </span>
   </button>
 {% endif %}
