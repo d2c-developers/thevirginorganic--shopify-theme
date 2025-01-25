@@ -1,0 +1,126 @@
+<div class="relative w-full aspect-[128/80]">
+  {% if section.settings.background_type == 'image' %}
+    {{
+      section.settings.background_image
+      | image_url: width: 2000
+      | image_tag: class: 'w-full h-full object-cover', alt: section.settings.background_alt
+      | default: ''
+    }}
+  {% else %}
+    <video
+      src="{{ section.settings.background_video }}"
+      autoplay
+      loop
+      muted
+      playsinline
+      class="w-full h-full object-cover"
+    ></video>
+  {% endif %}
+
+  <div class="absolute inset-0 p-8 space-y-8 flex flex-col items-start">
+    <h2 class="text-4xl md:text-6xl font-serif italic {{ section.settings.text_class_name }}">
+      {{ section.settings.text }}
+    </h2>
+
+    {% render 'ui-button', button_text: 'Shop Now', type: 'link', href: section.settings.button_url %}
+
+    <div class="grow"></div>
+
+    {% if section.blocks.size > 0 %}
+      <div class="flex justify-between w-full">
+        {% for block in section.blocks %}
+          <div class="flex flex-col items-start gap-2">
+            <div class="p-4 font-bold border rounded-full leading-none text-sm flex items-center justify-center">
+              {{ block.settings.number }}
+            </div>
+            <h3 class="text-xl font-semibold">{{ block.settings.title }}</h3>
+            <p>{{ block.settings.body }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Story Wall",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Heading Text",
+      "default": "Your Story Here"
+    },
+    {
+      "type": "select",
+      "id": "background_type",
+      "label": "Background Type",
+      "options": [
+        {
+          "value": "image",
+          "label": "Image"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "background_alt",
+      "label": "Image Alt Text"
+    },
+    {
+      "type": "url",
+      "id": "background_video",
+      "label": "Background Video URL"
+    },
+    {
+      "type": "text",
+      "id": "text_class_name",
+      "label": "Additional Text Classes"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Story Item",
+      "settings": [
+        {
+          "type": "number",
+          "id": "number",
+          "label": "Number"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "body",
+          "label": "Body Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Story Wall"
+    }
+  ]
+}
+{% endschema %}
