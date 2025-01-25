@@ -1,1 +1,55 @@
-<div class="py-[55px] text-center">yes we know you have other options</div>
+<div class="py-[55px] text-center max-w-screen-md mx-auto px-5 xl:px-0">
+  <div class="space-y-5">
+    <div class="flex justify-center">
+      {% if section.settings.certification_image %}
+        {{
+          section.settings.certification_image
+          | image_url: width: 200
+          | image_tag: class: 'mx-auto mb-5 w-[50px]', alt: section.settings.certification_heading
+        }}
+      {% else %}
+        {% render 'icon-ccof' %}
+      {% endif %}
+    </div>
+
+    <div class="text-sm mb-2 uppercase">{{ section.settings.tagline }}</div>
+    <div class="text-[40px] uppercase leading-[90%]">{{ section.settings.certification_heading }}</div>
+    <div class="font-serif text-lg text-[22px]">{{ section.settings.certification_body }}</div>
+  </div>
+
+  <div class="flex justify-center py-[50px] !mt-0 xl:pt-5">
+    {% render 'icon-triple-star-aesthetic' %}
+  </div>
+  <div class="w-px h-[100px] bg-gray-200 mx-auto"></div>
+</div>
+
+{% schema %}
+{
+  "name": "Certification Statement",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "certification_image",
+      "label": "Certification Image"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Short Tagline",
+      "default": "California Organic"
+    },
+    {
+      "type": "text",
+      "id": "certification_heading",
+      "label": "Certification Heading",
+      "default": "Yes, we understand there are hundreds of olive oil brands from around the world to choose from"
+    },
+    {
+      "type": "richtext",
+      "id": "certification_body",
+      "label": "Certification Body",
+      "default": "<p>But what are you actually buying? Even in California, organic food brands are not that common. It is estimated that only 9%* of California entire farming and ranching are organic. Of that number, the organic olive oil industry is just roughly 10 to 15%.** of that number.</p><br /><p>At The Virgin Organic, we use zero pesticides, zero herbicides, zero insecticides. We also have regenerative farming practices. We are a rare breed amongst the masses.</p>"
+    }
+  ]
+}
+{% endschema %}
