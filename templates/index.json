@@ -12,8 +12,8 @@
     "main": {
       "type": "homepage-hero",
       "settings": {
-        "heading": "<p>Compromise<br/>Nothing</p>",
-        "text": "<p>Our belief in world-class olive oils<br />starts from the ground up.</p>",
+        "heading": "<p>Compromise<br>Nothing</p>",
+        "text": "<p>Our belief in world-class olive oils<br>starts from the <em>ground up</em>.</p>",
         "button_text": "Shop Now",
         "background_image": "shopify://shop_images/hero-image-bg-desktop.jpg",
         "bottle_image": "shopify://shop_images/Home_Page_Bottle_Render_54d722a4-098a-42a4-b2e0-b9ccbe841362.png"
@@ -27,7 +27,27 @@
     },
     "featured_products": {
       "type": "featured-products",
+      "blocks": {
+        "product_6GjkWX": {
+          "type": "product",
+          "settings": {
+            "product": "coratina"
+          }
+        },
+        "product_pe6CgG": {
+          "type": "product",
+          "settings": {
+            "product": "picual"
+          }
+        }
+      },
+      "block_order": [
+        "product_6GjkWX",
+        "product_pe6CgG"
+      ],
       "settings": {
+        "button_text": "Shop All",
+        "button_url": "shopify://collections/shop-all"
       }
     },
     "certifcation_statement": {
