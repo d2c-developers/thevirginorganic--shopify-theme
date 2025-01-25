@@ -1,44 +1,71 @@
-<div class="relative w-full aspect-[128/80]">
-  {% if section.settings.background_type == 'image' %}
-    {{
-      section.settings.background_image
-      | image_url: width: 2000
-      | image_tag: class: 'w-full h-full object-cover', alt: section.settings.background_alt
-      | default: ''
-    }}
-  {% else %}
-    <video
-      src="{{ section.settings.background_video }}"
-      autoplay
-      loop
-      muted
-      playsinline
-      class="w-full h-full object-cover"
-    ></video>
-  {% endif %}
-
-  <div class="absolute inset-0 p-8 space-y-8 flex flex-col items-start">
-    <h2 class="text-4xl md:text-6xl font-serif italic {{ section.settings.text_class_name }}">
-      {{ section.settings.text }}
-    </h2>
-
-    {% render 'ui-button', button_text: 'Shop Now', type: 'link', href: section.settings.button_url %}
-
-    <div class="grow"></div>
-
-    {% if section.blocks.size > 0 %}
-      <div class="flex justify-between w-full">
-        {% for block in section.blocks %}
-          <div class="flex flex-col items-start gap-2">
-            <div class="p-4 font-bold border rounded-full leading-none text-sm flex items-center justify-center">
-              {{ block.settings.number }}
-            </div>
-            <h3 class="text-xl font-semibold">{{ block.settings.title }}</h3>
-            <p>{{ block.settings.body }}</p>
-          </div>
-        {% endfor %}
-      </div>
+<div class="relative w-full aspect-[44/80] xl:aspect-[128/80] xl:px-5">
+  <div class="relative">
+    {% if section.settings.background_type == 'image' %}
+      {{
+        section.settings.desktop_background_image
+        | image_url: width: 2000
+        | image_tag:
+          class: 'w-full h-full object-cover hidden xl:block',
+          alt: section.settings.background_alt,
+          src: section.settings.desktop_background_image
+      }}
+      {{
+        section.settings.mobile_background_image
+        | image_url: width: 800
+        | image_tag:
+          class: 'w-full h-full object-cover xl:hidden',
+          alt: section.settings.background_alt,
+          src: section.settings.mobile_background_image
+      }}
+    {% else %}
+      <video
+        src="{{ section.settings.background_video }}"
+        autoplay
+        loop
+        muted
+        playsinline
+        class="w-full h-full object-cover bg-gray-400"
+      ></video>
     {% endif %}
+
+    <div class="absolute inset-0 p-5 w-full h-full flex flex-col items-start text-white xl:py-8">
+      <div class="text-4xl md:text-6xl font-serif">
+        {{ section.settings.text }}
+      </div>
+
+      <div class="grow xl:grow-0"></div>
+
+      {% if section.settings.button_url and section.settings and section.settings.background_type != 'video' %}
+        <div class="mt-[50px]">
+          {% render 'ui-button',
+            button_text: 'Shop Now',
+            type: 'link',
+            href: section.settings.button_url,
+            style: 'faded'
+          %}
+        </div>
+      {% endif %}
+
+      {% if section.blocks.size > 0 %}
+        <div class="xl:grow"></div>
+        <div
+          class="grid w-full gap-[50px]"
+          style="grid-template-columns: repeat({{ section.blocks.size | at_most: 4 }}, 1fr);"
+        >
+          {% for block in section.blocks %}
+            {% if block.type == 'content-item' %}
+              <div class="flex flex-col items-start gap-[10px]">
+                <div class="size-[33px] border border-white/25 rounded-full flex items-center justify-center text-sm font-bold leading-none">
+                  {{ forloop.index }}
+                </div>
+                <h3 class="text-sm">{{ block.settings.title }}</h3>
+                <p class="italic font-serif">{{ block.settings.body }}</p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
   </div>
 </div>
 
@@ -47,10 +74,15 @@
   "name": "Story Wall",
   "settings": [
     {
-      "type": "text",
+      "type": "richtext",
       "id": "text",
       "label": "Heading Text",
-      "default": "Your Story Here"
+      "default": "<p>An <em>invitation</em> to join us by purchasing olive oil.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Background Settings",
+      "info": "Choose between an image or video background below. First select your preferred background type, then configure the corresponding settings in the appropriate section."
     },
     {
       "type": "select",
@@ -68,26 +100,39 @@
       ],
       "default": "image"
     },
+    // Background Image Settings
+    {
+      "type": "header",
+      "content": "Background Image Settings",
+      "info": "If background type is set to image, these settings will be used."
+    },
     {
       "type": "image_picker",
-      "id": "background_image",
-      "label": "Background Image"
+      "id": "mobile_background_image",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_background_image",
+      "label": "Desktop Background Image"
     },
     {
       "type": "text",
       "id": "background_alt",
       "label": "Image Alt Text"
     },
+    // Background Video Settings
+    {
+      "type": "header",
+      "content": "Background Video Settings",
+      "info": "If background type is set to video, these settings will be used."
+    },
     {
       "type": "url",
       "id": "background_video",
       "label": "Background Video URL"
     },
-    {
-      "type": "text",
-      "id": "text_class_name",
-      "label": "Additional Text Classes"
-    },
+    // Button Controls
     {
       "type": "url",
       "id": "button_url",
@@ -96,14 +141,9 @@
   ],
   "blocks": [
     {
-      "type": "item",
-      "name": "Story Item",
+      "type": "content-item",
+      "name": "Content Item",
       "settings": [
-        {
-          "type": "number",
-          "id": "number",
-          "label": "Number"
-        },
         {
           "type": "text",
           "id": "title",

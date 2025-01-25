@@ -7,6 +7,16 @@
   --foreground: #171717;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
