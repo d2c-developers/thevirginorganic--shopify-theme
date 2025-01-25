@@ -4,8 +4,14 @@
   </h1>
   <div class="pt-[50px] grid grid-cols-1 md:grid-cols-3 gap-8">
     {% for product in collection.products %}
-      <div class="group relative {% if product.tags contains 'ui:plp-full-row' %}md:col-span-3{% endif %}">
-        <div class="{% if product.tags contains 'ui:plp-full-row' %}aspect-video max-w-[75%] mx-auto{% else %}aspect-[3/4]{% endif %} overflow-hidden">
+      <div
+        class="
+          group relative
+          {% if forloop.index > 1 %}border-t md:border-t-0 md:border-l border-gray-200{% endif %}
+          {% if product.tags contains 'ui:plp-full-row' %}md:col-span-3 !border-x-0 md:!border-t border-gray-200{% endif %}
+        "
+      >
+        <div class="{% if product.tags contains 'ui:plp-full-row' %}aspect-square xl:aspect-video xl:max-w-[75%] mx-auto{% else %}aspect-square{% endif %} overflow-hidden">
           {% if product.featured_image != blank %}
             <img
               src="{{ product.featured_image | image_url: width: 800 }}"
@@ -19,14 +25,14 @@
           {% endif %}
         </div>
 
-        <div class="mt-4 space-y-2 text-center">
+        <div class="space-y-2 text-center">
           <h3
             class="text-lg lg:text-2xl font-semibold uppercase"
             style="color: {{ product.metafields.tvo.label_color | default: '#000000' }}"
           >
             {{ product.title }}
           </h3>
-          <div>
+          <div class="italic font-serif">
             {% if product.metafields.tvo.tagline != blank %}
               <p class="text-sm text-gray-600">{{ product.metafields.tvo.tagline }}</p>
             {% endif %}
@@ -36,6 +42,7 @@
         </div>
       </div>
     {% endfor %}
+    <div class="md:col-span-3 border-t border-gray-200"></div>
   </div>
 </div>
 
