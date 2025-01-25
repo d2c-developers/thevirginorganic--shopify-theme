@@ -35,6 +35,7 @@
     "@types/react-dom": "^19.0.3",
     "mini-css-extract-plugin": "^2.9.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "swiper": "^11.2.1"
   }
 }
