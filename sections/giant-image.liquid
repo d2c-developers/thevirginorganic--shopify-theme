@@ -1,0 +1,83 @@
+<div class="relative w-full aspect-[44/80] xl:aspect-[128/80] xl:px-5">
+  <div class="relative">
+    {{
+      section.settings.desktop_background_image
+      | image_url: width: 2000
+      | image_tag:
+        class: 'w-full h-full object-cover hidden xl:block',
+        alt: '',
+        src: section.settings.desktop_background_image,
+        loading: 'lazy'
+    }}
+    {{
+      section.settings.mobile_background_image
+      | image_url: width: 800
+      | image_tag:
+        class: 'w-full h-full object-cover xl:hidden',
+        alt: '',
+        src: section.settings.mobile_background_image,
+        loading: 'lazy'
+    }}
+
+    <div class="absolute inset-0 p-5 w-full h-full flex flex-col items-start text-white xl:py-8">
+      <div class="text-4xl md:text-6xl font-serif">
+        {{ section.settings.text }}
+      </div>
+
+      <div class="grow xl:grow-0"></div>
+
+      {% if section.settings.button_url %}
+        <div class="mt-[50px]">
+          {% render 'ui-button',
+            button_text: 'Shop Now',
+            type: 'link',
+            href: section.settings.button_url,
+            style: 'faded'
+          %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Giant Image",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Heading Text",
+      "default": "<p>An <em>invitation</em> to join us by purchasing olive oil.</p>"
+    },
+    // Background Image Settings
+    {
+      "type": "header",
+      "content": "Background Image Settings",
+      "info": "If background type is set to image, these settings will be used."
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_background_image",
+      "label": "Mobile Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_background_image",
+      "label": "Desktop Background Image"
+    },
+    // Button Controls
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button URL",
+      "default": "/collections/shop-all"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Giant Image"
+    }
+  ]
+}
+{% endschema %}

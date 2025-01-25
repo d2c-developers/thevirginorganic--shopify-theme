@@ -1,32 +1,13 @@
 <div class="relative w-full aspect-[44/80] xl:aspect-[128/80] xl:px-5">
   <div class="relative">
-    {% if section.settings.background_type == 'image' %}
-      {{
-        section.settings.desktop_background_image
-        | image_url: width: 2000
-        | image_tag:
-          class: 'w-full h-full object-cover hidden xl:block',
-          alt: section.settings.background_alt,
-          src: section.settings.desktop_background_image
-      }}
-      {{
-        section.settings.mobile_background_image
-        | image_url: width: 800
-        | image_tag:
-          class: 'w-full h-full object-cover xl:hidden',
-          alt: section.settings.background_alt,
-          src: section.settings.mobile_background_image
-      }}
-    {% else %}
-      <video
-        src="{{ section.settings.background_video }}"
-        autoplay
-        loop
-        muted
-        playsinline
-        class="w-full h-full object-cover bg-gray-400"
-      ></video>
-    {% endif %}
+    <video
+      src="{{ section.settings.background_video }}"
+      autoplay
+      loop
+      muted
+      playsinline
+      class="w-full h-full object-cover bg-gray-400"
+    ></video>
 
     <div class="absolute inset-0 p-5 w-full h-full flex flex-col items-start text-white xl:py-8">
       <div class="text-4xl md:text-6xl font-serif">
@@ -71,7 +52,7 @@
 
 {% schema %}
 {
-  "name": "Story Wall",
+  "name": "Giant Video",
   "settings": [
     {
       "type": "richtext",
@@ -79,64 +60,27 @@
       "label": "Heading Text",
       "default": "<p>An <em>invitation</em> to join us by purchasing olive oil.</p>"
     },
-    {
-      "type": "header",
-      "content": "Background Settings",
-      "info": "Choose between an image or video background below. First select your preferred background type, then configure the corresponding settings in the appropriate section."
-    },
-    {
-      "type": "select",
-      "id": "background_type",
-      "label": "Background Type",
-      "options": [
-        {
-          "value": "image",
-          "label": "Image"
-        },
-        {
-          "value": "video",
-          "label": "Video"
-        }
-      ],
-      "default": "image"
-    },
     // Background Image Settings
     {
       "type": "header",
-      "content": "Background Image Settings",
-      "info": "If background type is set to image, these settings will be used."
+      "content": "Static Placeholder Image Settings",
+      "info": "Upload a screenshot of your video here. This will be displayed while the video is loading or if the video fails to load."
     },
     {
       "type": "image_picker",
-      "id": "mobile_background_image",
-      "label": "Mobile Background Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "desktop_background_image",
-      "label": "Desktop Background Image"
-    },
-    {
-      "type": "text",
-      "id": "background_alt",
-      "label": "Image Alt Text"
+      "id": "fallback_image",
+      "label": "Fallback Image"
     },
     // Background Video Settings
     {
       "type": "header",
       "content": "Background Video Settings",
-      "info": "If background type is set to video, these settings will be used."
+      "info": ""
     },
     {
       "type": "url",
       "id": "background_video",
       "label": "Background Video URL"
-    },
-    // Button Controls
-    {
-      "type": "url",
-      "id": "button_url",
-      "label": "Button URL"
     }
   ],
   "blocks": [
@@ -159,7 +103,7 @@
   ],
   "presets": [
     {
-      "name": "Story Wall"
+      "name": "Giant Video"
     }
   ]
 }
