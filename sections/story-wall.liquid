@@ -50,7 +50,7 @@
         <div class="xl:grow"></div>
         <div
           class="grid w-full gap-[50px]"
-          style="grid-template-columns: repeat({{ section.blocks.size | at_most: 4 }}, 1fr);"
+          style="grid-template-columns: repeat({{ section.blocks.size | at_most: 3 }}, 1fr);"
         >
           {% for block in section.blocks %}
             {% if block.type == 'content-item' %}
