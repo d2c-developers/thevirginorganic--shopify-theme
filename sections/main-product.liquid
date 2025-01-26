@@ -1,151 +1,176 @@
 <div class="min-h-screen bg-white">
-  <!-- Product Section -->
-  <div class="w-full px-4 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-      <!-- Product Image -->
-      <div class="aspect-square relative">
-        {% if product.featured_image != blank %}
-          <img
-            src="{{ product.featured_image | image_url: width: 1000 }}"
-            alt="{{ product.featured_image.alt | default: product.title }}"
-            {% comment %} @TODO: make correct aspect ratio {% endcomment %}
-            width="1000"
-            height="{{ 1000 | divided_by: product.featured_image.aspect_ratio | round }}"
-            class="absolute w-full h-full object-contain"
-          >
-        {% else %}
-          <div class="absolute w-full h-full bg-gray-100"></div>
-        {% endif %}
-      </div>
-
-      <!-- Product Details -->
-      <div class="space-y-6">
-        <div>
-          <div class="text-gray-500 uppercase tracking-wide">
+  <div class="w-full px-4 py-5">
+    <div class="grid grid-cols-1 xl:grid-cols-2 xl:gap-12 xl:divide-x xl:divide-x-gray-200">
+      <div class="h-[calc(100vh-68px)] flex flex-col justify-center xl:block">
+        {% comment %} Mobile Product Title and Description {% endcomment %}
+        <div class="block xl:hidden text-center max-w-xs mx-auto">
+          <div class="text-gray-500 uppercase text-sm">
             {{ product.metafields.tvo.tagline }}
           </div>
           <h2
-            class="text-lg lg:text-2xl font-semibold uppercase mt-2"
+            class="text-4xl font-semibold font-serif mt-2"
             style="color: {{ product.metafields.tvo.label_color | default: '#000000' }}"
           >
             {{ product.title }}
           </h2>
-          <p class="text-gray-600 mt-4">{{ product.description }}</p>
+          <p class="text-gray-600 mt-4 text-xl">{{ product.description }}</p>
         </div>
 
-        {% form 'product', product %}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-
-          <!-- Quantity Selector -->
-          <div>
-            <label for="quantity" class="block text-sm text-gray-500 italic mb-2">Quantity</label>
-            <div class="flex gap-4">
-              {% for i in (1..4) %}
-                <div class="flex items-center">
-                  <input
-                    type="radio"
-                    name="quantity"
-                    id="quantity-{{ i }}"
-                    value="{{ i }}"
-                    class="sr-only peer"
-                    {% if forloop.first %}
-                      checked
-                    {% endif %}
-                  >
-                  <label
-                    for="quantity-{{ i }}"
-                    class="w-8 h-8 flex items-center justify-center border rounded hover:border-gray-400 peer-checked:border-gray-900 peer-checked:bg-gray-100 cursor-pointer"
-                  >
-                    {{ i }}
-                  </label>
-                </div>
-              {% endfor %}
+        <!-- Product Image -->
+        <div class="xl:w-full h-full relative grow xl:flex xl:justify-center xl:items-center">
+          {% if product.featured_image != blank %}
+            <img
+              src="{{ product.featured_image | image_url: width: 1000 }}"
+              alt="{{ product.featured_image.alt | default: product.title }}"
+              {% comment %} @TODO: make correct aspect ratio {% endcomment %}
+              width="1000"
+              height="{{ 1000 | divided_by: product.featured_image.aspect_ratio | round }}"
+              class="absolute w-full h-full object-contain xl:w-[initial] mx-auto"
+            >
+          {% else %}
+            <div class="absolute w-full h-full bg-gray-100"></div>
+          {% endif %}
+        </div>
+      </div>
+      <!-- Product Details -->
+      <div class="px-5 xl:pr-0 xl:py-10">
+        <div class="w-full max-w-sm mx-auto">
+          <div class="hidden xl:block">
+            <div class="text-gray-500 uppercase tracking-wide">
+              {{ product.metafields.tvo.tagline }}
             </div>
+            <h2
+              class="text-4xl font-serif mt-2"
+              style="color: {{ product.metafields.tvo.label_color | default: '#000000' }}"
+            >
+              {{ product.title }}
+            </h2>
+            <p class="text-gray-600 mt-4 text-xl">{{ product.description }}</p>
           </div>
 
-          <!-- Purchase Options -->
-          <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center space-x-2">
-                <input type="radio" name="selling_plan" value="" id="one-time" checked>
-                <label for="one-time">One-time purchase</label>
+          {% form 'product', product, class: 'space-y-6' %}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+            <!-- Quantity Selector -->
+            <div class="border-b border-gray-200 pb-5 flex justify-between items-center">
+              <label for="quantity" class="block text-sm text-gray-500 italic font-serif">Quantity</label>
+              <div class="flex gap-4">
+                {% for i in (1..4) %}
+                  <div class="flex items-center">
+                    <input
+                      type="radio"
+                      name="quantity"
+                      id="quantity-{{ i }}"
+                      value="{{ i }}"
+                      class="sr-only peer"
+                      {% if forloop.first %}
+                        checked
+                      {% endif %}
+                    >
+                    <label
+                      for="quantity-{{ i }}"
+                      class="w-8 h-8 flex items-center justify-center border-b border-transparent hover:border-b-gray-200 peer-checked:border-b-gray-200 cursor-pointer"
+                    >
+                      {{ i }}
+                    </label>
+                  </div>
+                {% endfor %}
               </div>
-              <span>{{ product.price | money }}</span>
             </div>
-            {% if product.selling_plan_groups.size > 0 %}
+
+            <!-- Purchase Options -->
+            <div class="space-y-5 border-b border-gray-200 pb-5">
               <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-2">
                   <input
                     type="radio"
                     name="selling_plan"
-                    value="{{ product.selling_plan_groups[0].selling_plans[0].id }}"
-                    id="subscribe"
+                    value=""
+                    id="one-time"
+                    checked
+                    class="appearance-none size-5 border border-black rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-black checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
                   >
-                  <label for="subscribe">Subscribe and save</label>
+                  <label for="one-time" class="ml-2 font-serif">One-time purchase</label>
                 </div>
-                <span class="flex items-center gap-2">
-                  {{ product.price | times: 0.9 | money }}
-                  <span class="text-green-600">Save 10%</span>
+                <span>{{ product.price | money }}</span>
+              </div>
+              {% if product.selling_plan_groups.size > 0 %}
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center space-x-2">
+                    <input
+                      type="radio"
+                      name="selling_plan"
+                      value="{{ product.selling_plan_groups[0].selling_plans[0].id }}"
+                      id="subscribe"
+                      class="appearance-none size-5 border border-black rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-black checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
+                    >
+                    <label for="subscribe" class="ml-2 font-serif">Subscribe and save</label>
+                  </div>
+                  <span class="flex items-center gap-2 font-serif italic">
+                    {{ product.price | times: 0.9 | money }}
+                    <span class="text-green-600">Save 10%</span>
+                  </span>
+                </div>
+              {% endif %}
+            </div>
+
+            <!-- Frequency Selector -->
+            {% if product.selling_plan_groups.size > 0 %}
+              <select name="selling_plan" class="w-full">
+                <option value="" selected>
+                  FREQUENCY: {{ product.metafields.tvo.default_frequency | default: 'MONTHLY' }}
+                </option>
+                {% for selling_plan in product.selling_plan_groups[0].selling_plans %}
+                  <option value="{{ selling_plan.id }}">{{ selling_plan.name }}</option>
+                {% endfor %}
+              </select>
+            {% endif %}
+
+            <!-- Add to Cart Button -->
+            <button
+              type="submit"
+              name="add"
+              class="w-full bg-gray-900 text-white hover:bg-gray-800 uppercase font-semibold text-sm p-5"
+              {% unless product.available %}
+                disabled
+              {% endunless %}
+            >
+              {% if product.available %}
+                Add to Cart
+              {% else %}
+                Sold Out
+              {% endif %}
+            </button>
+          {% endform %}
+
+          <!-- Product Specifications -->
+          <div class="hidden xl:block pt-10">
+            {% if product.metafields.tvo.harvest != blank %}
+              <div class="flex justify-between border-b border-[#4C4C46]/25 pb-[10px]">
+                <span class="text-gray-500 text-sm">HARVEST</span>
+                <span class="font-serif italic">{{ product.metafields.tvo.harvest }}</span>
+              </div>
+            {% endif %}
+
+            {% if product.metafields.tvo.polyhenial_count != blank %}
+              <div class="flex justify-between border-b border-[#4C4C46]/25 py-[10px]">
+                <span class="text-gray-500 text-sm">POLYPHENIAL COUNT</span>
+                <span class="font-serif italic">{{ product.metafields.tvo.polyhenial_count }}</span>
+              </div>
+            {% endif %}
+
+            {% if product.metafields.tvo.intensity != blank %}
+              <div class="flex justify-between items-start border-b border-[#4C4C46]/25 py-[10px]">
+                <span class="text-gray-500 text-sm">INTENSITY</span>
+                <span class="text-right max-w-[220px] font-serif italic">
+                  {{ product.metafields.tvo.intensity | newline_to_br }}
                 </span>
               </div>
             {% endif %}
           </div>
-
-          <!-- Frequency Selector -->
-          {% if product.selling_plan_groups.size > 0 %}
-            <select name="selling_plan" class="w-full">
-              <option value="" selected>
-                FREQUENCY: {{ product.metafields.tvo.default_frequency | default: 'MONTHLY' }}
-              </option>
-              {% for selling_plan in product.selling_plan_groups[0].selling_plans %}
-                <option value="{{ selling_plan.id }}">{{ selling_plan.name }}</option>
-              {% endfor %}
-            </select>
-          {% endif %}
-
-          <!-- Add to Cart Button -->
-          <button
-            type="submit"
-            name="add"
-            class="w-full bg-gray-900 text-white py-6 hover:bg-gray-800 uppercase font-semibold"
-            {% unless product.available %}
-              disabled
-            {% endunless %}
-          >
-            {% if product.available %}
-              Add to Cart
-            {% else %}
-              Sold Out
-            {% endif %}
-          </button>
-        {% endform %}
-
-        <!-- Product Specifications -->
-        <div class="border-t pt-6 space-y-4">
-          {% if product.metafields.tvo.harvest != blank %}
-            <div class="flex justify-between">
-              <span class="text-gray-500">HARVEST</span>
-              <span>{{ product.metafields.tvo.harvest }}</span>
-            </div>
-          {% endif %}
-
-          {% if product.metafields.tvo.polyhenial_count != blank %}
-            <div class="flex justify-between">
-              <span class="text-gray-500">POLYPHENIAL COUNT</span>
-              <span>{{ product.metafields.tvo.polyhenial_count }}</span>
-            </div>
-          {% endif %}
-
-          {% if product.metafields.tvo.intensity != blank %}
-            <div class="flex justify-between items-start">
-              <span class="text-gray-500">INTENSITY</span>
-              <span class="text-right">
-                {{ product.metafields.tvo.intensity | newline_to_br }}
-              </span>
-            </div>
-          {% endif %}
         </div>
       </div>
     </div>
+    <div class="border-t border-gray-200 mt-[50px] xl:mt-5"></div>
   </div>
 </div>
