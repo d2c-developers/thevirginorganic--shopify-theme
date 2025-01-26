@@ -32,7 +32,7 @@ module.exports = {
       // CSS
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'style-loader', 'css-loader', 'postcss-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
       // SVG as React Component ? might be helpful?
       /*

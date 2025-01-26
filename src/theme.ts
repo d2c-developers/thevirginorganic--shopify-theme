@@ -1,8 +1,7 @@
 
+import 'swiper/css/bundle';
 import './theme.css';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import './sections/photo-slider';
+
 console.log('THEME JS IS RUNNING');
 
-import './sections/photo-slider';

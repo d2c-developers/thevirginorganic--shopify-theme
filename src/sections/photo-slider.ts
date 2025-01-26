@@ -1,16 +1,16 @@
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-// core version + navigation, pagination modules:
 import Swiper from 'swiper';
-import { Navigation, Pagination } from 'swiper/modules';
-// import Swiper and modules styles
 
 
 // init Swiper:
-const swiper = new Swiper('#photo-slider--images', {
-  // configure Swiper to use modules
-  modules: [Navigation, Pagination],
-  slidesPerView: 1.6,
-  spaceBetween: 20,
+const swiperImages = new Swiper('#photo-slider--images', {
+  slidesPerView: 1.2,
+  breakpoints: {
+    1024: {
+      slidesPerView: 1.6,
+    },
+  },
+});
+
+const swiperText = new Swiper('#photo-slider--text', {
+  slidesPerView: 1,
 });
