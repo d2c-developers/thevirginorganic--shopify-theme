@@ -101,6 +101,43 @@
         "quote_author": "Arabian Proverb"
       }
     },
+    "photo_slider_AWRDMk": {
+      "type": "photo-slider",
+      "blocks": {
+        "slide_QJetrg": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_22.jpg",
+            "heading": "Certified Natural Habitat",
+            "body": "Allows for a refuge of all natural species. Deer, rabbits, owls and other birds can be seen throughout the property which enable a well-balanced ecosystem"
+          }
+        },
+        "slide_XaMz87": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_31.jpg",
+            "heading": "Another Heading",
+            "body": "And it associated body text. This info correlated to the image above / beside it."
+          }
+        },
+        "slide_JagUqr": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/pdp-giant-image.jpg",
+            "heading": "You can add as many as you want really",
+            "body": "There may be a performance impact eventually but we will monitor for it. Here you can see the image is locked in a specific aspect ratio."
+          }
+        }
+      },
+      "block_order": [
+        "slide_QJetrg",
+        "slide_XaMz87",
+        "slide_JagUqr"
+      ],
+      "settings": {
+        "section_body": ""
+      }
+    },
     "giant_image_P7Kkdm": {
       "type": "giant-image",
       "settings": {
@@ -118,6 +155,7 @@
     "certifcation_statement",
     "giant_video_MDxyLg",
     "big_quote_b9HVWT",
+    "photo_slider_AWRDMk",
     "giant_image_P7Kkdm"
   ]
 }
