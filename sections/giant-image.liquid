@@ -25,16 +25,10 @@
 
       <div class="grow xl:grow-0"></div>
 
-      {% if section.settings.button_url %}
-        <div class="mt-[50px]">
-          {% render 'ui-button',
-            button_text: 'Shop Now',
-            type: 'link',
-            href: section.settings.button_url,
-            style: 'faded'
-          %}
-        </div>
-      {% endif %}
+      {% assign button_url = section.settings.button_url | default: '/collections/shop-all' %}
+      <div class="mt-[50px]">
+        {% render 'ui-button', button_text: 'Shop Now', type: 'link', href: button_url, style: 'faded' %}
+      </div>
     </div>
   </div>
 </div>
@@ -69,8 +63,7 @@
     {
       "type": "url",
       "id": "button_url",
-      "label": "Button URL",
-      "default": "/collections/shop-all"
+      "label": "Button URL"
     }
   ],
   "presets": [

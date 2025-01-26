@@ -8,7 +8,14 @@ module.exports = {
     './templates/*.liquid',
   ],
   theme: {
-    extend: {},
+    extend: {
+      margin: {
+        100: '100px',
+      },
+      padding: {
+        100: '100px',
+      },
+    },
   },
   plugins: [],
 };
