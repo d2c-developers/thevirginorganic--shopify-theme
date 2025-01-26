@@ -52,13 +52,54 @@
     },
     "certifcation_statement": {
       "type": "certifcation-statement",
-      "settings": {}
+      "settings": {
+        "tagline": "California Organic",
+        "certification_heading": "Yes, we understand there are hundreds of olive oil brands from around the world to choose from",
+        "certification_body": "<p>But what are you actually buying? Even in California, organic food brands are not that common. It is estimated that only 9%* of California entire farming and ranching are organic. Of that number, the organic olive oil industry is just roughly 10 to 15%.** of that number.<br/><br/>At The Virgin Organic, we use zero pesticides, zero herbicides, zero insecticides. We also have regenerative farming practices. We are a rare breed amongst the masses.</p>"
+      }
+    },
+    "giant_video_MDxyLg": {
+      "type": "giant-video",
+      "blocks": {
+        "content_item_yATUqb": {
+          "type": "content-item",
+          "settings": {
+            "title": "No Tilling",
+            "body": "This is a practice seldomly done on the property. Most would surmise that tilling the soil is a positive thing. But by avoiding tilling, it enhances soil structure and does not disturb the ego system below."
+          }
+        },
+        "content_item_wgcMTA": {
+          "type": "content-item",
+          "settings": {
+            "title": "California Water Conservation",
+            "body": "How water is handled on the property is critical. We utilize a careful drip system to ensure conservation of our planet’s most precious resource. In addition, the California Department of Food and Agriculture – CDFA also monitors farming practices to ensure the state’s food safety on the property."
+          }
+        },
+        "content_item_dtmQKY": {
+          "type": "content-item",
+          "settings": {
+            "title": "Hand Harvesting",
+            "body": "This is a labor intense job. And a costly one as well. Just like the wine industry, mechanical harvesting is very common in the olive oil industry. However, picking by hand minimizes the damage to the olive that can be bruised or crushed, leading to the release of enzymes like polyphenol oxidase."
+          }
+        }
+      },
+      "block_order": [
+        "content_item_yATUqb",
+        "content_item_wgcMTA",
+        "content_item_dtmQKY"
+      ],
+      "settings": {
+        "text": "<p>Our olive oils are are <em>monocultivar</em>, meaning they are single varietal selection and are <em>hand-harvested</em>, ensuring <em>exceptional</em> flavors and aromas.</p>",
+        "fallback_image": "shopify://shop_images/Frame_21.jpg",
+        "background_video": ""
+      }
     }
   },
   "order": [
     "main",
     "large_heading_text_CYiDqW",
     "featured_products",
-    "certifcation_statement"
+    "certifcation_statement",
+    "giant_video_MDxyLg"
   ]
 }
