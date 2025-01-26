@@ -93,6 +93,22 @@
         "fallback_image": "shopify://shop_images/Frame_21.jpg",
         "background_video": ""
       }
+    },
+    "big_quote_b9HVWT": {
+      "type": "big-quote",
+      "settings": {
+        "quote": "He who has health has hope and he who has hope has everything.",
+        "quote_author": "Arabian Proverb"
+      }
+    },
+    "giant_image_P7Kkdm": {
+      "type": "giant-image",
+      "settings": {
+        "text": "<p>An <em>invitation</em> to join us by purchasing olive oil.</p>",
+        "mobile_background_image": "shopify://shop_images/Frame_32.png",
+        "desktop_background_image": "shopify://shop_images/olives.png",
+        "button_url": "shopify://collections/shop-all"
+      }
     }
   },
   "order": [
@@ -100,6 +116,8 @@
     "large_heading_text_CYiDqW",
     "featured_products",
     "certifcation_statement",
-    "giant_video_MDxyLg"
+    "giant_video_MDxyLg",
+    "big_quote_b9HVWT",
+    "giant_image_P7Kkdm"
   ]
 }
