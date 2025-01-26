@@ -1,0 +1,32 @@
+<div
+  class="p-5 text-center space-y-[50px] max-w-3xl mx-auto"
+>
+  <div class="text-[40px] xl:text-[65px] leading-[90%] uppercase">
+    <p>"</p>
+    <p>{{ section.settings.quote }}</p>
+  </div>
+  <p class="text-sm uppercase">{{ section.settings.quote_author }}</p>
+</div>
+{% schema %}
+{
+  "name": "Big Quote",
+  "class": "my-[100px]",
+  "settings": [
+    {
+      "type": "text",
+      "id": "quote",
+      "label": "Quote"
+    },
+    {
+      "type": "text",
+      "id": "quote_author",
+      "label": "Quote Author"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Big Quote"
+    }
+  ]
+}
+{% endschema %}
