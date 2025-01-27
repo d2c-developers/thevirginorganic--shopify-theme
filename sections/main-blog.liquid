@@ -1,0 +1,69 @@
+<div class="container mx-auto px-5">
+  <h1 class="text-[40px] xl:text-[65px] text-center uppercase max-w-sm w-full mx-auto">{{ blog.title }}</h1>
+
+  <div class="my-50 grid grid-cols-1 xl:grid-cols-3">
+    {% paginate blog.articles by 12 %}
+      {% for article in blog.articles %}
+        {% assign is_last_in_row = forloop.index | modulo: 3 %}
+        <article class="my-50 xl:pr-5 xl:border-r xl:border-gray-200 xl:mr-5 {% if is_last_in_row == 0 %}xl:border-r-0 xl:mr-0{% endif %}">
+          <a href="{{ article.url }}" class="block">
+            <div class="aspect-[28/23] relative mb-5">
+              {% if article.image %}
+                <img
+                  src="{{ article.image | image_url: width: 800 }}"
+                  alt="{{ article.image.alt }}"
+                  class="absolute inset-0 w-full h-full object-cover"
+                  width="{{ article.image.width }}"
+                  height="{{ article.image.height }}"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="absolute inset-0 bg-gray-100"></div>
+              {% endif %}
+            </div>
+
+            <div class="space-y-[10px] text-center max-w-[285px] mx-auto">
+              <p class="italic font-serif">{{ article.published_at | date: '%B %d, %Y' }}</p>
+              <h2 class="text-sm uppercase">{{ article.title }}</h2>
+              <p class="font-serif italic">
+                {% if article.excerpt != blank %}
+                  {{ article.excerpt }}
+                {% else %}
+                  {{ article.content | strip_html | truncatewords: 20 }}
+                {% endif %}
+              </p>
+            </div>
+          </a>
+        </article>
+
+        {% if is_last_in_row == 0 %}
+          <div class="hidden xl:block w-full border-b border-gray-200 col-span-full"></div>
+        {% endif %}
+      {% endfor %}
+
+      {% if paginate.pages > 1 %}
+        <div class="col-span-full flex justify-center items-center gap-4 mt-16">
+          <div class="flex gap-4">
+            {% for i in (1..paginate.pages) %}
+              {% if i == paginate.current_page %}
+                <span class="text-sm font-bold">{{ i }}</span>
+              {% elsif i <= 3 or i >= paginate.pages %}
+                <a href="{{ paginate.page_link[i] }}" class="text-sm">{{ i }}</a>
+              {% elsif i == 4 %}
+                <span class="text-sm">...</span>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    {% endpaginate %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main Blog",
+  "class": "my-50 xl:my-100",
+  "settings": []
+}
+{% endschema %}
