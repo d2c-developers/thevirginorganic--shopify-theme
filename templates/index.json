@@ -138,6 +138,40 @@
         "section_body": "<p>This section should be about the the Wildlife Habitat and our commitment to the land and the environment. The image to the right can be a photo slider so we can speak to multiple aspects.</p>"
       }
     },
+    "featured_blog_posts_MAJhmd": {
+      "type": "featured-blog-posts",
+      "blocks": {
+        "article_zCNwPC": {
+          "type": "article",
+          "settings": {
+            "article": "blog/blog-post-title"
+          }
+        },
+        "article_YbYCWi": {
+          "type": "article",
+          "settings": {
+            "article": "blog/blog-post-title"
+          }
+        },
+        "article_4AEXwf": {
+          "type": "article",
+          "settings": {
+            "article": "blog/blog-post-2"
+          }
+        }
+      },
+      "block_order": [
+        "article_zCNwPC",
+        "article_YbYCWi",
+        "article_4AEXwf"
+      ],
+      "settings": {
+        "eyebrow": "Our Blog",
+        "heading": "Featured Blog Posts",
+        "button_text": "Read More",
+        "button_link": "shopify://blogs/blog"
+      }
+    },
     "giant_image_P7Kkdm": {
       "type": "giant-image",
       "settings": {
@@ -156,6 +190,7 @@
     "giant_video_MDxyLg",
     "big_quote_b9HVWT",
     "photo_slider_AWRDMk",
+    "featured_blog_posts_MAJhmd",
     "giant_image_P7Kkdm"
   ]
 }
