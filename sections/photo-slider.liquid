@@ -27,7 +27,7 @@
   </div>
   <div class="xl:col-span-4 xl:col-start-1 xl:row-start-2 xl:row-end-3 w-full flex flex-col justify-end px-5">
     <div
-      class="swiper w-full space-y-5 flex flex-col justify-end relative max-w-md mx-auto xl:mx-0 pb-[50px] xl:pb-0"
+      class="swiper w-full space-y-5 flex flex-col justify-end relative max-w-md mx-auto xl:mx-0 pb-[80px] xl:pb-0"
       id="photo-slider--text"
     >
       {% comment %} Navigation Controls {% endcomment %}
@@ -40,7 +40,7 @@
         </button>
       </div>
       {% comment %} Actual Slider {% endcomment %}
-      <div class="swiper-wrapper ">
+      <div class="swiper-wrapper">
         {% for block in section.blocks %}
           {% if block.type == 'slide' %}
             <div class="swiper-slide w-full flex flex-col justify-end">

@@ -11,8 +11,14 @@ module.exports = {
     extend: {
       margin: {
         100: '100px',
+        50: '50px',
       },
       padding: {
+        100: '100px',
+        50: '50px',
+      },
+      spacing: {
+        50: '50px',
         100: '100px',
       },
     },

@@ -23,13 +23,16 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.swiper-pagination--text {
+.swiper-pagination--text,
+.swiper-pagination--blog {
   @apply bottom-0 left-0 right-0 w-fit absolute flex items-end justify-center flex-row;
 }
-.swiper-pagination--text .swiper-pagination-bullet {
+.swiper-pagination--text .swiper-pagination-bullet,
+.swiper-pagination--blog .swiper-pagination-bullet {
   @apply border border-black/25 rounded-full size-[10px] bg-transparent opacity-100;
 }
 
-.swiper-pagination--text .swiper-pagination-bullet-active {
+.swiper-pagination--text .swiper-pagination-bullet-active,
+.swiper-pagination--blog .swiper-pagination-bullet-active {
   @apply bg-black;
 }
