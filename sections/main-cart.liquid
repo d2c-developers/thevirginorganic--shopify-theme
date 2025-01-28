@@ -1,0 +1,79 @@
+<div class="container mx-auto px-5">
+  <div class="max-w-3xl mx-auto">
+    {%- if cart == empty -%}
+      <div class="text-center py-20">
+        <h1 class="text-[40px] xl:text-[65px] uppercase mb-5">Your cart is empty</h1>
+        <a href="{{ routes.all_products_collection_url }}" class="btn"> Continue shopping </a>
+      </div>
+    {%- else -%}
+      <h1 class="text-[40px] xl:text-[65px] uppercase text-center mb-10">Shopping Cart</h1>
+
+      <form action="{{ routes.cart_url }}" method="post" novalidate>
+        <div class="space-y-8">
+          {%- for item in cart.items -%}
+            <div class="flex gap-5">
+              <div class="w-24 aspect-square relative shrink-0">
+                <img
+                  src="{{ item.image | image_url: width: 200 }}"
+                  alt="{{ item.image.alt | escape }}"
+                  class="absolute inset-0 w-full h-full object-cover"
+                  width="{{ item.image.width }}"
+                  height="{{ item.image.height }}"
+                  loading="lazy"
+                >
+              </div>
+
+              <div class="flex-1">
+                <div class="flex justify-between">
+                  <div>
+                    <h2 class="font-medium">{{ item.product.title }}</h2>
+                    {%- if item.product.has_only_default_variant == false -%}
+                      <p class="text-sm text-gray-600">{{ item.variant.title }}</p>
+                    {%- endif -%}
+                  </div>
+                  <p class="font-medium">{{ item.final_line_price | money }}</p>
+                </div>
+
+                <div class="mt-3 flex justify-between items-center">
+                  <div class="flex items-center border">
+                    <button type="button" class="p-2" name="minus" aria-label="Decrease quantity">−</button>
+                    <input
+                      type="number"
+                      name="updates[]"
+                      value="{{ item.quantity }}"
+                      min="0"
+                      aria-label="Quantity"
+                      class="w-12 text-center"
+                    >
+                    <button type="button" class="p-2" name="plus" aria-label="Increase quantity">+</button>
+                  </div>
+                  <button type="button" class="text-sm underline" name="remove">Remove</button>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div class="mt-10 border-t pt-10">
+          <div class="flex justify-between items-center mb-5">
+            <p class="text-lg">Subtotal</p>
+            <p class="text-lg font-medium">{{ cart.total_price | money }}</p>
+          </div>
+
+          <div class="flex gap-4">
+            <button type="submit" name="update" class="btn btn-secondary flex-1">Update cart</button>
+            <button type="submit" name="checkout" class="btn flex-1">Checkout</button>
+          </div>
+        </div>
+      </form>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Main Cart",
+  "class": "my-50 xl:my-100",
+  "settings": []
+}
+{% endschema %}
