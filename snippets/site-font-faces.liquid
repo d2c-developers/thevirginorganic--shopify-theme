@@ -1,10 +1,14 @@
 <style>
   @font-face {
     font-family: 'Engelsgold';
-    src: url('{{ "Engelsgold.ttf" | asset_url }}') format('ttf');
+    src: url('{{ "Engelsgold.woff2" | asset_url }}') format('woff2'),
+         url('{{ "Engelsgold.woff" | asset_url }}') format('woff'),
+      url('{{ "Engelsgold.ttf" | asset_url }}') format('ttf'),
+      url('{{ "Engelsgold.otf" | asset_url }}') format('otf');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
+    font-family: 'Engelsgold', 'Times New Roman', serif;
   }
 
   @font-face {
@@ -16,21 +20,30 @@
     font-weight: 700;
     font-style: normal;
     font-display: swap;
+    font-family: 'SuperGrotesk', Arial, sans-serif;
   }
 
   @font-face {
     font-family: 'GT-Alpina';
-    src: url('{{ "GT-Alpina-Beta-v5-Regular.otf" | asset_url }}') format('otf');
+    src: url('{{ "GT-Alpina-Beta-v5-Regular.woff2" | asset_url }}') format('woff2'),
+        url('{{ "GT-Alpina-Beta-v5-Regular.otf" | asset_url }}') format('otf'),
+         url('{{ "GT-Alpina-Beta-v5-Regular.woff" | asset_url }}') format('woff'),
+         url('{{ "GT-Alpina-Beta-v5-Regular.ttf" | asset_url }}') format('ttf');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
+    font-family: 'GT-Alpina', Georgia, serif;
   }
 
   @font-face {
     font-family: 'GT-Alpina';
-    src: url('{{ "GT-Alpina-Beta-v5-Regular-Italic.otf" | asset_url }}') format('otf');
+    src: url('{{ "GT-Alpina-Beta-v5-Regular-Italic.otf" | asset_url }}') format('otf'),
+         url('{{ "GT-Alpina-Beta-v5-Regular-Italic.woff2" | asset_url }}') format('woff2'),
+         url('{{ "GT-Alpina-Beta-v5-Regular-Italic.woff" | asset_url }}') format('woff'),
+         url('{{ "GT-Alpina-Beta-v5-Regular-Italic.ttf" | asset_url }}') format('ttf');
     font-weight: normal;
     font-style: italic;
     font-display: swap;
+    font-family: 'GT-Alpina', Georgia, serif;
   }
 </style>
