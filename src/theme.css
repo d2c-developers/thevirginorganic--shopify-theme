@@ -4,7 +4,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: rgba(0, 0, 0, 0.75);
 }
 
 * {
@@ -18,15 +18,14 @@
 }
 
 body {
-  @apply font-serif;
-  color: var(--foreground);
-  background: var(--background);
+  @apply font-serif text-dark-grey bg-white;
 }
 
 .font-heading {
   @apply font-display text-[40px] leading-[90%] tracking-[0.03em] uppercase xl:text-[65px];
 }
 
+/* Swiper Pagination Styles */
 .swiper-pagination--text,
 .swiper-pagination--blog {
   @apply bottom-0 left-0 right-0 w-fit absolute flex items-end justify-center flex-row;

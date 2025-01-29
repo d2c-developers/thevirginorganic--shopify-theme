@@ -12,11 +12,11 @@
         <div class="space-y-8">
           {%- for item in cart.items -%}
             <div class="flex gap-5">
-              <div class="w-24 aspect-square relative shrink-0">
+              <div class="relative shrink-0 w-24">
                 <img
                   src="{{ item.image | image_url: width: 200 }}"
                   alt="{{ item.image.alt | escape }}"
-                  class="absolute inset-0 w-full h-full object-cover"
+                  class="absolute inset-0 w-full h-full object-contain"
                   width="{{ item.image.width }}"
                   height="{{ item.image.height }}"
                   loading="lazy"

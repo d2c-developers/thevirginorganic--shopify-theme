@@ -1,4 +1,4 @@
-<header class="fixed flex items-center justify-between w-full font-serif  top-0 left-0 right-0 p-5 text-black {% if template == 'index' %}xl:text-white xl:bg-transparent{% endif %} z-50 bg-white xl:text-lg">
+<header class="site-header fixed flex items-center justify-between w-full font-serif  top-0 left-0 right-0 p-5 text-dark-grey {% if template == 'index' %}xl:text-white xl:bg-transparent{% endif %} z-50 bg-white xl:text-lg">
   {% comment %} Left List {% endcomment %}
   <div>
     {% comment %} Desktop List{% endcomment %}
@@ -88,10 +88,10 @@
       window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {
           header.classList.remove('xl:bg-transparent', 'xl:text-white');
-          header.classList.add('xl:bg-white', 'xl:text-black');
+          header.classList.add('xl:bg-white', 'xl:text-dark-grey');
         } else {
-          header.classList.add('bg-white', 'text-black', 'xl:bg-transparent', 'xl:text-white');
-          header.classList.remove('xl:bg-white', 'xl:text-black');
+          header.classList.add('bg-white', 'text-dark-grey', 'xl:bg-transparent', 'xl:text-white');
+          header.classList.remove('xl:bg-white', 'xl:text-dark-grey');
         }
       });
     });
