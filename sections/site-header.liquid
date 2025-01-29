@@ -25,7 +25,7 @@
     {% comment %} Mobile Menu Button {% endcomment %}
     <button
       type="button"
-      class="xl:hidden flex items-center justify-center relative after:absolute after:bottom-0 after:bg-black after:w-full after:h-px after:z-10 js-menu-toggle"
+      class="xl:hidden text-dark-grey flex items-center justify-center relative after:absolute after:bottom-0 after:bg-dark-grey after:w-full after:h-px after:z-10 js-menu-toggle"
       aria-label="Toggle menu"
       aria-expanded="false"
     >
@@ -70,7 +70,7 @@
         </li>
       {% endfor %}
     </ul>
-    <a href="{{ routes.cart_url }}" class="inline-block">
+    <a href="{{ routes.cart_url }}" class="inline-block text-dark-grey">
       Cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif -%}
     </a>
   </nav>
