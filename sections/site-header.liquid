@@ -70,7 +70,7 @@
         </li>
       {% endfor %}
     </ul>
-    <a href="{{ routes.cart_url }}" class="inline-block text-dark-grey">
+    <a href="{{ routes.cart_url }}" class="inline-block">
       Cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif -%}
     </a>
   </nav>

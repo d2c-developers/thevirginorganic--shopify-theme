@@ -12,21 +12,24 @@
     {% comment %} Newsletter Section {% endcomment %}
     <div class="w-full shrink-0 text-center mx-auto xl:order-0 max-w-[452px]">
       <div>
-        <p class="uppercase mb-[10px] text-sm">{{ section.settings.newsletter_heading }}</p>
-        <p class="italic font-serif">
+        <p class="uppercase mb-[10px] text-sm font-sans text-grey-50">{{ section.settings.newsletter_heading }}</p>
+        <div class="italic font-serif leading-tight">
           {{ section.settings.newsletter_text }}
-        </p>
+        </div>
       </div>
       {% form 'customer' %}
         <div class="mt-10">
-          <fieldset class="border-b border-grey-400 flex focus-within:border-black">
+          <fieldset class="border-b border-grey-400 flex focus-within:border-dark-grey">
             <input
               type="email"
               name="contact[email]"
               placeholder="{{ section.settings.newsletter_placeholder }}"
-              class="focus:outline-none border-none text-left w-full text-[22px] font-serif"
+              class="focus:outline-none border-none text-left w-full text-[22px] font-serif text-dark-grey"
             >
-            <button type="submit" class="uppercase border-none shrink-0 text-sm flex items-center gap-6">
+            <button
+              type="submit"
+              class="uppercase border-none shrink-0 text-sm font-sans tracking-[0.15em] text-dark-grey flex items-center gap-6"
+            >
               <span>{{ section.settings.newsletter_button }}</span>
               {% render 'icon-arrow-right' %}
             </button>
@@ -41,9 +44,9 @@
       <div class="flex flex-col gap-1 max-w-[451px] w-full">
         {% assign menu = linklists['shop-menu-footer'] %}
         {% if menu.links.size > 0 %}
-          <h4>{{ menu.links.first.title }}</h4>
+          <h4 class="text-grey-50">{{ menu.links.first.title }}</h4>
           <nav>
-            <ul class="italic justify-center break-words">
+            <ul class="italic justify-center break-words text-dark-grey">
               {% for child_link in menu.links.first.links %}
                 <li class="break-words inline">
                   <a href="{{ child_link.url }}" class="break-words">
@@ -70,9 +73,9 @@
       <div class="flex flex-col gap-1 max-w-[451px] w-full">
         {% assign menu = linklists['learn-menu-footer'] %}
         {% if menu.links.size > 0 %}
-          <h4>{{ menu.links.first.title }}</h4>
+          <h4 class="text-grey-50">{{ menu.links.first.title }}</h4>
           <nav>
-            <ul class="italic justify-center break-words">
+            <ul class="italic justify-center break-words text-dark-grey">
               {% for child_link in menu.links.first.links %}
                 <li class="break-words inline">
                   <a href="{{ child_link.url }}" class="break-words">
@@ -88,7 +91,7 @@
     </div>
 
     {% comment %} Copyright {% endcomment %}
-    <p class="mt-[55px] font-serif italic text-center xl:w-full xl:shrink-0">
+    <p class="mt-[55px] font-serif italic text-center xl:w-full xl:shrink-0 text-grey-50">
       Copyright {{ 'now' | date: '%Y' }} The Virgin Organic
     </p>
   </div>
