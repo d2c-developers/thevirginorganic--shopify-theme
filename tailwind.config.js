@@ -9,6 +9,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        serif: ['GT-Alpina', 'serif'],
+        sans: ['SuperGrotesk', 'sans-serif'],
+        display: ['Engelsgold', 'sans-serif'],
+      },
       margin: {
         100: '100px',
         50: '50px',

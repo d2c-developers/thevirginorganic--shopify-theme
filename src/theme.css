@@ -18,9 +18,13 @@
 }
 
 body {
+  @apply font-serif;
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+.font-heading {
+  @apply font-display text-[40px] leading-[90%] tracking-[0.03em] uppercase xl:text-[65px];
 }
 
 .swiper-pagination--text,

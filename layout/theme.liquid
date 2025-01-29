@@ -18,6 +18,40 @@
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
+    <style>
+      @font-face {
+        font-family: 'Engelsgold';
+        src: url('{{ "Engelsgold.ttf" | asset_url }}') format('ttf');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'SuperGrotesk';
+        src: url('{{ "SuperGroteskWeb-W03-Medium.ttf" | asset_url }}') format('ttf');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'GT-Alpina';
+        src: url('{{ "GT-Alpina-Beta-v5-Regular.otf" | asset_url }}') format('otf');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'GT-Alpina';
+        src: url('{{ "GT-Alpina-Beta-v5-Regular-Italic.otf" | asset_url }}') format('otf');
+        font-weight: normal;
+        font-style: italic;
+        font-display: swap;
+      }
+    </style>
+
     {% render 'site-local-styles' %}
 
     {{ content_for_header }}
