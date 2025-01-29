@@ -7,8 +7,8 @@
       <div
         class="
           group relative
-          {% if forloop.index > 1 %}border-t md:border-t-0 md:border-l border-gray-200{% endif %}
-          {% if product.tags contains 'ui:plp-full-row' %}md:col-span-3 !border-x-0 md:!border-t border-gray-200{% endif %}
+          {% if forloop.index > 1 %}border-t md:border-t-0 md:border-l border-border{% endif %}
+          {% if product.tags contains 'ui:plp-full-row' %}md:col-span-3 !border-x-0 md:!border-t border-border{% endif %}
         "
       >
         <div class="{% if product.tags contains 'ui:plp-full-row' %}aspect-square xl:aspect-video xl:max-w-[75%] mx-auto{% else %}aspect-square{% endif %} overflow-hidden">
@@ -21,28 +21,28 @@
               class="h-full w-full object-contain"
             >
           {% else %}
-            <div class="h-full w-full bg-gray-100"></div>
+            <div class="h-full w-full bg-grey-50"></div>
           {% endif %}
         </div>
 
         <div class="space-y-2 text-center">
           <h3
-            class="text-lg lg:text-2xl font-semibold uppercase"
+            class="text-2xl uppercase font-sans tracking-[0.15em]"
             style="color: {{ product.metafields.tvo.label_color | default: '#000000' }}"
           >
             {{ product.title }}
           </h3>
           <div class="italic font-serif">
             {% if product.metafields.tvo.tagline != blank %}
-              <p class="text-sm text-gray-600">{{ product.metafields.tvo.tagline }}</p>
+              <p class=" text-dark-grey">{{ product.metafields.tvo.tagline }}</p>
             {% endif %}
-            <p class="text-sm text-gray-500">{{ product.price | money }}</p>
+            <p class="text-dark-grey">{{ product.price | money }}</p>
           </div>
           <a href="{{ product.url }}" class="absolute inset-0" aria-label="View {{ product.title }}"></a>
         </div>
       </div>
     {% endfor %}
-    <div class="md:col-span-3 border-t border-gray-200"></div>
+    <div class="md:col-span-3 border-t border-border"></div>
   </div>
 </div>
 
