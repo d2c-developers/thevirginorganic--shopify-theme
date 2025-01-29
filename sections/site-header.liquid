@@ -25,8 +25,9 @@
     {% comment %} Mobile Menu Button {% endcomment %}
     <button
       type="button"
-      class="xl:hidden flex items-center justify-center relative after:absolute after:bottom-0 after:bg-black after:w-full after:h-px after:z-10"
+      class="xl:hidden flex items-center justify-center relative after:absolute after:bottom-0 after:bg-black after:w-full after:h-px after:z-10 js-menu-toggle"
       aria-label="Toggle menu"
+      aria-expanded="false"
     >
       Menu
     </button>
@@ -75,7 +76,51 @@
   </nav>
 </header>
 
-{% comment %} @TODO: make this super performant {% endcomment %}
+{% comment %} Mobile Menu {% endcomment %}
+<div class="fixed inset-0 bg-white z-40 translate-x-full transition-transform duration-300 ease-in-out xl:hidden js-mobile-menu">
+  <div class="h-full pt-[72px] flex flex-col items-center justify-center gap-10">
+    <nav class="text-center">
+      <ul class="flex flex-col items-center gap-10">
+        {% for item in linklists['shop-menu'].links %}
+          <li>
+            <a href="{{ item.url }}" class="inline-block mb-5 text-grey-50 italic">
+              {{- item.title -}}
+            </a>
+            {% if item.links.size > 0 %}
+              <div class="mt-2 font-heading flex flex-col gap-px">
+                {% for child in item.links %}
+                  <a href="{{ child.url }}" class="inline-block">
+                    {{- child.title -}}
+                  </a>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </li>
+        {% endfor %}
+        {% for item in linklists['learn-menu'].links %}
+          <li>
+            <a href="{{ item.url }}" class="inline-block mb-5 text-grey-50 italic">
+              {{- item.title -}}
+            </a>
+            {% if item.links.size > 0 %}
+              <div class="mt-2 font-heading flex flex-col gap-px">
+                {% for child in item.links %}
+                  <a href="{{ child.url }}" class="inline-block">
+                    {{- child.title -}}
+                  </a>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <div class="max-w-60">
+      {% render 'site-logo--secondary' %}
+    </div>
+  </div>
+</div>
+
 <script>
   {% if template == 'index' %}
     document.addEventListener('DOMContentLoaded', () => {
@@ -83,8 +128,6 @@
       header.classList.add('transition-colors');
       header.classList.add('duration-300');
 
-      // @TODO: this is a silly mess of class names
-      // put them in a variables that make sense
       window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {
           header.classList.remove('xl:bg-transparent', 'xl:text-white');
@@ -96,6 +139,26 @@
       });
     });
   {% endif %}
+
+  // Mobile menu functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.js-menu-toggle');
+    const mobileMenu = document.querySelector('.js-mobile-menu');
+    const body = document.body;
+
+    menuToggle.addEventListener('click', () => {
+      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !isExpanded);
+      mobileMenu.style.transform = isExpanded ? 'translateX(100%)' : 'translateX(0)';
+      menuToggle.textContent = isExpanded ? 'Menu' : 'Close';
+
+      if (isExpanded) {
+        body.style.removeProperty('overflow');
+      } else {
+        body.style.overflow = 'hidden';
+      }
+    });
+  });
 </script>
 
 {% schema %}
