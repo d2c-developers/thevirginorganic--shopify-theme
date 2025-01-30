@@ -41,6 +41,40 @@
         "section_body": "<p>This is a section body that will be displayed in the left content area.</p>"
       }
     },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "faq_item_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What makes this olive oil special?",
+            "answer": "<p>Our olive oils are certified organic and grown in our National Wildlife Habitat orchard using sustainable farming practices.</p>"
+          }
+        },
+        "faq_item_2": {
+          "type": "faq_item", 
+          "settings": {
+            "question": "How should I store my olive oil?",
+            "answer": "<p>Store in a cool, dark place away from direct light and heat to maintain freshness and quality.</p>"
+          }
+        },
+        "faq_item_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is the shelf life?",
+            "answer": "<p>When stored properly, our olive oil maintains peak freshness for 18-24 months from harvest date.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_1",
+        "faq_item_2",
+        "faq_item_3"
+      ],
+      "settings": {
+        "heading": "Frequently Asked Questions"
+      }
+    },
     "featured_blog_posts_gmdTLB": {
       "type": "featured-blog-posts",
       "blocks": {
@@ -86,6 +120,7 @@
   "order": [
     "main",
     "photo_slider_npgjQ7",
+    "faq",
     "featured_blog_posts_gmdTLB",
     "giant_image_rztDK8"
   ]

@@ -54,7 +54,7 @@
   {% if section.settings.button_text != blank and section.settings.button_link != blank %}
     <div class="w-full flex justify-center items-center px-5">
       <div class="mx-auto text-center xl:text-left">
-        {% render 'ui-button', button_text: section.settings.button_text, href: section.settings.button_link %}
+        {% render 'ui-button', type: 'link', button_text: section.settings.button_text, href: section.settings.button_link | default: '/blogs/blog' %}
       </div>
     </div>
   {% endif %}
@@ -83,9 +83,7 @@
     {
       "type": "url",
       "id": "button_link",
-      "label": "Button Link",
-      "info": "This will link to the blog page",
-      "default": "/blogs/blog"
+      "label": "Button Link"
     }
   ],
   "blocks": [

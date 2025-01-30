@@ -1,0 +1,106 @@
+<div class="space-y-50 max-w-4xl mx-auto">
+  <div class="text-center">
+    <div class="flex flex-col items-center justify-center space-y-5">
+      {% if section.settings.heading != blank %}
+        <h2 class="font-heading">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
+      {% render 'icon-triple-star-aesthetic' %}
+    </div>
+  </div>
+
+  <div class="">
+    {% for block in section.blocks %}
+      {% if block.type == 'faq_item' %}
+        <div class="faq-item border-b border-border py-5">
+          <button
+            class="w-full flex justify-between items-center text-left"
+            onclick="toggleFaq(this)"
+          >
+            <h3 class="text-sm uppercase font-sans tracking-[0.15em]">{{ block.settings.question }}</h3>
+            <span class="transform rotate-0 transition-transform duration-150">{% render 'icon-plus' %}</span>
+          </button>
+          <div class="faq-answer font-serif max-h-0 overflow-hidden transition-all duration-150 text-grey-50">
+            {{ block.settings.answer }}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  function toggleFaq(button) {
+    const answer = button.nextElementSibling;
+    const plusSign = button.querySelector('span');
+    const isOpen = answer.classList.contains('active');
+
+    // Close all FAQs
+    document.querySelectorAll('.faq-answer').forEach((el) => {
+      el.classList.remove('active');
+      el.style.display = 'none';
+    });
+
+    document.querySelectorAll('.faq-item button span').forEach((el) => {
+      el.style.transform = 'rotate(0deg)';
+    });
+
+    // Open clicked FAQ if it was closed
+    if (!isOpen) {
+      answer.classList.add('active');
+      answer.style.display = 'block';
+      plusSign.style.transform = 'rotate(45deg)';
+    }
+  }
+</script>
+<style>
+  .faq-item button span {
+    transition: transform 0.15s ease-in-out;
+  }
+  .faq-answer {
+    transition: max-height 0.15s ease-in-out;
+  }
+  .faq-answer.active {
+    padding-top: 20px;
+    max-height: 1000px;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "class": "my-100",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "FAQ"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ"
+    }
+  ]
+}
+{% endschema %}
