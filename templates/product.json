@@ -78,7 +78,6 @@
     "giant_image_rztDK8": {
       "type": "giant-image",
       "settings": {
-        "text": "",
         "mobile_background_image": "shopify://shop_images/asfda3.jpg",
         "desktop_background_image": "shopify://shop_images/pdp-giant-image.jpg"
       }

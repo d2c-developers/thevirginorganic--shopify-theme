@@ -5,7 +5,7 @@
     {% paginate blog.articles by 12 %}
       {% for article in blog.articles %}
         {% assign is_last_in_row = forloop.index | modulo: 3 %}
-        <article class="my-50 xl:pr-5 xl:border-r xl:border-gray-200 xl:mr-5 {% if is_last_in_row == 0 %}xl:border-r-0 xl:mr-0{% endif %}">
+        <article class="my-50 xl:pr-5 xl:border-r xl:border-border xl:mr-5 {% if is_last_in_row == 0 %}xl:border-r-transparent xl:mr-0{% endif %}">
           <a href="{{ article.url }}" class="block">
             <div class="aspect-[28/23] relative mb-5">
               {% if article.image %}
@@ -23,11 +23,11 @@
             </div>
 
             <div class="space-y-[10px] text-center max-w-[285px] mx-auto">
-              <p class="italic font-serif">{{ article.published_at | date: '%B %d, %Y' }}</p>
-              <h2 class="text-sm uppercase">{{ article.title }}</h2>
-              <p class="font-serif italic">
+              <p class="italic font-serif text-grey-50">{{ article.published_at | date: '%B %d, %Y' }}</p>
+              <h2 class="text-sm uppercase font-sans tracking-[0.15em]">{{ article.title }}</h2>
+              <p class="font-serif !italic">
                 {% if article.excerpt != blank %}
-                  {{ article.excerpt }}
+                  {{ article.excerpt | strip_html | truncatewords: 20 }}
                 {% else %}
                   {{ article.content | strip_html | truncatewords: 20 }}
                 {% endif %}
@@ -37,7 +37,9 @@
         </article>
 
         {% if is_last_in_row == 0 %}
-          <div class="hidden xl:block w-full border-b border-gray-200 col-span-full"></div>
+          {% unless forloop.last %}
+            <div class="hidden xl:block w-full border-b border-border col-span-full"></div>
+          {% endunless %}
         {% endif %}
       {% endfor %}
 

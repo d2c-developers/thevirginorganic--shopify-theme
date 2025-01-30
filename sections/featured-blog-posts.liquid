@@ -2,7 +2,7 @@
   <div class="text-center">
     <div class="flex flex-col items-center justify-center space-y-5">
       {% if section.settings.eyebrow != blank %}
-        <div class="text-sm uppercase">{{ section.settings.eyebrow }}</div>
+        <div class="text-sm uppercase font-sans tracking-[0.15em] text-grey-50">{{ section.settings.eyebrow }}</div>
       {% endif %}
       {% if section.settings.heading != blank %}
         <h2 class="font-heading">
@@ -34,11 +34,11 @@
               {% endif %}
             </div>
             <div class="space-y-[10px] text-center max-w-[285px] mx-auto">
-              <p class="italic font-serif">{{ article.published_at | date: '%B %d, %Y' }}</p>
-              <h3 class="text-sm uppercase">{{ article.title }}</h3>
-              <p class="font-serif italic">
+              <p class="italic font-serif text-grey-50">{{ article.published_at | date: '%B %d, %Y' }}</p>
+              <h3 class="text-sm uppercase font-sans tracking-[0.15em]">{{ article.title }}</h3>
+              <p class="font-serif !italic">
                 {% if article.excerpt != blank %}
-                  {{ article.excerpt }}
+                  {{ article.excerpt | strip_html | truncatewords: 20 }}
                 {% else %}
                   {{ article.content | strip_html | truncatewords: 20 }}
                 {% endif %}

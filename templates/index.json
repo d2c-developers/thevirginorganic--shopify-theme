@@ -15,6 +15,7 @@
         "heading": "<p>Compromise<br>Nothing</p>",
         "text": "<p>Our belief in world-class olive oils<br>starts from the <em>ground up</em>.</p>",
         "button_text": "Shop Now",
+        "button_link": "shopify://collections/shop-all",
         "background_image": "shopify://shop_images/hero-image-bg-desktop.jpg",
         "bottle_image": "shopify://shop_images/Home_Page_Bottle_Render_54d722a4-098a-42a4-b2e0-b9ccbe841362.png"
       }
@@ -144,19 +145,19 @@
         "article_zCNwPC": {
           "type": "article",
           "settings": {
-            "article": "blog/blog-post-title"
+            "article": "blog/13"
           }
         },
         "article_YbYCWi": {
           "type": "article",
           "settings": {
-            "article": "blog/blog-post-title"
+            "article": "blog/12"
           }
         },
         "article_4AEXwf": {
           "type": "article",
           "settings": {
-            "article": "blog/blog-post-2"
+            "article": "blog/11"
           }
         }
       },
