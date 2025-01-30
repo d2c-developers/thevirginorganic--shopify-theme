@@ -125,7 +125,7 @@
       <div class="justify-center mt-10 hidden xl:flex">
         {% render 'ui-button',
           button_text: section.settings.button_text,
-          href: routes.all_products_collection_url,
+          href: section.settings.button_link,
           style: 'faded'
         %}
       </div>
@@ -189,6 +189,12 @@
       "id": "button_text",
       "label": "Button Text",
       "default": "Shop Now"
+    },
+    {
+      "type": "text",
+      "id": "button_link",
+      "label": "Button Link",
+      "default": "shopify://collections/shop-all"
     },
     {
       "type": "header",
