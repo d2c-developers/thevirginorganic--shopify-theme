@@ -25,7 +25,7 @@
 
       <div class="grow xl:grow-0"></div>
 
-      {% assign button_url = section.settings.button_url | default: '/collections/shop-all' %}
+      {% assign button_url = section.settings.button_url %}
       <div class="mt-[50px]">
         {% render 'ui-button', button_text: 'Shop Now', type: 'link', href: button_url, style: 'faded' %}
       </div>
