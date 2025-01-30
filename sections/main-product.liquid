@@ -121,11 +121,15 @@
                   name="selling_plan"
                   class="w-full border border-border rounded-sm text-dark-grey uppercase font-sans tracking-[0.15em] text-sm appearance-none p-[14px] cursor-pointer"
                 >
-                  <option value="" selected>
-                    FREQUENCY: {{ product.metafields.tvo.default_frequency | default: 'MONTHLY' }}
-                  </option>
                   {% for selling_plan in product.selling_plan_groups[0].selling_plans %}
-                    <option value="{{ selling_plan.id }}">{{ selling_plan.name }}</option>
+                    <option
+                      value="{{ selling_plan.id }}"
+                      {% if forloop.first %}
+                        selected
+                      {% endif %}
+                    >
+                      {{ selling_plan.name }}
+                    </option>
                   {% endfor %}
                 </select>
                 <div class="absolute right-[14px] top-0 h-full flex items-center justify-center">
