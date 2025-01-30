@@ -1,0 +1,55 @@
+<style></style>
+<article class="">
+  <div class="">
+    <header class="text-center my-50 mx-auto max-w-[350px] xl:my-0 xl:mx-0 xl:max-w-md xl:mx-auto xl:flex xl:flex-col xl:justify-center xl:order-1">
+      <div class="space-y-[30px]  xl:space-y-10">
+        {% comment %}
+            {% if article.tags.size > 0 %}
+            <div class="text-sm uppercase font-sans tracking-[0.15em] text-grey-50">
+              {{ article.tags | join: ', ' }}
+            </div>
+          {% endif %}
+        {% endcomment %}
+        <h1 class="font-heading max-w-sm mx-auto">{{ article.title }}</h1>
+        {% if article.excerpt != blank %}
+          <div class="font-serif !italic">{{ article.excerpt | strip_html | truncatewords: 20 }}</div>
+        {% endif %}
+        <div class="font-sans text-grey-50 text-sm uppercase tracking-[0.15em]">
+          <p class="">{{ article.author }}</p>
+          <p class="">{{ article.published_at | date: '%B %d, %Y' }}</p>
+        </div>
+      </div>
+    </header>
+
+    {% if article.image %}
+      <div class="w-full aspect-square relative xl:aspect-video xl:px-5">
+        <img
+          src="{{ article.image | image_url: width: 1200 }}"
+          alt="{{ article.image.alt }}"
+          class="absolute inset-0 w-full h-full object-cover"
+          width="{{ article.image.width }}"
+          height="{{ article.image.height }}"
+          loading="lazy"
+        >
+      </div>
+    {% else %}
+      <div class="aspect-square relative bg-grey-100 xl:aspect-video xl:px-5"></div>
+    {% endif %}
+  </div>
+
+  <div class="font-serif prose mx-auto">
+    {{ article.content }}
+  </div>
+</article>
+
+<script type="application/ld+json">
+  {{ article | structured_data }}
+</script>
+
+{% schema %}
+{
+  "name": "Main Article",
+  "class": "my-50 xl:mb-100 xl:pb-100 xl:border-b border-border",
+  "settings": []
+}
+{% endschema %}
