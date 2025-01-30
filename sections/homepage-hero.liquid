@@ -123,10 +123,12 @@
     {% endif %}
     {% if section.settings.button_text != blank %}
       <div class="justify-center mt-10 hidden xl:flex">
-        {% render 'ui-button',
+        {%
+          render 'ui-button',
           button_text: section.settings.button_text,
-          href: section.settings.button_link,
-          style: 'faded'
+          href: section.settings.button_link | default: '/collections/shop-all',
+          style: 'faded',
+          type: 'link'
         %}
       </div>
     {% endif %}

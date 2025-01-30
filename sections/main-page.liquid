@@ -1,6 +1,9 @@
-<div class="container mx-auto px-5">
-  <article class="max-w-3xl mx-auto">
-    <header class="text-center mb-50">
+<div class="">
+  <article class="max-w-3xl mx-auto space-y-50">
+    <header class="px-5 text-center space-y-[30px] xl:space-y-[40px]">
+      {% if page.metafields.tvo.eyebrow_text != blank %}
+        <div class="font-serif text-grey-50 italic">{{ page.metafields.tvo.eyebrow_text }}</div>
+      {% endif %}
       <h1 class="font-heading max-w-sm mx-auto">{{ page.title }}</h1>
     </header>
 
