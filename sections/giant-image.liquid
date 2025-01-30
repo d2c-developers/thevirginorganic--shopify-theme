@@ -19,16 +19,20 @@
         loading: 'lazy'
     }}
     <div class="absolute inset-0 p-5 w-full h-full flex flex-col items-start text-white xl:py-8">
-      <div class="text-4xl md:text-6xl font-serif">
-        {{ section.settings.text }}
-      </div>
+      {% if section.settings.text %}
+        <div class="text-4xl md:text-6xl font-serif">
+          {{ section.settings.text }}
+        </div>
+      {% endif %}
 
       <div class="grow xl:grow-0"></div>
 
-      {% assign button_url = section.settings.button_url %}
-      <div class="mt-[50px]">
-        {% render 'ui-button', button_text: 'Shop Now', type: 'link', href: button_url, style: 'faded' %}
-      </div>
+      {% if section.settings.button_url %}
+        {% assign button_url = section.settings.button_url %}
+        <div class="mt-[50px]">
+          {% render 'ui-button', button_text: 'Shop Now', type: 'link', href: button_url, style: 'faded' %}
+        </div>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -40,8 +44,7 @@
     {
       "type": "richtext",
       "id": "text",
-      "label": "Heading Text",
-      "default": "<p>An <em>invitation</em> to join us by purchasing olive oil.</p>"
+      "label": "Heading Text"
     },
     // Background Image Settings
     {
