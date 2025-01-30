@@ -1,49 +1,22 @@
-<div class="relative w-full xl:aspect-[128/80] xl:px-5 mb-[100px]">
-  <div class="space-y-[50px] relative xl:space-y-0">
-    <div class="xl:absolute xl:inset-0 px-5 w-full xl:h-full flex flex-col items-start text-dark-grey xl:text-white xl:py-8">
-      <div class="text-4xl md:text-6xl font-serif">
-        {{ section.settings.text }}
-      </div>
-
-      {% if section.blocks.size > 0 %}
-        <div class="hidden xl:block xl:grow"></div>
-        <div
-          class="hidden xl:grid w-full gap-[50px]"
-          style="grid-template-columns: repeat({{ section.blocks.size | at_most: 3 }}, 1fr);"
-        >
-          {% for block in section.blocks %}
-            {% if block.type == 'content-item' %}
-              <div class="flex flex-col items-start gap-[10px]">
-                <div class="size-[33px] border border-white/25 rounded-full flex items-center justify-center text-sm font-bold leading-none">
-                  {{ forloop.index }}
-                </div>
-                <h3 class="text-sm">{{ block.settings.title }}</h3>
-                <p class="italic font-serif">{{ block.settings.body }}</p>
-              </div>
-            {% endif %}
-          {% endfor %}
-        </div>
-      {% endif %}
+<div class="relative w-full xl:aspect-[128/80] xl:px-5 space-y-[50px] xl:space-y-0">
+  <div class="xl:absolute xl:inset-0 px-10 w-full xl:h-full flex flex-col items-start text-dark-grey xl:text-white xl:py-8">
+    <div class="text-4xl md:text-6xl font-serif">
+      {{ section.settings.text }}
     </div>
 
-    <video
-      src="{{ section.settings.background_video }}"
-      poster="{{ section.settings.fallback_image | image_url: width: 2000 }}"
-      class="w-full h-full object-cover bg-gray-200 px-5 aspect-video xl:aspect-auto xl:px-0"
-    ></video>
-
-    {% comment %} Mobile Steps {% endcomment %}
     {% if section.blocks.size > 0 %}
+      <div class="hidden xl:block xl:grow"></div>
       <div
-        class="grid grid-cols-1 w-full gap-[50px] xl:hidden px-5"
+        class="hidden xl:grid w-full gap-[50px]"
+        style="grid-template-columns: repeat({{ section.blocks.size | at_most: 3 }}, 1fr);"
       >
         {% for block in section.blocks %}
           {% if block.type == 'content-item' %}
-            <div class="flex flex-col items-center justify-center gap-[10px] text-center">
-              <div class="size-[33px] border border-black/25 rounded-full flex items-center justify-center text-sm font-bold leading-none">
+            <div class="flex flex-col items-start gap-[10px]">
+              <div class="size-[33px] border border-white/25 rounded-full flex items-center justify-center text-sm font-bold font-sans tracking-[0.15em] leading-none">
                 {{ forloop.index }}
               </div>
-              <h3 class="text-sm">{{ block.settings.title }}</h3>
+              <h3 class="text-sm font-sans tracking-[0.15em] uppercase">{{ block.settings.title }}</h3>
               <p class="italic font-serif">{{ block.settings.body }}</p>
             </div>
           {% endif %}
@@ -51,11 +24,40 @@
       </div>
     {% endif %}
   </div>
+
+  <video
+    src="{{ section.settings.background_video }}"
+    poster="{{ section.settings.fallback_image | image_url: width: 2000 }}"
+    class="w-full h-full object-cover bg-gray-200 px-5 aspect-video xl:aspect-[initial] xl:px-0"
+  ></video>
+
+  {% comment %} Mobile Steps {% endcomment %}
+  {% if section.blocks.size > 0 %}
+    <div id="giant-video-swiper" class="swiper xl:hidden px-5 pb-[50px] relative">
+      <div class="swiper-wrapper">
+        {% for block in section.blocks %}
+          {% if block.type == 'content-item' %}
+            <div class="swiper-slide">
+              <div class="flex flex-col items-center justify-center gap-[10px] text-center">
+                <div class="size-[33px] border border-black/25 rounded-full flex items-center justify-center text-sm uppercase font-sans tracking-[0.15em] leading-none">
+                  <span>{{ forloop.index }}</span>
+                </div>
+                <h3 class="text-sm font-sans tracking-[0.15em] uppercase">{{ block.settings.title }}</h3>
+                <p class="italic font-serif">{{ block.settings.body }}</p>
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination--giant-video"></div>
+    </div>
+  {% endif %}
 </div>
 
 {% schema %}
 {
   "name": "Giant Video",
+  "class": "mt-50 mb-100",
   "settings": [
     {
       "type": "richtext",

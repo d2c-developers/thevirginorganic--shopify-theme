@@ -1,4 +1,4 @@
-<div class="py-[55px] text-center max-w-screen-md mx-auto px-5 xl:px-0">
+<div class="text-center max-w-screen-md mx-auto px-5 xl:px-0">
   <div class="space-y-5">
     <div class="flex justify-center">
       {% if section.settings.certification_image %}
@@ -12,9 +12,13 @@
       {% endif %}
     </div>
 
-    <div class="text-sm mb-2 uppercase">{{ section.settings.tagline }}</div>
-    <div class="text-[40px] uppercase leading-[90%]">{{ section.settings.certification_heading }}</div>
-    <div class="font-serif text-lg text-[22px]">{{ section.settings.certification_body }}</div>
+    <div class="text-sm mb-2 uppercase font-sans tracking-[0.15em] text-grey-50">{{ section.settings.tagline }}</div>
+    <div class="font-heading text-dark-grey">
+      {{ section.settings.certification_heading }}
+    </div>
+    <div class="font-serif text-lg text-[22px] text-dark-grey max-w-[680px] mx-auto">
+      {{ section.settings.certification_body }}
+    </div>
   </div>
 
   <div class="flex justify-center py-[50px] !mt-0 xl:pt-5">
@@ -26,6 +30,7 @@
 {% schema %}
 {
   "name": "Certification Statement",
+  "class": "my-50",
   "settings": [
     {
       "type": "image_picker",
