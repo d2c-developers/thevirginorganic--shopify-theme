@@ -12,9 +12,82 @@
     "main": {
       "type": "main-product",
       "settings": {}
+    },
+    "photo_slider_npgjQ7": {
+      "type": "photo-slider",
+      "blocks": {
+        "slide_MBqPPC": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_31.jpg",
+            "heading": "Some information about Coratina",
+            "body": "Some more detailed supporting information"
+          }
+        },
+        "slide_iM9zeQ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_22.jpg",
+            "heading": "Something else interesting",
+            "body": "Some more interesting information"
+          }
+        }
+      },
+      "block_order": [
+        "slide_MBqPPC",
+        "slide_iM9zeQ"
+      ],
+      "settings": {
+        "section_body": "<p>This is a section body that will be displayed in the left content area.</p>"
+      }
+    },
+    "featured_blog_posts_gmdTLB": {
+      "type": "featured-blog-posts",
+      "blocks": {
+        "article_nfyhQH": {
+          "type": "article",
+          "settings": {
+            "article": "blog/13"
+          }
+        },
+        "article_GWLLYf": {
+          "type": "article",
+          "settings": {
+            "article": "blog/12"
+          }
+        },
+        "article_9fwx4g": {
+          "type": "article",
+          "settings": {
+            "article": "blog/11"
+          }
+        }
+      },
+      "block_order": [
+        "article_nfyhQH",
+        "article_GWLLYf",
+        "article_9fwx4g"
+      ],
+      "settings": {
+        "eyebrow": "Our Blog",
+        "heading": "Featured Blog Posts",
+        "button_text": "Read More",
+        "button_link": "shopify://blogs/blog"
+      }
+    },
+    "giant_image_rztDK8": {
+      "type": "giant-image",
+      "settings": {
+        "text": "",
+        "mobile_background_image": "shopify://shop_images/asfda3.jpg",
+        "desktop_background_image": "shopify://shop_images/pdp-giant-image.jpg"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "photo_slider_npgjQ7",
+    "featured_blog_posts_gmdTLB",
+    "giant_image_rztDK8"
   ]
 }
