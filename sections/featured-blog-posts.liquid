@@ -15,10 +15,17 @@
 
   <div class="swiper relative pb-[80px] xl:pb-0" id="blog-posts-slider">
     <div class="swiper-wrapper">
+      {% assign articles = section.blocks | where: 'type', 'article' %}
+      {% if articles.size == 0 %}
+        {% assign articles = blog.articles %}
+      {% endif %}
       {% for block in section.blocks %}
         {% if block.type == 'article' %}
           {% assign article = block.settings.article %}
-          <div class="swiper-slide pr-5 border-r mr-5 border-gray-200 {% if forloop.last %}border-r-transparent{% endif %}">
+          <a
+            href="{{ article.url }}"
+            class="swiper-slide block pr-5 border-r mr-5 border-gray-200 {% if forloop.last %}border-r-transparent{% endif %}"
+          >
             <div class="aspect-[28/23] relative mb-5">
               {% if article.image %}
                 <img
@@ -44,7 +51,7 @@
                 {% endif %}
               </p>
             </div>
-          </div>
+          </a>
         {% endif %}
       {% endfor %}
     </div>

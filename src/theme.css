@@ -25,6 +25,26 @@ body {
   @apply font-display text-[40px] leading-[90%] tracking-[0.03em] uppercase xl:text-[65px];
 }
 
+.prose {
+  @apply mt-100 space-y-2.5;
+}
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  @apply font-sans text-2xl tracking-[0.15em] uppercase;
+}
+
+.prose > *:not(blockquote) {
+  max-width: 680px;
+  @apply mx-auto text-[22px] px-5;
+}
+.prose blockquote {
+  @apply w-full px-5 !my-100 text-dark-grey font-medium font-serif text-[32px] xl:text-[36px] leading-tight tracking-[0.01em];
+}
+
 /* Swiper Pagination Styles */
 .swiper-pagination--text,
 .swiper-pagination--blog,
