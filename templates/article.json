@@ -1,19 +1,21 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-article",
-      "settings": {
-      }
+      "settings": {}
     },
     "featured-blog-posts": {
       "type": "featured-blog-posts",
-      "settings": {
-        "heading": "Related Articles",
-        "eyebrow": "More from the blog",
-        "button_text": "Read More",
-        "button_url": "/blogs/blog"
-      },
-     "blocks": {
+      "blocks": {
         "article_zCNwPC": {
           "type": "article",
           "settings": {
@@ -37,7 +39,12 @@
         "article_zCNwPC",
         "article_YbYCWi",
         "article_4AEXwf"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "More from the blog",
+        "heading": "Related Articles",
+        "button_text": "Read More"
+      }
     }
   },
   "order": [

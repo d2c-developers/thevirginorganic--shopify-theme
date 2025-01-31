@@ -23,7 +23,7 @@
     "large_heading_text_CYiDqW": {
       "type": "large-heading-text",
       "settings": {
-        "text": "<p>Our certified organic extra virgin olive oils are grown from our National Wildlife Habitat orchard in Capay Valley, California. Certified by the California Organic Farmers (CCOF), we pride ourselves on using organic and regenerative farming practices.</p>"
+        "text": "<p>Our certified organic extra virgin olive oils are grown from a natural wildlife habitat. Certified by the California Organic Farmers (CCOF), we pride ourselves on using organic and regenerative farming practices.</p>"
       }
     },
     "featured_products": {
@@ -99,7 +99,7 @@
       "type": "big-quote",
       "settings": {
         "quote": "He who has health has hope and he who has hope has everything.",
-        "quote_author": "Arabian Proverb"
+        "quote_author": "Persian Proverb"
       }
     },
     "photo_slider_AWRDMk": {
