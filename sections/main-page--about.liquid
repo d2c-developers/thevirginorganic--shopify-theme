@@ -72,22 +72,30 @@
     <div class="grid grid-cols-1 xl:grid-cols-2 gap-10 pt-50">
       <h2 class="font-sans text-sm tracking-[0.15em] uppercase">Contact</h2>
       <div class="font-serif space-y-5">
-        {% if page.metafields.tvo.email != blank %}
-          <p>
-            <span class="font-medium">Email:</span>
-            <a href="mailto:{{ page.metafields.tvo.email }}" class="text-[#4c4c46] hover:text-dark-grey">
-              {{- page.metafields.tvo.email -}}
+        {% if shop.email != blank %}
+          <div>
+            <h3 class="text-sm text-dark-grey font-sans tracking-[0.15em] uppercase">Email</h3>
+            <a href="mailto:{{ shop.email }}" class="font-serif text-lg text-[#4c4c46] max-w-xl underline">
+              Email Us
             </a>
-          </p>
+          </div>
         {% endif %}
-        {% if page.metafields.tvo.phone != blank %}
-          <p>
-            <span class="font-medium">Phone:</span>
-            <a href="tel:{{ page.metafields.tvo.phone }}" class="text-[#4c4c46] hover:text-dark-grey">
-              {{- page.metafields.tvo.phone -}}
+        <div>
+          <h3 class="text-sm text-dark-grey font-sans tracking-[0.15em] uppercase">Social</h3>
+          {% if settings.social_instagram_link != blank %}
+            <a href="{{ settings.social_instagram_link }}" class="font-serif text-lg text-[#4c4c46] max-w-xl underline">
+              Instagram
             </a>
-          </p>
-        {% endif %}
+          {% endif %}
+          {% if settings.social_youtube_link != blank %}
+            <a href="{{ settings.social_youtube_link }}" class="font-serif text-lg text-[#4c4c46] max-w-xl underline">
+              YouTube
+            </a>
+          {% endif %}
+          {% if settings.social_x_link != blank %}
+            <a href="{{ settings.social_x_link }}" class="font-serif text-lg text-[#4c4c46] max-w-xl underline"> X </a>
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>
