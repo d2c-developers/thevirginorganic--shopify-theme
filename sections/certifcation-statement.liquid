@@ -1,16 +1,14 @@
 <div class="text-center max-w-screen-md mx-auto px-5 xl:px-0">
   <div class="space-y-5">
-    <div class="flex justify-center">
-      {% if section.settings.certification_image %}
+    {% if section.settings.certification_image %}
+      <div class="flex justify-center">
         {{
           section.settings.certification_image
           | image_url: width: 200
           | image_tag: class: 'mx-auto mb-5 w-[50px]', alt: section.settings.certification_heading
         }}
-      {% else %}
-        {% render 'icon-ccof' %}
-      {% endif %}
-    </div>
+      </div>
+    {% endif %}
 
     <div class="text-sm mb-2 uppercase font-sans tracking-[0.15em] text-grey-50">{{ section.settings.tagline }}</div>
     <div class="font-heading text-dark-grey">
@@ -32,11 +30,6 @@
   "name": "Certification Statement",
   "class": "my-50",
   "settings": [
-    {
-      "type": "image_picker",
-      "id": "certification_image",
-      "label": "Certification Image"
-    },
     {
       "type": "text",
       "id": "tagline",
