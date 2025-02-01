@@ -1,10 +1,37 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "THE VIRGIN ORGANIC",
+    "theme_name": "THE VIRGIN ORGANIC", 
     "theme_version": "0.0.1",
     "theme_author": "THE VIRGIN ORGANIC",
     "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
     "theme_support_url": "https://support.shopify.com/"
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social accounts"
+      },
+      {
+        "type": "url", 
+        "id": "social_instagram_link",
+        "label": "Instagram",
+        "info": "https://instagram.com/shopify"
+      },
+      {
+        "type": "url",
+        "id": "social_x_link", 
+        "label": "X",
+        "info": "https://x.com"
+      },
+      {
+        "type": "url",
+        "id": "social_youtube_link",
+        "label": "YouTube",
+        "info": "https://youtube.com"
+      }
+    ]
   }
 ]
