@@ -8,7 +8,27 @@
  * ------------------------------------------------------------
  */
 {
-  "current": {},
+  "current": {
+    "social_instagram_link": "https://instagram.com/thevirginorganic",
+    "social_x_link": "https://x.com/thevirginorganic",
+    "social_youtube_link": "https://youtube.com/thevirginorganic",
+    "sections": {
+      "site-header": {
+        "type": "site-header",
+        "settings": {}
+      },
+      "site-footer": {
+        "type": "site-footer",
+        "settings": {
+          "newsletter_heading": "Sign up for our newsletter",
+          "newsletter_text": "<p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo.</p>",
+          "newsletter_placeholder": "Email Address",
+          "newsletter_button": "Sign Up"
+        }
+      }
+    },
+    "content_for_index": []
+  },
   "presets": {
     "Default": {}
   }
