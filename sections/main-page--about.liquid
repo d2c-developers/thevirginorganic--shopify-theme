@@ -83,17 +83,28 @@
         <div>
           <h3 class="text-sm text-dark-grey font-sans tracking-[0.15em] uppercase">Social</h3>
           {% if settings.social_instagram_link != blank %}
-            <a href="{{ settings.social_instagram_link }}" class="font-serif text-lg text-[#4c4c46] max-w-xl underline">
+            <a
+              href="{{ settings.social_instagram_link }}"
+              class="block font-serif text-[22px] text-[#4c4c46] max-w-xl underline"
+            >
               Instagram
             </a>
           {% endif %}
           {% if settings.social_youtube_link != blank %}
-            <a href="{{ settings.social_youtube_link }}" class="font-serif text-lg text-[#4c4c46] max-w-xl underline">
+            <a
+              href="{{ settings.social_youtube_link }}"
+              class="block font-serif text-[22px] text-[#4c4c46] max-w-xl underline"
+            >
               YouTube
             </a>
           {% endif %}
           {% if settings.social_x_link != blank %}
-            <a href="{{ settings.social_x_link }}" class="font-serif text-lg text-[#4c4c46] max-w-xl underline"> X </a>
+            <a
+              href="{{ settings.social_x_link }}"
+              class="block font-serif text-[22px] text-[#4c4c46] max-w-xl underline"
+            >
+              X
+            </a>
           {% endif %}
         </div>
       </div>
