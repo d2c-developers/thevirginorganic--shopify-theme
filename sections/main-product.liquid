@@ -48,7 +48,7 @@
             <p class="text-dark-grey mt-4 text-xl">{{ product.description }}</p>
           </div>
 
-          {% form 'product', product, class: 'space-y-6' %}
+          <form class="space-y-6 js-product-form">
             <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
             <!-- Quantity Selector -->
@@ -153,7 +153,30 @@
                 Sold Out
               {% endif %}
             </button>
-          {% endform %}
+          </form>
+
+          <script>
+            document.addEventListener('DOMContentLoaded', () => {
+              const form = document.querySelector('.js-product-form');
+              form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+                try {
+                  const response = await fetch('/cart/add.js', {
+                    method: 'POST',
+                    body: formData,
+                  });
+
+                  if (response.ok) {
+                    document.dispatchEvent(new Event('open:cart'));
+                  }
+                } catch (error) {
+                  console.error('Error adding to cart:', error);
+                }
+              });
+            });
+          </script>
 
           <!-- Product Specifications -->
           <div class="hidden xl:block pt-10">

@@ -4,6 +4,9 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[typescript]": {
+    "editor.formatOnSave": true
+  },
   "[css]": {
     "editor.formatOnSave": true
   },

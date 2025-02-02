@@ -70,9 +70,17 @@
         </li>
       {% endfor %}
     </ul>
-    <a href="{{ routes.cart_url }}" class="inline-block">
-      Cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif -%}
-    </a>
+    <button
+      type="button"
+      class="inline-block"
+      aria-label="Open cart"
+      onclick="document.dispatchEvent(new Event('open:cart'));"
+    >
+      Cart
+      <span data-js-cart-count>
+        {%- if cart.item_count > 0 %} ({{ cart.item_count }}){% endif -%}
+      </span>
+    </button>
   </nav>
 </header>
 
