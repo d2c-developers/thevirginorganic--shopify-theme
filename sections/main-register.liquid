@@ -1,0 +1,88 @@
+<div class="container mx-auto px-5">
+  <div class="max-w-lg mx-auto">
+    <h1 class="text-[40px] xl:text-[65px] uppercase text-center mb-10">Create Account</h1>
+
+    {% form 'create_customer' %}
+      {%- if form.errors -%}
+        <div class="mb-10 p-4 bg-red-50 text-red-500" role="alert">
+          <h2 class="sr-only">{{ 'templates.contact.form.error_heading' | t }}</h2>
+          {{ form.errors | default_errors }}
+        </div>
+      {%- endif -%}
+
+      <div class="space-y-5">
+        <div>
+          <label for="FirstName" class="block mb-2">First name</label>
+          <input
+            type="text"
+            name="customer[first_name]"
+            id="FirstName"
+            class="w-full p-3 border"
+            {% if form.first_name %}
+              value="{{ form.first_name }}"
+            {% endif %}
+            autocomplete="given-name"
+          >
+        </div>
+
+        <div>
+          <label for="LastName" class="block mb-2">Last name</label>
+          <input
+            type="text"
+            name="customer[last_name]"
+            id="LastName"
+            class="w-full p-3 border"
+            {% if form.last_name %}
+              value="{{ form.last_name }}"
+            {% endif %}
+            autocomplete="family-name"
+          >
+        </div>
+
+        <div>
+          <label for="Email" class="block mb-2">Email</label>
+          <input
+            type="email"
+            name="customer[email]"
+            id="Email"
+            class="w-full p-3 border"
+            {% if form.email %}
+              value="{{ form.email }}"
+            {% endif %}
+            spellcheck="false"
+            autocomplete="email"
+            autocapitalize="off"
+            required
+          >
+        </div>
+
+        <div>
+          <label for="CreatePassword" class="block mb-2">Password</label>
+          <input
+            type="password"
+            name="customer[password]"
+            id="CreatePassword"
+            class="w-full p-3 border"
+            autocomplete="new-password"
+            required
+          >
+        </div>
+
+        <button type="submit" class="w-full bg-black text-white py-3 px-6 hover:bg-gray-800">Create Account</button>
+
+        <p class="text-center">
+          Already have an account?
+          <a href="{{ routes.account_login_url }}" class="underline">Sign in</a>
+        </p>
+      </div>
+    {% endform %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Register Page",
+  "class": "my-50 xl:my-100",
+  "settings": []
+}
+{% endschema %}

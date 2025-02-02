@@ -1,0 +1,63 @@
+<div class="container mx-auto px-5">
+  <div class="max-w-lg mx-auto">
+    <h1 class="text-[40px] xl:text-[65px] uppercase text-center mb-10">Login</h1>
+
+    {% form 'customer_login' %}
+      {%- if form.errors -%}
+        <div class="mb-10 p-4 bg-red-50 text-red-500" role="alert">
+          <h2 class="sr-only">Error</h2>
+          {{ form.errors | default_errors }}
+        </div>
+      {%- endif -%}
+
+      <div class="space-y-5">
+        <div>
+          <label for="CustomerEmail" class="block mb-2">Email</label>
+          <input
+            type="email"
+            name="customer[email]"
+            id="CustomerEmail"
+            class="w-full p-3 border"
+            {% if form.email %}
+              value="{{ form.email }}"
+            {% endif %}
+            spellcheck="false"
+            autocomplete="email"
+            autocapitalize="off"
+            required
+          >
+        </div>
+
+        <div>
+          <label for="CustomerPassword" class="block mb-2">Password</label>
+          <input
+            type="password"
+            name="customer[password]"
+            id="CustomerPassword"
+            class="w-full p-3 border"
+            autocomplete="current-password"
+            required
+          >
+        </div>
+
+        <div class="flex justify-between items-center">
+          <button type="submit" class="bg-black text-white py-3 px-6 hover:bg-gray-800">Sign In</button>
+          <a href="{{ routes.account_recover_url }}" class="text-sm underline">Forgot password?</a>
+        </div>
+
+        <p class="text-center">
+          Don't have an account?
+          <a href="{{ routes.account_register_url }}" class="underline">Create one</a>
+        </p>
+      </div>
+    {% endform %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Login Page",
+  "class": "my-50 xl:my-100",
+  "settings": []
+}
+{% endschema %}
