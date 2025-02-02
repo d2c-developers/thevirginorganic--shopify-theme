@@ -8,6 +8,5 @@
     "allowJs": true,
     "moduleResolution": "node",
     "sourceMap": true
-  },
-  "allowSyntheticDefaultImports": true,
+  }
 }
