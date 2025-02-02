@@ -137,7 +137,7 @@ const CartDrawer: React.FC = () => {
                   </div>
                   <button onClick={() => removeItem(item.id)} className="text-sm underline">
                     <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1 1L4.5 4.5M4.5 4.5L1 8M4.5 4.5L8 8M4.5 4.5L8 1" stroke="#404040"/>
+                      <path d="M1 1L4.5 4.5M4.5 4.5L1 8M4.5 4.5L8 8M4.5 4.5L8 1" stroke="#404040" />
                     </svg>
                   </button>
                 </div>
@@ -149,7 +149,9 @@ const CartDrawer: React.FC = () => {
                       className="p-2"
                       aria-label="Decrease quantity"
                     >
-                      −
+                      <svg width="8" height="2" viewBox="0 0 8 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line y1="1" x2="8" y2="1" stroke="#404040" />
+                      </svg>
                     </button>
                     <span className="w-12 text-center">{item.quantity}</span>
                     <button
@@ -157,7 +159,12 @@ const CartDrawer: React.FC = () => {
                       className="p-2"
                       aria-label="Increase quantity"
                     >
-                      +
+                      <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M0 5.5H4.94975M4.94975 5.5V10.4497M4.94975 5.5H9.89949M4.94975 5.5V0.550253"
+                          stroke="#404040"
+                        />
+                      </svg>
                     </button>
                   </div>
                   <p className="font-medium">${(item.line_price / 100).toFixed(2)}</p>
