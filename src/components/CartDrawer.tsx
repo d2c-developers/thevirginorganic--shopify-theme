@@ -114,10 +114,10 @@ const CartDrawer: React.FC = () => {
         </div>
 
         {/* Cart Contents */}
-        <div className="border-x border-border grow flex-1 overflow-y-auto">
+        <div className="border-x border-border grow flex-1 overflow-y-auto px-5">
           {cart.items.map((item) => (
-            <div key={item.id} className="flex gap-5 border-b border-border p-5">
-              <div className="relative shrink-0 w-24">
+            <div key={item.id} className="flex gap-5 border-b border-border py-5">
+              <div className="relative shrink-0 w-24 aspect-square">
                 <img
                   src={item.image}
                   alt={item.title}
@@ -126,15 +126,16 @@ const CartDrawer: React.FC = () => {
                 />
               </div>
 
-              <div className="flex-1">
-                <div className="flex justify-between">
-                  <div>
-                    <h3 className="font-medium">{item.title}</h3>
-                    {item.variant_title && <p className="text-sm text-gray-600">{item.variant_title}</p>}
+              <div className="flex-1 flex flex-col justify-between">
+                <div className="flex justify-between items-start gap-1">
+                  <p className="leading-none">
+                    {item.title}<br />
                     {item.selling_plan_allocation && (
-                      <p className="text-sm text-gray-600">{item.selling_plan_allocation.selling_plan.name}</p>
+                      <span className="italic">
+                        {item?.selling_plan_allocation?.selling_plan?.name?.split(',')?.[0]}
+                      </span>
                     )}
-                  </div>
+                  </p>
                   <button onClick={() => removeItem(item.id)} className="text-sm underline">
                     <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M1 1L4.5 4.5M4.5 4.5L1 8M4.5 4.5L8 8M4.5 4.5L8 1" stroke="#404040" />
