@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 
 interface CartItem {
   id: string;
+  key: string; // Line item key
   title: string;
   image: string;
   price: number;
@@ -64,7 +65,7 @@ const CartDrawer: React.FC = () => {
     fetchCart();
   }, []);
 
-  const updateQuantity = async (lineId: string, quantity: number) => {
+  const updateQuantity = async (lineKey: string, quantity: number) => {
     try {
       await fetch('/cart/change.js', {
         method: 'POST',
@@ -72,7 +73,7 @@ const CartDrawer: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          id: lineId,
+          id: lineKey,
           quantity: quantity,
         }),
       });
@@ -82,17 +83,9 @@ const CartDrawer: React.FC = () => {
     }
   };
 
-  const removeItem = async (lineId: string) => {
-    await updateQuantity(lineId, 0);
+  const removeItem = async (lineKey: string) => {
+    await updateQuantity(lineKey, 0);
   };
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (!cart || cart.items.length === 0) {
-    return <div>Your cart is empty</div>;
-  }
 
   return isOpen ? (
     <div className="fixed top-0 right-0 w-full h-screen z-50">
@@ -115,8 +108,8 @@ const CartDrawer: React.FC = () => {
 
         {/* Cart Contents */}
         <div className="border-x border-border grow flex-1 overflow-y-auto px-5">
-          {cart.items.map((item) => (
-            <div key={item.id} className="flex gap-5 border-b border-border py-5">
+          {cart?.items?.length > 0 ? cart.items.map((item) => (
+            <div key={item.key} className="flex gap-5 border-b border-border py-5">
               <div className="relative shrink-0 w-24 aspect-square">
                 <img
                   src={item.image}
@@ -136,7 +129,7 @@ const CartDrawer: React.FC = () => {
                       </span>
                     )}
                   </p>
-                  <button onClick={() => removeItem(item.id)} className="text-sm underline">
+                  <button onClick={() => removeItem(item.key)} className="text-sm underline">
                     <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M1 1L4.5 4.5M4.5 4.5L1 8M4.5 4.5L8 8M4.5 4.5L8 1" stroke="#404040" />
                     </svg>
@@ -146,7 +139,7 @@ const CartDrawer: React.FC = () => {
                 <div className="mt-3 flex justify-between items-center">
                   <div className="flex items-center">
                     <button
-                      onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                      onClick={() => updateQuantity(item.key, item.quantity - 1)}
                       className="p-2"
                       aria-label="Decrease quantity"
                     >
@@ -156,7 +149,7 @@ const CartDrawer: React.FC = () => {
                     </button>
                     <span className="w-12 text-center">{item.quantity}</span>
                     <button
-                      onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                      onClick={() => updateQuantity(item.key, item.quantity + 1)}
                       className="p-2"
                       aria-label="Increase quantity"
                     >
@@ -172,7 +165,7 @@ const CartDrawer: React.FC = () => {
                 </div>
               </div>
             </div>
-          ))}
+          )) : "Your cart is empty"}
         </div>
 
         {/* Cart Footer */}
