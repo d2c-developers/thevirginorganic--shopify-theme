@@ -38,7 +38,7 @@
               </tbody>
             </table>
 
-            {% render 'pagination', paginate: paginate %}
+            {% comment %} {% render 'pagination', paginate: paginate %} {% endcomment %}
           {% else %}
             <p>You haven't placed any orders yet.</p>
           {% endif %}

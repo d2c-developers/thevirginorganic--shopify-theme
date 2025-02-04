@@ -21,41 +21,45 @@
             </div>
 
             <div class="space-x-4">
-              <button
-                type="button"
-                class="underline"
-                aria-controls="EditAddress_{{ address.id }}"
-                aria-expanded="false"
-                data-address-id="{{ address.id }}"
-              >
-                Edit
-              </button>
+              {% comment %}
+                <button
+                  type="button"
+                  class="underline"
+                  aria-controls="EditAddress_{{ address.id }}"
+                  aria-expanded="false"
+                  data-address-id="{{ address.id }}"
+                >
+                  Edit
+                </button>
 
-              <button
-                type="button"
-                class="underline"
-                data-confirm-message="Are you sure you want to delete this address?"
-                data-address-id="{{ address.id }}"
-              >
-                Delete
-              </button>
+                <button
+                  type="button"
+                  class="underline"
+                  data-confirm-message="Are you sure you want to delete this address?"
+                  data-address-id="{{ address.id }}"
+                >
+                  Delete
+                </button>
+              {% endcomment %}
             </div>
           </div>
         {% endfor %}
 
-        {% render 'pagination', paginate: paginate %}
+        {% comment %} {% render 'pagination', paginate: paginate %} {% endcomment %}
       {% endpaginate %}
     </div>
 
     <div>
-      <button
-        type="button"
-        class="underline"
-        aria-controls="AddAddress"
-        aria-expanded="false"
-      >
-        Add New Address
-      </button>
+      {% comment %}
+        <button
+          type="button"
+          class="underline"
+          aria-controls="AddAddress"
+          aria-expanded="false"
+        >
+          Add New Address
+        </button>
+      {% endcomment %}
     </div>
   </div>
 </div>

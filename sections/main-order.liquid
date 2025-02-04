@@ -1,0 +1,133 @@
+<div class="container mx-auto px-5">
+  <div class="max-w-3xl mx-auto">
+    <div class="space-y-[50px]">
+      <div class="space-y-5">
+        <h1 class="font-heading text-center">Order {{ order.name }}</h1>
+        <p class="text-center">
+          <a href="{{ routes.account_url }}" class="underline italic text-dark-grey">Back to Account</a>
+        </p>
+      </div>
+
+      <div class="space-y-[50px]">
+        {% if order.cancelled %}
+          <div class="p-4 bg-red-50 text-red-500 text-center">
+            Order Cancelled on {{ order.cancelled_at | time_tag: format: 'date' }}
+            {% if order.cancel_reason %}
+              - {{ order.cancel_reason }}
+            {% endif %}
+          </div>
+        {% endif %}
+
+        <div class="space-y-5">
+          <div class="flex flex-col sm:flex-row justify-between gap-5 text-sm">
+            <div class="space-y-1">
+              <p class="font-sans tracking-[0.15em] uppercase">Order Date</p>
+              <p>{{ order.created_at | time_tag: format: 'date' }}</p>
+            </div>
+            <div class="space-y-1">
+              <p class="font-sans tracking-[0.15em] uppercase">Order Status</p>
+              <p>{{ order.financial_status_label }}</p>
+            </div>
+            {% if order.fulfillment_status_label %}
+              <div class="space-y-1">
+                <p class="font-sans tracking-[0.15em] uppercase">Fulfillment Status</p>
+                <p>{{ order.fulfillment_status_label }}</p>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="space-y-5">
+          <h2 class="font-sans tracking-[0.15em] uppercase text-2xl">Items</h2>
+          <table class="w-full">
+            <thead>
+              <tr class="border-b text-left">
+                <th class="py-2">Product</th>
+                <th class="py-2">Price</th>
+                <th class="py-2">Quantity</th>
+                <th class="py-2 text-right">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for line_item in order.line_items %}
+                <tr class="border-b">
+                  <td class="py-4">
+                    {{ line_item.title }}
+                    {% if line_item.selling_plan_allocation %}
+                      <p class="text-sm">{{ line_item.selling_plan_allocation.selling_plan.name }}</p>
+                    {% endif %}
+                    {% if line_item.variant.title != 'Default Title' %}
+                      <p class="text-sm">{{ line_item.variant.title }}</p>
+                    {% endif %}
+                    {% if line_item.refunded_quantity > 0 %}
+                      <p class="text-sm text-red-500">Refunded: {{ line_item.refunded_quantity }}</p>
+                    {% endif %}
+                  </td>
+                  <td class="py-4">{{ line_item.original_price | money }}</td>
+                  <td class="py-4">{{ line_item.quantity }}</td>
+                  <td class="py-4 text-right">{{ line_item.final_line_price | money }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+            <tfoot>
+              <tr class="border-b">
+                <td colspan="3" class="py-4 text-right font-sans tracking-[0.15em] uppercase">Subtotal</td>
+                <td class="py-4 text-right">{{ order.line_items_subtotal_price | money }}</td>
+              </tr>
+              {% for discount in order.cart_level_discount_applications %}
+                <tr class="border-b">
+                  <td colspan="3" class="py-4 text-right font-sans tracking-[0.15em] uppercase">
+                    Discount ({{ discount.title }})
+                  </td>
+                  <td class="py-4 text-right">-{{ discount.total_allocated_amount | money }}</td>
+                </tr>
+              {% endfor %}
+              {% for shipping_method in order.shipping_methods %}
+                <tr class="border-b">
+                  <td colspan="3" class="py-4 text-right font-sans tracking-[0.15em] uppercase">
+                    Shipping ({{ shipping_method.title }})
+                  </td>
+                  <td class="py-4 text-right">{{ shipping_method.price | money }}</td>
+                </tr>
+              {% endfor %}
+              {% if order.total_tax > 0 %}
+                <tr class="border-b">
+                  <td colspan="3" class="py-4 text-right font-sans tracking-[0.15em] uppercase">Tax</td>
+                  <td class="py-4 text-right">{{ order.total_tax | money }}</td>
+                </tr>
+              {% endif %}
+              <tr>
+                <td colspan="3" class="py-4 text-right font-sans tracking-[0.15em] uppercase">Total</td>
+                <td class="py-4 text-right">{{ order.total_price | money }}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-[50px]">
+          <div class="space-y-5">
+            <h2 class="font-sans tracking-[0.15em] uppercase text-2xl">Billing Address</h2>
+            <div class="space-y-1">
+              {{ order.billing_address | format_address }}
+            </div>
+          </div>
+
+          <div class="space-y-5">
+            <h2 class="font-sans tracking-[0.15em] uppercase text-2xl">Shipping Address</h2>
+            <div class="space-y-1">
+              {{ order.shipping_address | format_address }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Order Details",
+  "class": "my-50 lg:my-100",
+  "settings": []
+}
+{% endschema %}
