@@ -1,6 +1,9 @@
 <div class="container mx-auto px-5">
-  <div class="max-w-lg mx-auto">
-    <h1 class="text-[40px] xl:text-[65px] uppercase text-center mb-10">Login</h1>
+  <div class="max-w-2xl mx-auto">
+    <h1 class="font-heading text-center mb-10">
+      Welcome<br>
+      Back
+    </h1>
 
     {% form 'customer_login' %}
       {%- if form.errors -%}
@@ -12,7 +15,9 @@
 
       <div class="space-y-5">
         <div>
-          <label for="CustomerEmail" class="block mb-2">Email</label>
+          <label for="CustomerEmail" class="block mb-2 font-sans tracking-[0.15em] uppercase text-sm text-dark-grey">
+            Email
+          </label>
           <input
             type="email"
             name="customer[email]"
@@ -25,11 +30,14 @@
             autocomplete="email"
             autocapitalize="off"
             required
+            placeholder="Your Email"
           >
         </div>
 
         <div>
-          <label for="CustomerPassword" class="block mb-2">Password</label>
+          <label for="CustomerPassword" class="block mb-2 font-sans tracking-[0.15em] uppercase text-sm text-dark-grey">
+            Password
+          </label>
           <input
             type="password"
             name="customer[password]"
@@ -37,18 +45,22 @@
             class="w-full p-3 border"
             autocomplete="current-password"
             required
+            placeholder="Your Password"
           >
         </div>
 
-        <div class="flex justify-between items-center">
-          <button type="submit" class="bg-black text-white py-3 px-6 hover:bg-gray-800">Sign In</button>
-          <a href="{{ routes.account_recover_url }}" class="text-sm underline">Forgot password?</a>
-        </div>
+        <!-- Submit Button styled like the main-product add to cart button -->
+        <button type="submit" class="w-full bg-dark-grey text-white uppercase font-sans tracking-[0.15em] text-sm p-5">
+          Sign In
+        </button>
 
-        <p class="text-center">
-          Don't have an account?
-          <a href="{{ routes.account_register_url }}" class="underline">Create one</a>
-        </p>
+        <div class="text-center flex justify-between items-center">
+          <p class="text-center text-grey-50 ">
+            Not a member?
+            <a href="{{ routes.account_register_url }}" class="underline italic text-dark-grey">Create an account</a>
+          </p>
+          <a href="{{ routes.account_recover_url }}" class=" text-grey-50 italic">Lost your password?</a>
+        </div>
       </div>
     {% endform %}
   </div>

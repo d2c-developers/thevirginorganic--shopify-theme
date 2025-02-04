@@ -1,51 +1,66 @@
 <div class="container mx-auto px-5">
-  <div class="max-w-lg mx-auto">
-    <h1 class="text-[40px] xl:text-[65px] uppercase text-center mb-10">Create Account</h1>
+  <div class="max-w-2xl mx-auto">
+    <h1 class="font-heading text-center mb-10">
+      Create An<br>
+      Account
+    </h1>
 
     {% form 'create_customer' %}
       {%- if form.errors -%}
         <div class="mb-10 p-4 bg-red-50 text-red-500" role="alert">
-          <h2 class="sr-only">{{ 'templates.contact.form.error_heading' | t }}</h2>
+          <h2 class="sr-only">Error</h2>
           {{ form.errors | default_errors }}
         </div>
       {%- endif -%}
 
       <div class="space-y-5">
-        <div>
-          <label for="FirstName" class="block mb-2">First name</label>
-          <input
-            type="text"
-            name="customer[first_name]"
-            id="FirstName"
-            class="w-full p-3 border"
-            {% if form.first_name %}
-              value="{{ form.first_name }}"
-            {% endif %}
-            autocomplete="given-name"
-          >
+        <div class="flex flex-col sm:flex-row gap-5">
+          <div class="w-full sm:w-1/2">
+            <label for="FirstName" class="block mb-2 font-sans tracking-[0.15em] uppercase text-sm text-dark-grey"
+              >First Name*</label
+            >
+            <input
+              type="text"
+              name="customer[first_name]"
+              id="FirstName"
+              class="w-full p-3 border"
+              placeholder="First Name"
+              {% if form.first_name %}
+                value="{{ form.first_name }}"
+              {% endif %}
+              autocomplete="given-name"
+              required
+            >
+          </div>
+          <div class="w-full sm:w-1/2">
+            <label for="LastName" class="block mb-2 font-sans tracking-[0.15em] uppercase text-sm text-dark-grey"
+              >Last Name*</label
+            >
+            <input
+              type="text"
+              name="customer[last_name]"
+              id="LastName"
+              class="w-full p-3 border"
+              placeholder="Last Name"
+              {% if form.last_name %}
+                value="{{ form.last_name }}"
+              {% endif %}
+              autocomplete="family-name"
+              required
+            >
+          </div>
         </div>
 
         <div>
-          <label for="LastName" class="block mb-2">Last name</label>
-          <input
-            type="text"
-            name="customer[last_name]"
-            id="LastName"
-            class="w-full p-3 border"
-            {% if form.last_name %}
-              value="{{ form.last_name }}"
-            {% endif %}
-            autocomplete="family-name"
+          <label for="Email" class="block mb-2 font-sans tracking-[0.15em] uppercase text-sm text-dark-grey"
+            >Email*</label
           >
-        </div>
-
-        <div>
-          <label for="Email" class="block mb-2">Email</label>
           <input
             type="email"
             name="customer[email]"
             id="Email"
             class="w-full p-3 border"
+            placeholder="Your Email"
             {% if form.email %}
               value="{{ form.email }}"
             {% endif %}
@@ -57,23 +72,39 @@
         </div>
 
         <div>
-          <label for="CreatePassword" class="block mb-2">Password</label>
+          <label for="CreatePassword" class="block mb-2 font-sans tracking-[0.15em] uppercase text-sm text-dark-grey"
+            >Password*</label
+          >
           <input
             type="password"
             name="customer[password]"
             id="CreatePassword"
             class="w-full p-3 border"
+            placeholder="Your Password"
             autocomplete="new-password"
             required
           >
         </div>
 
-        <button type="submit" class="w-full bg-black text-white py-3 px-6 hover:bg-gray-800">Create Account</button>
+        <button type="submit" class="w-full bg-dark-grey text-white uppercase font-sans tracking-[0.15em] text-sm p-5">
+          Create Account
+        </button>
 
-        <p class="text-center">
-          Already have an account?
-          <a href="{{ routes.account_login_url }}" class="underline">Sign in</a>
-        </p>
+        <div class="text-center flex justify-between items-center">
+          <div class="flex items-center">
+            <input
+              type="checkbox"
+              id="mailingListSignup"
+              name="customer[signup_mailing_list]"
+              class="mr-2 border-grey-50 w-5 h-5 rounded-none bg-white checked:bg-white checked:border-dark-grey checked:text-dark-grey "
+            >
+            <label for="mailingListSignup" class="text-grey-50 italic">Sign up for our email list</label>
+          </div>
+          <p class="text-center text-grey-50 italic">
+            Already a member?
+            <a href="{{ routes.account_login_url }}" class="underline italic text-dark-grey">Sign in</a>
+          </p>
+        </div>
       </div>
     {% endform %}
   </div>
