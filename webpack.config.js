@@ -1,7 +1,9 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
+  mode: 'production',
   entry: {
     theme: './src/theme.ts',
     // 'list-collections': './src/list-collections.ts',
@@ -44,11 +46,15 @@ module.exports = {
     ],
   },
   plugins: [
-    // Make the CSS files
+    // Extract the CSS files (minification is handled in the optimization step)
     new MiniCssExtractPlugin({
       filename: '[name].min.css',
     }),
   ],
+  optimization: {
+    minimize: true,
+    minimizer: ['...', new CssMinimizerPlugin()],
+  },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },

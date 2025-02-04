@@ -7,4 +7,3 @@ import './sections/site-cart-drawer';
 import './sections/photo-slider';
 import './sections/giant-video';
 import './sections/featured-blog-posts';
-
