@@ -1,68 +1,90 @@
-<div class="max-w-2xl mx-auto px-4">
-  {% form 'contact' %}
-    {% if form.posted_successfully? %}
-      <div class="bg-green-50 p-4 mb-6 rounded">
-        <p class="text-green-800">Thank you for your message. We'll get back to you as soon as possible.</p>
-      </div>
-    {% endif %}
+<div class="container mx-auto px-5">
+  <div class="max-w-2xl mx-auto">
+    {% form 'contact' %}
+      {% if form.posted_successfully? %}
+        <div class="mb-10 p-4 bg-green-50 text-green-800 rounded" role="alert">
+          <p>Thank you for your message. We'll get back to you as soon as possible.</p>
+        </div>
+      {% endif %}
 
-    {% if form.errors %}
-      <div class="bg-red-50 p-4 mb-6 rounded">
-        <p class="text-red-800">Please correct the following:</p>
-        {{ form.errors | default_errors }}
-      </div>
-    {% endif %}
+      {% if form.errors %}
+        <div class="mb-10 p-4 bg-red-50 text-red-500 rounded" role="alert">
+          <h2 class="sr-only">Error</h2>
+          {{ form.errors | default_errors }}
+        </div>
+      {% endif %}
 
-    <div class="space-y-6">
-      <div>
-        <label for="ContactFormName" class="block mb-2">Name</label>
-        <input
-          type="text"
-          name="contact[name]"
-          id="ContactFormName"
-          class="w-full border p-2"
-          value="{{ form.name }}"
-          required
-        >
-      </div>
+      <div class="space-y-5">
+        <div>
+          <label for="ContactFormName" class="block mb-2 font-sans tracking-[0.15em] uppercase text-sm text-dark-grey">
+            Name
+          </label>
+          <input
+            type="text"
+            name="contact[name]"
+            id="ContactFormName"
+            class="w-full p-3 border"
+            value="{{ form.name }}"
+            placeholder="Your Name"
+            required
+          >
+        </div>
 
-      <div>
-        <label for="ContactFormEmail" class="block mb-2">Email</label>
-        <input
-          type="email"
-          name="contact[email]"
-          id="ContactFormEmail"
-          class="w-full border p-2"
-          value="{{ form.email }}"
-          required
-        >
-      </div>
+        <div>
+          <label for="ContactFormEmail" class="block mb-2 font-sans tracking-[0.15em] uppercase text-sm text-dark-grey">
+            Email
+          </label>
+          <input
+            type="email"
+            name="contact[email]"
+            id="ContactFormEmail"
+            class="w-full p-3 border"
+            value="{{ form.email }}"
+            placeholder="Your Email"
+            required
+          >
+        </div>
 
-      <div>
-        <label for="ContactFormPhone" class="block mb-2">Phone number</label>
-        <input
-          type="tel"
-          name="contact[phone]"
-          id="ContactFormPhone"
-          class="w-full border p-2"
-          value="{{ form.phone }}"
-        >
-      </div>
+        <div>
+          <label for="ContactFormPhone" class="block mb-2 font-sans tracking-[0.15em] uppercase text-sm text-dark-grey">
+            Phone number
+          </label>
+          <input
+            type="tel"
+            name="contact[phone]"
+            id="ContactFormPhone"
+            class="w-full p-3 border"
+            value="{{ form.phone }}"
+            placeholder="Your Phone"
+          >
+        </div>
 
-      <div>
-        <label for="ContactFormMessage" class="block mb-2">Message</label>
-        <textarea
-          rows="6"
-          name="contact[body]"
-          id="ContactFormMessage"
-          class="w-full border p-2"
-          required
-        >{{ form.body }}</textarea>
-      </div>
+        <div>
+          <label
+            for="ContactFormMessage"
+            class="block mb-2 font-sans tracking-[0.15em] uppercase text-sm text-dark-grey"
+          >
+            Message
+          </label>
+          <textarea
+            rows="6"
+            name="contact[body]"
+            id="ContactFormMessage"
+            class="w-full p-3 border"
+            placeholder="Your Message"
+            required
+          >{{ form.body }}</textarea>
+        </div>
 
-      <div>
-        <button type="submit" class="w-full bg-black text-white py-3 px-6 hover:bg-gray-800">Send Message</button>
+        <div>
+          <button
+            type="submit"
+            class="w-full bg-dark-grey text-white uppercase font-sans tracking-[0.15em] text-sm p-5"
+          >
+            Send Message
+          </button>
+        </div>
       </div>
-    </div>
-  {% endform %}
+    {% endform %}
+  </div>
 </div>
