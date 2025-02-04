@@ -11,6 +11,8 @@ interface CartItem {
   variant_title?: string;
   line_price: number;
   selling_plan_allocation?: {
+    compare_at_price: number;
+    price: number;
     selling_plan: {
       name: string;
     };
@@ -18,6 +20,7 @@ interface CartItem {
 }
 
 interface CartData {
+  item_count: number;
   items: CartItem[];
   total_price: number;
 }
@@ -27,13 +30,33 @@ const CartDrawer: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
 
+  const fetchCart = async () => {
+    try {
+      const response = await fetch('/cart.js');
+      const data = await response.json();
+      document.dispatchEvent(new CustomEvent('cart:updated', { detail: data }));
+      setCart(data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching cart:', error);
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     document.addEventListener('open:cart', () => {
       setIsOpen(true);
+      fetchCart();
+    });
+
+    document.addEventListener('product:added', () => {
+      setIsOpen(true);
+      fetchCart();
     });
 
     return () => {
       document.removeEventListener('open:cart', () => {});
+      document.removeEventListener('product:added', () => {});
     };
   }, []);
 
@@ -48,22 +71,6 @@ const CartDrawer: React.FC = () => {
       document.body.style.removeProperty('overflow');
     };
   }, [isOpen]);
-
-  const fetchCart = async () => {
-    try {
-      const response = await fetch('/cart.js');
-      const data = await response.json();
-      setCart(data);
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching cart:', error);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchCart();
-  }, []);
 
   const updateQuantity = async (lineKey: string, quantity: number) => {
     try {
@@ -103,7 +110,7 @@ const CartDrawer: React.FC = () => {
               <path d="M1 1L8.5 8.5M8.5 8.5L1 16M8.5 8.5L16 16M8.5 8.5L16 1" stroke="#131313" />
             </svg>
           </button>
-          <h2 className="italic font-serif">Cart ({cart.items.length})</h2>
+          <h2 className="italic font-serif">Cart ({cart?.item_count})</h2>
         </div>
 
         {/* Cart Contents */}
@@ -161,7 +168,16 @@ const CartDrawer: React.FC = () => {
                       </svg>
                     </button>
                   </div>
-                  <p className="font-medium">${(item.line_price / 100).toFixed(2)}</p>
+                  <div>
+                    {item.selling_plan_allocation ? (
+                      <div className="flex gap-1 items-center">
+                        <p className="text-dark-grey">${(item.selling_plan_allocation.price / 100).toFixed(2)}</p>
+                        <p className="text-grey-50 line-through italic">${(item.selling_plan_allocation.compare_at_price / 100).toFixed(2)}</p>
+                      </div>
+                    ) : (
+                      <p className="text-dark-grey">${(item.line_price / 100).toFixed(2)}</p>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -176,7 +192,7 @@ const CartDrawer: React.FC = () => {
               name="checkout"
               className="border border-dark-grey w-full bg-dark-grey text-white p-5 flex justify-between items-center font-sans uppercase tracking-[0.15em] text-sm"
             >
-              Checkout <span>${(cart.total_price / 100).toFixed(2)}</span>
+              Checkout <span>${(cart?.total_price / 100).toFixed(2)}</span>
             </button>
           </form>
         </div>

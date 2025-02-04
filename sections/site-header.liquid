@@ -85,7 +85,7 @@
 </header>
 
 {% comment %} Mobile Menu {% endcomment %}
-<div class="fixed inset-0 bg-white z-40 translate-x-full transition-transform duration-300 ease-in-out xl:hidden js-mobile-menu">
+<div class="fixed inset-0 bg-white z-40 -translate-x-full transition-transform duration-300 ease-in-out xl:hidden js-mobile-menu">
   <div class="h-full pt-[72px] flex flex-col items-center justify-center gap-10">
     <nav class="text-center">
       <ul class="flex flex-col items-center gap-10">
@@ -157,7 +157,7 @@
     menuToggle.addEventListener('click', () => {
       const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
       menuToggle.setAttribute('aria-expanded', !isExpanded);
-      mobileMenu.style.transform = isExpanded ? 'translateX(100%)' : 'translateX(0)';
+      mobileMenu.style.transform = isExpanded ? 'translateX(-100%)' : 'translateX(0)';
       menuToggle.textContent = isExpanded ? 'Menu' : 'Close';
 
       if (isExpanded) {
@@ -166,6 +166,18 @@
         body.style.overflow = 'hidden';
       }
     });
+  });
+
+  // Cart Count
+  document.addEventListener('cart:updated', (event) => {
+    const cart = event.detail;
+    const cartCount = document.querySelector('[data-js-cart-count]');
+
+    if (cart && cart.item_count > 0) {
+      cartCount.textContent = `(${cart.item_count})`;
+    } else {
+      cartCount.textContent = '';
+    }
   });
 </script>
 

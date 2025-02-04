@@ -160,17 +160,16 @@
               const form = document.querySelector('.js-product-form');
               form.addEventListener('submit', async (e) => {
                 e.preventDefault();
-
                 const formData = new FormData(form);
+
                 try {
                   const response = await fetch('/cart/add.js', {
                     method: 'POST',
                     body: formData,
                   });
-
-                  if (response.ok) {
-                    document.dispatchEvent(new Event('open:cart'));
-                  }
+                  const data = await response.json();
+                  console.log('Successfully added productto cart:', data);
+                  document.dispatchEvent(new Event('product:added'));
                 } catch (error) {
                   console.error('Error adding to cart:', error);
                 }
