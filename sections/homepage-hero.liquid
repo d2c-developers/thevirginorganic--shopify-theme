@@ -120,13 +120,11 @@
     <div class="bg-image absolute bottom-0 left-0 lg:inset-0 w-full aspect-square lg:aspect-auto lg:h-full">
       <picture>
         <source media="(max-width: 767px)" srcset="{{ section.settings.background_image | image_url: width: 800 }}">
-        <img
-          src="{{ section.settings.background_image | image_url: width: 2000 }}"
-          width="1600"
-          height="900"
-          alt=""
-          class="w-full h-full object-cover"
-        >
+        {{
+          section.settings.background_image
+          | image_url: width: 2000
+          | image_tag: width: 1600, height: 900, alt: '', class: 'w-full h-full object-cover', preload: true
+        }}
       </picture>
     </div>
   {% endif %}
@@ -134,13 +132,16 @@
   {% comment %} Bottle Render {% endcomment %}
   {% if section.settings.bottle_image != blank %}
     <div class="product-image grow relative z-10 lg:absolute lg:left-1/2 lg:-translate-x-1/2 w-full lg:min-w-[33%] lg:h-[calc(100%)] lg:min-h-[calc(100%)] lg:order-2 lg:bottom-[-90px]">
-      <img
-        src="{{ section.settings.bottle_image | image_url: width: 800 }}"
-        width="800"
-        height="800"
-        alt=""
-        class="absolute object-contain w-full h-full z-20"
-      >
+      {{
+        section.settings.bottle_image
+        | image_url: width: 800
+        | image_tag:
+          width: 800,
+          height: 800,
+          alt: '',
+          class: 'absolute object-contain w-full h-full z-20',
+          preload: true
+      }}
       <div
         class="before:bg-white before:absolute before:top-0 before:left-0 before:w-full before:h-1/4 before:z-10 before:lg:hidden"
       ></div>
