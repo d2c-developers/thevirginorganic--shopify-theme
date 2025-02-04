@@ -108,7 +108,7 @@
                   </div>
                   <span class="flex items-center gap-1 font-serif italic">
                     {{ product.price | times: 0.9 | money }}
-                    <span class="text-coratina-green">Save 10%</span>
+                    <span style="color: {{ product.metafields.tvo.label_color | default: '#000000' }}">Save 10%</span>
                   </span>
                 </label>
               {% endif %}
