@@ -7,7 +7,11 @@
           <a href="{{ product.url }}" class="flex flex-col items-center max-w-md mx-auto">
             <div class="relative flex items-center justify-center">
               {% if product.featured_image %}
-                {{ product.featured_image | image_url: width: 800 | image_tag: class: 'w-full h-full object-contain' }}
+                {{
+                  product.featured_image
+                  | image_url: width: 800
+                  | image_tag: class: 'w-full h-full object-contain', loading: 'lazy'
+                }}
               {% else %}
                 <div class="text-sm"></div>
               {% endif %}

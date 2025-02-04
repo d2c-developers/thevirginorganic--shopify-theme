@@ -79,9 +79,9 @@
   {% comment %} H1 {% endcomment %}
   <div class="w-full lg:flex lg:justify-start xl:w-1/3 pt-[50px] lg:p-8 text-center z-10 bg-white lg:bg-transparent">
     {% if section.settings.heading != blank %}
-      <h1 class="text-4xl hero-text xl:mx-auto">
+      <div class="text-4xl hero-text xl:mx-auto">
         {{ section.settings.heading }}
-      </h1>
+      </div>
     {% endif %}
   </div>
 
@@ -118,13 +118,16 @@
   {% comment %} Background Image {% endcomment %}
   {% if section.settings.background_image != blank %}
     <div class="bg-image absolute bottom-0 left-0 lg:inset-0 w-full aspect-square lg:aspect-auto lg:h-full">
-      <img
-        src="{{ section.settings.background_image | image_url: width: 2000 }}"
-        width="2000"
-        height="{{ 2000 | divided_by: section.settings.background_image.aspect_ratio | round }}"
-        alt="{{ section.settings.background_image.alt | default: section.settings.heading }}"
-        class="w-full h-full object-cover"
-      >
+      <picture>
+        <source media="(max-width: 767px)" srcset="{{ section.settings.background_image | image_url: width: 800 }}">
+        <img
+          src="{{ section.settings.background_image | image_url: width: 2000 }}"
+          width="1600"
+          height="900"
+          alt=""
+          class="w-full h-full object-cover"
+        >
+      </picture>
     </div>
   {% endif %}
 
@@ -133,10 +136,9 @@
     <div class="product-image grow relative z-10 lg:absolute lg:left-1/2 lg:-translate-x-1/2 w-full lg:min-w-[33%] lg:h-[calc(100%)] lg:min-h-[calc(100%)] lg:order-2 lg:bottom-[-90px]">
       <img
         src="{{ section.settings.bottle_image | image_url: width: 800 }}"
-        {% comment %} @TODO: make this correct {% endcomment %}
         width="800"
-        height="{{ 800 | divided_by: section.settings.bottle_image.aspect_ratio | round }}"
-        alt="{{ section.settings.bottle_image.alt | default: 'Product bottle' }}"
+        height="800"
+        alt=""
         class="absolute object-contain w-full h-full z-20"
       >
       <div
