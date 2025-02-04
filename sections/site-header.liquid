@@ -85,7 +85,7 @@
 </header>
 
 {% comment %} Mobile Menu {% endcomment %}
-<div class="fixed inset-0 bg-white z-40 -translate-x-full transition-transform duration-300 ease-in-out xl:hidden js-mobile-menu">
+<div class="fixed inset-0 bg-white z-40 -translate-x-full transition-transform duration-200 ease-in-out xl:hidden js-mobile-menu">
   <div class="h-full pt-[72px] flex flex-col items-center justify-center gap-10">
     <nav class="text-center">
       <ul class="flex flex-col items-center gap-10">
@@ -134,7 +134,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       const header = document.querySelector('header');
       header.classList.add('transition-colors');
-      header.classList.add('duration-300');
+      header.classList.add('duration-200');
 
       window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {
