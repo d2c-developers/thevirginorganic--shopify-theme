@@ -8,6 +8,10 @@
           | image_tag: class: 'mx-auto mb-5 w-[50px]', alt: section.settings.certification_heading
         }}
       </div>
+    {% else %}
+      <div class="flex justify-center max-w-[75px] mx-auto">
+        {% render 'icon-ccof' %}
+      </div>
     {% endif %}
 
     <div class="text-sm mb-2 uppercase font-sans tracking-[0.15em] text-grey-50">{{ section.settings.tagline }}</div>
