@@ -1,0 +1,196 @@
+<div class="max-w-3xl mx-auto px-5 py-[100px]">
+  <div class="space-y-[50px]">
+    <div class="space-y-5">
+      <h1 class="font-sans uppercase tracking-[.15em] text-4xl">Addresses</h1>
+
+      <div>
+        <a href="{{ routes.account_url }}" class="underline">Back to Account</a>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-[50px]">
+      {% paginate customer.addresses by 12 %}
+        {% for address in customer.addresses %}
+          <div class="border p-5 space-y-5">
+            {% if address == customer.default_address %}
+              <div class="font-sans uppercase tracking-[.15em] text-sm">Default</div>
+            {% endif %}
+
+            <div class="space-y-2">
+              {{ address | format_address }}
+            </div>
+
+            <div class="space-x-4">
+              <button
+                type="button"
+                class="underline"
+                aria-controls="EditAddress_{{ address.id }}"
+                aria-expanded="false"
+                data-address-id="{{ address.id }}"
+              >
+                Edit
+              </button>
+
+              <button
+                type="button"
+                class="underline"
+                data-confirm-message="Are you sure you want to delete this address?"
+                data-address-id="{{ address.id }}"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        {% endfor %}
+
+        {% render 'pagination', paginate: paginate %}
+      {% endpaginate %}
+    </div>
+
+    <div>
+      <button
+        type="button"
+        class="underline"
+        aria-controls="AddAddress"
+        aria-expanded="false"
+      >
+        Add New Address
+      </button>
+    </div>
+  </div>
+</div>
+
+{% comment %} Add Address Modal {% endcomment %}
+<div id="AddAddress" class="hidden">
+  {% form 'customer_address', customer.new_address %}
+    <div class="space-y-5">
+      <div class="flex justify-between items-center">
+        <h2 class="font-sans uppercase tracking-[.15em] text-2xl">Add New Address</h2>
+        <button type="button" class="underline">Cancel</button>
+      </div>
+
+      <div class="grid grid-cols-2 gap-5">
+        <div class="space-y-2">
+          <label for="AddressFirstName" class="block font-sans uppercase tracking-[.15em]">First Name</label>
+          <input
+            type="text"
+            id="AddressFirstName"
+            name="address[first_name]"
+            value="{{ form.first_name }}"
+            class="w-full border p-2"
+          >
+        </div>
+
+        <div class="space-y-2">
+          <label for="AddressLastName" class="block font-sans uppercase tracking-[.15em]">Last Name</label>
+          <input
+            type="text"
+            id="AddressLastName"
+            name="address[last_name]"
+            value="{{ form.last_name }}"
+            class="w-full border p-2"
+          >
+        </div>
+
+        <div class="space-y-2 col-span-2">
+          <label for="AddressCompany" class="block font-sans uppercase tracking-[.15em]">Company</label>
+          <input
+            type="text"
+            id="AddressCompany"
+            name="address[company]"
+            value="{{ form.company }}"
+            class="w-full border p-2"
+          >
+        </div>
+
+        <div class="space-y-2 col-span-2">
+          <label for="AddressAddress1" class="block font-sans uppercase tracking-[.15em]">Address 1</label>
+          <input
+            type="text"
+            id="AddressAddress1"
+            name="address[address1]"
+            value="{{ form.address1 }}"
+            class="w-full border p-2"
+          >
+        </div>
+
+        <div class="space-y-2 col-span-2">
+          <label for="AddressAddress2" class="block font-sans uppercase tracking-[.15em]">Address 2</label>
+          <input
+            type="text"
+            id="AddressAddress2"
+            name="address[address2]"
+            value="{{ form.address2 }}"
+            class="w-full border p-2"
+          >
+        </div>
+
+        <div class="space-y-2">
+          <label for="AddressCity" class="block font-sans uppercase tracking-[.15em]">City</label>
+          <input
+            type="text"
+            id="AddressCity"
+            name="address[city]"
+            value="{{ form.city }}"
+            class="w-full border p-2"
+          >
+        </div>
+
+        <div class="space-y-2">
+          <label for="AddressCountry" class="block font-sans uppercase tracking-[.15em]">Country</label>
+          <select
+            id="AddressCountry"
+            name="address[country]"
+            data-default="{{ form.country }}"
+            class="w-full border p-2"
+          >
+            {{ all_country_option_tags }}
+          </select>
+        </div>
+
+        <div class="space-y-2">
+          <label for="AddressProvince" class="block font-sans uppercase tracking-[.15em]">Province</label>
+          <select
+            id="AddressProvince"
+            name="address[province]"
+            data-default="{{ form.province }}"
+            class="w-full border p-2"
+          ></select>
+        </div>
+
+        <div class="space-y-2">
+          <label for="AddressZip" class="block font-sans uppercase tracking-[.15em]">ZIP Code</label>
+          <input
+            type="text"
+            id="AddressZip"
+            name="address[zip]"
+            value="{{ form.zip }}"
+            class="w-full border p-2"
+          >
+        </div>
+
+        <div class="space-y-2">
+          <label for="AddressPhone" class="block font-sans uppercase tracking-[.15em]">Phone</label>
+          <input
+            type="tel"
+            id="AddressPhone"
+            name="address[phone]"
+            value="{{ form.phone }}"
+            class="w-full border p-2"
+          >
+        </div>
+      </div>
+
+      <div>
+        {{ form.set_as_default_checkbox }}
+        <label for="address_default_address_new" class="inline-block ml-2"> Set as default address </label>
+      </div>
+
+      <div>
+        <button type="submit" class="w-full bg-dark-grey text-white p-4 font-sans uppercase tracking-[.15em]">
+          Add Address
+        </button>
+      </div>
+    </div>
+  {% endform %}
+</div>

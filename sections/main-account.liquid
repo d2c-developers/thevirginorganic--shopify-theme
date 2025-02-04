@@ -1,0 +1,65 @@
+<div class="max-w-3xl mx-auto px-5 py-[100px]">
+  <div class="space-y-[50px]">
+    <div class="space-y-5">
+      <h1 class="font-sans uppercase tracking-[.15em] text-4xl">Account</h1>
+
+      <div class="flex items-center gap-5">
+        <p>Welcome back, {{ customer.name }}</p>
+        <a href="{{ routes.account_logout_url }}" class="underline">Logout</a>
+      </div>
+    </div>
+
+    <div class="space-y-[50px]">
+      <div class="space-y-5">
+        <h2 class="font-sans uppercase tracking-[.15em] text-2xl">Orders</h2>
+
+        {% paginate customer.orders by 20 %}
+          {% if customer.orders.size > 0 %}
+            <table class="w-full">
+              <thead>
+                <tr class="border-b text-left">
+                  <th class="py-2">Order</th>
+                  <th class="py-2">Date</th>
+                  <th class="py-2">Total</th>
+                  <th class="py-2">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for order in customer.orders %}
+                  <tr class="border-b">
+                    <td class="py-4">
+                      <a href="{{ order.customer_url }}" class="underline">{{ order.name }}</a>
+                    </td>
+                    <td class="py-4">{{ order.created_at | time_tag: format: 'date' }}</td>
+                    <td class="py-4">{{ order.total_price | money }}</td>
+                    <td class="py-4">{{ order.financial_status_label }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+            {% render 'pagination', paginate: paginate %}
+          {% else %}
+            <p>You haven't placed any orders yet.</p>
+          {% endif %}
+        {% endpaginate %}
+      </div>
+
+      <div class="space-y-5">
+        <h2 class="font-sans uppercase tracking-[.15em] text-2xl">Account Details</h2>
+
+        <div class="space-y-2">
+          <p>{{ customer.name }}</p>
+          <p>{{ customer.email }}</p>
+          <p>{{ customer.default_address | format_address }}</p>
+
+          <div class="pt-2">
+            <a href="{{ routes.account_addresses_url }}" class="underline">
+              View Addresses ({{ customer.addresses_count }})
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

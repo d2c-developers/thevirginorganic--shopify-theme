@@ -1,9 +1,9 @@
 {
   "sections": {
     "main": {
-      "type": "main-login",
+      "type": "main-account",
       "settings": {}
     }
   },
   "order": ["main"]
-}
+} 

@@ -1,9 +1,9 @@
 {
   "sections": {
     "main": {
-      "type": "main-login",
+      "type": "main-addresses",
       "settings": {}
     }
   },
   "order": ["main"]
-}
+} 
