@@ -12,7 +12,7 @@
     "main": {
       "type": "homepage-hero",
       "settings": {
-        "heading": "<p>Compromise<br>Nothing</p>",
+        "heading": "<p>Compromise <em>Nothing</em></p>",
         "text": "<p>Our belief in world-class olive oils<br>starts from the <em>ground up</em>.</p>",
         "button_text": "Shop Now",
         "button_link": "shopify://collections/shop-all",
