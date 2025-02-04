@@ -14,6 +14,9 @@ module.exports = {
         sans: ['SuperGrotesk', 'sans-serif'],
         display: ['Engelsgold', 'sans-serif'],
       },
+      screens: {
+        lg: '990px',
+      },
       margin: {
         100: '100px',
         50: '50px',

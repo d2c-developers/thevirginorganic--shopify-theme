@@ -1,11 +1,11 @@
 <div class="container mx-auto px-5">
   <h1 class="font-heading text-center max-w-sm w-full mx-auto">{{ blog.title }}</h1>
 
-  <div class="my-50 grid grid-cols-1 xl:grid-cols-3">
+  <div class="my-50 grid grid-cols-1 lg:grid-cols-3">
     {% paginate blog.articles by 12 %}
       {% for article in blog.articles %}
         {% assign is_last_in_row = forloop.index | modulo: 3 %}
-        <article class="my-50 xl:pr-5 xl:border-r xl:border-border xl:mr-5 {% if is_last_in_row == 0 %}xl:border-r-transparent xl:mr-0{% endif %}">
+        <article class="my-50 lg:pr-5 lg:border-r lg:border-border lg:mr-5 {% if is_last_in_row == 0 %}lg:border-r-transparent lg:mr-0{% endif %}">
           <a href="{{ article.url }}" class="block">
             <div class="aspect-[28/23] relative mb-5">
               {% if article.image %}
@@ -38,7 +38,7 @@
 
         {% if is_last_in_row == 0 %}
           {% unless forloop.last %}
-            <div class="hidden xl:block w-full border-b border-border col-span-full"></div>
+            <div class="hidden lg:block w-full border-b border-border col-span-full"></div>
           {% endunless %}
         {% endif %}
       {% endfor %}
@@ -65,7 +65,7 @@
 {% schema %}
 {
   "name": "Main Blog",
-  "class": "my-50 xl:my-100",
+  "class": "my-50 lg:my-100",
   "settings": []
 }
 {% endschema %}

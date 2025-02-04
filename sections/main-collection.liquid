@@ -11,7 +11,7 @@
           {% if product.tags contains 'ui:plp-full-row' %}md:col-span-3 !border-x-0 md:!border-t border-border{% endif %}
         "
       >
-        <div class="{% if product.tags contains 'ui:plp-full-row' %}aspect-square xl:aspect-video xl:max-w-[75%] mx-auto{% else %}aspect-square{% endif %} overflow-hidden">
+        <div class="{% if product.tags contains 'ui:plp-full-row' %}aspect-square lg:aspect-video lg:max-w-[75%] mx-auto{% else %}aspect-square{% endif %} overflow-hidden">
           {% if product.featured_image != blank %}
             <img
               src="{{ product.featured_image | image_url: width: 800 }}"

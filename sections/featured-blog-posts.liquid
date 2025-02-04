@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <div class="swiper relative pb-[80px] xl:pb-0" id="blog-posts-slider">
+  <div class="swiper relative pb-[80px] lg:pb-0" id="blog-posts-slider">
     <div class="swiper-wrapper">
       {% assign articles = section.blocks | where: 'type', 'article' %}
       {% if articles.size == 0 %}
@@ -60,7 +60,7 @@
 
   {% if section.settings.button_text != blank and section.settings.button_link != blank %}
     <div class="w-full flex justify-center items-center px-5">
-      <div class="mx-auto text-center xl:text-left">
+      <div class="mx-auto text-center lg:text-left">
         {% render 'ui-button', type: 'link', button_text: section.settings.button_text, href: section.settings.button_link | default: '/blogs/blog' %}
       </div>
     </div>

@@ -1,10 +1,10 @@
-<div class="grid grid-cols-1 xl:grid-cols-10 xl:grid-rows-2 gap-y-[50px] xl:border-b xl:border-gray-200 pb-5">
-  <div class="xl:col-span-4 px-5">
+<div class="grid grid-cols-1 lg:grid-cols-10 lg:grid-rows-2 gap-y-[50px] lg:border-b lg:border-gray-200 pb-5">
+  <div class="lg:col-span-4 px-5">
     <div class="">
-      <div class="mt-5 font-serif text-[22px] xl:max-w-sm">{{ section.settings.section_body }}</div>
+      <div class="mt-5 font-serif text-[22px] lg:max-w-sm">{{ section.settings.section_body }}</div>
     </div>
   </div>
-  <div class="xl:row-span-2 xl:col-span-6">
+  <div class="lg:row-span-2 lg:col-span-6">
     <div class="swiper border-l border-gray-200" id="photo-slider--images">
       <div class="swiper-wrapper">
         {% for block in section.blocks %}
@@ -25,17 +25,17 @@
       </div>
     </div>
   </div>
-  <div class="xl:col-span-4 xl:col-start-1 xl:row-start-2 xl:row-end-3 w-full flex flex-col justify-end px-5">
+  <div class="lg:col-span-4 lg:col-start-1 lg:row-start-2 lg:row-end-3 w-full flex flex-col justify-end px-5">
     <div
-      class="swiper w-full space-y-5 flex flex-col justify-end relative max-w-md mx-auto xl:mx-0 pb-[80px] xl:pb-0"
+      class="swiper w-full space-y-5 flex flex-col justify-end relative max-w-md mx-auto lg:mx-0 pb-[80px] lg:pb-0"
       id="photo-slider--text"
     >
       {% comment %} Navigation Controls {% endcomment %}
       <div class="flex gap-[10px] items-center">
-        <button class="swiper-button-prev--text static after:hidden hidden border border-gray-200 rounded-full size-[33px] xl:flex items-center justify-center ">
+        <button class="swiper-button-prev--text static after:hidden hidden border border-gray-200 rounded-full size-[33px] lg:flex items-center justify-center ">
           {% render 'icon-arrow-left' %}
         </button>
-        <button class="swiper-button-next--text static after:hidden hidden border border-gray-200 rounded-full size-[33px] xl:flex items-center justify-center ">
+        <button class="swiper-button-next--text static after:hidden hidden border border-gray-200 rounded-full size-[33px] lg:flex items-center justify-center ">
           {% render 'icon-arrow-right' %}
         </button>
       </div>
@@ -44,7 +44,7 @@
         {% for block in section.blocks %}
           {% if block.type == 'slide' %}
             <div class="swiper-slide w-full flex flex-col justify-end">
-              <div class="max-w-md text-center mx-auto xl:text-left xl:mx-0">
+              <div class="max-w-md text-center mx-auto lg:text-left lg:mx-0">
                 <h2 class="text-sm uppercase mb-[10px] font-sans tracking-[0.15em]">{{ block.settings.heading }}</h2>
                 <p class="font-serif italic">{{ block.settings.body }}</p>
               </div>
@@ -53,7 +53,7 @@
         {% endfor %}
       </div>
       {% comment %} Pagination Controls {% endcomment %}
-      <div class="swiper-pagination--text block xl:hidden"></div>
+      <div class="swiper-pagination--text block lg:hidden"></div>
     </div>
   </div>
 </div>

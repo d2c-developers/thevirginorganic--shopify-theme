@@ -1,5 +1,5 @@
 <div class="">
-  <div class="grid grid-cols-1 xl:grid-cols-2 xl:divide-x divide-border">
+  <div class="grid grid-cols-1 lg:grid-cols-2 lg:divide-x divide-border">
     {% for block in section.blocks %}
       {% if block.type == 'product' %}
         {% assign product = block.settings.product %}
@@ -12,7 +12,7 @@
                 <div class="text-sm"></div>
               {% endif %}
             </div>
-            <div class="mt-4 text-center pl-5 xl:pl-0 w-full">
+            <div class="mt-4 text-center pl-5 lg:pl-0 w-full">
               <span class="text-dark-grey font-serif italic">{{ product.metafields.tvo.tagline }}</span>
               <h3
                 class="font-sans text-2xl uppercase tracking-[0.15em]"
@@ -23,21 +23,21 @@
 
               <div class="pt-5 text-grey-50">
                 {% if product.metafields.tvo.harvest != blank %}
-                  <div class="flex justify-between border-b border-border py-[10px] pr-5 xl:pr-0 ">
+                  <div class="flex justify-between border-b border-border py-[10px] pr-5 lg:pr-0 ">
                     <span class="text-sm font-sans tracking-[0.15em] uppercase">HARVEST</span>
                     <span class="font-serif italic">{{ product.metafields.tvo.harvest }}</span>
                   </div>
                 {% endif %}
 
                 {% if product.metafields.tvo.polyhenial_count != blank %}
-                  <div class="flex justify-between border-b border-border py-[10px] pr-5 xl:pr-0 ">
+                  <div class="flex justify-between border-b border-border py-[10px] pr-5 lg:pr-0 ">
                     <span class="text-sm font-sans tracking-[0.15em] uppercase">Polyphenol Count</span>
                     <span class="font-serif italic">{{ product.metafields.tvo.polyhenial_count }}</span>
                   </div>
                 {% endif %}
 
                 {% if product.metafields.tvo.intensity != blank %}
-                  <div class="flex justify-between items-start border-b border-border py-[10px] pr-5 xl:pr-0 ">
+                  <div class="flex justify-between items-start border-b border-border py-[10px] pr-5 lg:pr-0 ">
                     <span class="text-sm font-sans tracking-[0.15em] uppercase">INTENSITY</span>
                     <span class="text-right max-w-[220px] font-serif italic leading-tight">
                       {{ product.metafields.tvo.intensity | newline_to_br }}

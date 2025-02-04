@@ -22,7 +22,7 @@ body {
 }
 
 .font-heading {
-  @apply font-display text-[40px] leading-[90%] tracking-[0.03em] uppercase xl:text-[65px];
+  @apply font-display text-[40px] leading-[90%] tracking-[0.03em] uppercase lg:text-[65px];
 }
 
 .prose {
@@ -42,7 +42,7 @@ body {
   @apply mx-auto text-[22px] px-5;
 }
 .prose blockquote {
-  @apply w-full px-5 !my-100 text-dark-grey font-medium font-serif text-[32px] xl:text-[36px] leading-tight tracking-[0.01em];
+  @apply w-full px-5 !my-100 text-dark-grey font-medium font-serif text-[32px] lg:text-[36px] leading-tight tracking-[0.01em];
 }
 
 /* Swiper Pagination Styles */

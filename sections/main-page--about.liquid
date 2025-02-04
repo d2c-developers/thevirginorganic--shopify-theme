@@ -1,7 +1,7 @@
 <style></style>
 <article class="space-y-50 px-5">
   <div class="border-b border-border space-y-50 pb-50">
-    <header class="px-5 text-center space-y-[30px] xl:space-y-[40px]">
+    <header class="px-5 text-center space-y-[30px] lg:space-y-[40px]">
       {% if page.metafields.tvo.eyebrow_text != blank %}
         <div class="font-serif text-[#4c4c46] italic">{{ page.metafields.tvo.eyebrow_text }}</div>
       {% endif %}
@@ -29,7 +29,7 @@
     </header>
 
     {% if page.metafields.tvo.featured_image %}
-      <div class="w-full aspect-square relative xl:aspect-video xl:px-5">
+      <div class="w-full aspect-square relative lg:aspect-video lg:px-5">
         <img
           src="{{ page.metafields.tvo.featured_image | image_url: width: 1200 }}"
           alt="{{ page.metafields.tvo.featured_image.alt }}"
@@ -48,7 +48,7 @@
   <div class="px-5 space-y-50">
     {% assign stockists = metaobjects.stockist.values %}
     {% if stockists != blank %}
-      <div id="stockists" class="grid grid-cols-1 xl:grid-cols-2 gap-10 pb-50 border-b border-border">
+      <div id="stockists" class="grid grid-cols-1 lg:grid-cols-2 gap-10 pb-50 border-b border-border">
         <h2 class="font-sans text-sm tracking-[0.15em] uppercase">Stockists</h2>
         <div class="space-y-10">
           <div class="font-serif text-lg text-dark-grey max-w-xl">
@@ -66,7 +66,7 @@
     {% endif %}
 
     {% comment %} Address & Hours {% endcomment %}
-    <div id="company-info" class="grid grid-cols-1 xl:grid-cols-2 gap-10 pb-50 border-b border-border">
+    <div id="company-info" class="grid grid-cols-1 lg:grid-cols-2 gap-10 pb-50 border-b border-border">
       <h2 class="font-sans text-sm tracking-[0.15em] uppercase">Company Info</h2>
       <div class="space-y-10">
         <div>
@@ -89,7 +89,7 @@
     </div>
 
     {% comment %} Contact {% endcomment %}
-    <div id="contact" class="grid grid-cols-1 xl:grid-cols-2 gap-10 pt-50">
+    <div id="contact" class="grid grid-cols-1 lg:grid-cols-2 gap-10 pt-50">
       <h2 class="font-sans text-sm tracking-[0.15em] uppercase">Contact</h2>
       <div class="font-serif space-y-5">
         {% if shop.email != blank %}
@@ -139,7 +139,7 @@
 {% schema %}
 {
   "name": "Main Article",
-  "class": "my-50 xl:mb-100 xl:pb-100",
+  "class": "my-50 lg:mb-100 lg:pb-100",
   "settings": []
 }
 {% endschema %}

@@ -1,9 +1,9 @@
-<div class="min-h-screen bg-white xl:mb-52">
+<div class="min-h-screen bg-white lg:mb-52">
   <div class="w-full px-4 py-5 ">
-    <div class="grid grid-cols-1 xl:grid-cols-2 xl:gap-12 xl:divide-x xl:divide-x-border">
-      <div class="h-[calc(100vh-68px)] flex flex-col justify-center xl:block">
+    <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 lg:divide-x lg:divide-x-border">
+      <div class="h-[calc(100vh-68px)] flex flex-col justify-center lg:block">
         {% comment %} Mobile Product Title and Description {% endcomment %}
-        <div class="block xl:hidden text-center max-w-xs mx-auto">
+        <div class="block lg:hidden text-center max-w-xs mx-auto">
           <div class="text-grey-50 uppercase text-sm font-sans tracking-[0.15em]">
             {{ product.metafields.tvo.tagline }}
           </div>
@@ -17,7 +17,7 @@
         </div>
 
         <!-- Product Image -->
-        <div class="xl:w-full h-full relative grow xl:flex xl:justify-center xl:items-center">
+        <div class="lg:w-full h-full relative grow lg:flex lg:justify-center lg:items-center">
           {% if product.featured_image != blank %}
             <img
               src="{{ product.featured_image | image_url: width: 1000 }}"
@@ -25,7 +25,7 @@
               {% comment %} @TODO: make correct aspect ratio {% endcomment %}
               width="1000"
               height="{{ 1000 | divided_by: product.featured_image.aspect_ratio | round }}"
-              class="absolute w-full h-full object-contain xl:w-[initial] mx-auto"
+              class="absolute w-full h-full object-contain lg:w-[initial] mx-auto"
             >
           {% else %}
             <div class="absolute w-full h-full bg-gray-100"></div>
@@ -33,9 +33,9 @@
         </div>
       </div>
       <!-- Product Details -->
-      <div class="px-5 xl:pr-0 xl:py-10">
+      <div class="px-5 lg:pr-0 lg:py-10">
         <div class="w-full max-w-[350px] mx-auto">
-          <div class="hidden xl:block mb-6">
+          <div class="hidden lg:block mb-6">
             <div class="text-grey-50 uppercase text-sm font-sans tracking-[0.15em]">
               {{ product.metafields.tvo.tagline }}
             </div>
@@ -205,7 +205,7 @@
           </script>
 
           <!-- Product Specifications -->
-          <div class="hidden xl:block pt-10">
+          <div class="hidden lg:block pt-10">
             {% if product.metafields.tvo.harvest != blank %}
               <div class="flex justify-between border-b border-[#4C4C46]/25 pb-[10px]">
                 <span class="text-grey-50 uppercase font-sans tracking-[0.15em] text-sm">HARVEST</span>
@@ -232,15 +232,15 @@
         </div>
       </div>
     </div>
-    <div class="border-t border-border mt-[50px] xl:mt-5"></div>
+    <div class="border-t border-border mt-[50px] lg:mt-5"></div>
   </div>
-  <div class="px-5 text-dark-grey font-medium font-serif text-[32px] xl:text-[36px] leading-tight tracking-[0.01em]">
+  <div class="px-5 text-dark-grey font-medium font-serif text-[32px] lg:text-[36px] leading-tight tracking-[0.01em]">
     {{ product.metafields.tvo.varietal_long_description | metafield_tag }}
   </div>
 </div>
 {% schema %}
 {
   "name": "Main Product",
-  "class": "mb-100 xl:mb-52"
+  "class": "mb-100 lg:mb-52"
 }
 {% endschema %}

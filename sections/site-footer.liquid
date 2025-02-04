@@ -1,7 +1,7 @@
 <footer class="py-[100px] px-5">
-  <div class="relative flex flex-col justify-between items-center space-y-[100px] text-center xl:flex-row xl:flex-wrap">
+  <div class="relative flex flex-col justify-between items-center space-y-[100px] text-center lg:flex-row lg:flex-wrap">
     {% comment %} Mobile Logo {% endcomment %}
-    <div class="flex justify-center items-center xl:hidden">
+    <div class="flex justify-center items-center lg:hidden">
       {% if section.settings.logo %}
         {{ section.settings.logo | image_url: width: 320 | image_tag }}
       {% else %}
@@ -10,7 +10,7 @@
     </div>
 
     {% comment %} Newsletter Section {% endcomment %}
-    <div class="w-full shrink-0 text-center mx-auto xl:order-0 max-w-[452px]">
+    <div class="w-full shrink-0 text-center mx-auto lg:order-0 max-w-[452px]">
       <div>
         <p class="uppercase mb-[10px] text-sm font-sans text-grey-50">{{ section.settings.newsletter_heading }}</p>
         <div class="italic font-serif leading-tight">
@@ -39,9 +39,9 @@
     </div>
 
     {% comment %} Link Lists {% endcomment %}
-    <div class="font-serif space-y-[55px] xl:w-full xl:shrink-0 xl:flex xl:flex-wrap xl:justify-between xl:items-center xl:relative xl:space-y-0">
+    <div class="font-serif space-y-[55px] lg:w-full lg:shrink-0 lg:flex lg:flex-wrap lg:justify-between lg:items-center lg:relative lg:space-y-0">
       {% comment %} left column {% endcomment %}
-      <div class="flex flex-col gap-1 max-w-[451px] w-full">
+      <div class="flex flex-col gap-1 max-w-sm w-full">
         {% assign menu = linklists['shop-menu-footer'] %}
         {% if menu.links.size > 0 %}
           <h4 class="text-grey-50">{{ menu.links.first.title }}</h4>
@@ -61,7 +61,7 @@
       </div>
 
       {% comment %} Desktop Logo {% endcomment %}
-      <div class="hidden xl:flex xl:justify-center xl:items-center  xl:absolute xl:top-1/2 xl:-translate-y-1/2 xl:left-1/2 xl:-translate-x-1/2">
+      <div class="hidden lg:flex lg:justify-center lg:items-center  lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:left-1/2 lg:-translate-x-1/2">
         {% if section.settings.logo %}
           {{ section.settings.logo | image_url: width: 320 | image_tag }}
         {% else %}
@@ -70,7 +70,7 @@
       </div>
 
       {% comment %} right column {% endcomment %}
-      <div class="flex flex-col gap-1 max-w-[451px] w-full">
+      <div class="flex flex-col gap-1 max-w-sm w-full">
         {% assign menu = linklists['learn-menu-footer'] %}
         {% if menu.links.size > 0 %}
           <h4 class="text-grey-50">{{ menu.links.first.title }}</h4>
@@ -91,7 +91,7 @@
     </div>
 
     {% comment %} Copyright {% endcomment %}
-    <p class="mt-[55px] font-serif italic text-center xl:w-full xl:shrink-0 text-grey-50">
+    <p class="mt-[55px] font-serif italic text-center lg:w-full lg:shrink-0 text-grey-50">
       Copyright {{ 'now' | date: '%Y' }} The Virgin Organic
     </p>
   </div>

@@ -1,10 +1,10 @@
-<div class="relative w-full xl:px-5">
-  <div class="relative aspect-[44/80] xl:aspect-[128/80]">
+<div class="relative w-full lg:px-5">
+  <div class="relative aspect-[44/80] lg:aspect-[128/80]">
     {{
       section.settings.desktop_background_image
       | image_url: width: 2000
       | image_tag:
-        class: 'w-full h-full object-cover hidden xl:block',
+        class: 'w-full h-full object-cover hidden lg:block',
         alt: '',
         src: section.settings.desktop_background_image,
         loading: 'lazy'
@@ -13,19 +13,19 @@
       section.settings.mobile_background_image
       | image_url: width: 800
       | image_tag:
-        class: 'w-full h-full object-cover xl:hidden',
+        class: 'w-full h-full object-cover lg:hidden',
         alt: '',
         src: section.settings.mobile_background_image,
         loading: 'lazy'
     }}
-    <div class="absolute inset-0 p-5 w-full h-full flex flex-col items-start text-white xl:py-8">
+    <div class="absolute inset-0 p-5 w-full h-full flex flex-col items-start text-white lg:py-8">
       {% if section.settings.text %}
         <div class="text-4xl md:text-6xl font-serif">
           {{ section.settings.text }}
         </div>
       {% endif %}
 
-      <div class="grow xl:grow-0"></div>
+      <div class="grow lg:grow-0"></div>
 
       {% if section.settings.button_url %}
         {% assign button_url = section.settings.button_url %}

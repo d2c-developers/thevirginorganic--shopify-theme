@@ -2,11 +2,11 @@
   <div class="max-w-3xl mx-auto">
     {%- if cart == empty -%}
       <div class="text-center py-20">
-        <h1 class="text-[40px] xl:text-[65px] uppercase mb-5">Your cart is empty</h1>
+        <h1 class="text-[40px] lg:text-[65px] uppercase mb-5">Your cart is empty</h1>
         <a href="{{ routes.all_products_collection_url }}" class="btn"> Continue shopping </a>
       </div>
     {%- else -%}
-      <h1 class="text-[40px] xl:text-[65px] uppercase text-center mb-10">Shopping Cart</h1>
+      <h1 class="text-[40px] lg:text-[65px] uppercase text-center mb-10">Shopping Cart</h1>
 
       <form action="{{ routes.cart_url }}" method="post" novalidate>
         <div class="space-y-8">
@@ -73,7 +73,7 @@
 {% schema %}
 {
   "name": "Main Cart",
-  "class": "my-50 xl:my-100",
+  "class": "my-50 lg:my-100",
   "settings": []
 }
 {% endschema %}

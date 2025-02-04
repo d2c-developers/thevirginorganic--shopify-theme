@@ -1,8 +1,8 @@
-<header class="site-header fixed flex items-center justify-between w-full font-serif  top-0 left-0 right-0 p-5 text-dark-grey {% if template == 'index' %}xl:text-white xl:bg-transparent{% endif %} z-50 bg-white xl:text-lg">
+<header class="site-header fixed flex items-center justify-between w-full font-serif  top-0 left-0 right-0 p-5 text-dark-grey {% if template == 'index' %}lg:text-white lg:bg-transparent{% endif %} z-50 bg-white lg:text-lg">
   {% comment %} Left List {% endcomment %}
   <div>
     {% comment %} Desktop List{% endcomment %}
-    <nav class="hidden xl:flex xl:items-center xl:gap-4">
+    <nav class="hidden lg:flex lg:items-center lg:gap-4">
       <ul class="flex items-center gap-1">
         {% for item in linklists['shop-menu'].links %}
           <li>
@@ -25,7 +25,7 @@
     {% comment %} Mobile Menu Button {% endcomment %}
     <button
       type="button"
-      class="xl:hidden text-dark-grey flex items-center justify-center relative after:absolute after:bottom-0 after:bg-dark-grey after:w-full after:h-px after:z-10 js-menu-toggle"
+      class="lg:hidden text-dark-grey flex items-center justify-center relative after:absolute after:bottom-0 after:bg-dark-grey after:w-full after:h-px after:z-10 js-menu-toggle"
       aria-label="Toggle menu"
       aria-expanded="false"
     >
@@ -34,7 +34,7 @@
   </div>
 
   {% comment %} Center Logo {% endcomment %}
-  <div class="site-header-logo absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-60 xl:max-w-80">
+  <div class="site-header-logo absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-60 lg:max-w-80">
     {% if template == 'index' %}
       <h1>
         <a href="/" class="block">
@@ -85,7 +85,7 @@
 </header>
 
 {% comment %} Mobile Menu {% endcomment %}
-<div class="fixed inset-0 bg-white z-40 -translate-x-full transition-transform duration-200 ease-in-out xl:hidden js-mobile-menu">
+<div class="fixed inset-0 bg-white z-40 -translate-x-full transition-transform duration-200 ease-in-out lg:hidden js-mobile-menu">
   <div class="h-full pt-[72px] flex flex-col items-center justify-center gap-10">
     <nav class="text-center">
       <ul class="flex flex-col items-center gap-10">
@@ -138,11 +138,11 @@
 
       window.addEventListener('scroll', () => {
         if (window.scrollY > 100) {
-          header.classList.remove('xl:bg-transparent', 'xl:text-white');
-          header.classList.add('xl:bg-white', 'xl:text-dark-grey');
+          header.classList.remove('lg:bg-transparent', 'lg:text-white');
+          header.classList.add('lg:bg-white', 'lg:text-dark-grey');
         } else {
-          header.classList.add('bg-white', 'text-dark-grey', 'xl:bg-transparent', 'xl:text-white');
-          header.classList.remove('xl:bg-white', 'xl:text-dark-grey');
+          header.classList.add('bg-white', 'text-dark-grey', 'lg:bg-transparent', 'lg:text-white');
+          header.classList.remove('lg:bg-white', 'lg:text-dark-grey');
         }
       });
     });
