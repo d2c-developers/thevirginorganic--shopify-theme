@@ -1,5 +1,6 @@
 <div class="container mx-auto px-5">
   <div class="max-w-2xl mx-auto">
+    <h1 class="font-heading text-center mb-10">Contact Us</h1>
     {% form 'contact' %}
       {% if form.posted_successfully? %}
         <div class="mb-10 p-4 bg-green-50 text-green-800 rounded" role="alert">
@@ -88,3 +89,11 @@
     {% endform %}
   </div>
 </div>
+
+{% schema %}
+{
+  "name": "Contact Form",
+  "class": "my-50 xl:my-100",
+  "settings": []
+}
+{% endschema %}
