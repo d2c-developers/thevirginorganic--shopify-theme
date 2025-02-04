@@ -116,17 +116,15 @@
 
             <!-- Frequency Selector -->
             {% if product.selling_plan_groups.size > 0 %}
-              <div class="relative">
+              <div class="relative hidden" data-js-selling-plan-selector-container>
                 <select
+                  data-js-selling-plan-selector
                   name="selling_plan"
                   class="w-full border border-border rounded-sm text-dark-grey uppercase font-sans tracking-[0.15em] text-sm appearance-none p-[14px] cursor-pointer"
                 >
                   {% for selling_plan in product.selling_plan_groups[0].selling_plans %}
                     <option
                       value="{{ selling_plan.id }}"
-                      {% if forloop.first %}
-                        selected
-                      {% endif %}
                     >
                       {{ selling_plan.name }}
                     </option>
@@ -158,17 +156,46 @@
           <script>
             document.addEventListener('DOMContentLoaded', () => {
               const form = document.querySelector('.js-product-form');
+              const sellingPlanContainer = document.querySelector('[data-js-selling-plan-selector-container]');
+              const oneTimeRadio = document.getElementById('one-time');
+              const subscribeRadio = document.getElementById('subscribe');
+
+              // Initial state
+              if (subscribeRadio.checked) {
+                sellingPlanContainer.classList.remove('hidden');
+              }
+
+              // Handle radio changes
+              oneTimeRadio.addEventListener('change', () => {
+                sellingPlanContainer.classList.add('hidden');
+              });
+
+              subscribeRadio.addEventListener('change', () => {
+                sellingPlanContainer.classList.remove('hidden');
+              });
+
               form.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const formData = new FormData(form);
 
+                // Ensure only one selling_plan value is submitted:
+                if (subscribeRadio.checked) {
+                  const planSelector = document.querySelector('[data-js-selling-plan-selector]');
+                  if (planSelector) {
+                    formData.set('selling_plan', planSelector.value);
+                  }
+                } else if (oneTimeRadio.checked) {
+                  formData.set('selling_plan', '');
+                }
+
+                console.log('formData values:', Array.from(formData.entries()));
                 try {
                   const response = await fetch('/cart/add.js', {
                     method: 'POST',
                     body: formData,
                   });
                   const data = await response.json();
-                  console.log('Successfully added productto cart:', data);
+                  console.log('Successfully added product to cart:', data);
                   document.dispatchEvent(new Event('product:added'));
                 } catch (error) {
                   console.error('Error adding to cart:', error);
