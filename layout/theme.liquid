@@ -7,6 +7,10 @@
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
 
+    {% if settings.favicon_url %}
+      <link rel="icon" href="{{ settings.favicon_url | image_url: width: 32, height: 32 }}" type="image/png">
+    {% endif %}
+
     <title>
       {{ page_title }}
       {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}

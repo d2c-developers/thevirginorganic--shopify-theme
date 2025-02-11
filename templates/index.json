@@ -17,7 +17,7 @@
         "button_text": "Shop Now",
         "button_link": "shopify://collections/shop-all",
         "background_image": "shopify://shop_images/hero-image-bg-desktop.jpg",
-        "bottle_image": "shopify://shop_images/Home_Page_Bottle_Render_54d722a4-098a-42a4-b2e0-b9ccbe841362.png"
+        "bottle_image": "shopify://shop_images/picual.png"
       }
     },
     "large_heading_text_CYiDqW": {
@@ -108,25 +108,25 @@
         "slide_QJetrg": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Frame_22.jpg",
-            "heading": "Certified Natural Habitat",
-            "body": "Allows for a refuge of all natural species. Deer, rabbits, owls and other birds can be seen throughout the property which enable a well-balanced ecosystem"
+            "image": "shopify://shop_images/The-Virgin-Organic-Olive-Oil-14_7521f6da-3b5b-4a54-a3eb-525cadd859e3.jpg",
+            "heading": "Purely Organic",
+            "body": "We believe in the power of nature. Our olive oil is crafted without synthetic pesticides, fertilizers, or additives—just pure, unadulterated quality."
           }
         },
         "slide_XaMz87": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Frame_31.jpg",
-            "heading": "Another Heading",
-            "body": "And it associated body text. This info correlated to the image above / beside it."
+            "image": "shopify://shop_images/The-Virgin-Organic-Olive-Oil-17_ed134975-9743-4572-aeb4-391183af9753.jpg",
+            "heading": "California Made",
+            "body": "Every drop of our olive oil is grown, harvested, pressed, and bottled in California. We take pride in supporting local agriculture and producing an oil that embodies the richness of our region."
           }
         },
         "slide_JagUqr": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/pdp-giant-image.jpg",
-            "heading": "You can add as many as you want really",
-            "body": "There may be a performance impact eventually but we will monitor for it. Here you can see the image is locked in a specific aspect ratio."
+            "image": "shopify://shop_images/The-Virgin-Organic-Olive-Oil-19.jpg",
+            "heading": "Regenerative by Design",
+            "body": "We go beyond sustainability by restoring soil health, conserving water, and fostering biodiversity. Our commitment to regenerative farming ensures a better future for our land, our farmers, and your table."
           }
         }
       },
@@ -136,7 +136,7 @@
         "slide_JagUqr"
       ],
       "settings": {
-        "section_body": "<p>This section should be about the the Wildlife Habitat and our commitment to the land and the environment. The image to the right can be a photo slider so we can speak to multiple aspects.</p>"
+        "section_body": "<p>Our values are rooted in purity, local craftsmanship, and regenerative practices, ensuring every bottle is crafted with integrity from soil to table.</p>"
       }
     },
     "featured_blog_posts_MAJhmd": {
@@ -176,7 +176,7 @@
     "giant_image_P7Kkdm": {
       "type": "giant-image",
       "settings": {
-        "text": "<p>An <em>invitation</em> to join us by purchasing olive oil.</p>",
+        "text": "<p>We invite you to taste <em>purity</em>. Grown and made in California. Drizzle, savor, and experience the difference.</p>",
         "mobile_background_image": "shopify://shop_images/Frame_32.png",
         "desktop_background_image": "shopify://shop_images/olives.png",
         "button_url": "shopify://collections/shop-all"

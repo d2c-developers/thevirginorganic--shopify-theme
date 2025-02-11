@@ -20,11 +20,15 @@
       "site-footer": {
         "type": "site-footer",
         "settings": {
-          "newsletter_heading": "Sign up for our newsletter",
-          "newsletter_text": "<p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Curabitur blandit tempus porttitor. Nullam quis risus eget urna mollis ornare vel eu leo.</p>",
-          "newsletter_placeholder": "Email Address",
-          "newsletter_button": "Sign Up"
+          "newsletter_heading": "Stay in the loop",
+          "newsletter_text": "<p>Be the first to hear about new harvests, special releases, and exclusive updates. Step into our world and follow the journey of TVO from grove to bottle.</p>",
+          "newsletter_placeholder": "Your email address",
+          "newsletter_button": "Join us"
         }
+      },
+      "site-cart-drawer": {
+        "type": "site-cart-drawer",
+        "settings": {}
       }
     },
     "content_for_index": []
