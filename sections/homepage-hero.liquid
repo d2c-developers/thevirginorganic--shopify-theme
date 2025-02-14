@@ -3,7 +3,7 @@
   @media screen and (min-width: 990px) {
     .site-header {
       opacity: 0;
-      animation: fadeIn 2s ease forwards 3s;
+      animation: fadeIn 1.33s ease forwards 2s;
     }
 
     .hero-content {
@@ -15,22 +15,22 @@
 
     .hero-text {
       opacity: 0;
-      animation: fadeIn 2s ease forwards 2s;
+      animation: fadeIn 1.33s ease forwards 1.33s;
     }
 
     .product-image {
       opacity: 0;
-      animation: fadeIn 2s ease-in-out forwards 3s;
+      animation: fadeIn 1.33s ease-in-out forwards 2s;
     }
 
     .cta-text {
       opacity: 0;
-      animation: fadeIn 2s ease forwards 3s;
+      animation: fadeIn 1.33s ease forwards 2s;
     }
 
     .hero-content .ui-button svg {
       opacity: 0;
-      animation: fadeIn 2s ease forwards 5s, bounceRight 2s ease-in-out forwards 7s;
+      animation: fadeIn 1.33s ease forwards 3.33s, bounceRight 1.33s ease-in-out forwards 4.67s;
     }
 
     @keyframes bounceRight {
@@ -119,7 +119,7 @@
   {% if section.settings.background_image != blank %}
     <div class="bg-image absolute bottom-0 left-0 lg:inset-0 w-full aspect-square lg:aspect-auto lg:h-full">
       <picture>
-        <source media="(max-width: 767px)" srcset="{{ section.settings.background_image | image_url: width: 800 }}">
+        <source media="(max-width: 989px)" srcset="{{ section.settings.background_image | image_url: width: 800 }}">
         {{
           section.settings.background_image
           | image_url: width: 2000
@@ -132,16 +132,19 @@
   {% comment %} Bottle Render {% endcomment %}
   {% if section.settings.bottle_image != blank %}
     <div class="product-image grow relative z-10 lg:absolute lg:left-1/2 lg:-translate-x-1/2 w-full lg:min-w-[33%] lg:h-[calc(100%)] lg:min-h-[calc(100%)] lg:order-2 lg:bottom-[-90px]">
-      {{
-        section.settings.bottle_image
-        | image_url: width: 600
-        | image_tag:
-          width: 400,
-          height: 500,
-          alt: '',
-          class: 'absolute object-contain w-full h-full z-20',
-          preload: true
-      }}
+      <picture>
+        <source media="(min-width: 990px)" srcset="{{ section.settings.bottle_image | image_url: width: 1600 }}">
+        {{
+          section.settings.bottle_image
+          | image_url: width: 600
+          | image_tag:
+            width: 400,
+            height: 500,
+            alt: '',
+            class: 'absolute object-contain w-full h-full z-20',
+            preload: true
+        }}
+      </picture>
       <div
         class="before:bg-white before:absolute before:top-0 before:left-0 before:w-full before:h-1/4 before:z-10 before:lg:hidden"
       ></div>
