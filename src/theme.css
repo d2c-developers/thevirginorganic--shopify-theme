@@ -21,11 +21,14 @@ body {
   @apply font-serif text-dark-grey bg-white;
 }
 
-a {
+a,
+button {
   @apply transition-opacity duration-300 ease-in-out;
 }
 
-a:hover {
+a:hover,
+button:hover,
+input:hover {
   @apply opacity-75;
 }
 

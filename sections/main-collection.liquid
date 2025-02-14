@@ -2,26 +2,27 @@
   <h1 class="text-center font-heading">
     {{ collection.title }}
   </h1>
-  <div class="pt-[50px] grid grid-cols-1 md:grid-cols-3 gap-8">
+  <div class="pt-[50px] grid grid-cols-1 md:grid-cols-2 gap-8">
+    {% assign next_row_first_column = false %}
     {% for product in collection.products %}
       <div
         class="
           group relative
-          {% if forloop.index > 1 %}border-t md:border-t-0 md:border-l border-border{% endif %}
-          {% if product.tags contains 'ui:plp-full-row' %}md:col-span-3 !border-x-0 md:!border-t border-border{% endif %}
+          {% if forloop.index > 1 %}border-t md:border-t-0 border-border {% unless next_row_first_column %}md:border-l{% endunless %}{% endif %}
+          {% if product.tags contains 'ui:plp-full-row' %}border-t md:col-span-2 !border-x-0 md:!border-t border-border{% endif %}
         "
       >
-        <div class="{% if product.tags contains 'ui:plp-full-row' %}aspect-square lg:aspect-video lg:max-w-[75%] mx-auto{% else %}aspect-square{% endif %} overflow-hidden">
+        <div class="{% if product.tags contains 'ui:plp-full-row' %}aspect-square md:aspect-video md:max-w-[75%] mx-auto{% else %}aspect-square{% endif %} overflow-hidden">
           {% if product.featured_image != blank %}
             <img
               src="{{ product.featured_image | image_url: width: 800 }}"
               alt="{{ product.featured_image.alt | default: product.title }}"
               width="800"
-              height="{{ 800 | divided_by: product.featured_image.aspect_ratio | round }}"
+              height="800"
               class="h-full w-full object-contain"
             >
           {% else %}
-            <div class="h-full w-full bg-grey-50"></div>
+
           {% endif %}
         </div>
 
@@ -41,8 +42,13 @@
           <a href="{{ product.url }}" class="absolute inset-0" aria-label="View {{ product.title }}"></a>
         </div>
       </div>
+      {% assign next_row_first_column = false %}
+      {% if product.tags contains 'ui:plp-full-row' and forloop.index != forloop.length %}
+        <div class="hidden md:block md:col-span-2 border-t border-border"></div>
+        {% assign next_row_first_column = true %}
+      {% endif %}
     {% endfor %}
-    <div class="md:col-span-3 border-t border-border"></div>
+    <div class="md:col-span-2 border-t border-border"></div>
   </div>
 </div>
 
