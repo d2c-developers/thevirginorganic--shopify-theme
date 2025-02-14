@@ -21,6 +21,14 @@ body {
   @apply font-serif text-dark-grey bg-white;
 }
 
+a {
+  @apply transition-opacity duration-300 ease-in-out;
+}
+
+a:hover {
+  @apply opacity-75;
+}
+
 .font-heading {
   @apply font-display text-[40px] leading-[90%] tracking-[0.03em] uppercase lg:text-[65px];
 }
