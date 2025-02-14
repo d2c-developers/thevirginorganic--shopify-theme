@@ -160,32 +160,29 @@
               const oneTimeRadio = document.getElementById('one-time');
               const subscribeRadio = document.getElementById('subscribe');
 
-              // Initial state
-              if (subscribeRadio.checked) {
-                sellingPlanContainer.classList.remove('hidden');
-              }
-
               // Handle radio changes
               oneTimeRadio.addEventListener('change', () => {
                 sellingPlanContainer.classList.add('hidden');
               });
 
-              subscribeRadio.addEventListener('change', () => {
-                sellingPlanContainer.classList.remove('hidden');
-              });
+              if (subscribeRadio) {
+                subscribeRadio.addEventListener('change', () => {
+                  sellingPlanContainer.classList.remove('hidden');
+                });
+              }
 
               form.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const formData = new FormData(form);
 
                 // Ensure only one selling_plan value is submitted:
-                if (subscribeRadio.checked) {
+                if (subscribeRadio && subscribeRadio.checked) {
                   const planSelector = document.querySelector('[data-js-selling-plan-selector]');
                   if (planSelector) {
                     formData.set('selling_plan', planSelector.value);
                   }
                 } else if (oneTimeRadio.checked) {
-                  formData.set('selling_plan', '');
+                  formData.delete('selling_plan');
                 }
 
                 console.log('formData values:', Array.from(formData.entries()));
