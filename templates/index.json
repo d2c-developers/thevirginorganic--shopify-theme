@@ -13,7 +13,7 @@
       "type": "homepage-hero",
       "settings": {
         "heading": "<p>Compromise <em>Nothing</em></p>",
-        "text": "<p>Our belief in world-class olive oils<br>starts from the <em>ground up</em>.</p>",
+        "text": "<p>Our belief in world-class olive oil<br>starts from the <em>ground up</em>.</p>",
         "button_text": "Shop Now",
         "button_link": "shopify://collections/shop-all",
         "background_image": "shopify://shop_images/hero-image-bg-desktop.jpg",
@@ -66,21 +66,21 @@
           "type": "content-item",
           "settings": {
             "title": "No Tilling",
-            "body": "This is a practice seldomly done on the property. Most would surmise that tilling the soil is a positive thing. But by avoiding tilling, it enhances soil structure and does not disturb the ego system below."
+            "body": "This practice is seldom done on the property. Most would assume that tilling the soil is beneficial. However, by avoiding tilling, soil structure is enhanced, and the ecosystem below remains undisturbed."
           }
         },
         "content_item_wgcMTA": {
           "type": "content-item",
           "settings": {
             "title": "California Water Conservation",
-            "body": "How water is handled on the property is critical. We utilize a careful drip system to ensure conservation of our planet’s most precious resource. In addition, the California Department of Food and Agriculture – CDFA also monitors farming practices to ensure the state’s food safety on the property."
+            "body": "How water is managed on the property is critical. We use a carefully designed drip system to conserve our planet’s most precious resource. Additionally, the California Department of Food and Agriculture (CDFA) monitors farming practices to ensure food safety on the property."
           }
         },
         "content_item_dtmQKY": {
           "type": "content-item",
           "settings": {
             "title": "Hand Harvesting",
-            "body": "This is a labor intense job. And a costly one as well. Just like the wine industry, mechanical harvesting is very common in the olive oil industry. However, picking by hand minimizes the damage to the olive that can be bruised or crushed, leading to the release of enzymes like polyphenol oxidase."
+            "body": "This is a labor-intensive and costly job. Just like in the wine industry, mechanical harvesting is common in the olive oil industry. However, hand-picking minimizes damage to the olives, preventing bruising or crushing, which can lead to the release of enzymes such as polyphenol oxidase."
           }
         }
       },

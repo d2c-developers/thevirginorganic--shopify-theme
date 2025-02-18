@@ -56,8 +56,8 @@
         "faq_item_2": {
           "type": "faq_item",
           "settings": {
-            "question": "Do you offer free shipping?",
-            "answer": "<p>Yes, we offer free shipping on single orders over $100.00 USD before State and Federal tax. Additionally, subscription guest that are on the subscription program for at least 6 months within a year, receive a 50% reduction on the shipping charges.</p>"
+            "question": "How much is shipping?",
+            "answer": "<p>We offer the lowest possible UPS shipping rates in the USA, calculated based on the package's weight and destination zip code. You can view the shipping costs at checkout after adding items to your cart.</p>"
           }
         },
         "faq_item_3": {
@@ -65,13 +65,6 @@
           "settings": {
             "question": "How long will it take to ship my order?",
             "answer": "<p>All orders for The Virgin Organic Extra Virgin Olive Oil are shipped out every Monday. During extreme weather conditions, there might be a delay. All olive oil orders are processed in Hopland, CA. All other merchandise is processed out of San Diego, CA.</p>"
-          }
-        },
-        "faq_item_JwqFKd": {
-          "type": "faq_item",
-          "settings": {
-            "question": "How much does shipping cost?",
-            "answer": "<p>Shipping costs are determined by the weight and volume of your order. We offer various shipping methods that are priced differently depending upon a variety of factors. But you can see what the shipping costs would be on your order by going to your cart and adding your address to the order. At the checkout page before you enter payment info it will lay out your options and pricing.</p>"
           }
         },
         "faq_item_X7LT9r": {
@@ -99,7 +92,6 @@
       "block_order": [
         "faq_item_2",
         "faq_item_3",
-        "faq_item_JwqFKd",
         "faq_item_X7LT9r",
         "faq_item_1",
         "faq_item_mMTGc4"

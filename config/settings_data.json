@@ -11,8 +11,8 @@
   "current": {
     "favicon_url": "shopify://shop_images/favicon.png",
     "social_instagram_link": "https://instagram.com/thevirginorganic",
-    "social_x_link": "https://x.com/thevirginorganic",
-    "social_youtube_link": "https://youtube.com/thevirginorganic",
+    "social_x_link": "",
+    "social_youtube_link": "",
     "sections": {
       "site-header": {
         "type": "site-header",
