@@ -1,16 +1,9 @@
 import Swiper from 'swiper';
 import { Pagination, Navigation } from 'swiper/modules';
-
-
-// init Swiper:
 const swiperImages = new Swiper('#photo-slider--images', {
   slidesPerView: 1.2,
-  // loop: true,
-  on: {
-    slideChange: (swiper) => {
-      swiperText?.slideTo(swiper.activeIndex);
-    },
-  },
+  slidesPerGroup: 1,
+  loop: true,
   breakpoints: {
     1024: {
       slidesPerView: 1.6,
@@ -21,9 +14,9 @@ const swiperImages = new Swiper('#photo-slider--images', {
 });
 
 const swiperText = new Swiper('#photo-slider--text', {
-  slidesPerView: 1,
-  // loop: true,
   modules: [Pagination, Navigation],
+  slidesPerView: 1,
+  loop: true,
   pagination: {
     el: '.swiper-pagination--text',
     clickable: true,
@@ -32,9 +25,18 @@ const swiperText = new Swiper('#photo-slider--text', {
     nextEl: '.swiper-button-next--text',
     prevEl: '.swiper-button-prev--text',
   },
-  on: {
-    slideChange: (swiper) => {
-      swiperImages.slideTo(swiper.activeIndex);
-    },
-  },
 });
+const nextButton = document.querySelector('.swiper-button-next--text');
+const prevButton = document.querySelector('.swiper-button-prev--text');
+
+if (nextButton) {
+  nextButton.addEventListener('click', () => {
+    swiperImages.slideNext();
+  });
+}
+
+if (prevButton) {
+  prevButton.addEventListener('click', () => {
+    swiperImages.slidePrev();
+  });
+}

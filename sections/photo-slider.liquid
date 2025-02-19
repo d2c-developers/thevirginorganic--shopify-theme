@@ -9,16 +9,18 @@
       <div class="swiper-wrapper">
         {% for block in section.blocks %}
           {% if block.type == 'slide' %}
-            <div class="swiper-slide pr-5 border-r mr-5 border-gray-200 {% if forloop.first %}ml-5{% endif %}">
-              <div class="aspect-[36/43] relative bg-red-500">
-                <img
-                  src="{{ block.settings.image | image_url: width: 1000 }}"
-                  alt="{{ block.settings.image.alt }}"
-                  class="absolute inset-0 w-full h-full object-cover"
-                  width="{{ block.settings.image.width }}"
-                  height="{{ block.settings.image.height }}"
-                  loading="lazy"
-                >
+            <div class="swiper-slide">
+              <div class="px-5 border-r border-gray-200">
+                <div class="aspect-[36/43] relative">
+                  <img
+                    src="{{ block.settings.image | image_url: width: 1000 }}"
+                    alt="{{ block.settings.image.alt }}"
+                    class="absolute inset-0 w-full h-full object-cover"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}"
+                    loading="lazy"
+                  >
+                </div>
               </div>
             </div>
           {% endif %}
@@ -44,9 +46,11 @@
       <div class="swiper-wrapper">
         {% for block in section.blocks %}
           {% if block.type == 'slide' %}
-            <div class="swiper-slide w-full flex flex-col justify-end">
+            <div class="swiper-slide w-full flex flex-col">
               <div class="max-w-md text-center mx-auto lg:text-left lg:mx-0">
-                <h2 class="text-sm uppercase mb-[10px] font-sans tracking-[0.15em]">{{ block.settings.heading }}</h2>
+                <h2 class="text-sm uppercase mb-[10px] font-sans tracking-[0.15em]">
+                  {{ block.settings.heading }}
+                </h2>
                 <p class="font-serif italic">{{ block.settings.body }}</p>
               </div>
             </div>
