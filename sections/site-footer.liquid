@@ -35,6 +35,17 @@
             </button>
           </fieldset>
         </div>
+        {% if form.posted_successfully? %}
+          <div class="mt-4 p-4 bg-green-50 text-green-800 rounded" role="alert">
+            <p>Thanks! You&apos;re subscribed.</p>
+          </div>
+        {% endif %}
+        {% if form.errors %}
+          <div class="mt-4 p-4 bg-red-50 text-red-800 rounded" role="alert">
+            <h2 class="sr-only">Error</h2>
+            {{ form.errors | default_errors }}
+          </div>
+        {% endif %}
       {% endform %}
     </div>
 
