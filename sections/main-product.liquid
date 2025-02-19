@@ -49,6 +49,7 @@
           </div>
 
           <form class="space-y-6 js-product-form">
+            <!-- Hidden input for the variant id. Will be updated based on Size selection -->
             <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
             <!-- Quantity Selector -->
@@ -79,42 +80,44 @@
             </div>
 
             <!-- Purchase Options -->
-            <div class="space-y-5 border-b border-border pb-5">
-              <label for="one-time" class="flex items-center justify-between cursor-pointer">
-                <div class="flex items-center space-x-2">
-                  <input
-                    type="radio"
-                    name="selling_plan"
-                    value=""
-                    id="one-time"
-                    checked
-                    class="appearance-none size-5 border border-grey-50 rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-dark-grey checked:border-dark-grey checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
-                  >
-                  <span class="ml-2 font-serif">One-time purchase</span>
-                </div>
-                <span>{{ product.price | money }}</span>
-              </label>
-              {% if product.selling_plan_groups.size > 0 %}
-                <label for="subscribe" class="flex items-center justify-between cursor-pointer">
+            {% if product.selling_plan_groups.size > 0 %}
+              <div class="space-y-5 border-b border-border pb-5">
+                <label for="one-time" class="flex items-center justify-between cursor-pointer">
                   <div class="flex items-center space-x-2">
                     <input
                       type="radio"
                       name="selling_plan"
-                      value="{{ product.selling_plan_groups[0].selling_plans[0].id }}"
-                      id="subscribe"
+                      value=""
+                      id="one-time"
+                      checked
                       class="appearance-none size-5 border border-grey-50 rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-dark-grey checked:border-dark-grey checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
                     >
-                    <span class="ml-2 font-serif">Subscribe and save</span>
+                    <span class="ml-2 font-serif">One-time purchase</span>
                   </div>
-                  <span class="flex items-center gap-1 font-serif italic">
-                    {{ product.price | times: 0.9 | money }}
-                    <span style="color: {{ product.metafields.tvo.label_color | default: '#000000' }}">Save 10%</span>
-                  </span>
+                  <span>{{ product.price | money }}</span>
                 </label>
-              {% endif %}
-            </div>
+                {% if product.selling_plan_groups.size > 0 %}
+                  <label for="subscribe" class="flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center space-x-2">
+                      <input
+                        type="radio"
+                        name="selling_plan"
+                        value="{{ product.selling_plan_groups[0].selling_plans[0].id }}"
+                        id="subscribe"
+                        class="appearance-none size-5 border border-grey-50 rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-dark-grey checked:border-dark-grey checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
+                      >
+                      <span class="ml-2 font-serif">Subscribe and save</span>
+                    </div>
+                    <span class="flex items-center gap-1 font-serif italic">
+                      {{ product.price | times: 0.9 | money }}
+                      <span style="color: {{ product.metafields.tvo.label_color | default: '#000000' }}">Save 10%</span>
+                    </span>
+                  </label>
+                {% endif %}
+              </div>
+            {% endif %}
 
-            <!-- Frequency Selector -->
+            <!-- Frequency Selector for Selling Plans -->
             {% if product.selling_plan_groups.size > 0 %}
               <div class="relative hidden" data-js-selling-plan-selector-container>
                 <select
@@ -123,10 +126,29 @@
                   class="w-full border border-border rounded-sm text-dark-grey uppercase font-sans tracking-[0.15em] text-sm appearance-none p-[14px] cursor-pointer"
                 >
                   {% for selling_plan in product.selling_plan_groups[0].selling_plans %}
-                    <option
-                      value="{{ selling_plan.id }}"
-                    >
+                    <option value="{{ selling_plan.id }}">
                       {{ selling_plan.name }}
+                    </option>
+                  {% endfor %}
+                </select>
+                <div class="absolute right-[14px] top-0 h-full flex items-center justify-center">
+                  {% render 'icon-arrow-down' %}
+                </div>
+              </div>
+            {% endif %}
+
+            <!-- Size Selector -->
+            {% if product.options contains 'Size' %}
+              {% assign size_option = product.options_with_values | where: 'name', 'Size' | first %}
+              <div class="relative" data-js-size-selector-container>
+                <select
+                  data-js-size-selector
+                  name="size"
+                  class="w-full border border-border rounded-sm text-dark-grey uppercase font-sans tracking-[0.15em] text-sm appearance-none p-[14px] cursor-pointer"
+                >
+                  {% for size in size_option.values %}
+                    <option value="{{ size }}">
+                      {{ size }}
                     </option>
                   {% endfor %}
                 </select>
@@ -155,20 +177,46 @@
 
           <script>
             document.addEventListener('DOMContentLoaded', () => {
+              // Get all product variants for lookup based on the selected Size.
+              const variants = {{ product.variants | json }};
               const form = document.querySelector('.js-product-form');
               const sellingPlanContainer = document.querySelector('[data-js-selling-plan-selector-container]');
               const oneTimeRadio = document.getElementById('one-time');
               const subscribeRadio = document.getElementById('subscribe');
+              const sizeSelector = document.querySelector('[data-js-size-selector]');
+              // The hidden input that holds the variant id.
+              const variantInput = form.querySelector('input[name="id"]');
 
-              // Handle radio changes
-              oneTimeRadio.addEventListener('change', () => {
-                sellingPlanContainer.classList.add('hidden');
-              });
+              // Handle radio changes for selling plans.
+              if (oneTimeRadio) {
+                oneTimeRadio.addEventListener('change', () => {
+                  if(sellingPlanContainer) {
+                    sellingPlanContainer.classList.add('hidden');
+                  }
+                });
+              }
 
               if (subscribeRadio) {
                 subscribeRadio.addEventListener('change', () => {
-                  sellingPlanContainer.classList.remove('hidden');
+                  if(sellingPlanContainer) {
+                    sellingPlanContainer.classList.remove('hidden');
+                  }
                 });
+              }
+
+              // Handle changes to the Size selector.
+              if (sizeSelector) {
+                sizeSelector.addEventListener('change', (e) => {
+                  const selectedSize = e.target.value;
+                  debebugger;
+                  // Find the variant where the Size (option1) matches the selected value.
+                  const selectedVariant = variants.find(variant => variant.option1 === selectedSize);
+                  if (selectedVariant) {
+                    variantInput.value = selectedVariant.id;
+                  }
+                });
+                // Trigger the change event on load to update the variant id based on default selection.
+                sizeSelector.dispatchEvent(new Event('change'));
               }
 
               form.addEventListener('submit', async (e) => {
@@ -181,7 +229,7 @@
                   if (planSelector) {
                     formData.set('selling_plan', planSelector.value);
                   }
-                } else if (oneTimeRadio.checked) {
+                } else if (oneTimeRadio?.checked || !oneTimeRadio) {
                   formData.delete('selling_plan');
                 }
 
