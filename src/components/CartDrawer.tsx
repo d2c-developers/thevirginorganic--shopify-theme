@@ -9,7 +9,8 @@ interface CartItem {
   image: string;
   price: number;
   quantity: number;
-  variant_title?: string;
+  product_title: string;
+  variant_title: string;
   line_price: number;
   selling_plan_allocation?: {
     compare_at_price: number;
@@ -134,7 +135,8 @@ const CartDrawer: React.FC = () => {
                   <div className="flex-1 flex flex-col justify-between">
                     <div className="flex justify-between items-start gap-1">
                       <p className="leading-none">
-                        {item.title}<br />
+                        {item.product_title}<br />
+                        <span className="italic">{item.variant_title}</span>
                         {item.selling_plan_allocation && (
                           <span className="italic">
                             {item?.selling_plan_allocation?.selling_plan?.name?.split(',')?.[0]}
