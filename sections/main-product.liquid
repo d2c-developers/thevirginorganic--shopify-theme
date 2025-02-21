@@ -80,42 +80,40 @@
             </div>
 
             <!-- Purchase Options -->
-            {% if product.selling_plan_groups.size > 0 %}
-              <div class="space-y-5 border-b border-border pb-5">
-                <label for="one-time" class="flex items-center justify-between cursor-pointer">
+            <div class="space-y-5 border-b border-border pb-5">
+              <label for="one-time" class="flex items-center justify-between cursor-pointer">
+                <div class="flex items-center space-x-2">
+                  <input
+                    type="radio"
+                    name="selling_plan"
+                    value=""
+                    id="one-time"
+                    checked
+                    class="appearance-none size-5 border border-grey-50 rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-dark-grey checked:border-dark-grey checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
+                  >
+                  <span class="ml-2 font-serif">One-time purchase</span>
+                </div>
+                <span>{{ product.price | money }}</span>
+              </label>
+              {% if product.selling_plan_groups.size > 0 %}
+                <label for="subscribe" class="flex items-center justify-between cursor-pointer">
                   <div class="flex items-center space-x-2">
                     <input
                       type="radio"
                       name="selling_plan"
-                      value=""
-                      id="one-time"
-                      checked
+                      value="{{ product.selling_plan_groups[0].selling_plans[0].id }}"
+                      id="subscribe"
                       class="appearance-none size-5 border border-grey-50 rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-dark-grey checked:border-dark-grey checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
                     >
-                    <span class="ml-2 font-serif">One-time purchase</span>
+                    <span class="ml-2 font-serif">Subscribe and save</span>
                   </div>
-                  <span>{{ product.price | money }}</span>
+                  <span class="flex items-center gap-1 font-serif italic">
+                    {{ product.price | times: 0.9 | money }}
+                    <span style="color: {{ product.metafields.tvo.label_color | default: '#000000' }}">Save 10%</span>
+                  </span>
                 </label>
-                {% if product.selling_plan_groups.size > 0 %}
-                  <label for="subscribe" class="flex items-center justify-between cursor-pointer">
-                    <div class="flex items-center space-x-2">
-                      <input
-                        type="radio"
-                        name="selling_plan"
-                        value="{{ product.selling_plan_groups[0].selling_plans[0].id }}"
-                        id="subscribe"
-                        class="appearance-none size-5 border border-grey-50 rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-dark-grey checked:border-dark-grey checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
-                      >
-                      <span class="ml-2 font-serif">Subscribe and save</span>
-                    </div>
-                    <span class="flex items-center gap-1 font-serif italic">
-                      {{ product.price | times: 0.9 | money }}
-                      <span style="color: {{ product.metafields.tvo.label_color | default: '#000000' }}">Save 10%</span>
-                    </span>
-                  </label>
-                {% endif %}
-              </div>
-            {% endif %}
+              {% endif %}
+            </div>
 
             <!-- Frequency Selector for Selling Plans -->
             {% if product.selling_plan_groups.size > 0 %}
