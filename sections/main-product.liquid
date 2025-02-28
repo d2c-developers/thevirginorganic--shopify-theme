@@ -327,6 +327,20 @@
     {{ product.metafields.tvo.varietal_long_description | metafield_tag }}
   </div>
 </div>
+
+{% comment %} Polyphenol Chart {% endcomment %}
+{% if product.metafields.tvo.polyphenol_chart != blank %}
+  <div class="px-5 mt-50">
+    <img
+      src="{{ product.metafields.tvo.polyphenol_chart | image_url: width: 1000 }}"
+      alt="Polyphenol Chart"
+      class="w-full"
+      loading="lazy"
+      width="1000"
+      height="{{ product.metafields.tvo.polyphenol_chart.height }}"
+    >
+  </div>
+{% endif %}
 {% schema %}
 {
   "name": "Main Product",
