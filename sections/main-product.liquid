@@ -102,7 +102,22 @@
                   >
                   <span class="ml-2 font-serif">One-time purchase</span>
                 </div>
-                <span>{{ product.price | money }}</span>
+                <span class="flex items-center gap-1">
+                  {{ product.price | money }}
+                  {% if product.compare_at_price > product.price %}
+                    <span style="color: {{ product.metafields.tvo.label_color | default: '#4C4C46' }}">
+                      Save
+                      {{
+                        product.compare_at_price
+                        | minus: product.price
+                        | times: 100.0
+                        | divided_by: product.compare_at_price
+                        | round
+                      -}}
+                      %
+                    </span>
+                  {% endif %}
+                </span>
               </label>
               {% if product.selling_plan_groups.size > 0 %}
                 <label for="subscribe" class="flex items-center justify-between cursor-pointer">
@@ -118,7 +133,7 @@
                   </div>
                   <span class="flex items-center gap-1 font-serif italic">
                     {{ product.price | times: 0.9 | money }}
-                    <span style="color: {{ product.metafields.tvo.label_color | default: '#000000' }}">Save 10%</span>
+                    <span style="color: {{ product.metafields.tvo.label_color | default: '#4C4C46' }}">Save 10%</span>
                   </span>
                 </label>
               {% endif %}
