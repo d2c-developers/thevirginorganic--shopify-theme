@@ -1,7 +1,10 @@
+<script src="{{ 'sections-main-product.min.js' | asset_url }}" async></script>
+
 <div class="min-h-screen bg-white lg:mb-52">
-  <div class="w-full px-4 py-5 ">
+  <div class="w-full px-4 py-5">
     <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 lg:divide-x lg:divide-x-border">
-      <div class="h-[calc(100vh-68px)] flex flex-col justify-center lg:block">
+      {% comment %} Product Images {% endcomment %}
+      <div class="min-h-[calc(100vh-68px)] flex flex-col justify-center lg:block lg:min-h-[calc(100vh-68px)] lg:h-auto">
         {% comment %} Mobile Product Title and Description {% endcomment %}
         <div class="block lg:hidden text-center max-w-xs mx-auto">
           <div class="text-grey-50 uppercase text-sm font-sans tracking-[0.15em]">
@@ -16,25 +19,31 @@
           <p class="text-dark-grey mt-4 text-xl">{{ product.description }}</p>
         </div>
 
-        <!-- Product Image -->
-        <div class="lg:w-full h-full relative grow lg:flex lg:justify-center lg:items-center">
-          {% if product.featured_image != blank %}
-            <img
-              src="{{ product.featured_image | image_url: width: 1000 }}"
-              alt="{{ product.featured_image.alt | default: product.title }}"
-              {% comment %} @TODO: make correct aspect ratio {% endcomment %}
-              width="1000"
-              height="{{ 1000 | divided_by: product.featured_image.aspect_ratio | round }}"
-              class="absolute w-full h-full object-contain lg:w-[initial] mx-auto"
-            >
-          {% else %}
-            <div class="absolute w-full h-full bg-gray-100"></div>
-          {% endif %}
+        {% comment %} Product Image {% endcomment %}
+        <div class="lg:w-full h-full relative grow lg:flex lg:flex-col lg:min-h-[calc(100vh-108px)] lg:h-auto">
+          <div id="product-slider" class="swiper h-full w-full lg:h-auto">
+            <div class="swiper-wrapper pb-8 lg:flex lg:flex-col lg:justify-center lg:items-center">
+              {% for image in product.images %}
+                <div class="swiper-slide h-[calc(100vh-108px)]">
+                  <img
+                    src="{{ image | image_url: width: 1000 }}"
+                    alt="{{ image.alt | default: product.title }}"
+                    width="1000"
+                    height="1000"
+                    class="w-full h-full object-contain lg:w-[initial] mx-auto"
+                    loading="lazy"
+                  >
+                </div>
+              {% endfor %}
+            </div>
+            <div class="swiper-pagination--product lg:hidden"></div>
+          </div>
         </div>
       </div>
-      <!-- Product Details -->
-      <div class="px-5 lg:pr-0 lg:py-10">
-        <div class="w-full max-w-[350px] mx-auto">
+
+      {% comment %} Product Details {% endcomment %}
+      <div class="px-5 mt-4 lg:pr-0 lg:py-10 lg:mt-0">
+        <div class="w-full max-w-[350px] mx-auto lg:sticky lg:top-[108px]">
           <div class="hidden lg:block mb-6">
             <div class="text-grey-50 uppercase text-sm font-sans tracking-[0.15em]">
               {{ product.metafields.tvo.tagline }}
@@ -276,6 +285,8 @@
     </div>
     <div class="border-t border-border mt-[50px] lg:mt-5"></div>
   </div>
+
+  {% comment %} Long Description {% endcomment %}
   <div class="px-5 text-dark-grey font-medium font-serif text-[32px] lg:text-[36px] leading-tight tracking-[0.01em]">
     {{ product.metafields.tvo.varietal_long_description | metafield_tag }}
   </div>
