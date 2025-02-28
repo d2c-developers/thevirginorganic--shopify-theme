@@ -10,13 +10,13 @@
           <div class="text-grey-50 uppercase text-sm font-sans tracking-[0.15em]">
             {{ product.metafields.tvo.tagline }}
           </div>
-          {% comment %}
-            {% if product.metafields.tvo.unit_size != blank %}
-              <div class="text-dark-grey font-serif italic">
-                {{ product.metafields.tvo.unit_size }}
-              </div>
-            {% endif %}
-          {% endcomment %}
+
+          {% if product.metafields.tvo.unit_size != blank %}
+            <div class="text-dark-grey font-serif italic">
+              {{ product.metafields.tvo.unit_size }}
+            </div>
+          {% endif %}
+
           <h2
             class="text-4xl font-serif mt-[10px] text-dark-grey"
             style="color: {{ product.metafields.tvo.label_color | default: '#000000' }}"
@@ -29,7 +29,7 @@
         {% comment %} Product Image {% endcomment %}
         <div class="lg:w-full h-full relative grow lg:flex lg:flex-col lg:min-h-[calc(100vh-108px)] lg:h-auto">
           <div id="product-slider" class="swiper h-full w-full lg:h-auto">
-            <div class="swiper-wrapper pb-8 lg:flex lg:flex-col lg:justify-center lg:items-center">
+            <div class="swiper-wrapper {% if product.images.size > 1 %}pb-8{% else %}pb-0{% endif %} lg:flex lg:flex-col lg:justify-center lg:items-center">
               {% for image in product.images %}
                 <div class="swiper-slide h-[calc(100vh-108px)]">
                   <img
@@ -40,6 +40,12 @@
                     class="w-full h-full object-contain lg:w-[initial] mx-auto"
                     loading="lazy"
                   >
+                  {% comment %} Only show the CCof icon on the first image for Olive Oil products {% endcomment %}
+                  {% if forloop.first and product.type == 'Olive Oil' %}
+                    <div class="absolute top-9 left-4 size-24 overflow-hidden sm:top-12 sm:left-12 lg:top-9 lg:left-4">
+                      {% render 'icon-ccof', class: 'w-full h-full object-contain' %}
+                    </div>
+                  {% endif %}
                 </div>
               {% endfor %}
             </div>
@@ -56,13 +62,12 @@
               <div class="text-grey-50 uppercase text-sm font-sans tracking-[0.15em]">
                 {{ product.metafields.tvo.tagline }}
               </div>
-              {% comment %}
-                {% if product.metafields.tvo.unit_size != blank %}
-                  <div class="text-dark-grey font-serif italic">
-                    {{ product.metafields.tvo.unit_size }}
-                  </div>
-                {% endif %}
-              {% endcomment %}
+
+              {% if product.metafields.tvo.unit_size != blank %}
+                <div class="text-dark-grey font-serif italic">
+                  {{ product.metafields.tvo.unit_size }}
+                </div>
+              {% endif %}
             </div>
             <h2
               class="text-4xl font-serif mt-[10px] text-dark-grey"
