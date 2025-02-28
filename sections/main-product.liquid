@@ -10,6 +10,13 @@
           <div class="text-grey-50 uppercase text-sm font-sans tracking-[0.15em]">
             {{ product.metafields.tvo.tagline }}
           </div>
+          {% comment %}
+            {% if product.metafields.tvo.unit_size != blank %}
+              <div class="text-dark-grey font-serif italic">
+                {{ product.metafields.tvo.unit_size }}
+              </div>
+            {% endif %}
+          {% endcomment %}
           <h2
             class="text-4xl font-serif mt-[10px] text-dark-grey"
             style="color: {{ product.metafields.tvo.label_color | default: '#000000' }}"
@@ -45,8 +52,17 @@
       <div class="px-5 mt-4 lg:pr-0 lg:py-10 lg:mt-0">
         <div class="w-full max-w-[350px] mx-auto lg:sticky lg:top-[108px]">
           <div class="hidden lg:block mb-6">
-            <div class="text-grey-50 uppercase text-sm font-sans tracking-[0.15em]">
-              {{ product.metafields.tvo.tagline }}
+            <div class="flex items-center gap-2 justify-between">
+              <div class="text-grey-50 uppercase text-sm font-sans tracking-[0.15em]">
+                {{ product.metafields.tvo.tagline }}
+              </div>
+              {% comment %}
+                {% if product.metafields.tvo.unit_size != blank %}
+                  <div class="text-dark-grey font-serif italic">
+                    {{ product.metafields.tvo.unit_size }}
+                  </div>
+                {% endif %}
+              {% endcomment %}
             </div>
             <h2
               class="text-4xl font-serif mt-[10px] text-dark-grey"
