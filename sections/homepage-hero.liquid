@@ -1,6 +1,6 @@
 <style>
   /* Hero animation styles */
-  @media screen and (min-width: 990px) {
+  {% comment %} @media screen and (min-width: 1px) { {% endcomment %}
     .site-header {
       opacity: 0;
       animation: fadeIn 1.33s ease forwards 2s;
@@ -72,7 +72,7 @@
         opacity: 0;
       }
     }
-  }
+  {% comment %} } {% endcomment %}
 </style>
 
 <div class="hero-content pt-[50px] text-center bg-white text-dark-grey relative max-h-[calc(100vh - 64px)] min-h-screen lg:min-h-screen flex flex-col lg:flex-row lg:items-center lg:justify-between lg:text-white max-h-screen lg:mb-[90px] lg:!mt-0 lg:pt-0 lg:bg-transparent lg:max-h-none">
