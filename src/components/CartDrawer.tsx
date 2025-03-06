@@ -188,7 +188,7 @@ const CartDrawer: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              )) : "Your cart is empty"}
+              )) : <div className="py-5"> Your cart is empty</div>}
             </div>
 
             {/* Cart Footer */}
