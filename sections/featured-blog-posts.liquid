@@ -15,44 +15,45 @@
 
   <div class="swiper relative pb-[80px] lg:pb-0" id="blog-posts-slider">
     <div class="swiper-wrapper">
-      {% assign articles = section.blocks | where: 'type', 'article' %}
-      {% if articles.size == 0 %}
-        {% assign articles = blog.articles %}
+      {% assign current_article = article %}
+      {% assign recent_articles = blogs.blog.articles %}
+      {% if current_article %}
+        {% assign recent_articles = blogs.blog.articles | reject: 'id', current_article.id %}
+      {% else %}
+        {% assign recent_articles = blogs.blog.articles %}
       {% endif %}
-      {% for block in section.blocks %}
-        {% if block.type == 'article' %}
-          {% assign article = block.settings.article %}
-          <a
-            href="{{ article.url }}"
-            class="swiper-slide block pr-5 border-r mr-5 border-gray-200 {% if forloop.last %}border-r-transparent{% endif %}"
-          >
-            <div class="aspect-[28/23] relative mb-5">
-              {% if article.image %}
-                <img
-                  src="{{ article.image | image_url: width: 800 }}"
-                  alt="{{ article.image.alt }}"
-                  class="absolute inset-0 w-full h-full object-cover"
-                  width="{{ article.image.width }}"
-                  height="{{ article.image.height }}"
-                  loading="lazy"
-                >
+
+      {% for article in recent_articles limit: 3 %}
+        <a
+          href="{{ article.url }}"
+          class="swiper-slide block pr-5 border-r mr-5 border-gray-200 {% if forloop.last %}border-r-transparent{% endif %}"
+        >
+          <div class="aspect-[28/23] relative mb-5">
+            {% if article.image %}
+              <img
+                src="{{ article.image | image_url: width: 800 }}"
+                alt="{{ article.image.alt }}"
+                class="absolute inset-0 w-full h-full object-cover"
+                width="{{ article.image.width }}"
+                height="{{ article.image.height }}"
+                loading="lazy"
+              >
+            {% else %}
+              <div class="absolute inset-0 bg-gray-100"></div>
+            {% endif %}
+          </div>
+          <div class="space-y-[10px] text-center max-w-[285px] mx-auto">
+            <p class="italic font-serif text-grey-50">{{ article.published_at | date: '%B %d, %Y' }}</p>
+            <h3 class="text-sm uppercase font-sans tracking-[0.15em]">{{ article.title }}</h3>
+            <p class="font-serif !italic">
+              {% if article.excerpt != blank %}
+                {{ article.excerpt | strip_html | truncatewords: 20 }}
               {% else %}
-                <div class="absolute inset-0 bg-gray-100"></div>
+                {{ article.content | strip_html | truncatewords: 20 }}
               {% endif %}
-            </div>
-            <div class="space-y-[10px] text-center max-w-[285px] mx-auto">
-              <p class="italic font-serif text-grey-50">{{ article.published_at | date: '%B %d, %Y' }}</p>
-              <h3 class="text-sm uppercase font-sans tracking-[0.15em]">{{ article.title }}</h3>
-              <p class="font-serif !italic">
-                {% if article.excerpt != blank %}
-                  {{ article.excerpt | strip_html | truncatewords: 20 }}
-                {% else %}
-                  {{ article.content | strip_html | truncatewords: 20 }}
-                {% endif %}
-              </p>
-            </div>
-          </a>
-        {% endif %}
+            </p>
+          </div>
+        </a>
       {% endfor %}
     </div>
     <div class="swiper-pagination--blog"></div>
@@ -69,7 +70,7 @@
 
 {% schema %}
 {
-  "name": "Featured Blog Posts",
+  "name": "Recent Blog Posts",
   "class": "my-100",
   "settings": [
     {
@@ -93,22 +94,9 @@
       "label": "Button Link"
     }
   ],
-  "blocks": [
-    {
-      "type": "article",
-      "name": "Article",
-      "settings": [
-        {
-          "type": "article",
-          "id": "article",
-          "label": "Article"
-        }
-      ]
-    }
-  ],
   "presets": [
     {
-      "name": "Featured Blog Posts"
+      "name": "Recent Blog Posts"
     }
   ]
 }

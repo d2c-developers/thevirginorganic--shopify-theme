@@ -7,6 +7,7 @@ module.exports = {
   mode: 'production',
   entry: {
     theme: './src/theme.ts',
+    'sections-main-product': './src/sections/main-product.ts',
     // 'list-collections': './src/list-collections.ts',
     // collection: './src/collection.ts',
     // product: './src/product.ts',
@@ -48,7 +49,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['*.min.js', '*.min.css'],
+      cleanOnceBeforeBuildPatterns: ['*.min.js', '*.min.css', 'sections/*.min.js'],
     }),
     // Extract the CSS files (minification is handled in the optimization step)
     new MiniCssExtractPlugin({

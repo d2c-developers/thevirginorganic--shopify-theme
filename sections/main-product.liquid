@@ -1,12 +1,22 @@
+<script src="{{ 'sections-main-product.min.js' | asset_url }}" async></script>
+
 <div class="min-h-screen bg-white lg:mb-52">
-  <div class="w-full px-4 py-5 ">
+  <div class="w-full px-4 py-5">
     <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 lg:divide-x lg:divide-x-border">
-      <div class="h-[calc(100vh-68px)] flex flex-col justify-center lg:block">
+      {% comment %} Product Images {% endcomment %}
+      <div class="min-h-[calc(100vh-68px)] flex flex-col justify-center lg:block lg:min-h-[calc(100vh-68px)] lg:h-auto">
         {% comment %} Mobile Product Title and Description {% endcomment %}
         <div class="block lg:hidden text-center max-w-xs mx-auto">
           <div class="text-grey-50 uppercase text-sm font-sans tracking-[0.15em]">
             {{ product.metafields.tvo.tagline }}
           </div>
+
+          {% if product.metafields.tvo.unit_size != blank %}
+            <div class="text-dark-grey font-serif italic">
+              {{ product.metafields.tvo.unit_size }}
+            </div>
+          {% endif %}
+
           <h2
             class="text-4xl font-serif mt-[10px] text-dark-grey"
             style="color: {{ product.metafields.tvo.label_color | default: '#000000' }}"
@@ -16,28 +26,48 @@
           <p class="text-dark-grey mt-4 text-xl">{{ product.description }}</p>
         </div>
 
-        <!-- Product Image -->
-        <div class="lg:w-full h-full relative grow lg:flex lg:justify-center lg:items-center">
-          {% if product.featured_image != blank %}
-            <img
-              src="{{ product.featured_image | image_url: width: 1000 }}"
-              alt="{{ product.featured_image.alt | default: product.title }}"
-              {% comment %} @TODO: make correct aspect ratio {% endcomment %}
-              width="1000"
-              height="{{ 1000 | divided_by: product.featured_image.aspect_ratio | round }}"
-              class="absolute w-full h-full object-contain lg:w-[initial] mx-auto"
-            >
-          {% else %}
-            <div class="absolute w-full h-full bg-gray-100"></div>
-          {% endif %}
+        {% comment %} Product Image {% endcomment %}
+        <div class="lg:w-full h-full relative grow lg:flex lg:flex-col lg:min-h-[calc(100vh-108px)] lg:h-auto">
+          <div id="product-slider" class="swiper h-full w-full lg:h-auto">
+            <div class="swiper-wrapper {% if product.images.size > 1 %}pb-8{% else %}pb-0{% endif %} lg:flex lg:flex-col lg:justify-center lg:items-center">
+              {% for image in product.images %}
+                <div class="swiper-slide h-[calc(100vh-108px)]">
+                  <img
+                    src="{{ image | image_url: width: 1000 }}"
+                    alt="{{ image.alt | default: product.title }}"
+                    width="1000"
+                    height="1000"
+                    class="w-full h-full object-contain lg:w-[initial] mx-auto"
+                    loading="lazy"
+                  >
+                  {% comment %} Only show the CCof icon on the first image for Olive Oil products {% endcomment %}
+                  {% if forloop.first and product.type == 'Olive Oil' %}
+                    <div class="absolute top-9 left-4 size-24 overflow-hidden sm:top-12 sm:left-12 lg:top-9 lg:left-4">
+                      {% render 'icon-ccof', class: 'w-full h-full object-contain' %}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+            <div class="swiper-pagination--product lg:hidden"></div>
+          </div>
         </div>
       </div>
-      <!-- Product Details -->
-      <div class="px-5 lg:pr-0 lg:py-10">
-        <div class="w-full max-w-[350px] mx-auto">
+
+      {% comment %} Product Details {% endcomment %}
+      <div class="px-5 mt-4 lg:pr-0 lg:py-10 lg:mt-0">
+        <div class="w-full max-w-[350px] mx-auto lg:sticky lg:top-[108px]">
           <div class="hidden lg:block mb-6">
-            <div class="text-grey-50 uppercase text-sm font-sans tracking-[0.15em]">
-              {{ product.metafields.tvo.tagline }}
+            <div class="flex items-center gap-2 justify-between">
+              <div class="text-grey-50 uppercase text-sm font-sans tracking-[0.15em]">
+                {{ product.metafields.tvo.tagline }}
+              </div>
+
+              {% if product.metafields.tvo.unit_size != blank %}
+                <div class="text-dark-grey font-serif italic">
+                  {{ product.metafields.tvo.unit_size }}
+                </div>
+              {% endif %}
             </div>
             <h2
               class="text-4xl font-serif mt-[10px] text-dark-grey"
@@ -80,42 +110,55 @@
             </div>
 
             <!-- Purchase Options -->
-            {% if product.selling_plan_groups.size > 0 %}
-              <div class="space-y-5 border-b border-border pb-5">
-                <label for="one-time" class="flex items-center justify-between cursor-pointer">
+            <div class="space-y-5 border-b border-border pb-5">
+              <label for="one-time" class="flex items-center justify-between cursor-pointer">
+                <div class="flex items-center space-x-2">
+                  <input
+                    type="radio"
+                    name="selling_plan"
+                    value=""
+                    id="one-time"
+                    checked
+                    class="appearance-none size-5 border border-grey-50 rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-dark-grey checked:border-dark-grey checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
+                  >
+                  <span class="ml-2 font-serif">One-time purchase</span>
+                </div>
+                <span class="flex items-center gap-1">
+                  {{ product.price | money }}
+                  {% if product.compare_at_price > product.price %}
+                    <span style="color: {{ product.metafields.tvo.label_color | default: '#C53E12' }}">
+                      Save
+                      {{
+                        product.compare_at_price
+                        | minus: product.price
+                        | times: 100.0
+                        | divided_by: product.compare_at_price
+                        | round
+                      -}}
+                      %
+                    </span>
+                  {% endif %}
+                </span>
+              </label>
+              {% if product.selling_plan_groups.size > 0 %}
+                <label for="subscribe" class="flex items-center justify-between cursor-pointer">
                   <div class="flex items-center space-x-2">
                     <input
                       type="radio"
                       name="selling_plan"
-                      value=""
-                      id="one-time"
-                      checked
+                      value="{{ product.selling_plan_groups[0].selling_plans[0].id }}"
+                      id="subscribe"
                       class="appearance-none size-5 border border-grey-50 rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-dark-grey checked:border-dark-grey checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
                     >
-                    <span class="ml-2 font-serif">One-time purchase</span>
+                    <span class="ml-2 font-serif">Subscribe and save</span>
                   </div>
-                  <span>{{ product.price | money }}</span>
+                  <span class="flex items-center gap-1 font-serif italic">
+                    {{ product.price | times: 0.9 | money }}
+                    <span style="color: {{ product.metafields.tvo.label_color | default: '#C53E12' }}">Save 10%</span>
+                  </span>
                 </label>
-                {% if product.selling_plan_groups.size > 0 %}
-                  <label for="subscribe" class="flex items-center justify-between cursor-pointer">
-                    <div class="flex items-center space-x-2">
-                      <input
-                        type="radio"
-                        name="selling_plan"
-                        value="{{ product.selling_plan_groups[0].selling_plans[0].id }}"
-                        id="subscribe"
-                        class="appearance-none size-5 border border-grey-50 rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-dark-grey checked:border-dark-grey checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
-                      >
-                      <span class="ml-2 font-serif">Subscribe and save</span>
-                    </div>
-                    <span class="flex items-center gap-1 font-serif italic">
-                      {{ product.price | times: 0.9 | money }}
-                      <span style="color: {{ product.metafields.tvo.label_color | default: '#000000' }}">Save 10%</span>
-                    </span>
-                  </label>
-                {% endif %}
-              </div>
-            {% endif %}
+              {% endif %}
+            </div>
 
             <!-- Frequency Selector for Selling Plans -->
             {% if product.selling_plan_groups.size > 0 %}
@@ -278,10 +321,26 @@
     </div>
     <div class="border-t border-border mt-[50px] lg:mt-5"></div>
   </div>
+
+  {% comment %} Long Description {% endcomment %}
   <div class="px-5 text-dark-grey font-medium font-serif text-[32px] lg:text-[36px] leading-tight tracking-[0.01em]">
     {{ product.metafields.tvo.varietal_long_description | metafield_tag }}
   </div>
 </div>
+
+{% comment %} Polyphenol Chart {% endcomment %}
+{% if product.metafields.tvo.polyphenol_chart != blank %}
+  <div class="px-5 mt-50">
+    <img
+      src="{{ product.metafields.tvo.polyphenol_chart | image_url: width: 1000 }}"
+      alt="Polyphenol Chart"
+      class="w-full"
+      loading="lazy"
+      width="1000"
+      height="{{ product.metafields.tvo.polyphenol_chart.height }}"
+    >
+  </div>
+{% endif %}
 {% schema %}
 {
   "name": "Main Product",
