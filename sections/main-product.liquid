@@ -1,6 +1,6 @@
 <script src="{{ 'sections-main-product.min.js' | asset_url }}" async></script>
 
-<div class="min-h-screen bg-white lg:mb-52">
+<div class="min-h-screen bg-white mb-100">
   <div class="w-full px-4 py-5">
     <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 lg:divide-x lg:divide-x-border">
       {% comment %} Product Images {% endcomment %}
@@ -371,20 +371,7 @@
   </div>
 </div>
 
-{% comment %} Polyphenol Chart {% endcomment %}
-{% if product.metafields.tvo.polyphenol_chart != blank %}
-  <div class="px-5 mt-50">
-    <img
-      src="{{ product.metafields.tvo.polyphenol_chart | image_url: width: 1000 }}"
-      alt="Polyphenol Chart"
-      class="w-full"
-      loading="lazy"
-      width="1000"
-      height="{{ product.metafields.tvo.polyphenol_chart.height }}"
-    >
-  </div>
-{% endif %}
-{% comment %} End Polyphenol Chart {% endcomment %}
+{% render 'product-polyphenol-chart' %}
 
 {% schema %}
 {

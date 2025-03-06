@@ -1,0 +1,23 @@
+{% comment %} Polyphenol Chart {% endcomment %}
+{% if product.metafields.tvo.polyphenol_chart != blank %}
+  <div class="">
+    <img
+      src="{{ product.metafields.tvo.polyphenol_chart | image_url: width: 1000 }}"
+      alt="Polyphenol Chart"
+      class="w-full"
+      loading="lazy"
+      width="1000"
+      height="{{ product.metafields.tvo.polyphenol_chart.height }}"
+    >
+    <div class="flex justify-center px-5">
+      <p class="text-grey-50 italic text-sm lg:text-lg">
+        *Ripe fruit descriptors mentioned by the majority of the panelists. The attributes are listed in decreasing
+        order of frequency.
+        <br>
+        **Green fruit descriptors mentioned by the majority of the panelists. The attributes are listed in decreasing
+        order of frequency.
+      </p>
+    </div>
+  </div>
+{% endif %}
+{% comment %} End Polyphenol Chart {% endcomment %}
