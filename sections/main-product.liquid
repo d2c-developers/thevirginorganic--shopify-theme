@@ -79,10 +79,10 @@
           </div>
 
           <form class="space-y-6 js-product-form">
-            <!-- Hidden input for the variant id. Will be updated based on Size selection -->
+            {% comment %} Hidden input for the variant id. Will be updated based on Size selection {% endcomment %}
             <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
-            <!-- Quantity Selector -->
+            {% comment %} Quantity Selector {% endcomment %}
             <div class="border-b border-border pb-5 flex justify-between items-center">
               <label for="quantity" class="block text-dark-grey italic font-serif">Quantity</label>
               <div class="flex gap-4">
@@ -109,56 +109,87 @@
               </div>
             </div>
 
-            <!-- Purchase Options -->
-            <div class="space-y-5 border-b border-border pb-5">
-              <label for="one-time" class="flex items-center justify-between cursor-pointer">
-                <div class="flex items-center space-x-2">
-                  <input
-                    type="radio"
-                    name="selling_plan"
-                    value=""
-                    id="one-time"
-                    checked
-                    class="appearance-none size-5 border border-grey-50 rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-dark-grey checked:border-dark-grey checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
-                  >
-                  <span class="ml-2 font-serif">One-time purchase</span>
-                </div>
-                <span class="flex items-center gap-1">
-                  {{ product.price | money }}
-                  {% if product.compare_at_price > product.price %}
-                    <span style="color: {{ product.metafields.tvo.label_color | default: '#C53E12' }}">
-                      Save
-                      {{
-                        product.compare_at_price
-                        | minus: product.price
-                        | times: 100.0
-                        | divided_by: product.compare_at_price
-                        | round
-                      -}}
-                      %
-                    </span>
-                  {% endif %}
-                </span>
-              </label>
-              {% if product.selling_plan_groups.size > 0 %}
-                <label for="subscribe" class="flex items-center justify-between cursor-pointer">
+            {% comment %} Purchase Options {% endcomment %}
+            {% if product.type != 'Gift Card' %}
+              <div class="space-y-5 border-b border-border pb-5">
+                <label for="one-time" class="flex items-center justify-between cursor-pointer">
                   <div class="flex items-center space-x-2">
                     <input
                       type="radio"
                       name="selling_plan"
-                      value="{{ product.selling_plan_groups[0].selling_plans[0].id }}"
-                      id="subscribe"
+                      value=""
+                      id="one-time"
+                      checked
                       class="appearance-none size-5 border border-grey-50 rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-dark-grey checked:border-dark-grey checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
                     >
-                    <span class="ml-2 font-serif">Subscribe and save</span>
+                    <span class="ml-2 font-serif">One-time purchase</span>
                   </div>
-                  <span class="flex items-center gap-1 font-serif italic">
-                    {{ product.price | times: 0.9 | money }}
-                    <span style="color: {{ product.metafields.tvo.label_color | default: '#C53E12' }}">Save 10%</span>
+                  <span class="flex items-center gap-1">
+                    {{ product.price | money }}
+                    {% if product.compare_at_price > product.price %}
+                      <span style="color: {{ product.metafields.tvo.label_color | default: '#C53E12' }}">
+                        Save
+                        {{
+                          product.compare_at_price
+                          | minus: product.price
+                          | times: 100.0
+                          | divided_by: product.compare_at_price
+                          | round
+                        -}}
+                        %
+                      </span>
+                    {% endif %}
                   </span>
                 </label>
-              {% endif %}
-            </div>
+                {% if product.selling_plan_groups.size > 0 %}
+                  <label for="subscribe" class="flex items-center justify-between cursor-pointer">
+                    <div class="flex items-center space-x-2">
+                      <input
+                        type="radio"
+                        name="selling_plan"
+                        value="{{ product.selling_plan_groups[0].selling_plans[0].id }}"
+                        id="subscribe"
+                        class="appearance-none size-5 border border-grey-50 rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-dark-grey checked:border-dark-grey checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
+                      >
+                      <span class="ml-2 font-serif">Subscribe and save</span>
+                    </div>
+                    <span class="flex items-center gap-1 font-serif italic">
+                      {{ product.price | times: 0.9 | money }}
+                      <span style="color: {{ product.metafields.tvo.label_color | default: '#C53E12' }}">Save 10%</span>
+                    </span>
+                  </label>
+                {% endif %}
+              </div>
+            {% endif %}
+
+            {% comment %} Gift Card Denominations {% endcomment %}
+            {% if product.gift_card? and product.variants.size > 1 %}
+              <div class="mt-5 space-y-5 border-b border-border pb-5 flex items-start justify-between">
+                <p class="block text-dark-grey italic font-serif">Select an amount:</p>
+                <div class="space-y-5 flex items-start justify-center flex-col">
+                  {% for variant in product.variants %}
+                    <label
+                      for="variant-{{ variant.id }}"
+                      class="flex items-center justify-between cursor-pointer w-full"
+                    >
+                      <div class="flex items-center space-x-2 justify-between w-full">
+                        <input
+                          type="radio"
+                          name="id"
+                          value="{{ variant.id }}"
+                          id="variant-{{ variant.id }}"
+                          {% if forloop.first %}
+                            checked
+                          {% endif %}
+                          class="appearance-none size-5 border border-grey-50 rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-dark-grey checked:border-dark-grey checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
+                        >
+                        <span class="font-serif">{{ variant.price | money }}</span>
+                      </div>
+                    </label>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
 
             <!-- Frequency Selector for Selling Plans -->
             {% if product.selling_plan_groups.size > 0 %}
@@ -227,6 +258,8 @@
               const oneTimeRadio = document.getElementById('one-time');
               const subscribeRadio = document.getElementById('subscribe');
               const sizeSelector = document.querySelector('[data-js-size-selector]');
+              const denominationRadios = document.querySelectorAll('input[name="id"][type="radio"]');
+
               // The hidden input that holds the variant id.
               const variantInput = form.querySelector('input[name="id"]');
 
@@ -259,6 +292,15 @@
                 });
                 // Trigger the change event on load to update the variant id based on default selection.
                 sizeSelector.dispatchEvent(new Event('change'));
+              }
+
+              // Handle changes to gift card denomination radios
+              if (denominationRadios.length > 0) {
+                denominationRadios.forEach(radio => {
+                  radio.addEventListener('change', (e) => {
+                    variantInput.value = e.target.value;
+                  });
+                });
               }
 
               form.addEventListener('submit', async (e) => {
@@ -318,6 +360,7 @@
           </div>
         </div>
       </div>
+      {% comment %} End Product Details {% endcomment %}
     </div>
     <div class="border-t border-border mt-[50px] lg:mt-5"></div>
   </div>
@@ -341,6 +384,8 @@
     >
   </div>
 {% endif %}
+{% comment %} End Polyphenol Chart {% endcomment %}
+
 {% schema %}
 {
   "name": "Main Product",
