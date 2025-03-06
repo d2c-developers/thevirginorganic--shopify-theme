@@ -26,11 +26,11 @@
     {% render 'site-local-styles' %}
   </head>
 
-  <body class="font-serif text-dark-grey bg-white max-w-3xl mx-auto">
+  <body class="font-serif text-dark-grey bg-white ">
     <div class="min-h-screen flex flex-col items-center justify-center px-5 py-100">
       {% section 'site-header' %}
 
-      <div class="flex flex-col items-center justify-center grow text-center w-full">
+      <div class="flex flex-col items-center justify-center grow text-center w-full max-w-3xl mx-auto">
         <div class="px-5 text-center space-y-[50px]">
           {% if page.metafields.tvo.eyebrow_text != blank %}
             <div class="font-serif text-grey-50 italic">{{ page.metafields.tvo.eyebrow_text }}</div>
@@ -63,7 +63,7 @@
         <div class="mt-10"></div>
 
         <div class="border-y border-grey-400 py-5 mb-10 w-full">
-          <p id="gift-card-code" class="font-serif text-2xl mb-5">{{ gift_card.code | format_code }}</p>
+          <p id="gift-card-code" class="font-serif text-2xl">{{ gift_card.code | format_code }}</p>
           <div
             class="gift-card__qr-code flex justify-center mb-5"
             data-identifier="{{ gift_card.qr_identifier }}"
@@ -80,6 +80,7 @@
               >
             </a>
           {%- endif -%}
+
           <div class="flex justify-center">
             {% render 'ui-button', button_text: 'Copy code', type: 'button', class_names: 'gift-card__copy-button' %}
           </div>
