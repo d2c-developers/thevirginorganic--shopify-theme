@@ -80,6 +80,8 @@ const CartRelatedProductUpsell: React.FC<CartRelatedProductUpsellProps> = ({ pro
                 }
               }}
               className="text-dark-grey text-sm uppercase tracking-[0.15em] underline font-serif"
+              data-ph-capture-attribute-product-name={product.title}
+              data-ph-capture-attribute-product-price={product.price / 100}
             >
               Add to Cart
             </button>

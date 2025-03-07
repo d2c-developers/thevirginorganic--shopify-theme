@@ -37,6 +37,7 @@
     "@headlessui/react": "^2.2.0",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
+    "posthog-js": "^1.229.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "swiper": "^11.2.1"

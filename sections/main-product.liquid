@@ -240,6 +240,8 @@
               {% unless product.available %}
                 disabled
               {% endunless %}
+              data-ph-capture-attribute-product-name="{{ product.title }}"
+              data-ph-capture-attribute-product-price="{{ product.price | divided_by: 100 }}"
             >
               {% if product.available %}
                 Add to Cart
