@@ -50,37 +50,35 @@
   {% endif %}
 
   {% comment %} Quantity Selector {% endcomment %}
-  {% comment %}
-    <div class="border-b border-border pb-5 flex justify-between items-center">
-      <label for="quantity" class="block text-dark-grey italic font-serif">Quantity</label>
-      <div class="flex gap-4">
-        {% for i in (1..4) %}
-          <div class="flex items-center">
-            <input
-              type="radio"
-              name="quantity"
-              id="quantity-{{ i }}"
-              value="{{ i }}"
-              class="sr-only peer"
-              {% if forloop.first %}
-                checked
-              {% endif %}
-            >
-            <label
-              for="quantity-{{ i }}"
-              class="flex items-center justify-center border-b border-transparent hover:border-b-dark-grey peer-checked:border-b-dark-grey cursor-pointer text-grey-50 peer-checked:text-dark-grey"
-            >
-              {{ i }}
-            </label>
-          </div>
-        {% endfor %}
-      </div>
+  <div class="flex justify-between items-center">
+    <label for="quantity" class="block text-dark-grey italic font-serif">Quantity</label>
+    <div class="flex gap-4">
+      {% for i in (1..4) %}
+        <div class="flex items-center">
+          <input
+            type="radio"
+            name="quantity"
+            id="quantity-{{ i }}"
+            value="{{ i }}"
+            class="sr-only peer"
+            {% if forloop.first %}
+              checked
+            {% endif %}
+          >
+          <label
+            for="quantity-{{ i }}"
+            class="flex items-center justify-center border-b border-transparent hover:border-b-dark-grey peer-checked:border-b-dark-grey cursor-pointer text-grey-50 peer-checked:text-dark-grey"
+          >
+            {{ i }}
+          </label>
+        </div>
+      {% endfor %}
     </div>
-  {% endcomment %}
+  </div>
 
   {% comment %} Purchase Options {% endcomment %}
   {% if product.type != 'Gift Card' %}
-    <div class="space-y-[10px] border-b border-border pb-5">
+    <div class="space-y-[10px]">
       <label
         for="one-time"
         class="flex items-center justify-between cursor-pointer border border-border p-[10px] rounded-md"
@@ -168,7 +166,7 @@
 
   {% comment %} Frequency Selector for Selling Plans {% endcomment %}
   {% if product.selling_plan_groups.size > 0 %}
-    <div class="relative hidden" data-js-selling-plan-selector-container>
+    <div class="relative hidden border-t border-border pt-5" data-js-selling-plan-selector-container>
       <button
         type="button"
         class="rounded-md w-full border border-border text-dark-grey p-[10px] pr-[20px] flex items-center gap-3"
