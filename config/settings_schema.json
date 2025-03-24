@@ -3,7 +3,9 @@
     "name": "theme_info",
     "theme_name": "The Virgin Organic", 
     "theme_version": "1.6.0",
-    "theme_author": "The Virgin Organic"
+    "theme_author": "The Virgin Organic",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
+    "theme_support_url": "https://support.shopify.com/"
   },
   {
     "name": "Favicon",
