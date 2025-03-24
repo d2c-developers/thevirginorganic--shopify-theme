@@ -32,7 +32,7 @@ const CartRelatedProductUpsell: React.FC<CartRelatedProductUpsellProps> = ({ pro
         const recUrl = `/recommendations/products.json?product_id=${productId}&intent=related&limit=1`;
         const recResponse = await fetch(recUrl);
         const recData = await recResponse.json();
-        console.log('recommendations data', recUrl, recData);
+
         setRecommendations(recData?.products);
         setLoading(false);
       } catch (error) {
@@ -72,7 +72,6 @@ const CartRelatedProductUpsell: React.FC<CartRelatedProductUpsellProps> = ({ pro
                     }),
                   });
                   const data = await response.json();
-                  console.log('Successfully added product to cart:', data);
                   document.dispatchEvent(new Event('product:added'));
                   setRecommendationAdded(true);
                 } catch (error) {
@@ -80,6 +79,8 @@ const CartRelatedProductUpsell: React.FC<CartRelatedProductUpsellProps> = ({ pro
                 }
               }}
               className="text-dark-grey text-sm uppercase tracking-[0.15em] underline font-serif"
+              data-ph-capture-attribute-product-name={product.title}
+              data-ph-capture-attribute-product-price={product.price / 100}
             >
               Add to Cart
             </button>

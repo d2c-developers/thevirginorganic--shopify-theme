@@ -102,31 +102,6 @@
     },
     "featured_blog_posts_gmdTLB": {
       "type": "featured-blog-posts",
-      "blocks": {
-        "article_nfyhQH": {
-          "type": "article",
-          "settings": {
-            "article": "blog/13"
-          }
-        },
-        "article_GWLLYf": {
-          "type": "article",
-          "settings": {
-            "article": "blog/12"
-          }
-        },
-        "article_9fwx4g": {
-          "type": "article",
-          "settings": {
-            "article": "blog/11"
-          }
-        }
-      },
-      "block_order": [
-        "article_nfyhQH",
-        "article_GWLLYf",
-        "article_9fwx4g"
-      ],
       "settings": {
         "eyebrow": "Our Blog",
         "heading": "Featured Blog Posts",

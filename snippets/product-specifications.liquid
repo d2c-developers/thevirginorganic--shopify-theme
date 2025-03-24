@@ -1,0 +1,24 @@
+<div class="my-100 max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-y-50 lg:gap-4">
+  {% if product.metafields.tvo.harvest != blank %}
+    <div class="flex flex-col items-center justify-start gap-5 pb-[10px] text-center border-r border-[#4C4C46]/25">
+      <span class="text-dark-grey uppercase font-sans tracking-[0.15em] text-sm">Harvest</span>
+      <span class="font-serif italic text-grey-50">{{ product.metafields.tvo.harvest }}</span>
+    </div>
+  {% endif %}
+
+  {% if product.metafields.tvo.intensity != blank %}
+    <div class="flex flex-col items-center justify-start gap-5 pb-[10px] text-center">
+      <span class="text-dark-gr uppercase font-sans tracking-[0.15em] text-sm">Intensity</span>
+      <span class="max-w-[220px] font-serif italic text-grey-50">
+        {{ product.metafields.tvo.intensity | newline_to_br }}
+      </span>
+    </div>
+  {% endif %}
+
+  {% if product.metafields.tvo.polyhenial_count != blank %}
+    <div class="flex flex-col items-center justify-start gap-5 pb-[10px] text-center border-l border-[#4C4C46]/25">
+      <span class="text-dark-gr uppercase font-sans tracking-[0.15em] text-sm">Polyphenol Count</span>
+      <span class="font-serif italic text-grey-50">{{ product.metafields.tvo.polyhenial_count }}</span>
+    </div>
+  {% endif %}
+</div>

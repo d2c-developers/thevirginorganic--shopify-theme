@@ -142,29 +142,9 @@
     "featured_blog_posts_MAJhmd": {
       "type": "featured-blog-posts",
       "blocks": {
-        "article_zCNwPC": {
-          "type": "article",
-          "settings": {
-            "article": "blog/13"
-          }
-        },
-        "article_YbYCWi": {
-          "type": "article",
-          "settings": {
-            "article": "blog/12"
-          }
-        },
-        "article_4AEXwf": {
-          "type": "article",
-          "settings": {
-            "article": "blog/11"
-          }
-        }
+
       },
       "block_order": [
-        "article_zCNwPC",
-        "article_YbYCWi",
-        "article_4AEXwf"
       ],
       "settings": {
         "eyebrow": "Our Blog",
