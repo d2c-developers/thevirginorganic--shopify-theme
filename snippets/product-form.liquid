@@ -2,32 +2,81 @@
   {% comment %} Hidden input for the variant id. Will be updated based on Size selection {% endcomment %}
   <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
-  {% comment %} Quantity Selector {% endcomment %}
-  <div class="border-b border-border pb-5 flex justify-between items-center">
-    <label for="quantity" class="block text-dark-grey italic font-serif">Quantity</label>
-    <div class="flex gap-4">
-      {% for i in (1..4) %}
-        <div class="flex items-center">
-          <input
-            type="radio"
-            name="quantity"
-            id="quantity-{{ i }}"
-            value="{{ i }}"
-            class="sr-only peer"
-            {% if forloop.first %}
-              checked
-            {% endif %}
+  {% comment %} Flavor Selector {% endcomment %}
+  {% if product.type == 'Olive Oil' %}
+    {% assign olive_oils = collections['olive-oils'].products %}
+    <div class="relative" data-js-flavor-selector>
+      <button
+        type="button"
+        class="rounded-md w-full border border-border text-dark-grey p-[10px] pr-[20px] flex items-center gap-3"
+        data-js-flavor-button
+      >
+        <div class="bg-[#F3F3F3] rounded-md">
+          <img
+            src="{{ product.featured_image | image_url: width: 200 }}"
+            alt="{{ product.title }}"
+            class="w-16 h-16 object-contain"
           >
-          <label
-            for="quantity-{{ i }}"
-            class="flex items-center justify-center border-b border-transparent hover:border-b-dark-grey peer-checked:border-b-dark-grey cursor-pointer text-grey-50 peer-checked:text-dark-grey"
-          >
-            {{ i }}
-          </label>
         </div>
-      {% endfor %}
+        <span class="uppercase font-sans tracking-[0.15em] text-sm">{{ product.title }}</span>
+        <div class="ml-auto">
+          {% render 'icon-chevron-down' %}
+        </div>
+      </button>
+
+      <div
+        class="absolute z-10 top-full left-0 right-0 bg-white border border-t-0 border-border rounded-md hidden"
+        data-js-flavor-dropdown
+      >
+        {% for olive_oil in olive_oils %}
+          {% if olive_oil.title != product.title %}
+            <button
+              type="button"
+              class="w-full p-[14px] flex items-center gap-3 hover:bg-[#fafafa] {% if olive_oil.id == product.id %}bg-grey-50/5{% endif %}"
+              data-flavor-option
+              data-product-url="{{ olive_oil.url }}"
+            >
+              <img
+                src="{{ olive_oil.featured_image | image_url: width: 40 }}"
+                alt="{{ olive_oil.title }}"
+                class="w-10 h-10 object-contain"
+              >
+              <span class="uppercase font-sans tracking-[0.15em] text-sm">{{ olive_oil.title }}</span>
+            </button>
+          {% endif %}
+        {% endfor %}
+      </div>
     </div>
-  </div>
+  {% endif %}
+
+  {% comment %} Quantity Selector {% endcomment %}
+  {% comment %}
+    <div class="border-b border-border pb-5 flex justify-between items-center">
+      <label for="quantity" class="block text-dark-grey italic font-serif">Quantity</label>
+      <div class="flex gap-4">
+        {% for i in (1..4) %}
+          <div class="flex items-center">
+            <input
+              type="radio"
+              name="quantity"
+              id="quantity-{{ i }}"
+              value="{{ i }}"
+              class="sr-only peer"
+              {% if forloop.first %}
+                checked
+              {% endif %}
+            >
+            <label
+              for="quantity-{{ i }}"
+              class="flex items-center justify-center border-b border-transparent hover:border-b-dark-grey peer-checked:border-b-dark-grey cursor-pointer text-grey-50 peer-checked:text-dark-grey"
+            >
+              {{ i }}
+            </label>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endcomment %}
 
   {% comment %} Purchase Options {% endcomment %}
   {% if product.type != 'Gift Card' %}
@@ -117,7 +166,7 @@
       <select
         data-js-selling-plan-selector
         name="selling_plan"
-        class="w-full border border-border rounded-sm text-dark-grey uppercase font-sans tracking-[0.15em] text-sm appearance-none p-[14px] cursor-pointer"
+        class="w-full border border-border rounded-md text-dark-grey uppercase font-sans tracking-[0.15em] text-sm appearance-none p-[14px] cursor-pointer"
       >
         {% for selling_plan in product.selling_plan_groups[0].selling_plans %}
           <option value="{{ selling_plan.id }}">
@@ -164,7 +213,7 @@
     data-ph-capture-attribute-product-price="{{ product.price | divided_by: 100 }}"
   >
     {% if product.available %}
-      Add to Cart
+      Buy Now
     {% else %}
       Sold Out
     {% endif %}
@@ -183,6 +232,34 @@
     const subscribeRadio = document.getElementById('subscribe');
     const sizeSelector = document.querySelector('[data-js-size-selector]');
     const denominationRadios = document.querySelectorAll('input[name="id"][type="radio"]');
+
+    // Flavor selector elements
+    const flavorSelector = document.querySelector('[data-js-flavor-selector]');
+    const flavorButton = document.querySelector('[data-js-flavor-button]');
+    const flavorDropdown = document.querySelector('[data-js-flavor-dropdown]');
+    const flavorOptions = document.querySelectorAll('[data-flavor-option]');
+
+    // Toggle flavor dropdown
+    flavorButton?.addEventListener('click', () => {
+      flavorDropdown?.classList.toggle('hidden');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!flavorSelector?.contains(e.target)) {
+        flavorDropdown?.classList.add('hidden');
+      }
+    });
+
+    // Handle flavor option clicks
+    flavorOptions?.forEach((option) => {
+      option.addEventListener('click', () => {
+        const productUrl = option.dataset.productUrl;
+        if (productUrl) {
+          window.location.href = productUrl;
+        }
+      });
+    });
 
     // The hidden input that holds the variant id.
     const variantInput = form.querySelector('input[name="id"]');
