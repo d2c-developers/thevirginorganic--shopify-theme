@@ -1,12 +1,13 @@
 {
   "name": "tvo-2025",
-  "version": "1.5.0",
-  "description": "",
+  "version": "1.6.0",
+  "description": "TVO 2025 Theme",
   "main": "index.js",
   "scripts": {
     "theme:client": "webpack --mode=development --watch",
     "theme:server": "shopify theme dev --store=thevirginorganic.myshopify.com",
     "theme:pull": "shopify theme pull --store=thevirginorganic.myshopify.com",
+    "theme:push": "shopify theme push --store=thevirginorganic.myshopify.com",
     "theme:build": "webpack --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
