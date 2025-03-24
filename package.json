@@ -6,6 +6,7 @@
   "scripts": {
     "theme:client": "webpack --mode=development --watch",
     "theme:server": "shopify theme dev --store=thevirginorganic.myshopify.com",
+    "theme:pull": "shopify theme pull --store=thevirginorganic.myshopify.com",
     "theme:build": "webpack --mode=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
