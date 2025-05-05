@@ -75,7 +75,7 @@
   {% comment %} } {% endcomment %}
 </style>
 
-<div class="hero-content pt-[50px] text-center bg-white text-dark-grey relative max-h-[calc(100vh - 64px)] min-h-screen lg:min-h-screen flex flex-col lg:flex-row lg:items-center lg:justify-between lg:text-white max-h-screen lg:mb-[90px] lg:!mt-0 lg:pt-0 lg:bg-transparent lg:max-h-none">
+<div class="hero-content pt-[50px] text-center bg-white text-dark-grey relative z-[100] max-h-[calc(100vh - 64px)] min-h-screen lg:min-h-screen flex flex-col lg:flex-row lg:items-center lg:justify-between lg:text-white max-h-screen lg:mb-[90px] lg:!mt-0 lg:pt-0 lg:bg-transparent lg:max-h-none">
   {% comment %} H1 {% endcomment %}
   <div class="w-full lg:flex lg:justify-start xl:w-1/3 pt-[50px] lg:p-8 text-center z-10 bg-white lg:bg-transparent">
     {% if section.settings.heading != blank %}
@@ -86,7 +86,7 @@
   </div>
 
   {% comment %} Text Content {% endcomment %}
-  <div class="relative z-20 min-w-[400px] flex items-end justify-end flex-col xl:w-1/3 p-4 lg:p-8 text-center lg:order-3 bg-white lg:bg-transparent cta-text">
+  <div class="z-20 sm:min-w-[400px] flex items-end justify-end flex-col xl:w-1/3 p-4 lg:p-8 text-center lg:order-3 bg-white lg:bg-transparent cta-text">
     {% if section.settings.text != blank %}
       <div class="max-w-[400px] mx-auto text-[22px] font-serif leading-tight">{{ section.settings.text }}</div>
     {% endif %}
