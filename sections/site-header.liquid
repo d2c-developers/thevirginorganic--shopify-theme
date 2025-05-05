@@ -130,6 +130,16 @@
 </div>
 
 <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    setTimeout(() => {
+      if (urlParams.has('cart') && urlParams.get('cart') === 'open') {
+        document.dispatchEvent(new Event('open:cart'));
+      }
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }, 500);
+ });
+
   {% if template == 'index' %}
     document.addEventListener('DOMContentLoaded', () => {
       const header = document.querySelector('header');
