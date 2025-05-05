@@ -1,6 +1,6 @@
 {
   "name": "tvo-2025",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "TVO 2025 Theme",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
     "theme:pull": "shopify theme pull --store=thevirginorganic.myshopify.com",
     "theme:push": "shopify theme push --store=thevirginorganic.myshopify.com",
     "theme:build": "webpack --mode=production",
+    "theme:share": "shopify theme share --store=thevirginorganic.myshopify.com",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
