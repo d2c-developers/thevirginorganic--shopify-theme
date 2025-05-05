@@ -15,10 +15,6 @@
     },
     "featured-blog-posts": {
       "type": "featured-blog-posts",
-      "blocks": {
-      },
-      "block_order": [
-      ],
       "settings": {
         "eyebrow": "More from the blog",
         "heading": "Related Articles",

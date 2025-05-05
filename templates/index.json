@@ -141,11 +141,6 @@
     },
     "featured_blog_posts_MAJhmd": {
       "type": "featured-blog-posts",
-      "blocks": {
-
-      },
-      "block_order": [
-      ],
       "settings": {
         "eyebrow": "Our Blog",
         "heading": "Featured Blog Posts",
