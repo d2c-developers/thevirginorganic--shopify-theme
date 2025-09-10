@@ -1,10 +1,61 @@
-<header class="site-header fixed flex items-center justify-between w-full font-serif  top-0 left-0 right-0 p-5 text-dark-grey {% if template == 'index' %}lg:text-white lg:bg-transparent{% endif %} z-50 bg-white lg:text-lg">
-  {% comment %} Left List {% endcomment %}
-  <div>
-    {% comment %} Desktop List{% endcomment %}
-    <nav class="hidden lg:flex lg:items-center lg:gap-4">
-      <ul class="flex items-center gap-1">
-        {% for item in linklists['shop-menu'].links %}
+<header class="site-header fixed z-50 bg-white top-0 left-0 right-0 text-dark-grey {% if template == 'index' %}lg:text-white lg:bg-transparent{% endif %}">
+  <div class="text-center bg-[#DF4B2A] text-white py-1 font-sans tracking-[0.15em] uppercase text-sm">{{ section.settings.announcement_text }}</div>
+  <div class="relative flex items-center justify-between w-full font-serif p-5 lg:text-lg">
+    {% comment %} Left List {% endcomment %}
+    <div>
+      {% comment %} Desktop List{% endcomment %}
+      <nav class="hidden lg:flex lg:items-center lg:gap-4">
+        <ul class="flex items-center gap-1">
+          {% for item in linklists['shop-menu'].links %}
+            <li>
+              <a href="{{ item.url }}" class="inline-block">
+                {{- item.title -}}
+              </a>
+              <span>—</span>
+              {% if item.links.size > 0 %}
+                {% for child in item.links %}
+                  <a href="{{ child.url }}" class="inline-block italic">
+                    {{- child.title -}}
+                    {%- unless forloop.last %},{% endunless -%}
+                  </a>
+                {% endfor %}
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+      {% comment %} Mobile Menu Button {% endcomment %}
+      <button
+        type="button"
+        class="lg:hidden text-dark-grey flex items-center justify-center relative after:absolute after:bottom-0 after:bg-dark-grey after:w-full after:h-px after:z-10 js-menu-toggle"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        Menu
+      </button>
+    </div>
+  
+    {% comment %} Center Logo {% endcomment %}
+    <div class="site-header-logo absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-60 lg:max-w-80">
+      {% if template == 'index' %}
+        <h1>
+          <a href="/" class="block">
+            <span class="sr-only">The Virgin Organic</span>
+            {% render 'site-logo' %}
+          </a>
+        </h1>
+      {% else %}
+        <a href="/" class="block">
+          <span class="sr-only">The Virgin Organic</span>
+          {% render 'site-logo' %}
+        </a>
+      {% endif %}
+    </div>
+  
+    {% comment %} Right List {% endcomment %}
+    <nav class="flex items-center gap-5">
+      <ul class="hidden xl:flex xl:items-center xl:gap-1">
+        {% for item in linklists['learn-menu'].links %}
           <li>
             <a href="{{ item.url }}" class="inline-block">
               {{- item.title -}}
@@ -21,67 +72,19 @@
           </li>
         {% endfor %}
       </ul>
+      <button
+        type="button"
+        class="inline-block"
+        aria-label="Open cart"
+        onclick="document.dispatchEvent(new Event('open:cart'));"
+      >
+        Cart
+        <span data-js-cart-count>
+          {%- if cart.item_count > 0 %} ({{ cart.item_count }}){% endif -%}
+        </span>
+      </button>
     </nav>
-    {% comment %} Mobile Menu Button {% endcomment %}
-    <button
-      type="button"
-      class="lg:hidden text-dark-grey flex items-center justify-center relative after:absolute after:bottom-0 after:bg-dark-grey after:w-full after:h-px after:z-10 js-menu-toggle"
-      aria-label="Toggle menu"
-      aria-expanded="false"
-    >
-      Menu
-    </button>
   </div>
-
-  {% comment %} Center Logo {% endcomment %}
-  <div class="site-header-logo absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-60 lg:max-w-80">
-    {% if template == 'index' %}
-      <h1>
-        <a href="/" class="block">
-          <span class="sr-only">The Virgin Organic</span>
-          {% render 'site-logo' %}
-        </a>
-      </h1>
-    {% else %}
-      <a href="/" class="block">
-        <span class="sr-only">The Virgin Organic</span>
-        {% render 'site-logo' %}
-      </a>
-    {% endif %}
-  </div>
-
-  {% comment %} Right List {% endcomment %}
-  <nav class="flex items-center gap-5">
-    <ul class="hidden xl:flex xl:items-center xl:gap-1">
-      {% for item in linklists['learn-menu'].links %}
-        <li>
-          <a href="{{ item.url }}" class="inline-block">
-            {{- item.title -}}
-          </a>
-          <span>—</span>
-          {% if item.links.size > 0 %}
-            {% for child in item.links %}
-              <a href="{{ child.url }}" class="inline-block italic">
-                {{- child.title -}}
-                {%- unless forloop.last %},{% endunless -%}
-              </a>
-            {% endfor %}
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-    <button
-      type="button"
-      class="inline-block"
-      aria-label="Open cart"
-      onclick="document.dispatchEvent(new Event('open:cart'));"
-    >
-      Cart
-      <span data-js-cart-count>
-        {%- if cart.item_count > 0 %} ({{ cart.item_count }}){% endif -%}
-      </span>
-    </button>
-  </nav>
 </header>
 
 {% comment %} Mobile Menu {% endcomment %}
@@ -194,6 +197,17 @@
 {% schema %}
 {
   "name": "Site Header",
-  "settings": []
+  "settings": [
+    {
+      "type": "header",
+      "content": "Announcement Bar"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Text",
+      "default": "Free Shipping on Orders Over $99"
+    }
+  ]
 }
 {% endschema %}
