@@ -16,7 +16,9 @@
     "sections": {
       "site-header": {
         "type": "site-header",
-        "settings": {}
+        "settings": {
+          "announcement_text": "Free Shipping on Orders Over $99"
+        }
       },
       "site-footer": {
         "type": "site-footer",
@@ -29,6 +31,9 @@
       },
       "site-cart-drawer": {
         "type": "site-cart-drawer",
+        "custom_css": [
+          "form {padding: 0 1rem 5rem;}"
+        ],
         "settings": {}
       }
     },
