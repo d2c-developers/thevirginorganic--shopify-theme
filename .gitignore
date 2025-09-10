@@ -7,4 +7,4 @@ ehthumbs.db
 Thumbs.db
 .shopify
 node_modules
-assets/*.min.*
+# assets/*.min.*
