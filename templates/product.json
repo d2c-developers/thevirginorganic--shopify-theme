@@ -50,6 +50,97 @@
         "section_body": "<p>Our values are rooted in purity, local craftsmanship, and regenerative practices, ensuring every bottle is crafted with integrity from soil to table.</p>"
       }
     },
+    "competition_chart_qg4fnM": {
+      "type": "competition-chart",
+      "blocks": {
+        "table_head_row_mxreQy": {
+          "type": "table_head_row",
+          "settings": {
+            "column_1": "TVO",
+            "column_2": "Graza",
+            "column_3": "Brightland"
+          }
+        },
+        "table_body_row_CtfJFg": {
+          "type": "table_body_row",
+          "settings": {
+            "title": "Hand Harvested",
+            "column_1": "true",
+            "column_2": "false",
+            "column_3": "false"
+          }
+        },
+        "table_body_row_HHXiFA": {
+          "type": "table_body_row",
+          "settings": {
+            "title": "Polyphenol Listing",
+            "column_1": "true",
+            "column_2": "false",
+            "column_3": "false"
+          }
+        },
+        "table_body_row_b78KEK": {
+          "type": "table_body_row",
+          "settings": {
+            "title": "Row main title here",
+            "column_1": "true",
+            "column_2": "false",
+            "column_3": "false"
+          }
+        },
+        "table_body_row_UUVTiL": {
+          "type": "table_body_row",
+          "settings": {
+            "title": "100% Glass Bottles",
+            "column_1": "true",
+            "column_2": "false",
+            "column_3": "false"
+          }
+        },
+        "table_body_row_qczCGj": {
+          "type": "table_body_row",
+          "settings": {
+            "title": "Certified Extra Virgin",
+            "column_1": "true",
+            "column_2": "false",
+            "column_3": "false"
+          }
+        },
+        "table_body_row_mmTFLt": {
+          "type": "table_body_row",
+          "settings": {
+            "title": "Varietals",
+            "column_1": "true",
+            "column_2": "false",
+            "column_3": "false"
+          }
+        },
+        "table_body_row_QChi9N": {
+          "type": "table_body_row",
+          "settings": {
+            "title": "Organic",
+            "column_1": "true",
+            "column_2": "false",
+            "column_3": "false"
+          }
+        }
+      },
+      "block_order": [
+        "table_head_row_mxreQy",
+        "table_body_row_CtfJFg",
+        "table_body_row_HHXiFA",
+        "table_body_row_b78KEK",
+        "table_body_row_UUVTiL",
+        "table_body_row_qczCGj",
+        "table_body_row_mmTFLt",
+        "table_body_row_QChi9N"
+      ],
+      "name": "Competition Chart",
+      "settings": {
+        "subheading": "How we stack up",
+        "heading": "Know the <br>Difference"
+      }
+    },
     "faq": {
       "type": "faq",
       "blocks": {
@@ -122,6 +213,7 @@
   "order": [
     "main",
     "photo_slider_npgjQ7",
+    "competition_chart_qg4fnM",
     "faq",
     "featured_blog_posts_gmdTLB",
     "giant_image_rztDK8"

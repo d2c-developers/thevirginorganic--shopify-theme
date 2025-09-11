@@ -5,45 +5,77 @@
   {% comment %} Flavor Selector {% endcomment %}
   {% if product.type == 'Olive Oil' %}
     {% assign olive_oils = collections['olive-oils'].products %}
-    <div class="relative" data-js-flavor-selector>
-      <button
-        type="button"
-        class="rounded-md w-full border border-border text-dark-grey p-[10px] pr-[20px] flex items-center gap-3"
-        data-js-flavor-button
-      >
-        <div class="bg-[#F3F3F3] rounded-md">
-          <img
-            src="{{ product.featured_image | image_url: width: 200 }}"
-            alt="{{ product.title }}"
-            class="w-16 h-16 object-contain"
-          >
-        </div>
-        <span class="uppercase font-sans tracking-[0.15em] text-sm">{{ product.title }}</span>
-        <div class="ml-auto">
-          {% render 'icon-chevron-down' %}
-        </div>
-      </button>
-
-      <div
-        class="absolute z-10 top-full left-0 right-0 bg-white border border-t-0 border-border rounded-md hidden"
-        data-js-flavor-dropdown
-      >
-        {% for olive_oil in olive_oils %}
-          {% if olive_oil.title != product.title %}
-            <button
-              type="button"
-              class="w-full p-[14px] flex items-center gap-3 hover:bg-[#fafafa] {% if olive_oil.id == product.id %}bg-grey-50/5{% endif %}"
-              data-flavor-option
-              data-product-url="{{ olive_oil.url }}"
+    {% comment %}
+      <div class="relative" data-js-flavor-selector>
+        <button
+          type="button"
+          class="rounded-md w-full border border-border text-dark-grey p-[10px] pr-[20px] flex items-center gap-3"
+          data-js-flavor-button
+        >
+          <div class="bg-[#F3F3F3] rounded-md">
+            <img
+              src="{{ product.featured_image | image_url: width: 200 }}"
+              alt="{{ product.title }}"
+              class="w-16 h-16 object-contain"
             >
-              <img
-                src="{{ olive_oil.featured_image | image_url: width: 40 }}"
-                alt="{{ olive_oil.title }}"
-                class="w-10 h-10 object-contain"
+          </div>
+          <span class="uppercase font-sans tracking-[0.15em] text-sm">{{ product.title }}</span>
+          <div class="ml-auto">
+            {% render 'icon-chevron-down' %}
+          </div>
+        </button>
+
+        <div
+          class="absolute z-10 top-full left-0 right-0 bg-white border border-t-0 border-border rounded-md hidden"
+          data-js-flavor-dropdown
+        >
+          {% for olive_oil in olive_oils %}
+            {% if olive_oil.title != product.title %}
+              <button
+                type="button"
+                class="w-full p-[14px] flex items-center gap-3 hover:bg-[#fafafa] {% if olive_oil.id == product.id %}bg-grey-50/5{% endif %}"
+                data-flavor-option
+                data-product-url="{{ olive_oil.url }}"
               >
-              <span class="uppercase font-sans tracking-[0.15em] text-sm">{{ olive_oil.title }}</span>
-            </button>
-          {% endif %}
+                <img
+                  src="{{ olive_oil.featured_image | image_url: width: 40 }}"
+                  alt="{{ olive_oil.title }}"
+                  class="w-10 h-10 object-contain"
+                >
+                <span class="uppercase font-sans tracking-[0.15em] text-sm">{{ olive_oil.title }}</span>
+              </button>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endcomment %}
+
+    <div class="mb-8">
+      <div class="ffont-serif text-xs uppercase mb-2 font-normal leading-tight text-black/30">Varietal</div>
+      <div class="flex gap-3 overflow-x-auto">
+        {% assign olive_oils = collections['olive-oils'].products %}
+        {% for olive_oil in olive_oils %}
+          <button
+            type="button"
+            class="flex-none w-[105px] p-1.5 border rounded-[6px] border-border hover:border-dark-grey transition-colors {% if olive_oil.id == product.id %}border-dark-grey{% else %}border-border border-black/10{% endif %}"
+            data-flavor-option
+            data-product-url="{{ olive_oil.url }}"
+          >
+            <div class="flex flex-col items-center gap-1.5">
+              <div class="bg-[#F3F3F3] p-2 rounded-[6px] w-full flex items-center justify-center aspect-square">
+                <img
+                  src="{{ olive_oil.featured_image | image_url: width: auto }}"
+                  alt="{{ olive_oil.title }}"
+                  width=""
+                  height="78"
+                  class="w-16 h-16 object-contain"
+                >
+              </div>
+              <span class="font-sans text-center font-semibold text-[10px] leading-[100%] tracking-[0.15em] uppercase text-neutral-700">
+                {{- olive_oil.title -}}
+              </span>
+            </div>
+          </button>
         {% endfor %}
       </div>
     </div>

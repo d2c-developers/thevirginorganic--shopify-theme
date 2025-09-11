@@ -12,6 +12,7 @@
   margin: 0;
   padding: 0;
 }
+
 *::before,
 *::after {
   box-sizing: border-box;
@@ -40,48 +41,48 @@ input:hover {
   @apply mt-100;
 }
 
-.prose > *:not(blockquote) {
+.prose>*:not(blockquote) {
   max-width: 680px;
   @apply mx-auto text-[22px] px-5;
 }
 
 .prose h1,
-.prose h1 > strong,
-.prose h1 > * {
+.prose h1>strong,
+.prose h1>* {
   @apply font-sans mb-2.5 text-4xl tracking-[0.15em] uppercase;
 }
 
 .prose h2,
-.prose h2 > strong,
-.prose h2 > * {
+.prose h2>strong,
+.prose h2>* {
   @apply font-sans mb-2.5 text-4xl tracking-[0.15em] uppercase;
 }
 
 .prose h3,
-.prose h3 > strong,
-.prose h3 > * {
+.prose h3>strong,
+.prose h3>* {
   @apply font-sans mb-2.5 text-3xl tracking-[0.15em] uppercase;
 }
 
 .prose h4,
-.prose h4 > strong,
-.prose h4 > * {
+.prose h4>strong,
+.prose h4>* {
   @apply font-sans mb-2.5 text-[22px] tracking-[0.15em] uppercase;
 }
 
 .prose h5,
-.prose h5 > strong,
-.prose h5 > * {
+.prose h5>strong,
+.prose h5>* {
   @apply font-sans mb-2.5 text-xl tracking-[0.15em] uppercase;
 }
 
 .prose h6,
-.prose h6 > strong,
-.prose h6 > * {
+.prose h6>strong,
+.prose h6>* {
   @apply font-sans mb-2.5 text-lg tracking-[0.15em] uppercase;
 }
 
-.prose > *:not(h1, h2, h3, h4, h5, h6) {
+.prose>*:not(h1, h2, h3, h4, h5, h6) {
   @apply mb-10;
 }
 
@@ -100,6 +101,7 @@ input:hover {
 .swiper-pagination--product {
   @apply bottom-0 left-0 right-0 w-fit absolute flex items-end justify-center flex-row;
 }
+
 .swiper-pagination--text .swiper-pagination-bullet,
 .swiper-pagination--blog .swiper-pagination-bullet,
 .swiper-pagination--giant-video .swiper-pagination-bullet,
