@@ -110,10 +110,124 @@
 
   {% comment %} Purchase Options {% endcomment %}
   {% if product.type != 'Gift Card' %}
-    <div class="space-y-[10px]">
+    <div class="space-y-[0px]">
+      {% if product.selling_plan_groups.size > 0 %}
+        <label
+          for="subscribe"
+          class="subscription-main flex items-center justify-between flex-wrap cursor-pointer p-[15px] lg:p-[18px] border border-black/20 rounded-t-[6px]"
+        >
+          <div class="flex items-start justify-between w-full">
+            <div class="flex items-center space-x-2">
+              <input
+                type="radio"
+                name="selling_plan"
+                value="{{ product.selling_plan_groups[0].selling_plans[0].id }}"
+                id="subscribe"
+                checked
+                class="appearance-none size-5 border border-grey-50 rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-dark-grey checked:border-dark-grey checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
+              >
+              <span class="ml-2 font-serif">Subscribe and save</span>
+            </div>
+            <span class="flex items-center gap-1 font-serif flex-col">
+              {{ product.price | times: 0.9 | money }}
+              <span
+                class="rounded-[5px] px-[5px] py-[3px] bg-[#eaf4d1] font-medium text-[12px] leading-[100%]"
+                style="color: {{ product.metafields.tvo.label_color | default: '#C53E12' }}"
+                >Save 10%</span
+              >
+            </span>
+          </div>
+          <div class="w-full">
+            <div
+              class="subscription-option relative w-auto flex items-center gap-[10px] pt-3 pl-7"
+              data-js-selling-plan-selector-container
+            >
+              <div class="text-[13px] leading-[100%]">Deliver every</div>
+              <div class="relative">
+                <button
+                  type="button"
+                  class="rounded-md border border-border p-[8px] pr-[8px] flex items-center gap-3"
+                  data-js-selling-plan-button
+                >
+                  <span class="font-serif text-[15px] leading-[100%]" data-js-selling-plan-text>
+                    {% assign plan_name = product.selling_plan_groups[0].selling_plans[0].name %}
+                    {% if plan_name contains 'every 6 months' %}
+                      180 days
+                    {% elsif plan_name contains 'every 4 months' %}
+                      120 days
+                    {% elsif plan_name contains 'every 3 months' or plan_name contains 'quarterly' %}
+                      90 days
+                    {% elsif plan_name contains 'every 2 months' %}
+                      60 days
+                    {% elsif plan_name contains 'month' %}
+                      30 days
+                    {% elsif plan_name contains '2 weeks' or plan_name contains 'bi-weekly' %}
+                      14 days
+                    {% elsif plan_name contains 'week' %}
+                      7 days
+                    {% else %}
+                      {{ plan_name }}
+                    {% endif %}
+                  </span>
+                  <div class="ml-auto dropdown-down-arrow">
+                    {% render 'icon-chevron-down' %}
+                  </div>
+                </button>
+
+                <div
+                  class="absolute z-10 top-full left-0 right-0 bg-white border border-t-0 border-border rounded-md hidden"
+                  data-js-selling-plan-dropdown
+                >
+                  {% for selling_plan in product.selling_plan_groups[0].selling_plans %}
+                    <button
+                      type="button"
+                      class="w-full p-[8px] flex items-center gap-3 hover:bg-[#fafafa]"
+                      data-selling-plan-option
+                      data-selling-plan-id="{{ selling_plan.id }}"
+                    >
+                      <span class="font-serif text-[15px] leading-[100%]">
+                        {% if selling_plan.name contains 'every 6 months' %}
+                          180 days
+                        {% elsif selling_plan.name contains 'every 4 months' %}
+                          120 days
+                        {% elsif selling_plan.name contains 'every 3 months'
+                          or selling_plan.name contains 'quarterly'
+                        %}
+                          90 days
+                        {% elsif selling_plan.name contains 'every 2 months' %}
+                          60 days
+                        {% elsif selling_plan.name contains 'month' %}
+                          30 days
+                        {% elsif selling_plan.name contains '2 weeks' or selling_plan.name contains 'bi-weekly' %}
+                          14 days
+                        {% elsif selling_plan.name contains 'week' %}
+                          7 days
+                        {% else %}
+                          {{ selling_plan.name }}
+                        {% endif %}
+                      </span>
+                    </button>
+                  {% endfor %}
+                </div>
+                <select
+                  data-js-selling-plan-selector
+                  name="selling_plan"
+                  class="hidden"
+                >
+                  {% for selling_plan in product.selling_plan_groups[0].selling_plans %}
+                    <option value="{{ selling_plan.id }}">
+                      {{ selling_plan.name }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+        </label>
+      {% endif %}
       <label
         for="one-time"
-        class="flex items-center justify-between cursor-pointer border border-border p-[10px] rounded-md"
+        class="flex items-center justify-between cursor-pointer p-[15px] lg:p-[18px] border border-black/20 rounded-b-[6px] {% if product.selling_plan_groups.size > 0 %} border-t-0{% endif %}"
       >
         <div class="flex items-center space-x-2">
           <input
@@ -121,7 +235,9 @@
             name="selling_plan"
             value=""
             id="one-time"
-            checked
+            {% if product.selling_plan_groups.size == 0 %}
+              checked
+            {% endif %}
             class="appearance-none size-5 border border-grey-50 rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-dark-grey checked:border-dark-grey checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
           >
           <span class="ml-2 font-serif">One-time purchase</span>
@@ -143,27 +259,6 @@
           {% endif %}
         </span>
       </label>
-      {% if product.selling_plan_groups.size > 0 %}
-        <label
-          for="subscribe"
-          class="flex items-center justify-between cursor-pointer  border border-border p-[10px] rounded-md"
-        >
-          <div class="flex items-center space-x-2">
-            <input
-              type="radio"
-              name="selling_plan"
-              value="{{ product.selling_plan_groups[0].selling_plans[0].id }}"
-              id="subscribe"
-              class="appearance-none size-5 border border-grey-50 rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-dark-grey checked:border-dark-grey checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
-            >
-            <span class="ml-2 font-serif">Subscribe and save</span>
-          </div>
-          <span class="flex items-center gap-1 font-serif italic">
-            {{ product.price | times: 0.9 | money }}
-            <span style="color: {{ product.metafields.tvo.label_color | default: '#C53E12' }}">Save 10%</span>
-          </span>
-        </label>
-      {% endif %}
     </div>
   {% endif %}
 
@@ -198,47 +293,6 @@
 
   {% comment %} Frequency Selector for Selling Plans {% endcomment %}
   {% if product.selling_plan_groups.size > 0 %}
-    <div class="relative hidden border-t border-border pt-5" data-js-selling-plan-selector-container>
-      <button
-        type="button"
-        class="rounded-md w-full border border-border text-dark-grey p-[10px] pr-[20px] flex items-center gap-3"
-        data-js-selling-plan-button
-      >
-        <span class="uppercase font-sans tracking-[0.15em] text-sm" data-js-selling-plan-text>
-          {{ product.selling_plan_groups[0].selling_plans[0].name }}
-        </span>
-        <div class="ml-auto">
-          {% render 'icon-chevron-down' %}
-        </div>
-      </button>
-
-      <div
-        class="absolute z-10 top-full left-0 right-0 bg-white border border-t-0 border-border rounded-md hidden"
-        data-js-selling-plan-dropdown
-      >
-        {% for selling_plan in product.selling_plan_groups[0].selling_plans %}
-          <button
-            type="button"
-            class="w-full p-[14px] flex items-center gap-3 hover:bg-[#fafafa]"
-            data-selling-plan-option
-            data-selling-plan-id="{{ selling_plan.id }}"
-          >
-            <span class="uppercase font-sans tracking-[0.15em] text-sm">{{ selling_plan.name }}</span>
-          </button>
-        {% endfor %}
-      </div>
-      <select
-        data-js-selling-plan-selector
-        name="selling_plan"
-        class="hidden"
-      >
-        {% for selling_plan in product.selling_plan_groups[0].selling_plans %}
-          <option value="{{ selling_plan.id }}">
-            {{ selling_plan.name }}
-          </option>
-        {% endfor %}
-      </select>
-    </div>
   {% endif %}
 
   {% comment %} Size Selector {% endcomment %}
@@ -279,7 +333,105 @@
       Sold Out
     {% endif %}
   </button>
+
+  {% if section.settings.product_details != blank %}
+    <div class="product-faq-item border-t border-[#E5E5E5]">
+      <div
+        class="w-full flex justify-between items-center text-left py-4 cursor-pointer"
+        onclick="toggleproductFaq(this)"
+      >
+        <h3 class="text-[17px] leading-[100%] font-sans">Product Details</h3>
+        <span class="transform rotate-0 transition-transform duration-150">
+          {% render 'icon-plus-dark' %}
+        </span>
+      </div>
+      <div class="product-faq-answer font-serif max-h-0 overflow-hidden transition-all duration-150 text-grey-50">
+        <div class="pb-4">{{ section.settings.product_details }}</div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if section.settings.farm_details != blank %}
+    <div class="product-faq-item border-t border-[#E5E5E5]">
+      <div
+        class="w-full flex justify-between items-center text-left py-4 cursor-pointer"
+        onclick="toggleproductFaq(this)"
+      >
+        <h3 class="text-[17px] leading-[100%] font-sans">Farm Details</h3>
+        <span class="transform rotate-0 transition-transform duration-150">
+          {% render 'icon-plus-dark' %}
+        </span>
+      </div>
+      <div class="product-faq-answer font-serif max-h-0 overflow-hidden transition-all duration-150 text-grey-50">
+        <div class="pb-4">{{ section.settings.farm_details }}</div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if section.settings.shipping_info != blank %}
+    <div class="product-faq-item border-t border-b border-[#E5E5E5]">
+      <div
+        class="w-full flex justify-between items-center text-left py-4 cursor-pointer"
+        onclick="toggleproductFaq(this)"
+      >
+        <h3 class="text-[17px] leading-[100%] font-sans">Shipping Info</h3>
+        <span class="transform rotate-0 transition-transform duration-150">
+          {% render 'icon-plus-dark' %}
+        </span>
+      </div>
+      <div class="product-faq-answer font-serif max-h-0 overflow-hidden transition-all duration-150 text-grey-50">
+        <div class="pb-4">{{ section.settings.shipping_info }}</div>
+      </div>
+    </div>
+  {% endif %}
 </form>
+
+<style>
+  .dropdown-down-arrow svg {
+    width: 10px;
+    height: auto;
+  }
+  .dropdown-down-arrow svg path {
+    stroke: #7f7f7f;
+  }
+  .subscription-main:has(.subscription-option.hidden) {
+    border-color: rgba(0, 0, 0, 0.2);
+    border-bottom: none;
+  }
+  .subscription-main:not(:has(.subscription-option.hidden)) {
+    border-color: rgba(0, 0, 0, 0.5);
+  }
+  .subscription-main:has(.subscription-option.hidden) + label {
+    border-top: 1px solid;
+    border-color: rgba(0, 0, 0, 0.5);
+  }
+  .product-faq-item + .product-faq-item {
+    margin-top: 0 !important;
+  }
+</style>
+
+<script>
+  function toggleproductFaq(element) {
+    const answer = element.nextElementSibling;
+    const icon = element.querySelector('span');
+
+    document.querySelectorAll('.product-faq-answer').forEach((el) => {
+      if (el !== answer) {
+        el.style.maxHeight = null;
+        el.previousElementSibling.querySelector('span').style.transform = 'rotate(0deg)';
+      }
+    });
+
+    if (answer.style.maxHeight) {
+      answer.style.maxHeight = null;
+      icon.style.transform = 'rotate(0deg)';
+    } else {
+      answer.style.maxHeight = answer.scrollHeight + 'px';
+      icon.style.transform = 'rotate(45deg)';
+    }
+  }
+</script>
+
 <script type="application/json" id="variants-json">
   {{ product.variants | json }}
 </script>
@@ -346,7 +498,7 @@
           sellingPlanSelect.value = planId;
         }
         if (sellingPlanText && planName) {
-          sellingPlanText.textContent = planName;
+          sellingPlanText.textContent = planName.trim();
         }
         sellingPlanDropdown?.classList.add('hidden');
       });
