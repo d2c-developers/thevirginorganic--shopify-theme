@@ -16,7 +16,9 @@
     "sections": {
       "site-header": {
         "type": "site-header",
-        "settings": {}
+        "settings": {
+          "announcement_text": "Free Shipping on Orders Over $99"
+        }
       },
       "site-footer": {
         "type": "site-footer",
@@ -29,10 +31,20 @@
       },
       "site-cart-drawer": {
         "type": "site-cart-drawer",
+        "custom_css": [
+          "form {padding: 0 1rem 5rem;}"
+        ],
         "settings": {}
       }
     },
-    "content_for_index": []
+    "content_for_index": [],
+    "blocks": {
+      "7570552984445421165": {
+        "type": "shopify://apps/yotpo-product-photo-reviews/blocks/settings/eb7dfd7d-db44-4334-bc49-c893b51b36cf",
+        "disabled": false,
+        "settings": {}
+      }
+    }
   },
   "presets": {
     "Default": {}
