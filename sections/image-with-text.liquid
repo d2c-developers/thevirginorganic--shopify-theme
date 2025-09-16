@@ -1,0 +1,65 @@
+<div class="space-y-50 max-w-[1400px] mx-auto px-5">
+  <div class="flex flex-col md:flex-row">
+    <div class="w-full md:w-1/2">
+      {% if section.settings.image %}
+        <img
+          loading="lazy"
+          src="{{ section.settings.image | image_url: width: auto }}"
+          alt="{{ section.settings.image.alt | escape }}"
+          height=""
+          width=""
+          class="w-full h-auto"
+        >
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'w-full h-auto rounded-lg bg-[#F2F2F2]' }}
+      {% endif %}
+    </div>
+
+    <div
+      class="w-full md:w-1/2 space-y-[20px] lg:space-y-[30px] pt-[30px] sm:pt-0 px-0 sm:px-[20px] lg:px-[70px]"
+    >
+      {% if section.settings.sub_heading != blank %}
+        <h2 class="font-sans font-medium text-[12px] lg:text-[14px] leading-[100%] tracking-[0.15em] uppercase text-[rgba(0,0,0,0.5)]">
+          {{ section.settings.sub_heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.text != blank %}
+        <div class="font-normal text-[18px] lg:text-[26px] leading-[130%] space-y-[15px] lg:space-y-[20px]">
+          {{ section.settings.text }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image with Text",
+  "class": "my-100",
+  "settings": [
+    {
+      "type": "image_picker",
+      "label": "Image",
+      "id": "image"
+    },
+    {
+      "type": "text",
+      "label": "Sub heading",
+      "id": "sub_heading",
+      "default": "A note from our founder"
+    },
+    {
+      "type": "richtext",
+      "label": "Main text",
+      "id": "text",
+      "default": "<p>You care about what goes into your body, and so do we.</p><p>I started The Virgin Organic to give people like you something better. Real olive oil, made with care, so you can cook with confidence, nourish your body, and feel good about what you’re sharing with the people you love.</p><p>No shortcuts. No chemicals. Just something you can trust.</p><p>Bernard</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with Text"
+    }
+  ]
+}
+{% endschema %}
