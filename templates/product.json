@@ -69,7 +69,7 @@
         "table_head_row_mxreQy": {
           "type": "table_head_row",
           "settings": {
-            "image": "shopify://shop_images/logo.png",
+            "image": "shopify://shop_images/stacked_logo.svg",
             "column_2": "Graza",
             "column_3": "Brightland"
           }
