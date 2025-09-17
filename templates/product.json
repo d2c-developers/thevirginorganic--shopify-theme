@@ -93,15 +93,6 @@
             "column_3": "false"
           }
         },
-        "table_body_row_b78KEK": {
-          "type": "table_body_row",
-          "settings": {
-            "title": "Row main title here",
-            "column_1": "true",
-            "column_2": "false",
-            "column_3": "false"
-          }
-        },
         "table_body_row_UUVTiL": {
           "type": "table_body_row",
           "settings": {
@@ -143,7 +134,6 @@
         "table_head_row_mxreQy",
         "table_body_row_CtfJFg",
         "table_body_row_HHXiFA",
-        "table_body_row_b78KEK",
         "table_body_row_UUVTiL",
         "table_body_row_qczCGj",
         "table_body_row_mmTFLt",
