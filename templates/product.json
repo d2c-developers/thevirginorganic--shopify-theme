@@ -56,6 +56,7 @@
     },
     "image_with_text_MBEkj6": {
       "type": "image-with-text",
+      "disabled": true,
       "name": "Image with Text",
       "settings": {
         "image": "shopify://shop_images/dummy_image.png",
