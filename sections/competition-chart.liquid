@@ -1,87 +1,96 @@
 <div class="relative w-full lg:px-5 space-y-50 lg:space-y-100 ">
-  <div class="text-center">
-    <div class="flex flex-col items-center justify-center space-y-5">
-      {% if section.settings.subheading != blank %}
-        <div class="text-sm uppercase font-sans tracking-[0.15em] text-grey-50">
-          {{ section.settings.subheading }}
-        </div>
-      {% endif %}
-      {% if section.settings.heading != blank %}
-        <h2 class="font-heading">
-          {{ section.settings.heading }}
-        </h2>
-      {% endif %}
-      {% render 'icon-triple-star-aesthetic' %}
+  <div class="space-y-50 max-w-4xl mx-auto px-0 lg:px-5">
+    <div class="text-center">
+      <div class="flex flex-col items-center justify-center space-y-5">
+        {% if section.settings.subheading != blank %}
+          <div class="text-sm uppercase font-sans tracking-[0.15em] text-grey-50">
+            {{ section.settings.subheading }}
+          </div>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="font-heading">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+        {% render 'icon-triple-star-aesthetic' %}
+      </div>
     </div>
-  </div>
 
-  <!-- Responsive Table Container -->
-  <div class="inline-block w-full">
-    <div class="overflow-x-auto w-full">
-      <table class="w-full lg:min-w-full table-auto lg:table-fixed">
-        <!-- Table Header -->
-        <thead>
-          {% for block in section.blocks %}
-            {% if block.type == 'table_head_row' %}
-              <tr>
-                <th class="sticky bg-white left-0 z-10 px-5 py-[25px] competition-chart-cell border-b border-[rgba(76,76,70,0.25)] w-2/5 lg:w-[40%]">
-                  <!-- Empty cell for feature names column -->
-                </th>
-                <th class="px-2 py-[25px] text-center competition-chart-cell border-b border-[rgba(76,76,70,0.25)] w-1/5 lg:w-[20%]">
-                  {{ block.settings.column_1 }}
-                </th>
-                <th class="px-2 py-[25px] text-center competition-chart-cell border-b border-[rgba(76,76,70,0.25)] w-1/5 lg:w-[20%]">
-                  {{ block.settings.column_2 }}
-                </th>
-                <th class="px-2 py-[25px] text-center competition-chart-cell border-b border-[rgba(76,76,70,0.25)] w-1/5 lg:w-[20%]">
-                  {{ block.settings.column_3 }}
-                </th>
-              </tr>
-            {% endif %}
-          {% endfor %}
-        </thead>
+    <!-- Responsive Table Container -->
+    <div class="inline-block w-full">
+      <div class="overflow-x-auto w-full">
+        <table class="w-full lg:min-w-full table-auto lg:table-fixed">
+          <!-- Table Header -->
+          <thead>
+            {% for block in section.blocks %}
+              {% if block.type == 'table_head_row' %}
+                <tr>
+                  <th class="sticky bg-white left-0 z-10 px-5 py-[25px] competition-chart-cell border-b border-[rgba(76,76,70,0.25)] w-2/5 lg:w-[40%]">
+                    <!-- Empty cell for feature names column -->
+                  </th>
+                  <th class="px-1 py-[25px] text-center competition-chart-cell border-b border-[rgba(76,76,70,0.25)] w-1/5 lg:w-[20%]">
+                    <img
+                      loading="lazy"
+                      src="{{ block.settings.image | image_url: width: auto }}"
+                      width=""
+                      height=""
+                      alt="{{ block.settings.image.alt }}"
+                      class="max-h-[40px] w-auto max-w-full h-auto min-w-[100px] inline-block"
+                    >
+                  </th>
+                  <th class="px-1 py-[25px] text-center competition-chart-cell border-b border-[rgba(76,76,70,0.25)] w-1/5 lg:w-[20%]">
+                    {{ block.settings.column_2 }}
+                  </th>
+                  <th class="px-1 py-[25px] text-center competition-chart-cell border-b border-[rgba(76,76,70,0.25)] w-1/5 lg:w-[20%]">
+                    {{ block.settings.column_3 }}
+                  </th>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </thead>
 
-        <!-- Table Body -->
-        <tbody>
-          {% for block in section.blocks %}
-            {% if block.type == 'table_body_row' %}
-              <tr class="border-b border-[rgba(76,76,70,0.25)]">
-                <!-- Feature Name (Sticky Column) -->
-                <td class="sticky bg-white left-0 z-10 px-5 lg:px-0 py-[15px] lg:py-[25px] competition-chart-cell w-2/5 lg:w-[40%]">
-                  {{ block.settings.title }}
-                </td>
+          <!-- Table Body -->
+          <tbody>
+            {% for block in section.blocks %}
+              {% if block.type == 'table_body_row' %}
+                <tr class="border-b border-[rgba(76,76,70,0.25)]">
+                  <!-- Feature Name (Sticky Column) -->
+                  <td class="sticky bg-white left-0 z-10 px-3 lg:px-0 py-[15px] lg:py-[25px] competition-chart-cell w-2/5 lg:w-[40%]">
+                    {{ block.settings.title }}
+                  </td>
 
-                <!-- Column 1 Value -->
-                <td class="px-2 py-[25px] text-center competition-chart-cell w-1/5 lg:w-[20%]">
-                  {% if block.settings.column_1 == 'true' %}
-                    {% render 'icon-check' %}
-                  {% else %}
-                    {% render 'icon-cross' %}
-                  {% endif %}
-                </td>
+                  <!-- Column 1 Value -->
+                  <td class="px-2 py-[25px] text-center competition-chart-cell w-1/5 lg:w-[20%]">
+                    {% if block.settings.column_1 == 'true' %}
+                      {% render 'icon-check' %}
+                    {% else %}
+                      {% render 'icon-cross' %}
+                    {% endif %}
+                  </td>
 
-                <!-- Column 2 Value -->
-                <td class="px-2 py-[25px] text-center competition-chart-cell w-1/5 lg:w-[20%]">
-                  {% if block.settings.column_2 == 'true' %}
-                    {% render 'icon-check' %}
-                  {% else %}
-                    {% render 'icon-cross' %}
-                  {% endif %}
-                </td>
+                  <!-- Column 2 Value -->
+                  <td class="px-2 py-[25px] text-center competition-chart-cell w-1/5 lg:w-[20%]">
+                    {% if block.settings.column_2 == 'true' %}
+                      {% render 'icon-check' %}
+                    {% else %}
+                      {% render 'icon-cross' %}
+                    {% endif %}
+                  </td>
 
-                <!-- Column 3 Value -->
-                <td class="px-2 py-[25px] text-center competition-chart-cell w-1/5 lg:w-[20%]">
-                  {% if block.settings.column_3 == 'true' %}
-                    {% render 'icon-check' %}
-                  {% else %}
-                    {% render 'icon-cross' %}
-                  {% endif %}
-                </td>
-              </tr>
-            {% endif %}
-          {% endfor %}
-        </tbody>
-      </table>
+                  <!-- Column 3 Value -->
+                  <td class="px-2 py-[25px] text-center competition-chart-cell w-1/5 lg:w-[20%]">
+                    {% if block.settings.column_3 == 'true' %}
+                      {% render 'icon-check' %}
+                    {% else %}
+                      {% render 'icon-cross' %}
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
@@ -99,7 +108,7 @@
   /* Ensure sticky column works on mobile */
   @media (max-width: 767px) {
     .competition-chart-cell {
-      font-size: 18px;
+      font-size: 16px;
     }
     .competition-chart-cell svg {
       width: 25px;
@@ -133,10 +142,9 @@
       "limit": 1,
       "settings": [
         {
-          "type": "text",
+          "type": "image_picker",
           "label": "Column 1",
-          "id": "column_1",
-          "default": "TVO"
+          "id": "image"
         },
         {
           "type": "text",

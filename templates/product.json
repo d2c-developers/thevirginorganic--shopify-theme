@@ -54,13 +54,23 @@
         "section_body": "<p>Our values are rooted in purity, local craftsmanship, and regenerative practices, ensuring every bottle is crafted with integrity from soil to table.</p>"
       }
     },
+    "image_with_text_MBEkj6": {
+      "type": "image-with-text",
+      "disabled": true,
+      "name": "Image with Text",
+      "settings": {
+        "image": "shopify://shop_images/dummy_image.png",
+        "sub_heading": "A note from our founder",
+        "text": "<p>You care about what goes into your body, and so do we.</p><p>I started The Virgin Organic to give people like you something better. Real olive oil, made with care, so you can cook with confidence, nourish your body, and feel good about what you’re sharing with the people you love.</p><p>No shortcuts. No chemicals. Just something you can trust.</p><p>Bernard</p>"
+      }
+    },
     "competition_chart_qg4fnM": {
       "type": "competition-chart",
       "blocks": {
         "table_head_row_mxreQy": {
           "type": "table_head_row",
           "settings": {
-            "column_1": "TVO",
+            "image": "shopify://shop_images/stacked_logo.svg",
             "column_2": "Graza",
             "column_3": "Brightland"
           }
@@ -106,7 +116,7 @@
           "settings": {
             "title": "Varietals",
             "column_1": "true",
-            "column_2": "false",
+            "column_2": "true",
             "column_3": "false"
           }
         },
@@ -207,6 +217,7 @@
   "order": [
     "main",
     "photo_slider_npgjQ7",
+    "image_with_text_MBEkj6",
     "competition_chart_qg4fnM",
     "faq",
     "featured_blog_posts_gmdTLB",
