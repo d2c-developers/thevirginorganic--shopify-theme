@@ -114,9 +114,9 @@
         "table_body_row_mmTFLt": {
           "type": "table_body_row",
           "settings": {
-            "title": "Varietals",
+            "title": "Multiple Varietals",
             "column_1": "true",
-            "column_2": "true",
+            "column_2": "false",
             "column_3": "false"
           }
         },
