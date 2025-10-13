@@ -16,8 +16,9 @@
     "sections": {
       "site-header": {
         "type": "site-header",
+        "custom_css": [],
         "settings": {
-          "announcement_text": "Free Shipping on Orders Over $98"
+          "announcement_text": "Free Shipping on Orders Over <span>$98</span>"
         }
       },
       "site-footer": {
