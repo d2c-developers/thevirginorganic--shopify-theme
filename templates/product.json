@@ -27,7 +27,6 @@
             "date": "Tallahassee, FL",
             "enable_verified_buyer": false,
             "star": 5,
-            "title": "",
             "text": "We have been purchasing The Virgin Organic Olive Oil for some time now. It’s by far the most complex and nuanced oil we’ve ever had. Can’t do without it"
           }
         },
@@ -38,7 +37,6 @@
             "date": "Grass Valley, CA",
             "enable_verified_buyer": false,
             "star": 5,
-            "title": "",
             "text": "As a holistic chef cooking with local Organic ingredients is of outmost importance. This is why I love The Virgin Organic - it is a rare olive oil made from a single source of olives grown in a certified wildlife habitat in California! This means the olive trees aren’t fumigated with pesticides and animals and people won’t suffer the effects of being exposed to these poisons so widely used in agriculture. I choose to use this oil not only because it is delicious but it is good for Mother Earth."
           }
         },
@@ -49,7 +47,6 @@
             "date": "La Jolla, CA",
             "enable_verified_buyer": false,
             "star": 5,
-            "title": "",
             "text": "I have a shot of TVO every morning with my water. You can literally taste the quality difference between TVO and every other brand. Bernard and the crew went through every detail to deliver the best olive oil in America."
           }
         },
@@ -60,7 +57,6 @@
             "date": "Bloomington, IN",
             "enable_verified_buyer": false,
             "star": 5,
-            "title": "",
             "text": "My family has been in the cooking business for years. I’ve been waiting for a company in America to come up with an exceptional olive oil! The Virgin Organic Coratina is the best olive oil I’ve ever tried from the United States. Now a permanent part of my daily cooking"
           }
         },
@@ -71,7 +67,6 @@
             "date": "Aspen, CO",
             "enable_verified_buyer": false,
             "star": 5,
-            "title": "",
             "text": "I recently purchased a bottle of The Virgin Organic online. I did it because it was organic and certified ‘extra virgin’. I had a question, wrote the company and guess what? The actual founder wrote me back!! What company does this today? Olive oil is great and unbelievable service"
           }
         },
@@ -82,7 +77,6 @@
             "date": "San Diego, CA",
             "enable_verified_buyer": false,
             "star": 5,
-            "title": "",
             "text": "We discovered this olive oil while researching healthy options for use in our kitchen and our diet. Beyond its exceptional quality and flavor, this olive oil has an impressive organic pedigree, and the polyphenol counts are some of the highest available. The Virgin Organic is now a staple in our kitchen and on our table"
           }
         },
@@ -94,7 +88,6 @@
             "date": "Sunnyvale, CA",
             "enable_verified_buyer": false,
             "star": 5,
-            "title": "",
             "text": "We first tried TVO while looking for a high-end olive oil that's also organic, and now we keep coming back because it’s simply the best. Their Coratina has truly elevated our cooking. Not only does it taste exceptional, but with its high polyphenol count, it’s also the healthiest olive oil we’ve found. You can tell they care deeply about every detail - even their olive grove doubles as a wildlife refuge, which makes it all the more special."
           }
         },
@@ -106,7 +99,6 @@
             "date": "Weaverville, NC",
             "enable_verified_buyer": false,
             "star": 5,
-            "title": "",
             "text": "I used to think your average supermarket olive oil was totally fine. What was I thinking?! The Virgin Organic changed all that. I was hooked the minute I tried Coratina with its buttery, piquant flavor. It was nothing like what I was used to and elevated our olive oil experience to a whole new level. We love it in salad dressings, on bruschetta, and on fresh veggies for roasting. The Virgin Organic is officially a staple in our kitchen."
           }
         }
@@ -127,54 +119,7 @@
         "heading": "See Why People Keep Coming Back",
         "star": 5,
         "review_count_text": "(5/5 Stars)",
-        "review_text": "Based on 100 Reviews"
-      }
-    },
-    "photo_slider_npgjQ7": {
-      "type": "photo-slider",
-      "blocks": {
-        "slide_MBqPPC": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/The-Virgin-Organic-Olive-Oil-15_36f30886-29eb-4cd9-9578-61a97bb3e9db.jpg",
-            "heading": "Purely Organic",
-            "body": "We believe in the power of nature. Our olive oil is crafted without synthetic pesticides, fertilizers, or additives—just pure, unadulterated quality."
-          }
-        },
-        "slide_iM9zeQ": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/The-Virgin-Organic-Olive-Oil-17_ed134975-9743-4572-aeb4-391183af9753.jpg",
-            "heading": "California Made",
-            "body": "Every drop of our olive oil is grown, harvested, pressed, and bottled in California. We take pride in supporting local agriculture and producing an oil that embodies the richness of our region."
-          }
-        },
-        "slide_Gwt4am": {
-          "type": "slide",
-          "settings": {
-            "image": "shopify://shop_images/The-Virgin-Organic-Olive-Oil-19.jpg",
-            "heading": "Regenerative by Design",
-            "body": "We go beyond sustainability by restoring soil health, conserving water, and fostering biodiversity. Our commitment to regenerative farming ensures a better future for our land, our farmers, and your table."
-          }
-        }
-      },
-      "block_order": [
-        "slide_MBqPPC",
-        "slide_iM9zeQ",
-        "slide_Gwt4am"
-      ],
-      "settings": {
-        "section_body": "<p>Our values are rooted in purity, local craftsmanship, and regenerative practices, ensuring every bottle is crafted with integrity from soil to table.</p>"
-      }
-    },
-    "image_with_text_MBEkj6": {
-      "type": "image-with-text",
-      "disabled": true,
-      "name": "Image with Text",
-      "settings": {
-        "image": "shopify://shop_images/dummy_image.png",
-        "sub_heading": "A note from our founder",
-        "text": "<p>You care about what goes into your body, and so do we.</p><p>I started The Virgin Organic to give people like you something better. Real olive oil, made with care, so you can cook with confidence, nourish your body, and feel good about what you’re sharing with the people you love.</p><p>No shortcuts. No chemicals. Just something you can trust.</p><p>Bernard</p>"
+        "review_text": ""
       }
     },
     "competition_chart_qg4fnM": {
@@ -258,6 +203,43 @@
         "heading": "Know the <br>Difference"
       }
     },
+    "photo_slider_npgjQ7": {
+      "type": "photo-slider",
+      "blocks": {
+        "slide_MBqPPC": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/The-Virgin-Organic-Olive-Oil-15_36f30886-29eb-4cd9-9578-61a97bb3e9db.jpg",
+            "heading": "Purely Organic",
+            "body": "We believe in the power of nature. Our olive oil is crafted without synthetic pesticides, fertilizers, or additives—just pure, unadulterated quality."
+          }
+        },
+        "slide_iM9zeQ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/The-Virgin-Organic-Olive-Oil-17_ed134975-9743-4572-aeb4-391183af9753.jpg",
+            "heading": "California Made",
+            "body": "Every drop of our olive oil is grown, harvested, pressed, and bottled in California. We take pride in supporting local agriculture and producing an oil that embodies the richness of our region."
+          }
+        },
+        "slide_Gwt4am": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/The-Virgin-Organic-Olive-Oil-19.jpg",
+            "heading": "Regenerative by Design",
+            "body": "We go beyond sustainability by restoring soil health, conserving water, and fostering biodiversity. Our commitment to regenerative farming ensures a better future for our land, our farmers, and your table."
+          }
+        }
+      },
+      "block_order": [
+        "slide_MBqPPC",
+        "slide_iM9zeQ",
+        "slide_Gwt4am"
+      ],
+      "settings": {
+        "section_body": "<p>Our values are rooted in purity, local craftsmanship, and regenerative practices, ensuring every bottle is crafted with integrity from soil to table.</p>"
+      }
+    },
     "faq": {
       "type": "faq",
       "blocks": {
@@ -306,6 +288,16 @@
       ],
       "settings": {
         "heading": "Frequently Asked Questions"
+      }
+    },
+    "image_with_text_MBEkj6": {
+      "type": "image-with-text",
+      "disabled": true,
+      "name": "Image with Text",
+      "settings": {
+        "image": "shopify://shop_images/dummy_image.png",
+        "sub_heading": "A note from our founder",
+        "text": "<p>You care about what goes into your body, and so do we.</p><p>I started The Virgin Organic to give people like you something better. Real olive oil, made with care, so you can cook with confidence, nourish your body, and feel good about what you’re sharing with the people you love.</p><p>No shortcuts. No chemicals. Just something you can trust.</p><p>Bernard</p>"
       }
     },
     "featured_blog_posts_gmdTLB": {
