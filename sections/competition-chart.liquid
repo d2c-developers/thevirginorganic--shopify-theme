@@ -1,5 +1,6 @@
+{% if product.type == 'Olive Oil' %}
 <div class="relative w-full lg:px-5 space-y-50 lg:space-y-100 ">
-  <div class="space-y-50 max-w-4xl mx-auto px-0 lg:px-5">
+  <div class="space-y-50 max-w-6xl mx-auto px-0 lg:px-5">
     <div class="text-center">
       <div class="flex flex-col items-center justify-center space-y-5">
         {% if section.settings.subheading != blank %}
@@ -116,7 +117,7 @@
     }
   }
 </style>
-
+{% endif %}
 {% schema %}
 {
   "name": "Competition Chart",
