@@ -1,0 +1,229 @@
+<div class="relative w-full lg:px-5 space-y-50 lg:space-y-100 ">
+  <div class="w-full lg:aspect-[128/80] px-5 space-y-[50px] lg:space-y-0">
+    <div class="text-center mb-[50px] md:mb-[76px] px-5 space-y-[50px] max-w-3xl mx-auto">
+      <div class="flex flex-col items-center justify-center space-y-5">
+        {% if section.settings.subheading != blank %}
+          <div class="text-sm uppercase font-sans tracking-[0.15em] text-grey-50">
+            {{ section.settings.subheading }}
+          </div>
+        {% endif %}
+        {% if section.settings.heading != blank %}
+          <h2 class="font-heading">
+            {{ section.settings.heading }}
+          </h2>
+        {% endif %}
+        {% render 'icon-triple-star-aesthetic' %}
+
+        <div class="pt-[10px] md:pt-[30px] flex flex-wrap items-center justify-center gap-[10px]">
+          <div class="flex items-center gap-[1px]">
+            {% for i in (1..5) %}
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.86325 1.03745C10.1565 0.103668 11.478 0.103667 11.7713 1.03745L13.5872 6.81884C13.7182 7.23562 14.1044 7.51919 14.5413 7.51919H20.4879C21.4484 7.51919 21.8565 8.7415 21.0887 9.31858L16.2201 12.9777C15.8815 13.2322 15.74 13.6725 15.8669 14.0767L17.7127 19.9531C18.0039 20.8805 16.9348 21.6362 16.1578 21.0522L11.4181 17.4899C11.0622 17.2225 10.5724 17.2225 10.2165 17.4899L5.4768 21.0522C4.69981 21.6362 3.63068 20.8805 3.92194 19.9532L5.76769 14.0767C5.89464 13.6725 5.75312 13.2322 5.41446 12.9777L0.545929 9.31858C-0.221886 8.7415 0.186239 7.51919 1.14674 7.51919H7.09331C7.53016 7.51919 7.91645 7.23562 8.04735 6.81885L9.86325 1.03745Z" fill="#FFD145"/>
+              </svg>
+            {% endfor %}
+          </div>
+          {% if section.settings.review_count_text != blank %}
+            <span class="font-bold text-[18px] md:text-[22px]">{{ section.settings.review_count_text }}</span>
+          {% endif %}
+          {% if section.settings.review_text != blank %}
+            <span class="text-grey-40 text-[16px] md:text-[20px] text-black/40">
+              {{- section.settings.review_text -}}
+            </span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    {% if section.blocks.size > 0 %}
+      <div class="divide-y divide-grey-20">
+        {% for block in section.blocks %}
+          <div
+            class="mt-[30px] md:mt-[50px] pt-[30px] md:pt-[50px] border-t border-t-black/10 last:pb-[30px] md:last:pb-[50px] last-child-bottom-border"
+            {{ block.shopify_attributes }}
+          >
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-30">
+              <div class="md:col-span-3 lg:col-span-2 mb-[15px] md:mb-[0px]">
+                {% if block.settings.name != blank %}
+                  <div class="font-bold text-[18px] md:text-[24px]">{{ block.settings.name }}</div>
+                {% endif %}
+                {% if block.settings.date != blank %}
+                  <div class="font-normal text-[16px] md:text-[18px] mt-[5px] md:mt-[8px]">
+                    {{ block.settings.date }}
+                  </div>
+                {% endif %}
+                {% if block.settings.enable_verified_buyer %}
+                  <div class="font-normal text-[16px] md:text-[18px] mt-[5px] md:mt-[8px]">Verified Buyer</div>
+                {% endif %}
+              </div>
+
+              <div class="md:col-span-9 lg:col-span-10 space-y-15 pl-0 md:pl-[30px]">
+                <div class="flex items-center gap-[1px]">
+                  {% assign rating = block.settings.star | plus: 0 %}
+                  {% for i in (1..5) %}
+                    {% if i <= rating %}
+                      <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.39817 1.03747C9.69146 0.103683 11.013 0.103683 11.3063 1.03747L12.9055 6.12905C13.0364 6.54583 13.4227 6.82939 13.8595 6.82939H19.1049C20.0654 6.82939 20.4736 8.05171 19.7058 8.62878L15.4045 11.8616C15.0658 12.1161 14.9243 12.5564 15.0512 12.9606L16.6803 18.1472C16.9716 19.0746 15.9024 19.8303 15.1255 19.2463L10.953 16.1104C10.5971 15.8429 10.1073 15.8429 9.7514 16.1104L5.57898 19.2463C4.80199 19.8303 3.73286 19.0746 4.02412 18.1472L5.6532 12.9606C5.78015 12.5564 5.63863 12.1161 5.29996 11.8616L0.998677 8.62878C0.230865 8.0517 0.638993 6.82939 1.59949 6.82939H6.84489C7.28174 6.82939 7.66804 6.54583 7.79894 6.12905L9.39817 1.03747Z" fill="#FFD145"/>
+                      </svg>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+
+                {% if block.settings.title != blank %}
+                  <div class="font-bold text-[20px] md:text-[24px] mt-[8px] md:mt-[10px]">
+                    {{ block.settings.title }}
+                  </div>
+                {% endif %}
+
+                <div class="flex flex-wrap items-center mt-[20px] md:mt-[25px] gap-[10px] md:gap-[20px]">
+                  {% for i in (1..6) %}
+                    {% assign key = 'image_' | append: i %}
+                    {% assign imageObj = block.settings[key] %}
+                    {% if imageObj != blank %}
+                      {{ imageObj | image_url: width: 160 | image_tag: class: 'w-[90px] md:w-[120px] rounded-[8px]' }}
+                    {% endif %}
+                  {% endfor %}
+                </div>
+
+                {% if block.settings.text != blank %}
+                  <div class="mt-[25px] md:mt-[30px] text-base text-[18px] md:text-[22px] leading-[150%]">
+                    {{ block.settings.text }}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  .last-child-bottom-border:last-child {
+    border-bottom: 1px solid #0000001a !important;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Review",
+  "class": "my-100",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Reviews"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "PLACEHOLDER TEXT ABOUT BLOG"
+    },
+    {
+      "type": "range",
+      "label": "Star",
+      "id": "star",
+      "default": 5,
+      "min": 1,
+      "max": 5,
+      "step": 1
+    },
+    {
+      "type": "text",
+      "label": "Review Count Text",
+      "id": "review_count_text",
+      "default": "(5/5 Stars)"
+    },
+    {
+      "type": "text",
+      "label": "Review Text",
+      "id": "review_text",
+      "default": "Based on 100 Reviews"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review_item",
+      "name": "Review item",
+      "settings": [
+        {
+          "type": "text",
+          "label": "Name",
+          "id": "name",
+          "default": "Dominik S. "
+        },
+        {
+          "type": "text",
+          "label": "Date",
+          "id": "date",
+          "default": "Feb 1 2025"
+        },
+        {
+          "type": "checkbox",
+          "label": "Enable Verified Buyer",
+          "id": "enable_verified_buyer",
+          "default": true
+        },
+        {
+          "type": "range",
+          "label": "Star",
+          "id": "star",
+          "default": 5,
+          "min": 1,
+          "max": 5,
+          "step": 1
+        },
+        {
+          "type": "text",
+          "label": "Title",
+          "id": "title",
+          "default": "Finally, an olive oil I can trust"
+        },
+        {
+          "type": "inline_richtext",
+          "label": "Text",
+          "id": "text",
+          "default": "I’ve tried dozens of so-called “extra virgin” olive oils, but TVO is on a whole different level. You can literally taste the freshness — it’s bold, peppery, and insanely smooth. I drizzle it on everything now. What sold me was the transparency and quality: single-origin, organic, cold-pressed, no blends or additives. My body feels better since switching, and I love knowing I’m fueling my family with something real. TVO isn’t just olive oil — it’s part of my daily wellness routine now."
+        },
+        {
+          "type": "image_picker",
+          "label": "Image 1",
+          "id": "image_1"
+        },
+        {
+          "type": "image_picker",
+          "label": "Image 2",
+          "id": "image_2"
+        },
+        {
+          "type": "image_picker",
+          "label": "Image 3",
+          "id": "image_3"
+        },
+        {
+          "type": "image_picker",
+          "label": "Image 4",
+          "id": "image_4"
+        },
+        {
+          "type": "image_picker",
+          "label": "Image 5",
+          "id": "image_5"
+        },
+        {
+          "type": "image_picker",
+          "label": "Image 6",
+          "id": "image_6"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Review"
+    }
+  ]
+}
+{% endschema %}

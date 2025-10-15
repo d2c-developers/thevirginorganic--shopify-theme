@@ -1,0 +1,287 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "product_details": "{{ product.description }}",
+        "farm_details": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>",
+        "shipping_info": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>"
+      }
+    },
+    "photo_slider_npgjQ7": {
+      "type": "photo-slider",
+      "blocks": {
+        "slide_MBqPPC": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/The-Virgin-Organic-Olive-Oil-15_36f30886-29eb-4cd9-9578-61a97bb3e9db.jpg",
+            "heading": "Purely Organic",
+            "body": "We believe in the power of nature. Our olive oil is crafted without synthetic pesticides, fertilizers, or additives—just pure, unadulterated quality."
+          }
+        },
+        "slide_iM9zeQ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/The-Virgin-Organic-Olive-Oil-17_ed134975-9743-4572-aeb4-391183af9753.jpg",
+            "heading": "California Made",
+            "body": "Every drop of our olive oil is grown, harvested, pressed, and bottled in California. We take pride in supporting local agriculture and producing an oil that embodies the richness of our region."
+          }
+        },
+        "slide_Gwt4am": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/The-Virgin-Organic-Olive-Oil-19.jpg",
+            "heading": "Regenerative by Design",
+            "body": "We go beyond sustainability by restoring soil health, conserving water, and fostering biodiversity. Our commitment to regenerative farming ensures a better future for our land, our farmers, and your table."
+          }
+        }
+      },
+      "block_order": [
+        "slide_MBqPPC",
+        "slide_iM9zeQ",
+        "slide_Gwt4am"
+      ],
+      "settings": {
+        "section_body": "<p>Our values are rooted in purity, local craftsmanship, and regenerative practices, ensuring every bottle is crafted with integrity from soil to table.</p>"
+      }
+    },
+    "image_with_text_MBEkj6": {
+      "type": "image-with-text",
+      "disabled": true,
+      "name": "Image with Text",
+      "settings": {
+        "image": "shopify://shop_images/dummy_image.png",
+        "sub_heading": "A note from our founder",
+        "text": "<p>You care about what goes into your body, and so do we.</p><p>I started The Virgin Organic to give people like you something better. Real olive oil, made with care, so you can cook with confidence, nourish your body, and feel good about what you’re sharing with the people you love.</p><p>No shortcuts. No chemicals. Just something you can trust.</p><p>Bernard</p>"
+      }
+    },
+    "competition_chart_qg4fnM": {
+      "type": "competition-chart",
+      "blocks": {
+        "table_head_row_mxreQy": {
+          "type": "table_head_row",
+          "settings": {
+            "image": "shopify://shop_images/stacked_logo.svg",
+            "column_2": "Graza",
+            "column_3": "Brightland"
+          }
+        },
+        "table_body_row_CtfJFg": {
+          "type": "table_body_row",
+          "settings": {
+            "title": "Hand Harvested",
+            "column_1": "true",
+            "column_2": "false",
+            "column_3": "false"
+          }
+        },
+        "table_body_row_HHXiFA": {
+          "type": "table_body_row",
+          "settings": {
+            "title": "Polyphenol Listing",
+            "column_1": "true",
+            "column_2": "false",
+            "column_3": "false"
+          }
+        },
+        "table_body_row_UUVTiL": {
+          "type": "table_body_row",
+          "settings": {
+            "title": "100% Glass Bottles",
+            "column_1": "true",
+            "column_2": "false",
+            "column_3": "false"
+          }
+        },
+        "table_body_row_qczCGj": {
+          "type": "table_body_row",
+          "settings": {
+            "title": "Certified Extra Virgin",
+            "column_1": "true",
+            "column_2": "false",
+            "column_3": "false"
+          }
+        },
+        "table_body_row_mmTFLt": {
+          "type": "table_body_row",
+          "settings": {
+            "title": "Varietals",
+            "column_1": "true",
+            "column_2": "true",
+            "column_3": "false"
+          }
+        },
+        "table_body_row_QChi9N": {
+          "type": "table_body_row",
+          "settings": {
+            "title": "Organic",
+            "column_1": "true",
+            "column_2": "false",
+            "column_3": "false"
+          }
+        }
+      },
+      "block_order": [
+        "table_head_row_mxreQy",
+        "table_body_row_CtfJFg",
+        "table_body_row_HHXiFA",
+        "table_body_row_UUVTiL",
+        "table_body_row_qczCGj",
+        "table_body_row_mmTFLt",
+        "table_body_row_QChi9N"
+      ],
+      "name": "Competition Chart",
+      "settings": {
+        "subheading": "How we stack up",
+        "heading": "Know the <br>Difference"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "faq_item_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How much is shipping?",
+            "answer": "<p>We offer the lowest possible UPS shipping rates in the USA, calculated based on the package's weight and destination zip code. You can view the shipping costs at checkout after adding items to your cart.</p>"
+          }
+        },
+        "faq_item_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long will it take to ship my order?",
+            "answer": "<p>All orders for The Virgin Organic Extra Virgin Olive Oil are shipped out every Monday. During extreme weather conditions, there might be a delay. All olive oil orders are processed in Hopland, CA. All other merchandise is processed out of San Diego, CA.</p>"
+          }
+        },
+        "faq_item_X7LT9r": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you ship outside of the United States?",
+            "answer": "<p>We do not currently ship outside the United States primarily due to our limited production.</p>"
+          }
+        },
+        "faq_item_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you sell retail?",
+            "answer": "<p>The Virgin Organic is primarily an online business. However, we have carefully selected a handful of retail accounts in the United States.</p>"
+          }
+        },
+        "faq_item_mMTGc4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "<p>All return claims must be within 7 days of the delivery date. All of our olive oils are 100% guaranteed for customer satisfaction. All merchandise other than olive oil must be in new, unworn condition and sent back in their original packaging. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_2",
+        "faq_item_3",
+        "faq_item_X7LT9r",
+        "faq_item_1",
+        "faq_item_mMTGc4"
+      ],
+      "settings": {
+        "heading": "Frequently Asked Questions"
+      }
+    },
+    "featured_blog_posts_gmdTLB": {
+      "type": "featured-blog-posts",
+      "settings": {
+        "eyebrow": "Our Blog",
+        "heading": "Featured Blog Posts",
+        "button_text": "Read More",
+        "button_link": "shopify://blogs/blog"
+      }
+    },
+    "giant_image_rztDK8": {
+      "type": "giant-image",
+      "settings": {
+        "text": "",
+        "mobile_background_image": "shopify://shop_images/asfda3.jpg",
+        "desktop_background_image": "shopify://shop_images/pdp-giant-image.jpg",
+        "button_url": ""
+      }
+    },
+    "review_ma6NDr": {
+      "type": "review",
+      "blocks": {
+        "review_item_ceMRmR": {
+          "type": "review_item",
+          "settings": {
+            "name": "Dominik S.",
+            "date": "Feb 1 2025",
+            "enable_verified_buyer": true,
+            "star": 5,
+            "title": "Finally, an olive oil I can trust",
+            "text": "I’ve tried dozens of so-called “extra virgin” olive oils, but TVO is on a whole different level. You can literally taste the freshness — it’s bold, peppery, and insanely smooth. I drizzle it on everything now. What sold me was the transparency and quality: single-origin, organic, cold-pressed, no blends or additives. My body feels better since switching, and I love knowing I’m fueling my family with something real. TVO isn’t just olive oil — it’s part of my daily wellness routine now.",
+            "image_1": "shopify://shop_images/Frame_233.png",
+            "image_2": "shopify://shop_images/Frame_233.png",
+            "image_3": "shopify://shop_images/Frame_233.png"
+          }
+        },
+        "review_item_UjYppK": {
+          "type": "review_item",
+          "settings": {
+            "name": "Dominik S.",
+            "date": "Feb 1 2025",
+            "enable_verified_buyer": true,
+            "star": 5,
+            "title": "Finally, an olive oil I can trust",
+            "text": "I’ve tried dozens of so-called “extra virgin” olive oils, but TVO is on a whole different level. You can literally taste the freshness — it’s bold, peppery, and insanely smooth. I drizzle it on everything now. What sold me was the transparency and quality: single-origin, organic, cold-pressed, no blends or additives. My body feels better since switching, and I love knowing I’m fueling my family with something real. TVO isn’t just olive oil — it’s part of my daily wellness routine now.",
+            "image_1": "shopify://shop_images/Frame_233.png",
+            "image_2": "shopify://shop_images/Frame_233.png",
+            "image_3": "shopify://shop_images/Frame_233.png"
+          }
+        },
+        "review_item_m4K8y4": {
+          "type": "review_item",
+          "settings": {
+            "name": "Dominik S.",
+            "date": "Feb 1 2025",
+            "enable_verified_buyer": true,
+            "star": 5,
+            "title": "Finally, an olive oil I can trust",
+            "text": "I’ve tried dozens of so-called “extra virgin” olive oils, but TVO is on a whole different level. You can literally taste the freshness — it’s bold, peppery, and insanely smooth. I drizzle it on everything now. What sold me was the transparency and quality: single-origin, organic, cold-pressed, no blends or additives. My body feels better since switching, and I love knowing I’m fueling my family with something real. TVO isn’t just olive oil — it’s part of my daily wellness routine now.",
+            "image_1": "shopify://shop_images/Frame_233.png",
+            "image_2": "shopify://shop_images/Frame_233.png",
+            "image_3": "shopify://shop_images/Frame_233.png"
+          }
+        }
+      },
+      "block_order": [
+        "review_item_ceMRmR",
+        "review_item_UjYppK",
+        "review_item_m4K8y4"
+      ],
+      "name": "Review",
+      "settings": {
+        "subheading": "Reviews",
+        "heading": "PLACEHOLDER TEXT ABOUT BLOG",
+        "star": 5,
+        "review_count_text": "(5/5 Stars)",
+        "review_text": "Based on 100 Reviews"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "photo_slider_npgjQ7",
+    "image_with_text_MBEkj6",
+    "competition_chart_qg4fnM",
+    "faq",
+    "featured_blog_posts_gmdTLB",
+    "giant_image_rztDK8",
+    "review_ma6NDr"
+  ]
+}

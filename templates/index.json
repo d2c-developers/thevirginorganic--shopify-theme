@@ -156,6 +156,63 @@
         "desktop_background_image": "shopify://shop_images/olives.png",
         "button_url": "shopify://collections/shop-all"
       }
+    },
+    "review_7F6EC6": {
+      "type": "review",
+      "blocks": {
+        "review_item_aWF9Pa": {
+          "type": "review_item",
+          "settings": {
+            "name": "Dominik S.",
+            "date": "Feb 1 2025",
+            "enable_verified_buyer": true,
+            "star": 5,
+            "title": "Finally, an olive oil I can trust",
+            "text": "I’ve tried dozens of so-called “extra virgin” olive oils, but TVO is on a whole different level. You can literally taste the freshness — it’s bold, peppery, and insanely smooth. I drizzle it on everything now. What sold me was the transparency and quality: single-origin, organic, cold-pressed, no blends or additives. My body feels better since switching, and I love knowing I’m fueling my family with something real. TVO isn’t just olive oil — it’s part of my daily wellness routine now.",
+            "image_1": "shopify://shop_images/Frame_233.png",
+            "image_2": "shopify://shop_images/Frame_233.png",
+            "image_3": "shopify://shop_images/Frame_233.png"
+          }
+        },
+        "review_item_kDaax7": {
+          "type": "review_item",
+          "settings": {
+            "name": "Dominik S.",
+            "date": "Feb 1 2025",
+            "enable_verified_buyer": true,
+            "star": 5,
+            "title": "Finally, an olive oil I can trust",
+            "text": "I’ve tried dozens of so-called “extra virgin” olive oils, but TVO is on a whole different level. You can literally taste the freshness — it’s bold, peppery, and insanely smooth. I drizzle it on everything now. What sold me was the transparency and quality: single-origin, organic, cold-pressed, no blends or additives. My body feels better since switching, and I love knowing I’m fueling my family with something real. TVO isn’t just olive oil — it’s part of my daily wellness routine now.",
+            "image_1": "shopify://shop_images/Frame_233.png",
+            "image_2": "shopify://shop_images/Frame_233.png",
+            "image_3": "shopify://shop_images/Frame_233.png"
+          }
+        },
+        "review_item_EKh7RK": {
+          "type": "review_item",
+          "settings": {
+            "name": "Dominik S.",
+            "date": "Feb 1 2025",
+            "enable_verified_buyer": true,
+            "star": 5,
+            "title": "Finally, an olive oil I can trust",
+            "text": "I’ve tried dozens of so-called “extra virgin” olive oils, but TVO is on a whole different level. You can literally taste the freshness — it’s bold, peppery, and insanely smooth. I drizzle it on everything now. What sold me was the transparency and quality: single-origin, organic, cold-pressed, no blends or additives. My body feels better since switching, and I love knowing I’m fueling my family with something real. TVO isn’t just olive oil — it’s part of my daily wellness routine now.",
+            "image_1": "shopify://shop_images/Frame_233.png",
+            "image_2": "shopify://shop_images/Frame_233.png",
+            "image_3": "shopify://shop_images/Frame_233.png"
+          }
+        }
+      },
+      "block_order": [
+        "review_item_aWF9Pa",
+        "review_item_kDaax7",
+        "review_item_EKh7RK"
+      ],
+      "name": "Review",
+      "settings": {
+        "subheading": "Reviews",
+        "heading": "PLACEHOLDER TEXT ABOUT BLOG"
+      }
     }
   },
   "order": [
@@ -167,6 +224,7 @@
     "big_quote_b9HVWT",
     "photo_slider_AWRDMk",
     "featured_blog_posts_MAJhmd",
-    "giant_image_P7Kkdm"
+    "giant_image_P7Kkdm",
+    "review_7F6EC6"
   ]
 }
