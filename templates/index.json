@@ -95,6 +95,119 @@
         "background_video": ""
       }
     },
+    "review_7F6EC6": {
+      "type": "review",
+      "blocks": {
+        "review_item_aWF9Pa": {
+          "type": "review_item",
+          "settings": {
+            "name": "Susan S.",
+            "date": "Tallahassee, FL",
+            "enable_verified_buyer": false,
+            "star": 5,
+            "title": "",
+            "text": "We have been purchasing The Virgin Organic Olive Oil for some time now. It’s by far the most complex and nuanced oil we’ve ever had. Can’t do without it"
+          }
+        },
+        "review_item_3dhzYt": {
+          "type": "review_item",
+          "settings": {
+            "name": "Chef Om",
+            "date": "Grass Valley, CA",
+            "enable_verified_buyer": false,
+            "star": 5,
+            "title": "",
+            "text": "As a holistic chef cooking with local Organic ingredients is of outmost importance. This is why I love The Virgin Organic - it is a rare olive oil made from a single source of olives grown in a certified wildlife habitat in California! This means the olive trees aren’t fumigated with pesticides and animals and people won’t suffer the effects of being exposed to these poisons so widely used in agriculture. I choose to use this oil not only because it is delicious but it is good for Mother Earth."
+          }
+        },
+        "review_item_7fPVQQ": {
+          "type": "review_item",
+          "settings": {
+            "name": "Blake LG",
+            "date": "La Jolla, CA",
+            "enable_verified_buyer": false,
+            "star": 5,
+            "title": "",
+            "text": "I have a shot of TVO every morning with my water. You can literally taste the quality difference between TVO and every other brand. Bernard and the crew went through every detail to deliver the best olive oil in America."
+          }
+        },
+        "review_item_mbnPzQ": {
+          "type": "review_item",
+          "settings": {
+            "name": "Clayton B. Jr",
+            "date": "Bloomington, IN",
+            "enable_verified_buyer": false,
+            "star": 5,
+            "title": "",
+            "text": "My family has been in the cooking business for years. I’ve been waiting for a company in America to come up with an exceptional olive oil! The Virgin Organic Coratina is the best olive oil I’ve ever tried from the United States. Now a permanent part of my daily cooking"
+          }
+        },
+        "review_item_Ck8EUJ": {
+          "type": "review_item",
+          "settings": {
+            "name": "Douglas T.",
+            "date": "Aspen, CO",
+            "enable_verified_buyer": false,
+            "star": 5,
+            "title": "",
+            "text": "I recently purchased a bottle of The Virgin Organic online. I did it because it was organic and certified ‘extra virgin’. I had a question, wrote the company and guess what? The actual founder wrote me back!! What company does this today? Olive oil is great and unbelievable service"
+          }
+        },
+        "review_item_KKQ9Pz": {
+          "type": "review_item",
+          "settings": {
+            "name": "Daniel L.",
+            "date": "San Diego, CA",
+            "enable_verified_buyer": false,
+            "star": 5,
+            "title": "",
+            "text": "We discovered this olive oil while researching healthy options for use in our kitchen and our diet. Beyond its exceptional quality and flavor, this olive oil has an impressive organic pedigree, and the polyphenol counts are some of the highest available. The Virgin Organic is now a staple in our kitchen and on our table"
+          }
+        },
+        "review_item_4PyDUH": {
+          "type": "review_item",
+          "name": "Juri Z",
+          "settings": {
+            "name": "Juri Z.",
+            "date": "Sunnyvale, CA",
+            "enable_verified_buyer": false,
+            "star": 5,
+            "title": "",
+            "text": "We first tried TVO while looking for a high-end olive oil that's also organic, and now we keep coming back because it’s simply the best. Their Coratina has truly elevated our cooking. Not only does it taste exceptional, but with its high polyphenol count, it’s also the healthiest olive oil we’ve found. You can tell they care deeply about every detail - even their olive grove doubles as a wildlife refuge, which makes it all the more special."
+          }
+        },
+        "review_item_knCYJM": {
+          "type": "review_item",
+          "name": "Hannah S",
+          "settings": {
+            "name": "Hannah S.",
+            "date": "Weaverville, NC",
+            "enable_verified_buyer": false,
+            "star": 5,
+            "title": "",
+            "text": "I used to think your average supermarket olive oil was totally fine. What was I thinking?! The Virgin Organic changed all that. I was hooked the minute I tried Coratina with its buttery, piquant flavor. It was nothing like what I was used to and elevated our olive oil experience to a whole new level. We love it in salad dressings, on bruschetta, and on fresh veggies for roasting. The Virgin Organic is officially a staple in our kitchen."
+          }
+        }
+      },
+      "block_order": [
+        "review_item_aWF9Pa",
+        "review_item_3dhzYt",
+        "review_item_7fPVQQ",
+        "review_item_mbnPzQ",
+        "review_item_Ck8EUJ",
+        "review_item_KKQ9Pz",
+        "review_item_4PyDUH",
+        "review_item_knCYJM"
+      ],
+      "name": "Reviews",
+      "settings": {
+        "subheading": "Verified Reviews",
+        "heading": "See Why People Keep Coming Back",
+        "star": 5,
+        "review_count_text": "(5/5 Stars)",
+        "review_text": "Based on 100 Reviews"
+      }
+    },
     "big_quote_b9HVWT": {
       "type": "big-quote",
       "settings": {
@@ -156,63 +269,6 @@
         "desktop_background_image": "shopify://shop_images/olives.png",
         "button_url": "shopify://collections/shop-all"
       }
-    },
-    "review_7F6EC6": {
-      "type": "review",
-      "blocks": {
-        "review_item_aWF9Pa": {
-          "type": "review_item",
-          "settings": {
-            "name": "Dominik S.",
-            "date": "Feb 1 2025",
-            "enable_verified_buyer": true,
-            "star": 5,
-            "title": "Finally, an olive oil I can trust",
-            "text": "I’ve tried dozens of so-called “extra virgin” olive oils, but TVO is on a whole different level. You can literally taste the freshness — it’s bold, peppery, and insanely smooth. I drizzle it on everything now. What sold me was the transparency and quality: single-origin, organic, cold-pressed, no blends or additives. My body feels better since switching, and I love knowing I’m fueling my family with something real. TVO isn’t just olive oil — it’s part of my daily wellness routine now.",
-            "image_1": "shopify://shop_images/Frame_233.png",
-            "image_2": "shopify://shop_images/Frame_233.png",
-            "image_3": "shopify://shop_images/Frame_233.png"
-          }
-        },
-        "review_item_kDaax7": {
-          "type": "review_item",
-          "settings": {
-            "name": "Dominik S.",
-            "date": "Feb 1 2025",
-            "enable_verified_buyer": true,
-            "star": 5,
-            "title": "Finally, an olive oil I can trust",
-            "text": "I’ve tried dozens of so-called “extra virgin” olive oils, but TVO is on a whole different level. You can literally taste the freshness — it’s bold, peppery, and insanely smooth. I drizzle it on everything now. What sold me was the transparency and quality: single-origin, organic, cold-pressed, no blends or additives. My body feels better since switching, and I love knowing I’m fueling my family with something real. TVO isn’t just olive oil — it’s part of my daily wellness routine now.",
-            "image_1": "shopify://shop_images/Frame_233.png",
-            "image_2": "shopify://shop_images/Frame_233.png",
-            "image_3": "shopify://shop_images/Frame_233.png"
-          }
-        },
-        "review_item_EKh7RK": {
-          "type": "review_item",
-          "settings": {
-            "name": "Dominik S.",
-            "date": "Feb 1 2025",
-            "enable_verified_buyer": true,
-            "star": 5,
-            "title": "Finally, an olive oil I can trust",
-            "text": "I’ve tried dozens of so-called “extra virgin” olive oils, but TVO is on a whole different level. You can literally taste the freshness — it’s bold, peppery, and insanely smooth. I drizzle it on everything now. What sold me was the transparency and quality: single-origin, organic, cold-pressed, no blends or additives. My body feels better since switching, and I love knowing I’m fueling my family with something real. TVO isn’t just olive oil — it’s part of my daily wellness routine now.",
-            "image_1": "shopify://shop_images/Frame_233.png",
-            "image_2": "shopify://shop_images/Frame_233.png",
-            "image_3": "shopify://shop_images/Frame_233.png"
-          }
-        }
-      },
-      "block_order": [
-        "review_item_aWF9Pa",
-        "review_item_kDaax7",
-        "review_item_EKh7RK"
-      ],
-      "name": "Review",
-      "settings": {
-        "subheading": "Reviews",
-        "heading": "PLACEHOLDER TEXT ABOUT BLOG"
-      }
     }
   },
   "order": [
@@ -221,10 +277,10 @@
     "featured_products",
     "certifcation_statement",
     "giant_video_MDxyLg",
+    "review_7F6EC6",
     "big_quote_b9HVWT",
     "photo_slider_AWRDMk",
     "featured_blog_posts_MAJhmd",
-    "giant_image_P7Kkdm",
-    "review_7F6EC6"
+    "giant_image_P7Kkdm"
   ]
 }
