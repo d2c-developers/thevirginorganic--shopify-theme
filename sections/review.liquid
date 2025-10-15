@@ -35,7 +35,7 @@
     </div>
 
     {% if section.blocks.size > 0 %}
-      <div class="divide-y divide-grey-20">
+      <div class="divide-y divide-grey-20 max-w-6xl mx-auto">
         {% for block in section.blocks %}
           <div
             class="mt-[30px] md:mt-[50px] pt-[30px] md:pt-[50px] border-t border-t-black/10 last:pb-[30px] md:last:pb-[50px] last-child-bottom-border"
@@ -74,7 +74,7 @@
                   </div>
                 {% endif %}
 
-                <div class="flex flex-wrap items-center mt-[20px] md:mt-[25px] gap-[10px] md:gap-[20px]">
+                <div class="flex flex-wrap items-center gap-[10px] md:gap-[20px]">
                   {% for i in (1..6) %}
                     {% assign key = 'image_' | append: i %}
                     {% assign imageObj = block.settings[key] %}
@@ -106,7 +106,7 @@
 
 {% schema %}
 {
-  "name": "Review",
+  "name": "Reviews",
   "class": "my-100",
   "settings": [
     {
@@ -176,12 +176,6 @@
           "step": 1
         },
         {
-          "type": "text",
-          "label": "Title",
-          "id": "title",
-          "default": "Finally, an olive oil I can trust"
-        },
-        {
           "type": "inline_richtext",
           "label": "Text",
           "id": "text",
@@ -201,28 +195,13 @@
           "type": "image_picker",
           "label": "Image 3",
           "id": "image_3"
-        },
-        {
-          "type": "image_picker",
-          "label": "Image 4",
-          "id": "image_4"
-        },
-        {
-          "type": "image_picker",
-          "label": "Image 5",
-          "id": "image_5"
-        },
-        {
-          "type": "image_picker",
-          "label": "Image 6",
-          "id": "image_6"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Review"
+      "name": "Reviews"
     }
   ]
 }
