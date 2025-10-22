@@ -1,3 +1,4 @@
+{% if template == 'index' or product.type == 'Olive Oil' %}
 <div class="grid grid-cols-1 lg:grid-cols-10 lg:grid-rows-2 gap-y-[50px] lg:border-b lg:border-gray-200 pb-5">
   <div class="lg:col-span-4 px-5">
     <div class="">
@@ -62,7 +63,7 @@
     </div>
   </div>
 </div>
-
+{% endif %}
 {% schema %}
 {
   "name": "Photo Slider",
