@@ -247,7 +247,7 @@
           "type": "faq_item",
           "settings": {
             "question": "How much is shipping?",
-            "answer": "<p>We offer the lowest possible UPS shipping rates in the USA, calculated based on the package's weight and destination zip code. You can view the shipping costs at checkout after adding items to your cart.</p>"
+            "answer": "<p>We offer the lowest possible UPS shipping rates in the USA, calculated based on the package's weight and destination zip code. We are pleased to offer <em>FREE SHIPPING </em>on orders over $98.00. You can view the shipping costs at checkout after adding items to your cart.</p>"
           }
         },
         "faq_item_3": {
