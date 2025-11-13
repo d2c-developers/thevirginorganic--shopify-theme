@@ -99,7 +99,7 @@
             <p class="text-dark-grey mt-4 text-xl">{{ product.description }}</p>
           </div>
 
-          {% render 'product-form' %}
+          {% render 'product-form', blocks: section.blocks %}
         </div>
       </div>
       {% comment %} End Product Details {% endcomment %}
@@ -120,25 +120,29 @@
 {
   "name": "Main Product",
   "class": "mb-100 lg:mb-52",
-  "settings": [
+  "settings": [],
+  "blocks": [
     {
-      "type": "header",
-      "content": "Product Accordion"
-    },
-    {
-      "type": "richtext",
-      "label": "Product Details",
-      "id": "product_details"
-    },
-    {
-      "type": "richtext",
-      "label": "Farm Details",
-      "id": "farm_details"
-    },
-    {
-      "type": "richtext",
-      "label": "Shipping Info",
-      "id": "shipping_info"
+      "type": "gwp_message",
+      "name": "GWP Message",
+      "settings": [
+        {
+          "type": "product_list",
+          "label": "Products to Show GWP On",
+          "id": "products_to_show_gwp_on"
+        },
+        {
+          "type": "product",
+          "label": "Product",
+          "id": "upsell_product"
+        },
+        {
+          "type": "text",
+          "label": "Upsell Message",
+          "id": "upsell_message",
+          "default": "Complimentary Gift with Purchase - Happy Holidays!"
+        }
+      ]
     }
   ]
 }

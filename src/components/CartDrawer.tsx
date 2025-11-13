@@ -205,13 +205,25 @@ const CartDrawer: React.FC = () => {
                         <div>
                           {item.selling_plan_allocation ? (
                             <div className="flex gap-1 items-center">
-                              <p className="text-dark-grey">${(item.selling_plan_allocation.price / 100).toFixed(2)}</p>
-                              <p className="text-grey-50 line-through italic">
-                                ${(item.selling_plan_allocation.compare_at_price / 100).toFixed(2)}
+                              <p className="text-dark-grey">
+                                {item.selling_plan_allocation.price === 0 
+                                  ? <span className="text-coratina-green italic">Free Gift</span> 
+                                  : `$${(item.selling_plan_allocation.price / 100).toFixed(2)}`
+                                }
                               </p>
+                              {item.selling_plan_allocation.price > 0 && (
+                                <p className="text-grey-50 line-through italic">
+                                  ${(item.selling_plan_allocation.compare_at_price / 100).toFixed(2)}
+                                </p>
+                              )}
                             </div>
                           ) : (
-                            <p className="text-dark-grey">${(item.line_price / 100).toFixed(2)}</p>
+                            <p className="text-dark-grey">
+                              {item.line_price === 0 
+                                ? <span className="text-coratina-green italic">Free Gift</span> 
+                                : `$${(item.line_price / 100).toFixed(2)}`
+                              }
+                            </p>
                           )}
                         </div>
                       </div>
@@ -231,7 +243,7 @@ const CartDrawer: React.FC = () => {
                 <button
                   type="submit"
                   name="checkout"
-                  className="border border-dark-grey w-full bg-dark-grey text-white p-5 flex justify-between items-center font-sans uppercase tracking-[0.15em] text-sm"
+                  className="border border-dark-grey w-full bg-dark-grey text-white p-5 flex justify-between items-center font-sans uppercase tracking-[0.15em] text-sm rounded-[6px]"
                 >
                   Checkout <span>${(cart?.total_price / 100).toFixed(2)}</span>
                 </button>

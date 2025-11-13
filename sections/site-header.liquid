@@ -18,13 +18,21 @@
         <ul class="flex items-center gap-1">
           {% for item in linklists['shop-menu'].links %}
             <li>
-              <a href="{{ item.url }}" class="inline-block">
+              {% assign is_external = false %}
+              {% unless item.url contains shop.url or item.url contains '/' %}
+                {% assign is_external = true %}
+              {% endunless %}
+              <a href="{{ item.url }}" class="inline-block"{% if is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                 {{- item.title -}}
               </a>
               <span>—</span>
               {% if item.links.size > 0 %}
                 {% for child in item.links %}
-                  <a href="{{ child.url }}" class="inline-block italic">
+                  {% assign child_is_external = false %}
+                  {% unless child.url contains shop.url or child.url contains '/' %}
+                    {% assign child_is_external = true %}
+                  {% endunless %}
+                  <a href="{{ child.url }}" class="inline-block italic"{% if child_is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                     {{- child.title -}}
                     {%- unless forloop.last %},{% endunless -%}
                   </a>
@@ -67,13 +75,21 @@
       <ul class="hidden xl:flex xl:items-center xl:gap-1">
         {% for item in linklists['learn-menu'].links %}
           <li>
-            <a href="{{ item.url }}" class="inline-block">
+            {% assign is_external = false %}
+            {% unless item.url contains shop.url or item.url == '/' %}
+              {% assign is_external = true %}
+            {% endunless %}
+            <a href="{{ item.url }}" class="inline-block"{% if is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>
               {{- item.title -}}
             </a>
             <span>—</span>
             {% if item.links.size > 0 %}
               {% for child in item.links %}
-                <a href="{{ child.url }}" class="inline-block italic">
+                {% assign child_is_external = false %}
+                {% unless child.url contains shop.url or child.url == '/' %}
+                  {% assign child_is_external = true %}
+                {% endunless %}
+                <a href="{{ child.url }}" class="inline-block italic"{% if child_is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                   {{- child.title -}}
                   {%- unless forloop.last %},{% endunless -%}
                 </a>
@@ -104,13 +120,21 @@
       <ul class="flex flex-col items-center gap-10">
         {% for item in linklists['shop-menu'].links %}
           <li>
-            <a href="{{ item.url }}" class="inline-block mb-5 text-grey-50 italic">
+            {% assign is_external = false %}
+            {% unless item.url contains shop.url or item.url contains '/' %}
+              {% assign is_external = true %}
+            {% endunless %}
+            <a href="{{ item.url }}" class="inline-block mb-5 text-grey-50 italic"{% if is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>
               {{- item.title -}}
             </a>
             {% if item.links.size > 0 %}
               <div class="mt-2 font-heading flex flex-col gap-px">
                 {% for child in item.links %}
-                  <a href="{{ child.url }}" class="inline-block">
+                  {% assign child_is_external = false %}
+                  {% unless child.url contains shop.url or child.url contains '/' %}
+                    {% assign child_is_external = true %}
+                  {% endunless %}
+                  <a href="{{ child.url }}" class="inline-block"{% if child_is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                     {{- child.title -}}
                   </a>
                 {% endfor %}
@@ -120,13 +144,21 @@
         {% endfor %}
         {% for item in linklists['learn-menu'].links %}
           <li>
-            <a href="{{ item.url }}" class="inline-block mb-5 text-grey-50 italic">
+            {% assign is_external = false %}
+            {% unless item.url contains shop.url or item.url contains '/' %}
+              {% assign is_external = true %}
+            {% endunless %}
+            <a href="{{ item.url }}" class="inline-block mb-5 text-grey-50 italic"{% if is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>
               {{- item.title -}}
             </a>
             {% if item.links.size > 0 %}
               <div class="mt-2 font-heading flex flex-col gap-px">
                 {% for child in item.links %}
-                  <a href="{{ child.url }}" class="inline-block">
+                  {% assign child_is_external = false %}
+                  {% unless child.url contains shop.url or child.url contains '/' %}
+                    {% assign child_is_external = true %}
+                  {% endunless %}
+                  <a href="{{ child.url }}" class="inline-block"{% if child_is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                     {{- child.title -}}
                   </a>
                 {% endfor %}

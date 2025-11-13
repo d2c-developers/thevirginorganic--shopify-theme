@@ -5,6 +5,15 @@
   {% comment %} Flavor Selector {% endcomment %}
   {% if product.type == 'Olive Oil' %}
     {% assign olive_oils = collections['olive-oils'].products %}
+    
+    {% comment %} Get GWP data from blocks {% endcomment %}
+    {% assign gwp_products_list = null %}
+    {% for block in blocks %}
+      {% if block.type == 'gwp_message' %}
+        {% assign gwp_products_list = block.settings.products_to_show_gwp_on %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
     {% comment %}
       <div class="relative" data-js-flavor-selector>
         <button
@@ -55,27 +64,47 @@
       <div class="flex gap-3 overflow-x-auto">
         {% assign olive_oils = collections['olive-oils'].products %}
         {% for olive_oil in olive_oils %}
-          <button
-            type="button"
-            class="flex-none w-[105px] p-1.5 border rounded-[6px] border-border hover:border-dark-grey transition-colors {% if olive_oil.id == product.id %}border-dark-grey{% else %}border-border border-black/10{% endif %}"
-            data-flavor-option
-            data-product-url="{{ olive_oil.url }}"
-          >
-            <div class="flex flex-col items-center gap-1.5">
-              <div class="bg-[#F3F3F3] p-2 rounded-[6px] w-full flex items-center justify-center aspect-square">
-                <img
-                  src="{{ olive_oil.featured_image | image_url: width: auto }}"
-                  alt="{{ olive_oil.title }}"
-                  width=""
-                  height="78"
-                  class="w-16 h-16 object-contain"
-                >
+          {% comment %} Check if this olive oil has GWP {% endcomment %}
+          {% assign has_gwp = false %}
+          {% if gwp_products_list %}
+            {% for gwp_product in gwp_products_list %}
+              {% if gwp_product.handle == olive_oil.handle %}
+                {% assign has_gwp = true %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+          <div class="relative">
+            {% if has_gwp %}
+              <div class="absolute -top-2 -right-1 z-20">
+                <span class="inline-block bg-picual-red text-white text-[7px] font-semibold px-1 py-0.5 rounded-sm uppercase leading-none whitespace-nowrap">
+                  Gift w/ Purchase
+                </span>
               </div>
-              <span class="font-sans text-center font-semibold text-[10px] leading-[100%] tracking-[0.15em] uppercase text-neutral-700">
-                {{- olive_oil.title -}}
-              </span>
-            </div>
-          </button>
+            {% endif %}
+            <button
+              type="button"
+              class="flex-none w-[105px] p-1.5 border rounded-[6px] border-border hover:border-dark-grey transition-colors {% if olive_oil.id == product.id %}border-dark-grey{% else %}border-black/10{% endif %}"
+              data-flavor-option
+              data-product-url="{{ olive_oil.url }}"
+            >
+          
+              <div class="flex flex-col items-center gap-1.5">
+                <div class="bg-[#F3F3F3] p-2 rounded-[6px] w-full flex items-center justify-center aspect-square">
+                  <img
+                    src="{{ olive_oil.featured_image | image_url: width: auto }}"
+                    alt="{{ olive_oil.title }}"
+                    width=""
+                    height="78"
+                    class="w-16 h-16 object-contain"
+                  >
+                </div>
+                <span class="font-sans text-center font-semibold text-[10px] leading-[100%] tracking-[0.15em] uppercase text-neutral-700">
+                  {{- olive_oil.title -}}
+                </span>
+              </div>
+            </button>
+          </div>
         {% endfor %}
       </div>
     </div>
@@ -129,90 +158,6 @@
                 >
                 <span class="ml-2 font-serif">Subscribe and save</span>
               </div>
-              <div
-                class="subscription-option relative w-auto flex items-center gap-[10px] pt-3 pl-7"
-                data-js-selling-plan-selector-container
-              >
-                <div class="text-[15px] leading-[100%]">Deliver every</div>
-                <div class="relative">
-                  <button
-                    type="button"
-                    class="rounded-md border border-border p-[8px] pr-[8px] flex items-center gap-3"
-                    data-js-selling-plan-button
-                  >
-                    <span class="font-serif text-[15px] leading-[100%]" data-js-selling-plan-text>
-                      {% assign plan_name = product.selling_plan_groups[0].selling_plans[0].name %}
-                      {% if plan_name contains 'every 6 months' %}
-                        180 days
-                      {% elsif plan_name contains 'every 4 months' %}
-                        120 days
-                      {% elsif plan_name contains 'every 3 months' or plan_name contains 'quarterly' %}
-                        90 days
-                      {% elsif plan_name contains 'every 2 months' %}
-                        60 days
-                      {% elsif plan_name contains 'month' %}
-                        30 days
-                      {% elsif plan_name contains '2 weeks' or plan_name contains 'bi-weekly' %}
-                        14 days
-                      {% elsif plan_name contains 'week' %}
-                        7 days
-                      {% else %}
-                        {{ plan_name }}
-                      {% endif %}
-                    </span>
-                    <div class="ml-auto dropdown-down-arrow">
-                      {% render 'icon-chevron-down' %}
-                    </div>
-                  </button>
-  
-                  <div
-                    class="absolute z-10 top-full left-0 right-0 bg-white border border-t-0 border-border rounded-md hidden"
-                    data-js-selling-plan-dropdown
-                  >
-                    {% for selling_plan in product.selling_plan_groups[0].selling_plans %}
-                      <button
-                        type="button"
-                        class="w-full p-[8px] flex items-center gap-3 hover:bg-[#fafafa]"
-                        data-selling-plan-option
-                        data-selling-plan-id="{{ selling_plan.id }}"
-                      >
-                        <span class="font-serif text-[15px] leading-[100%]">
-                          {% if selling_plan.name contains 'every 6 months' %}
-                            180 days
-                          {% elsif selling_plan.name contains 'every 4 months' %}
-                            120 days
-                          {% elsif selling_plan.name contains 'every 3 months'
-                            or selling_plan.name contains 'quarterly'
-                          %}
-                            90 days
-                          {% elsif selling_plan.name contains 'every 2 months' %}
-                            60 days
-                          {% elsif selling_plan.name contains 'month' %}
-                            30 days
-                          {% elsif selling_plan.name contains '2 weeks' or selling_plan.name contains 'bi-weekly' %}
-                            14 days
-                          {% elsif selling_plan.name contains 'week' %}
-                            7 days
-                          {% else %}
-                            {{ selling_plan.name }}
-                          {% endif %}
-                        </span>
-                      </button>
-                    {% endfor %}
-                  </div>
-                  <select
-                    data-js-selling-plan-selector
-                    name="selling_plan"
-                    class="hidden"
-                  >
-                    {% for selling_plan in product.selling_plan_groups[0].selling_plans %}
-                      <option value="{{ selling_plan.id }}">
-                        {{ selling_plan.name }}
-                      </option>
-                    {% endfor %}
-                  </select>
-                </div>
-              </div>
             </div>
             <span class="flex items-center gap-1 font-serif">
               {{ product.price | times: 0.9 | money }}
@@ -226,6 +171,90 @@
                 Save 10%
               </span>
             </span>
+          </div>
+          <div
+            class="subscription-option relative w-auto flex items-center gap-[10px] pt-3 pl-7"
+            data-js-selling-plan-selector-container
+          >
+            <div class="text-[15px] leading-[100%]">Deliver every</div>
+            <div class="relative">
+              <button
+                type="button"
+                class="rounded-md border border-border p-[8px] pr-[8px] flex items-center gap-3"
+                data-js-selling-plan-button
+              >
+                <span class="font-serif text-[15px] leading-[100%]" data-js-selling-plan-text>
+                  {% assign plan_name = product.selling_plan_groups[0].selling_plans[0].name %}
+                  {% if plan_name contains 'every 6 months' %}
+                    180 days
+                  {% elsif plan_name contains 'every 4 months' %}
+                    120 days
+                  {% elsif plan_name contains 'every 3 months' or plan_name contains 'quarterly' %}
+                    90 days
+                  {% elsif plan_name contains 'every 2 months' %}
+                    60 days
+                  {% elsif plan_name contains 'month' %}
+                    30 days
+                  {% elsif plan_name contains '2 weeks' or plan_name contains 'bi-weekly' %}
+                    14 days
+                  {% elsif plan_name contains 'week' %}
+                    7 days
+                  {% else %}
+                    {{ plan_name }}
+                  {% endif %}
+                </span>
+                <div class="ml-auto dropdown-down-arrow">
+                  {% render 'icon-chevron-down' %}
+                </div>
+              </button>
+
+              <div
+                class="absolute z-10 top-full left-0 right-0 bg-white border border-t-0 border-border rounded-md hidden"
+                data-js-selling-plan-dropdown
+              >
+                {% for selling_plan in product.selling_plan_groups[0].selling_plans %}
+                  <button
+                    type="button"
+                    class="w-full p-[8px] flex items-center gap-3 hover:bg-[#fafafa]"
+                    data-selling-plan-option
+                    data-selling-plan-id="{{ selling_plan.id }}"
+                  >
+                    <span class="font-serif text-[15px] leading-[100%]">
+                      {% if selling_plan.name contains 'every 6 months' %}
+                        180 days
+                      {% elsif selling_plan.name contains 'every 4 months' %}
+                        120 days
+                      {% elsif selling_plan.name contains 'every 3 months'
+                        or selling_plan.name contains 'quarterly'
+                      %}
+                        90 days
+                      {% elsif selling_plan.name contains 'every 2 months' %}
+                        60 days
+                      {% elsif selling_plan.name contains 'month' %}
+                        30 days
+                      {% elsif selling_plan.name contains '2 weeks' or selling_plan.name contains 'bi-weekly' %}
+                        14 days
+                      {% elsif selling_plan.name contains 'week' %}
+                        7 days
+                      {% else %}
+                        {{ selling_plan.name }}
+                      {% endif %}
+                    </span>
+                  </button>
+                {% endfor %}
+              </div>
+              <select
+                data-js-selling-plan-selector
+                name="selling_plan"
+                class="hidden"
+              >
+                {% for selling_plan in product.selling_plan_groups[0].selling_plans %}
+                  <option value="{{ selling_plan.id }}">
+                    {{ selling_plan.name }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
           </div>
         </label>
       {% endif %}
@@ -344,56 +373,16 @@
     {% endif %}
   </button>
 
-  {% comment %} {% if section.settings.product_details != blank %}
-    <div class="product-faq-item border-t border-[#E5E5E5]">
-      <div
-        class="w-full flex justify-between items-center text-left py-4 cursor-pointer"
-        onclick="toggleproductFaq(this)"
-      >
-        <h3 class="text-[17px] leading-[100%] font-sans">Product Details</h3>
-        <span class="transform rotate-0 transition-transform duration-150">
-          {% render 'icon-plus-dark' %}
-        </span>
-      </div>
-      <div class="product-faq-answer font-serif max-h-0 overflow-hidden transition-all duration-150 text-grey-50">
-        <div class="pb-4">{{ section.settings.product_details }}</div>
-      </div>
-    </div>
-  {% endif %}
-
-  {% if section.settings.farm_details != blank %}
-    <div class="product-faq-item border-t border-[#E5E5E5]">
-      <div
-        class="w-full flex justify-between items-center text-left py-4 cursor-pointer"
-        onclick="toggleproductFaq(this)"
-      >
-        <h3 class="text-[17px] leading-[100%] font-sans">Farm Details</h3>
-        <span class="transform rotate-0 transition-transform duration-150">
-          {% render 'icon-plus-dark' %}
-        </span>
-      </div>
-      <div class="product-faq-answer font-serif max-h-0 overflow-hidden transition-all duration-150 text-grey-50">
-        <div class="pb-4">{{ section.settings.farm_details }}</div>
-      </div>
-    </div>
-  {% endif %}
-
-  {% if section.settings.shipping_info != blank %}
-    <div class="product-faq-item border-t border-b border-[#E5E5E5]">
-      <div
-        class="w-full flex justify-between items-center text-left py-4 cursor-pointer"
-        onclick="toggleproductFaq(this)"
-      >
-        <h3 class="text-[17px] leading-[100%] font-sans">Shipping Info</h3>
-        <span class="transform rotate-0 transition-transform duration-150">
-          {% render 'icon-plus-dark' %}
-        </span>
-      </div>
-      <div class="product-faq-answer font-serif max-h-0 overflow-hidden transition-all duration-150 text-grey-50">
-        <div class="pb-4">{{ section.settings.shipping_info }}</div>
-      </div>
-    </div>
-  {% endif %} {% endcomment %}
+  {% for block in blocks %}
+    {% if block.type == 'gwp_message' %}
+      {% render 'product-gift-with-purchase-message',
+        current_product: product,
+        products_to_show_gwp_on: block.settings.products_to_show_gwp_on,
+        upsell_product: block.settings.upsell_product,
+        upsell_message: block.settings.upsell_message
+      %}
+    {% endif %}
+  {% endfor %}
 </form>
 
 <style>
@@ -572,11 +561,38 @@
       }
 
       try {
+        // Add main product to cart
         const response = await fetch('/cart/add.js', {
           method: 'POST',
           body: formData,
         });
         const data = await response.json();
+
+        // Check if there's a GWP product to add
+        const gwpProductId = document.getElementById('gwp-product-id');
+        const gwpProductTitle = document.getElementById('gwp-product-title');
+        
+        if (gwpProductId && gwpProductId.value) {
+          try {
+            // Add GWP product to cart
+            const gwpFormData = new FormData();
+            gwpFormData.append('id', gwpProductId.value);
+            gwpFormData.append('quantity', '1');
+            
+            const gwpResponse = await fetch('/cart/add.js', {
+              method: 'POST',
+              body: gwpFormData,
+            });
+            
+            if (gwpResponse.ok) {
+              console.log(`GWP product "${gwpProductTitle?.value || 'Gift'}" added to cart`);
+            } else {
+              console.warn('Failed to add GWP product to cart');
+            }
+          } catch (gwpError) {
+            console.warn('Error adding GWP product to cart:', gwpError);
+          }
+        }
 
         document.dispatchEvent(new Event('product:added'));
       } catch (error) {

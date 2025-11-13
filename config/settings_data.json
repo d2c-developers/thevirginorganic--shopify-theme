@@ -17,8 +17,7 @@
       "site-header": {
         "type": "site-header",
         "custom_css": [],
-        "settings": {
-        },
+        "settings": {},
         "blocks": {
           "announcement_1": {
             "type": "announcement",
