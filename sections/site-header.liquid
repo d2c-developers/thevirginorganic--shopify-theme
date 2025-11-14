@@ -1,5 +1,15 @@
 <header class="site-header fixed z-50 bg-white top-0 left-0 right-0 text-dark-grey {% if template == 'index' %}lg:text-white lg:bg-transparent{% endif %}">
-  <div class="text-center bg-[#DF4B2A] text-white py-1 font-sans tracking-[0.15em] uppercase text-sm">{{ section.settings.announcement_text }}</div>
+  {% if section.blocks.size > 0 %}
+    {% assign bar_classes = "text-center bg-[#DF4B2A] text-white py-2 font-sans tracking-none uppercase text-sm" %}
+    <div class="{{ bar_classes }}">
+      <span
+        class="announcement-bar-text transition-opacity duration-500 ease-in-out"
+        data-messages='[{% for block in section.blocks %}"{{ block.settings.message | escape }}"{% unless forloop.last %},{% endunless %}{% endfor %}]'
+      >
+        {{ section.blocks.first.settings.message }}
+      </span>
+    </div>
+  {% endif %}
   <div class="relative flex items-center justify-between w-full font-serif p-5 lg:text-lg">
     {% comment %} Left List {% endcomment %}
     <div>
@@ -8,13 +18,21 @@
         <ul class="flex items-center gap-1">
           {% for item in linklists['shop-menu'].links %}
             <li>
-              <a href="{{ item.url }}" class="inline-block">
+              {% assign is_external = false %}
+              {% unless item.url contains shop.url or item.url contains '/' %}
+                {% assign is_external = true %}
+              {% endunless %}
+              <a href="{{ item.url }}" class="inline-block"{% if is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                 {{- item.title -}}
               </a>
               <span>—</span>
               {% if item.links.size > 0 %}
                 {% for child in item.links %}
-                  <a href="{{ child.url }}" class="inline-block italic">
+                  {% assign child_is_external = false %}
+                  {% unless child.url contains shop.url or child.url contains '/' %}
+                    {% assign child_is_external = true %}
+                  {% endunless %}
+                  <a href="{{ child.url }}" class="inline-block italic"{% if child_is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                     {{- child.title -}}
                     {%- unless forloop.last %},{% endunless -%}
                   </a>
@@ -39,13 +57,13 @@
     <div class="site-header-logo absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 max-w-60 lg:max-w-80">
       {% if template == 'index' %}
         <h1>
-          <a href="/" class="block">
+          <a href="{{ routes.root_url }}" class="block">
             <span class="sr-only">The Virgin Organic</span>
             {% render 'site-logo' %}
           </a>
         </h1>
       {% else %}
-        <a href="/" class="block">
+        <a href="{{ routes.root_url }}" class="block">
           <span class="sr-only">The Virgin Organic</span>
           {% render 'site-logo' %}
         </a>
@@ -57,13 +75,21 @@
       <ul class="hidden xl:flex xl:items-center xl:gap-1">
         {% for item in linklists['learn-menu'].links %}
           <li>
-            <a href="{{ item.url }}" class="inline-block">
+            {% assign is_external = false %}
+            {% unless item.url contains shop.url or item.url == '/' %}
+              {% assign is_external = true %}
+            {% endunless %}
+            <a href="{{ item.url }}" class="inline-block"{% if is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>
               {{- item.title -}}
             </a>
             <span>—</span>
             {% if item.links.size > 0 %}
               {% for child in item.links %}
-                <a href="{{ child.url }}" class="inline-block italic">
+                {% assign child_is_external = false %}
+                {% unless child.url contains shop.url or child.url == '/' %}
+                  {% assign child_is_external = true %}
+                {% endunless %}
+                <a href="{{ child.url }}" class="inline-block italic"{% if child_is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                   {{- child.title -}}
                   {%- unless forloop.last %},{% endunless -%}
                 </a>
@@ -94,13 +120,21 @@
       <ul class="flex flex-col items-center gap-10">
         {% for item in linklists['shop-menu'].links %}
           <li>
-            <a href="{{ item.url }}" class="inline-block mb-5 text-grey-50 italic">
+            {% assign is_external = false %}
+            {% unless item.url contains shop.url or item.url contains '/' %}
+              {% assign is_external = true %}
+            {% endunless %}
+            <a href="{{ item.url }}" class="inline-block mb-5 text-grey-50 italic"{% if is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>
               {{- item.title -}}
             </a>
             {% if item.links.size > 0 %}
               <div class="mt-2 font-heading flex flex-col gap-px">
                 {% for child in item.links %}
-                  <a href="{{ child.url }}" class="inline-block">
+                  {% assign child_is_external = false %}
+                  {% unless child.url contains shop.url or child.url contains '/' %}
+                    {% assign child_is_external = true %}
+                  {% endunless %}
+                  <a href="{{ child.url }}" class="inline-block"{% if child_is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                     {{- child.title -}}
                   </a>
                 {% endfor %}
@@ -110,13 +144,21 @@
         {% endfor %}
         {% for item in linklists['learn-menu'].links %}
           <li>
-            <a href="{{ item.url }}" class="inline-block mb-5 text-grey-50 italic">
+            {% assign is_external = false %}
+            {% unless item.url contains shop.url or item.url contains '/' %}
+              {% assign is_external = true %}
+            {% endunless %}
+            <a href="{{ item.url }}" class="inline-block mb-5 text-grey-50 italic"{% if is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>
               {{- item.title -}}
             </a>
             {% if item.links.size > 0 %}
               <div class="mt-2 font-heading flex flex-col gap-px">
                 {% for child in item.links %}
-                  <a href="{{ child.url }}" class="inline-block">
+                  {% assign child_is_external = false %}
+                  {% unless child.url contains shop.url or child.url contains '/' %}
+                    {% assign child_is_external = true %}
+                  {% endunless %}
+                  <a href="{{ child.url }}" class="inline-block"{% if child_is_external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                     {{- child.title -}}
                   </a>
                 {% endfor %}
@@ -133,6 +175,40 @@
 </div>
 
 <script>
+  // Announcement Bar Fade Animation
+  document.addEventListener('DOMContentLoaded', () => {
+    const announcementBarText = document.querySelector('.announcement-bar-text');
+    
+    if (announcementBarText) {
+      const messagesData = announcementBarText.getAttribute('data-messages');
+      
+      if (messagesData) {
+        const messages = JSON.parse(messagesData);
+        
+        if (messages.length > 1) {
+          let currentIndex = 0;
+          
+          // Rotate through messages
+          setInterval(() => {
+            // Fade out
+            announcementBarText.style.opacity = '0';
+            
+            setTimeout(() => {
+              // Move to next message
+              currentIndex = (currentIndex + 1) % messages.length;
+              
+              // Update text content
+              announcementBarText.textContent = messages[currentIndex];
+              
+              // Fade in
+              announcementBarText.style.opacity = '1';
+            }, 250); // Half of transition duration
+          }, 5000); // Change message every 5 seconds
+        }
+      }
+    }
+  });
+
   document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     setTimeout(() => {
@@ -203,10 +279,22 @@
       "content": "Announcement Bar"
     },
     {
-      "type": "text",
-      "id": "announcement_text",
-      "label": "Announcement Text",
-      "default": "Free Shipping on Orders Over $99"
+      "type": "paragraph",
+      "content": "Add announcement messages using the blocks below. Multiple messages will automatically fade in and out."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement Message",
+      "settings": [
+        {
+          "type": "html",
+          "id": "message",
+          "label": "Message",
+          "default": "Free Shipping on Orders Over $98"
+        }
+      ]
     }
   ]
 }

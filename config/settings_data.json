@@ -17,9 +17,25 @@
       "site-header": {
         "type": "site-header",
         "custom_css": [],
-        "settings": {
-          "announcement_text": "Free Shipping on Orders Over <span>$98</span>"
-        }
+        "settings": {},
+        "blocks": {
+          "announcement_1": {
+            "type": "announcement",
+            "settings": {
+              "message": "Free Shipping on Orders Over $98"
+            }
+          },
+          "announcement_2": {
+            "type": "announcement",
+            "settings": {
+              "message": "Free Organic Honey with Every Bundle"
+            }
+          }
+        },
+        "block_order": [
+          "announcement_2",
+          "announcement_1"
+        ]
       },
       "site-footer": {
         "type": "site-footer",

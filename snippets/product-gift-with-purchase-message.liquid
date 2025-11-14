@@ -1,0 +1,43 @@
+{% assign current_product = product %}
+{% assign products_to_show_gwp_on = products_to_show_gwp_on %}
+{% assign is_gwp_product = false %}
+
+{% for product in products_to_show_gwp_on %}
+  {% if product.handle == current_product.handle %}
+    {% assign is_gwp_product = true %}
+  {% endif %}
+{% endfor %}
+
+{% if is_gwp_product and upsell_product %}
+  <div class="gwp-message flex items-start gap-2 p-2 border rounded-[6px] border-border md:items-center">
+    {% comment %} GWP Product Image {% endcomment %}
+    <div class="gwp-image flex-shrink-0">
+      {% if upsell_product.featured_image %}
+        <div class="bg-[#F3F3F3] p-0.5 rounded-[6px] w-full flex items-center justify-center aspect-square">
+          <img 
+            src="{{ upsell_product.featured_image | image_url: width: 400 }}" 
+            alt="{{ upsell_product.featured_image.alt | default: upsell_product.title }}"
+            width="400"
+            height="400"
+            class="size-24 object-cover rounded-md"
+            loading="lazy"
+          >
+        </div>
+      {% endif %}
+    </div>
+    
+    {% comment %} GWP Message Content {% endcomment %}
+    <div class="gwp-content flex-1 pb-1 md:pb-0">
+      <h3 class="font-sans font-semibold text-dark-grey text-sm uppercase tracking-[0.1em]">
+        {{ upsell_message }}
+      </h3>
+      <p class="font-serif text-dark-grey text-sm">
+        {{ upsell_product.title }} will be automatically added to your cart when purchasing {{ current_product.title }}. {{ upsell_product.price | money }} value. <em>(Ships separately)</em>
+      </p>
+    </div>
+  </div>
+  {% comment %} Hidden input for GWP data {% endcomment %}
+  <input type="hidden" id="gwp-product-id" value="{{ upsell_product.selected_or_first_available_variant.id }}">
+  <input type="hidden" id="gwp-product-title" value="{{ upsell_product.title }}">
+{% endif %}
+

@@ -49,7 +49,7 @@ const CartRelatedProductUpsell: React.FC<CartRelatedProductUpsellProps> = ({ pro
   }
 
   return (
-    <div className="p-5 border-t border-grey-200">
+    <div className="p-5 border-y border-grey-200 mb-5">
       {recommendations.slice(0, 1).map((product) => (
         <div key={product.id} className="flex items-start gap-4 justify-between">
           <div className="block font-serif text-dark-grey space-y-[15px] grow">

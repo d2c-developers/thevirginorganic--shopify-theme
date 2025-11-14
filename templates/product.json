@@ -11,11 +11,22 @@
   "sections": {
     "main": {
       "type": "main-product",
-      "settings": {
-        "product_details": "{{ product.description }}",
-        "farm_details": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>",
-        "shipping_info": "<p><strong>Lorem Ipsum</strong>is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>"
-      }
+      "blocks": {
+        "gwp_message": {
+          "type": "gwp_message",
+          "settings": {
+            "upsell_message": "Complimentary Gift with Purchase - Happy Holidays!",
+            "products_to_show_gwp_on": [
+              "the-bundle"
+            ],
+            "upsell_product": "organic-reserve-hawaiian-wildflower-honey"
+          }
+        }
+      },
+      "block_order": [
+        "gwp_message"
+      ],
+      "settings": {}
     },
     "review_7F6EC6": {
       "type": "review",
