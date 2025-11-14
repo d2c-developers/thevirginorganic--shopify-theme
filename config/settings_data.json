@@ -17,25 +17,7 @@
       "site-header": {
         "type": "site-header",
         "custom_css": [],
-        "settings": {},
-        "blocks": {
-          "announcement_1": {
-            "type": "announcement",
-            "settings": {
-              "message": "Free Shipping on Orders Over $98"
-            }
-          },
-          "announcement_2": {
-            "type": "announcement",
-            "settings": {
-              "message": "Free Organic Honey with Every Bundle"
-            }
-          }
-        },
-        "block_order": [
-          "announcement_2",
-          "announcement_1"
-        ]
+        "settings": {}
       },
       "site-footer": {
         "type": "site-footer",
@@ -63,6 +45,11 @@
       },
       "3138269044488530766": {
         "type": "shopify://apps/uppromote-affiliate/blocks/core-script/64c32457-930d-4cb9-9641-e24c0d9cf1f4",
+        "disabled": false,
+        "settings": {}
+      },
+      "855628211100114053": {
+        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
         "settings": {}
       }
