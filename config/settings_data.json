@@ -22,10 +22,17 @@
             "settings": {
               "message": "Free Shipping on Orders Over $98"
             }
+          },
+          "announcement_MinBPc": {
+            "type": "announcement",
+            "settings": {
+              "message": "BLACK FRIDAY SPECIAL: BOGO Coratina &amp; Picual"
+            }
           }
         },
         "block_order": [
-          "announcement_qCHwAY"
+          "announcement_qCHwAY",
+          "announcement_MinBPc"
         ],
         "custom_css": [],
         "settings": {}
