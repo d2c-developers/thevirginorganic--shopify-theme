@@ -16,6 +16,17 @@
     "sections": {
       "site-header": {
         "type": "site-header",
+        "blocks": {
+          "announcement_qCHwAY": {
+            "type": "announcement",
+            "settings": {
+              "message": "Free Shipping on Orders Over $98"
+            }
+          }
+        },
+        "block_order": [
+          "announcement_qCHwAY"
+        ],
         "custom_css": [],
         "settings": {}
       },
