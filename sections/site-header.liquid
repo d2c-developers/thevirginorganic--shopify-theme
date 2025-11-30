@@ -1,14 +1,14 @@
 <header class="site-header fixed z-50 bg-white top-0 left-0 right-0 text-dark-grey {% if template == 'index' %}lg:text-white lg:bg-transparent{% endif %}">
   {% if section.blocks.size > 0 %}
-    {% assign bar_classes = "text-center bg-[#DF4B2A] text-white py-2 font-sans tracking-none uppercase text-sm" %}
-    <div class="{{ bar_classes }}">
+    {% assign bar_classes = "text-center bg-[#DF4B2A] text-white py-2 font-sans tracking-none uppercase text-sm block" %}
+    <a class="{{ bar_classes }}" href="/products/coratina">
       <span
         class="announcement-bar-text transition-opacity duration-500 ease-in-out"
         data-messages='[{% for block in section.blocks %}"{{ block.settings.message | escape }}"{% unless forloop.last %},{% endunless %}{% endfor %}]'
       >
         {{ section.blocks.first.settings.message }}
       </span>
-    </div>
+    </a>
   {% endif %}
   <div class="relative flex items-center justify-between w-full font-serif p-5 lg:text-lg">
     {% comment %} Left List {% endcomment %}

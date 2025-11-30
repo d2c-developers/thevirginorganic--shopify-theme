@@ -32,7 +32,7 @@
   <body>
     <div class="flex flex-col min-h-screen">
       {% section 'site-header' %}
-      <main class="flex-1 {% if template != 'index' %}mt-[106px]{% endif %}">
+      <main class="flex-1 {% if template != 'index' %}mt-[126px]{% endif %}" {% if template != "index" %} style="margin-top: 126px;" {%else%} style="margin-top: 30px;" {% endif %}>
         {{ content_for_layout }}
       </main>
       {% section 'site-footer' %}
