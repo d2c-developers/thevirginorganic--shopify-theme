@@ -19,13 +19,13 @@
         "blocks": {
           "announcement_qCHwAY": {
             "type": "announcement",
-            "disabled": true,
             "settings": {
               "message": "Free Shipping on Orders Over $98"
             }
           },
           "announcement_MinBPc": {
             "type": "announcement",
+            "disabled": true,
             "settings": {
               "message": "BLACK FRIDAY SPECIAL: Buy One Bottle, Get One Free (Sale ends Midnight PST 11/29)"
             }
