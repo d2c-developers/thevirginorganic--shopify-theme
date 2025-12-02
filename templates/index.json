@@ -51,6 +51,12 @@
         "button_url": "shopify://collections/shop-all"
       }
     },
+    "main-product": {
+      "type": "main-product",
+      "settings": {
+        "fallback_product": "the-bundle"
+      }
+    },
     "certifcation_statement": {
       "type": "certifcation-statement",
       "settings": {
@@ -267,6 +273,7 @@
     "main",
     "large_heading_text_CYiDqW",
     "featured_products",
+    "main-product",
     "certifcation_statement",
     "giant_video_MDxyLg",
     "review_7F6EC6",

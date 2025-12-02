@@ -14,4 +14,21 @@ if (!window.location.host.includes('127.0.0.1') && !window.location.host.include
     api_host: 'https://us.i.posthog.com',
     person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
   });
+
+  // Home Page Product Form Flag @TODO: remove once test is complete
+  (window as any).posthog = posthog || {};
+  if (posthog.getFeatureFlag('home-page-product-form') === 'test') {
+    // Do something differently for this user
+    const productMainSection = document.querySelector('.product-main-section');
+    const featuredProductsSection = document.querySelector('.featured-products-section');
+    if (productMainSection) {
+      (productMainSection as HTMLElement).style.display = 'block';
+      (featuredProductsSection as HTMLElement).style.display = 'none';
+    }
+  } else {
+    const productMainSection = document.querySelector('.product-main-section');
+    if (productMainSection) {
+      (productMainSection as HTMLElement).style.display = 'none';
+    }
+  }
 }
