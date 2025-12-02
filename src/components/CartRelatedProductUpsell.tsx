@@ -1,6 +1,13 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 
+// Declare PostHog global type
+declare global {
+  interface Window {
+    posthog?: any;
+  }
+}
+
 interface Recommendation {
   id: string;
   title: string;
@@ -35,6 +42,18 @@ const CartRelatedProductUpsell: React.FC<CartRelatedProductUpsellProps> = ({ pro
 
         setRecommendations(recData?.products);
         setLoading(false);
+
+        // Fire PostHog event when upsell is viewed
+        if (recData?.products?.length > 0 && window.posthog && typeof window.posthog.capture === 'function') {
+          const product = recData.products[0];
+          window.posthog.capture('cart_upsell_viewed', {
+            upsell_product_id: product.id,
+            upsell_product_title: product.title,
+            upsell_product_price: product.price / 100,
+            original_product_id: productId,
+            page_url: window.location.href,
+          });
+        }
       } catch (error) {
         console.error('Error fetching recommendations:', error);
         setLoading(false);
@@ -61,6 +80,18 @@ const CartRelatedProductUpsell: React.FC<CartRelatedProductUpsellProps> = ({ pro
             <button
               onClick={async () => {
                 try {
+                  // Fire PostHog event before adding to cart
+                  if (window.posthog && typeof window.posthog.capture === 'function') {
+                    window.posthog.capture('cart_upsell_add_to_cart', {
+                      upsell_product_id: product.id,
+                      upsell_product_title: product.title,
+                      upsell_product_price: product.price / 100,
+                      upsell_variant_id: product.variants?.[0]?.id,
+                      original_product_id: productId,
+                      page_url: window.location.href,
+                    });
+                  }
+
                   const response = await fetch('/cart/add.js', {
                     method: 'POST',
                     headers: {
