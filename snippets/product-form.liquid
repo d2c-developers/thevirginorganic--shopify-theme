@@ -5,7 +5,7 @@
   {% comment %} Flavor Selector {% endcomment %}
   {% if product.type == 'Olive Oil' %}
     {% assign olive_oils = collections['olive-oils'].products %}
-    
+
     {% comment %} Get GWP data from blocks {% endcomment %}
     {% assign gwp_products_list = null %}
     {% for block in blocks %}
@@ -88,7 +88,6 @@
               data-flavor-option
               data-product-url="{{ olive_oil.url }}"
             >
-          
               <div class="flex flex-col items-center gap-1.5">
                 <div class="bg-[#F3F3F3] p-2 rounded-[6px] w-full flex items-center justify-center aspect-square">
                   <img
@@ -224,9 +223,7 @@
                         180 days
                       {% elsif selling_plan.name contains 'every 4 months' %}
                         120 days
-                      {% elsif selling_plan.name contains 'every 3 months'
-                        or selling_plan.name contains 'quarterly'
-                      %}
+                      {% elsif selling_plan.name contains 'every 3 months' or selling_plan.name contains 'quarterly' %}
                         90 days
                       {% elsif selling_plan.name contains 'every 2 months' %}
                         60 days
@@ -372,11 +369,13 @@
       Sold Out
     {% endif %}
   </button>
-  <p class="text-center mt-0 my-0" style="margin-top: 8px;">
-    Going fast, while supplies last!
-    <br >
-    (Shipping Not Included)
-  </p>
+  {% comment %}
+    <p class="text-center mt-0 my-0" style="margin-top: 8px;">
+      Going fast, while supplies last!
+      <br >
+      (Shipping Not Included)
+    </p>
+  {% endcomment %}
 
   {% for block in blocks %}
     {% if block.type == 'gwp_message' %}
@@ -576,19 +575,19 @@
         // Check if there's a GWP product to add
         const gwpProductId = document.getElementById('gwp-product-id');
         const gwpProductTitle = document.getElementById('gwp-product-title');
-        
+
         if (gwpProductId && gwpProductId.value) {
           try {
             // Add GWP product to cart
             const gwpFormData = new FormData();
             gwpFormData.append('id', gwpProductId.value);
             gwpFormData.append('quantity', '1');
-            
+
             const gwpResponse = await fetch('/cart/add.js', {
               method: 'POST',
               body: gwpFormData,
             });
-            
+
             if (gwpResponse.ok) {
               console.log(`GWP product "${gwpProductTitle?.value || 'Gift'}" added to cart`);
             } else {
