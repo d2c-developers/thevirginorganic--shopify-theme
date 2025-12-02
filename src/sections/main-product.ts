@@ -1,6 +1,13 @@
 import Swiper from 'swiper';
 import { Pagination } from 'swiper/modules';
 
+// Declare PostHog global type
+declare global {
+  interface Window {
+    posthog?: any;
+  }
+}
+
 (() => {
   // init Swiper:
   // const productSlider = new Swiper('#product-slider', {
@@ -35,9 +42,6 @@ import { Pagination } from 'swiper/modules';
   // // Initial check
   // handleResize();
 
-
-
-
   // Initialize thumbnail swiper first
   const swiperThumbs = new Swiper('.swiper-thumbnails', {
     direction: 'vertical',
@@ -48,8 +52,8 @@ import { Pagination } from 'swiper/modules';
     breakpoints: {
       768: {
         slidesPerView: 5,
-      }
-    }
+      },
+    },
   });
 
   // Initialize main swiper
@@ -84,7 +88,7 @@ import { Pagination } from 'swiper/modules';
     const activeIndex = this.activeIndex;
 
     // Remove active class from all thumbnails
-    swiperThumbs.slides.forEach(slide => {
+    swiperThumbs.slides.forEach((slide) => {
       slide.querySelector('img').classList.remove('border-blue-500');
       slide.querySelector('img').classList.add('border-transparent');
     });
@@ -113,7 +117,4 @@ import { Pagination } from 'swiper/modules';
     swiperThumbs.slides[0].querySelector('img').classList.add('border-blue-500');
     swiperThumbs.slides[0].querySelector('img').classList.remove('border-transparent');
   }
-
-
-
 })();

@@ -131,6 +131,26 @@
 {% render 'product-specifications' %}
 {% render 'product-polyphenol-chart' %}
 
+<script>
+  // PostHog product pageview tracking - only for actual product template pages
+  document.addEventListener('DOMContentLoaded', () => {
+    // Only track if PostHog is available and we're not on localhost
+    if (window.posthog && typeof window.posthog.capture === 'function') {
+      const productTitle = {{ product.title | json }};
+
+      // Capture a manual pageview event with product context
+      // This ensures the product title is included in the pageview event
+      window.posthog.capture('product_form_viewed', {
+        $current_url: window.location.href,
+        product_title: productTitle,
+        product_type: {{ product.type | json }},
+        product_id: {{ product.id | json }},
+        template: {{ template | json }}
+      });
+    }
+  });
+</script>
+
 {% schema %}
 {
   "name": "Main Product",
