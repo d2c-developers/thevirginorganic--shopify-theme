@@ -257,7 +257,7 @@
       {% endif %}
       <label
         for="one-time"
-        class="flex items-center justify-between cursor-pointer p-[15px] lg:p-[18px] border border-black/20 rounded-b-[6px] {% if product.selling_plan_groups.size > 0 %} border-t-0{% endif %}"
+        class="flex items-center justify-between cursor-pointer p-[15px] lg:p-[18px] border border-black/20 rounded-[6px] {% if product.selling_plan_groups.size > 0 %} border-t-0{% endif %}"
       >
         <div class="flex items-center space-x-2">
           <input
@@ -327,10 +327,6 @@
     </div>
   {% endif %}
 
-  {% comment %} Frequency Selector for Selling Plans {% endcomment %}
-  {% if product.selling_plan_groups.size > 0 %}
-  {% endif %}
-
   {% comment %} Size Selector {% endcomment %}
   {% if product.options contains 'Size' %}
     {% assign size_option = product.options_with_values | where: 'name', 'Size' | first %}
@@ -369,13 +365,12 @@
       Sold Out
     {% endif %}
   </button>
-  {% comment %}
-    <p class="text-center mt-0 my-0" style="margin-top: 8px;">
-      Going fast, while supplies last!
-      <br >
-      (Shipping Not Included)
-    </p>
-  {% endcomment %}
+
+  <p class="text-center mt-0 my-0" style="margin-top: 8px;">
+    Last of <strong>the great harvest</strong> - going fast, while supplies last!
+    <br>
+    (Shipping Not Included)
+  </p>
 
   {% for block in blocks %}
     {% if block.type == 'gwp_message' %}

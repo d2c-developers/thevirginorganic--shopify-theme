@@ -13,9 +13,9 @@
       "type": "homepage-hero",
       "settings": {
         "heading": "<p>Compromise <em>Nothing</em></p>",
-        "text": "<p>Our belief in world-class olive oil<br>starts from the <em>ground up</em>.</p>",
+        "text": "<p><em>Last of the great harvest</em><br>Buy Two Bottles, Get One Free - while supplies last!</p>",
         "button_text": "Shop Now",
-        "button_link": "shopify://collections/shop-all",
+        "button_link": "shopify://products/picual",
         "background_image": "shopify://shop_images/hero-image-bg-desktop.jpg",
         "bottle_image": "shopify://shop_images/picual-front.webp"
       }
@@ -54,7 +54,7 @@
     "main-product": {
       "type": "main-product",
       "settings": {
-        "fallback_product": "the-bundle"
+        "fallback_product": "picual"
       }
     },
     "certifcation_statement": {
