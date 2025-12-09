@@ -22,10 +22,17 @@
             "settings": {
               "message": "Almost Sold Out - Buy Two Bottles, Get One Free"
             }
+          },
+          "announcement_wbtXfC": {
+            "type": "announcement",
+            "settings": {
+              "message": "Free Shipping on Orders Over $98"
+            }
           }
         },
         "block_order": [
-          "announcement_qCHwAY"
+          "announcement_qCHwAY",
+          "announcement_wbtXfC"
         ],
         "custom_css": [],
         "settings": {}
