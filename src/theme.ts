@@ -13,6 +13,12 @@ if (!window.location.host.includes('127.0.0.1') && !window.location.host.include
   posthog.init('phc_d6xF80cONY0CQ5CuqmdESKaYH2uVdziatZfllxxNJ7n', {
     api_host: 'https://us.i.posthog.com',
     person_profiles: 'identified_only', // or 'always' to create profiles for anonymous users as well
+    session_recording: {
+      maskAllInputs: false,
+      maskInputOptions: {
+        email: true,
+      },
+    },
   });
 
   // Home Page Product Form Flag @TODO: remove once test is complete
