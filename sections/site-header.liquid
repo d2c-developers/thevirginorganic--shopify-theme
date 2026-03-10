@@ -1,12 +1,15 @@
 <header class="site-header fixed z-50 bg-white top-0 left-0 right-0 text-dark-grey {% if template == 'index' %}lg:text-white lg:bg-transparent{% endif %}">
   {% if section.blocks.size > 0 %}
-    {% assign bar_classes = "text-center bg-[#DF4B2A] text-white py-2 font-sans tracking-none uppercase text-sm block" %}
-    <a class="{{ bar_classes }}" href="/products/coratina">
+    {% assign bar_classes = "text-center bg-[#DF4B2A] text-white hover:text-white py-2 font-sans tracking-none uppercase text-sm block hover:opacity-75 transition-opacity" %}
+    {% assign first = section.blocks.first %}
+    <a class="{{ bar_classes }}" href="{{ first.settings.link }}"{% if first.settings.new_window %} target="_blank" rel="noopener noreferrer"{% endif %}>
       <span
         class="announcement-bar-text transition-opacity duration-500 ease-in-out"
         data-messages='[{% for block in section.blocks %}"{{ block.settings.message | escape }}"{% unless forloop.last %},{% endunless %}{% endfor %}]'
+        data-links='[{% for block in section.blocks %}{{ block.settings.link | json }}{% unless forloop.last %},{% endunless %}{% endfor %}]'
+        data-targets='[{% for block in section.blocks %}{{ block.settings.new_window | json }}{% unless forloop.last %},{% endunless %}{% endfor %}]'
       >
-        {{ section.blocks.first.settings.message }}
+        {{ first.settings.message }}
       </span>
     </a>
   {% endif %}
@@ -181,25 +184,40 @@
     
     if (announcementBarText) {
       const messagesData = announcementBarText.getAttribute('data-messages');
-      
+      const linksData = announcementBarText.getAttribute('data-links');
+      const targetsData = announcementBarText.getAttribute('data-targets');
+
       if (messagesData) {
         const messages = JSON.parse(messagesData);
-        
+        const links = linksData ? JSON.parse(linksData) : [];
+        const targets = targetsData ? JSON.parse(targetsData) : [];
+        const barLink = announcementBarText.closest('a');
+
         if (messages.length > 1) {
           let currentIndex = 0;
-          
+
           // Rotate through messages
           setInterval(() => {
             // Fade out
             announcementBarText.style.opacity = '0';
-            
+
             setTimeout(() => {
               // Move to next message
               currentIndex = (currentIndex + 1) % messages.length;
-              
-              // Update text content
+
+              // Update text, bar href, and target
               announcementBarText.textContent = messages[currentIndex];
-              
+              if (barLink) {
+                barLink.href = links[currentIndex] || '';
+                if (targets[currentIndex]) {
+                  barLink.setAttribute('target', '_blank');
+                  barLink.setAttribute('rel', 'noopener noreferrer');
+                } else {
+                  barLink.removeAttribute('target');
+                  barLink.removeAttribute('rel');
+                }
+              }
+
               // Fade in
               announcementBarText.style.opacity = '1';
             }, 250); // Half of transition duration
@@ -293,6 +311,17 @@
           "id": "message",
           "label": "Message",
           "default": "Free Shipping on Orders Over $98"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)"
+        },
+        {
+          "type": "checkbox",
+          "id": "new_window",
+          "label": "Open link in new tab",
+          "default": false
         }
       ]
     }

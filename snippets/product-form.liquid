@@ -110,6 +110,7 @@
   {% endif %}
 
   {% comment %} Quantity Selector {% endcomment %}
+  {% unless product.metafields.custom.pdp_link_out != blank %}
   <div class="flex justify-between items-center">
     <label for="quantity" class="block text-dark-grey italic font-serif">Quantity</label>
     <div class="flex gap-4">
@@ -135,6 +136,7 @@
       {% endfor %}
     </div>
   </div>
+  {% endunless %}
 
   {% comment %} Purchase Options {% endcomment %}
   {% if product.type != 'Gift Card' %}
@@ -255,6 +257,7 @@
           </div>
         </label>
       {% endif %}
+      {% unless product.metafields.custom.pdp_link_out != blank %}
       <label
         for="one-time"
         class="flex items-center justify-between cursor-pointer p-[15px] lg:p-[18px] border border-black/20 rounded-[6px] {% if product.selling_plan_groups.size > 0 %} border-t-0{% endif %}"
@@ -295,6 +298,7 @@
           {% endif %}
         </span>
       </label>
+      {% endunless %}
     </div>
   {% endif %}
 
@@ -349,22 +353,33 @@
   {% endif %}
 
   {% comment %} Add to Cart Button {% endcomment %}
-  <button
-    type="submit"
-    name="add"
-    class="w-full bg-dark-grey text-white uppercase font-sans tracking-[0.15em] text-sm p-5 rounded-[6px]"
-    {% unless product.available %}
-      disabled
-    {% endunless %}
-    data-ph-capture-attribute-product-name="{{ product.title }}"
-    data-ph-capture-attribute-product-price="{{ product.price | divided_by: 100 }}"
-  >
-    {% if product.available %}
-      Buy Now
-    {% else %}
-      Sold Out
-    {% endif %}
-  </button>
+  {% if product.metafields.custom.pdp_link_out != blank %}
+    <a
+      href="{{ product.metafields.custom.pdp_link_out }}"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="w-full bg-dark-grey text-white uppercase font-sans tracking-[0.15em] text-sm p-5 rounded-[6px] block text-center"
+    >
+      {{ product.metafields.custom.pdp_link_out_text | default: 'Shop Now' }}
+    </a>
+  {% else %}
+    <button
+      type="submit"
+      name="add"
+      class="w-full bg-dark-grey text-white uppercase font-sans tracking-[0.15em] text-sm p-5 rounded-[6px]"
+      {% unless product.available %}
+        disabled
+      {% endunless %}
+      data-ph-capture-attribute-product-name="{{ product.title }}"
+      data-ph-capture-attribute-product-price="{{ product.price | divided_by: 100 }}"
+    >
+      {% if product.available %}
+        Buy Now
+      {% else %}
+        Sold Out
+      {% endif %}
+    </button>
+  {% endif %}
 
   <p class="text-center mt-0 my-0" style="margin-top: 8px;">
     Last of <strong>the great harvest</strong> - going fast, while supplies last!
