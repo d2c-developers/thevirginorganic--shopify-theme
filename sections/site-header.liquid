@@ -2,11 +2,12 @@
   {% if section.blocks.size > 0 %}
     {% assign bar_classes = "text-center bg-[#DF4B2A] text-white hover:text-white py-2 font-sans tracking-none uppercase text-sm block hover:opacity-75 transition-opacity" %}
     {% assign first = section.blocks.first %}
-    <a class="{{ bar_classes }}" href="{{ first.settings.link }}">
+    <a class="{{ bar_classes }}" href="{{ first.settings.link }}"{% if first.settings.new_window %} target="_blank" rel="noopener noreferrer"{% endif %}>
       <span
         class="announcement-bar-text transition-opacity duration-500 ease-in-out"
         data-messages='[{% for block in section.blocks %}"{{ block.settings.message | escape }}"{% unless forloop.last %},{% endunless %}{% endfor %}]'
         data-links='[{% for block in section.blocks %}{{ block.settings.link | json }}{% unless forloop.last %},{% endunless %}{% endfor %}]'
+        data-targets='[{% for block in section.blocks %}{{ block.settings.new_window | json }}{% unless forloop.last %},{% endunless %}{% endfor %}]'
       >
         {{ first.settings.message }}
       </span>
@@ -184,10 +185,12 @@
     if (announcementBarText) {
       const messagesData = announcementBarText.getAttribute('data-messages');
       const linksData = announcementBarText.getAttribute('data-links');
+      const targetsData = announcementBarText.getAttribute('data-targets');
 
       if (messagesData) {
         const messages = JSON.parse(messagesData);
         const links = linksData ? JSON.parse(linksData) : [];
+        const targets = targetsData ? JSON.parse(targetsData) : [];
         const barLink = announcementBarText.closest('a');
 
         if (messages.length > 1) {
@@ -202,9 +205,18 @@
               // Move to next message
               currentIndex = (currentIndex + 1) % messages.length;
 
-              // Update text and bar href
+              // Update text, bar href, and target
               announcementBarText.textContent = messages[currentIndex];
-              if (barLink) barLink.href = links[currentIndex] || '';
+              if (barLink) {
+                barLink.href = links[currentIndex] || '';
+                if (targets[currentIndex]) {
+                  barLink.setAttribute('target', '_blank');
+                  barLink.setAttribute('rel', 'noopener noreferrer');
+                } else {
+                  barLink.removeAttribute('target');
+                  barLink.removeAttribute('rel');
+                }
+              }
 
               // Fade in
               announcementBarText.style.opacity = '1';
@@ -304,6 +316,12 @@
           "type": "url",
           "id": "link",
           "label": "Link (optional)"
+        },
+        {
+          "type": "checkbox",
+          "id": "new_window",
+          "label": "Open link in new tab",
+          "default": false
         }
       ]
     }
