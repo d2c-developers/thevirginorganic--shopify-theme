@@ -54,7 +54,7 @@
     "main-product": {
       "type": "main-product",
       "settings": {
-        "fallback_product": "picual"
+        "fallback_product": "hojiblanca"
       }
     },
     "certifcation_statement": {
