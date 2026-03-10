@@ -21,21 +21,24 @@
             "type": "announcement",
             "settings": {
               "message": "Support the Launch of Hojiblanca",
-              "link": "https://www.kickstarter.com/projects/bernardlaborie/the-virgin-organic-hojiblanca"
+              "link": "https://www.kickstarter.com/projects/bernardlaborie/the-virgin-organic-hojiblanca",
+              "new_window": true
             }
           },
           "announcement_qCHwAY": {
             "type": "announcement",
             "settings": {
               "message": "Almost Sold Out - Buy Two Bottles, Get One Free",
-              "link": "shopify://products/coratina"
+              "link": "shopify://products/coratina",
+              "new_window": false
             }
           },
           "announcement_wbtXfC": {
             "type": "announcement",
             "settings": {
               "message": "Free Shipping on Orders Over $98",
-              "link": "shopify://products/coratina"
+              "link": "shopify://products/coratina",
+              "new_window": false
             }
           }
         },
