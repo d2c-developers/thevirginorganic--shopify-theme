@@ -22,11 +22,12 @@
             "settings": {
               "message": "Support the Launch of Hojiblanca",
               "link": "https://www.kickstarter.com/projects/bernardlaborie/the-virgin-organic-hojiblanca",
-              "new_window": true
+              "new_window": false
             }
           },
           "announcement_qCHwAY": {
             "type": "announcement",
+            "disabled": true,
             "settings": {
               "message": "Almost Sold Out - Buy Two Bottles, Get One Free",
               "link": "shopify://products/coratina",
