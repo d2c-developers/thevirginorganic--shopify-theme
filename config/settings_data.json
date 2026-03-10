@@ -28,14 +28,14 @@
             "type": "announcement",
             "settings": {
               "message": "Almost Sold Out - Buy Two Bottles, Get One Free",
-              "link": ""
+              "link": "shopify://products/coratina"
             }
           },
           "announcement_wbtXfC": {
             "type": "announcement",
             "settings": {
               "message": "Free Shipping on Orders Over $98",
-              "link": ""
+              "link": "shopify://products/coratina"
             }
           }
         },
