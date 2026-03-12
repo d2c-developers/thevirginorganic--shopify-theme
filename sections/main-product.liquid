@@ -1,6 +1,15 @@
 {% assign product = product | default: all_products[section.settings.fallback_product] %}
 <script src="{{ 'sections-main-product.min.js' | asset_url }}" async></script>
 
+{% assign link_text = product.metafields.custom.pdp_link_out_text | default: '' %}
+{% assign link_text_down = link_text | downcase %}
+
+{% if link_text_down contains 'kickstarter' and product.type != 'Olive Oil' and product.variants.first.requires_shipping != true %}
+  {% assign physical_product = false %}
+{% else %}
+  {% assign physical_product = true %}
+{% endif %}
+
 <div
   class="{% if template == 'index' %}product-main-section{% endif %} min-h-screen bg-white mb-100"
   {% if template == 'index' %}
@@ -64,7 +73,7 @@
                     alt="{{ image.alt | default: product.title }}"
                     width="1000"
                     height="1000"
-                    class="w-full h-full object-contain lg:w-[initial] mx-auto"
+                    class="w-full h-full {% if physical_product != false %} object-contain lg:w-[initial] {% else %} object-cover {% endif %} mx-auto"
                     loading="lazy"
                   >
                   {% comment %} Only show the CCof icon on the first image for Olive Oil products {% endcomment %}
