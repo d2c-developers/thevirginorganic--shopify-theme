@@ -381,9 +381,12 @@
     </button>
   {% endif %}
 
-  <p class="text-center mt-0 my-0" style="margin-top: 8px;">
-    Last of <strong>the great harvest</strong> - going fast, while supplies last!
-  </p>
+  {% if product.metafields.custom.last_great_harvest_message != blank %}
+    <div class="text-center mt-0 my-0" style="margin-top: 8px;">
+      {% comment %} Last of <strong>the great harvest</strong> - going fast, while supplies last! {% endcomment %}
+      {{ product.metafields.custom.last_great_harvest_message | metafield_tag }}
+    </div>
+  {% endif %}
 
   {% for block in blocks %}
     {% if block.type == 'gwp_message' %}
