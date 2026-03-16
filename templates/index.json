@@ -29,22 +29,22 @@
     "featured_products": {
       "type": "featured-products",
       "blocks": {
-        "product_6GjkWX": {
+        "product_Uzmrpj": {
           "type": "product",
           "settings": {
-            "product": "the-founders-table"
+            "product": "coratina"
           }
         },
-        "product_pe6CgG": {
+        "product_KbDkJw": {
           "type": "product",
           "settings": {
-            "product": "the-napa-valley-experience"
+            "product": "picual"
           }
         }
       },
       "block_order": [
-        "product_6GjkWX",
-        "product_pe6CgG"
+        "product_Uzmrpj",
+        "product_KbDkJw"
       ],
       "settings": {
         "button_text": "Shop All",
