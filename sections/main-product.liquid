@@ -1,6 +1,15 @@
 {% assign product = product | default: all_products[section.settings.fallback_product] %}
 <script src="{{ 'sections-main-product.min.js' | asset_url }}" async></script>
 
+{% assign link_text = product.metafields.custom.pdp_link_out_text | default: '' %}
+{% assign link_text_down = link_text | downcase %}
+
+{% if link_text_down contains 'kickstarter' and product.type != 'Olive Oil' and product.variants.first.requires_shipping != true %}
+  {% assign physical_product = false %}
+{% else %}
+  {% assign physical_product = true %}
+{% endif %}
+
 <div
   class="{% if template == 'index' %}product-main-section{% endif %} min-h-screen bg-white mb-100"
   {% if template == 'index' %}
@@ -10,7 +19,7 @@
   <div class="w-full px-4 py-5">
     <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-0">
       {% comment %} Product Images {% endcomment %}
-      <div class="min-h-[calc(100vh-68px)] flex flex-col justify-center lg:block lg:min-h-[calc(100vh-68px)] lg:h-auto">
+      <div class="{% if physical_product != false %}min-h-[calc(100vh-68px)] lg:min-h-[calc(100vh-68px)]{% endif %} flex flex-col justify-center lg:block lg:h-auto">
         {% comment %} Mobile Product Title and Description {% endcomment %}
         <div class="block lg:hidden text-center max-w-xs mx-auto">
           <div class="text-grey-50 uppercase text-sm font-sans tracking-[0.15em]">
@@ -33,7 +42,7 @@
         </div>
 
         {% comment %} Product Image {% endcomment %}
-        <div class="relative lg:w-full h-full grow lg:flex lg:min-h-[calc(100vh-130px)] lg:h-auto gap-[40px] bg-[#FAFAFA] p-[10px] mt-[30px] lg:mt-0 rounded-[6px]">
+        <div class="relative {% if physical_product != false %}lg:w-full h-full grow lg:flex lg:min-h-[calc(100vh-130px)] lg:h-auto{% endif %} gap-[40px] bg-[#FAFAFA] p-[10px] mt-[30px] lg:mt-0 rounded-[6px]">
           {% comment %} Thumbnails for desktop only {% endcomment %}
           {% if product.images.size > 1 %}
             <div class="hidden lg:flex items-end absolute bottom-4 left-4 z-10">
@@ -58,13 +67,13 @@
           <div id="product-slider" class="swiper h-full w-full lg:h-auto">
             <div class="swiper-wrapper">
               {% for image in product.images %}
-                <div class="swiper-slide sm:h-[calc(100vh-130px)]">
+                <div class="swiper-slide {% if physical_product != false %}sm:h-[calc(100vh-130px)]{% else %}h-auto aspect-square{% endif %}">
                   <img
                     src="{{ image | image_url: width: 1000 }}"
                     alt="{{ image.alt | default: product.title }}"
                     width="1000"
                     height="1000"
-                    class="w-full h-full object-contain lg:w-[initial] mx-auto"
+                    class="w-full h-full {% if physical_product != false %} object-contain lg:w-[initial] {% else %} object-cover {% endif %} mx-auto"
                     loading="lazy"
                   >
                   {% comment %} Only show the CCof icon on the first image for Olive Oil products {% endcomment %}

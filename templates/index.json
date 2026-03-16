@@ -29,13 +29,13 @@
     "featured_products": {
       "type": "featured-products",
       "blocks": {
-        "product_6GjkWX": {
+        "product_Uzmrpj": {
           "type": "product",
           "settings": {
             "product": "coratina"
           }
         },
-        "product_pe6CgG": {
+        "product_KbDkJw": {
           "type": "product",
           "settings": {
             "product": "picual"
@@ -43,8 +43,8 @@
         }
       },
       "block_order": [
-        "product_6GjkWX",
-        "product_pe6CgG"
+        "product_Uzmrpj",
+        "product_KbDkJw"
       ],
       "settings": {
         "button_text": "Shop All",
@@ -54,7 +54,7 @@
     "main-product": {
       "type": "main-product",
       "settings": {
-        "fallback_product": "picual"
+        "fallback_product": "hojiblanca"
       }
     },
     "certifcation_statement": {
