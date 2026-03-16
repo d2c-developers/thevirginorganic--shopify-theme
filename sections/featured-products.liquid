@@ -6,7 +6,10 @@
         {% assign link_text = product.metafields.custom.pdp_link_out_text | default: '' %}
         {% assign link_text_down = link_text | downcase %}
 
-        {% if link_text_down contains 'kickstarter' and product.type != 'Olive Oil' and product.variants.first.requires_shipping != true %}
+        {% if link_text_down contains 'kickstarter'
+          and product.type != 'Olive Oil'
+          and product.variants.first.requires_shipping != true
+        %}
           {% assign physical_product = false %}
         {% else %}
           {% assign physical_product = true %}
@@ -17,11 +20,16 @@
             class="flex flex-col items-center {% if physical_product != false %} object-contain max-w-md mx-auto {% else %} w-full object-cover {% endif %}"
           >
             <div class="relative flex items-center justify-center w-full">
+              {% if physical_product != false %}
+                {% assign image_class = 'w-full h-full object-contain ' %}
+              {% else %}
+                {% assign image_class = 'w-full h-full aspect-square object-cover ' %}
+              {% endif %}
               {% if product.featured_image %}
                 {{
                   product.featured_image
                   | image_url: width: 800
-                  | image_tag: class: 'w-full h-full object-contain', loading: 'lazy'
+                  | image_tag: class: image_class, loading: 'lazy'
                 }}
               {% else %}
                 <div class="text-sm"></div>
