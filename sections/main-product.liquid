@@ -19,7 +19,7 @@
   <div class="w-full px-4 py-5">
     <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-0">
       {% comment %} Product Images {% endcomment %}
-      <div class="{% if physical_product != false %}min-h-[calc(100vh-68px)] {% endif %} flex flex-col justify-center lg:block lg:min-h-[calc(100vh-68px)] lg:h-auto">
+      <div class="{% if physical_product != false %}min-h-[calc(100vh-68px)] lg:min-h-[calc(100vh-68px)]{% endif %} flex flex-col justify-center lg:block lg:h-auto">
         {% comment %} Mobile Product Title and Description {% endcomment %}
         <div class="block lg:hidden text-center max-w-xs mx-auto">
           <div class="text-grey-50 uppercase text-sm font-sans tracking-[0.15em]">
