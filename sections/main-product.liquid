@@ -10,12 +10,7 @@
   {% assign physical_product = true %}
 {% endif %}
 
-<div
-  class="{% if template == 'index' %}product-main-section{% endif %} min-h-screen bg-white mb-100"
-  {% if template == 'index' %}
-    style="display: none;"
-  {% endif %}
->
+<div class="{% if template == 'index' %}product-main-section{% endif %} min-h-screen bg-white mb-100">
   <div class="w-full px-4 py-5">
     <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-0">
       {% comment %} Product Images {% endcomment %}
