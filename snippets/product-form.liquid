@@ -111,31 +111,31 @@
 
   {% comment %} Quantity Selector {% endcomment %}
   {% unless product.metafields.custom.pdp_link_out != blank %}
-  <div class="flex justify-between items-center">
-    <label for="quantity" class="block text-dark-grey italic font-serif">Quantity</label>
-    <div class="flex gap-4">
-      {% for i in (1..4) %}
-        <div class="flex items-center">
-          <input
-            type="radio"
-            name="quantity"
-            id="quantity-{{ i }}"
-            value="{{ i }}"
-            class="sr-only peer"
-            {% if forloop.first %}
-              checked
-            {% endif %}
-          >
-          <label
-            for="quantity-{{ i }}"
-            class="flex items-center justify-center border-b border-transparent hover:border-b-dark-grey peer-checked:border-b-dark-grey cursor-pointer text-grey-50 peer-checked:text-dark-grey"
-          >
-            {{ i }}
-          </label>
-        </div>
-      {% endfor %}
+    <div class="flex justify-between items-center">
+      <label for="quantity" class="block text-dark-grey italic font-serif">Quantity</label>
+      <div class="flex gap-4">
+        {% for i in (1..4) %}
+          <div class="flex items-center">
+            <input
+              type="radio"
+              name="quantity"
+              id="quantity-{{ i }}"
+              value="{{ i }}"
+              class="sr-only peer"
+              {% if forloop.first %}
+                checked
+              {% endif %}
+            >
+            <label
+              for="quantity-{{ i }}"
+              class="flex items-center justify-center border-b border-transparent hover:border-b-dark-grey peer-checked:border-b-dark-grey cursor-pointer text-grey-50 peer-checked:text-dark-grey"
+            >
+              {{ i }}
+            </label>
+          </div>
+        {% endfor %}
+      </div>
     </div>
-  </div>
   {% endunless %}
 
   {% comment %} Purchase Options {% endcomment %}
@@ -258,46 +258,46 @@
         </label>
       {% endif %}
       {% unless product.metafields.custom.pdp_link_out != blank %}
-      <label
-        for="one-time"
-        class="flex items-center justify-between cursor-pointer p-[15px] lg:p-[18px] border border-black/20 rounded-[6px] {% if product.selling_plan_groups.size > 0 %} border-t-0{% endif %}"
-      >
-        <div class="flex items-center space-x-2">
-          <input
-            type="radio"
-            name="selling_plan"
-            value=""
-            id="one-time"
-            {% if product.selling_plan_groups.size == 0 %}
-              checked
-            {% endif %}
-            class="appearance-none size-5 border border-grey-50 rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-dark-grey checked:border-dark-grey checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
-          >
-          <span class="ml-2 font-serif">One-time purchase</span>
-        </div>
-        <span class="flex items-center gap-1">
-          {{ product.price | money }}
-          {% if product.compare_at_price > product.price %}
-            <span
-              class="rounded-[5px] px-[5px] py-[3px] bg-[#eaf4d1] font-medium text-[12px] leading-[100%]"
-              style="
-                color: white;
-                background-color: {{ product.metafields.tvo.label_color | default: '#C53E12' }};
-              "
+        <label
+          for="one-time"
+          class="flex items-center justify-between cursor-pointer p-[15px] lg:p-[18px] border border-black/20 rounded-[6px] {% if product.selling_plan_groups.size > 0 %} border-t-0{% endif %}"
+        >
+          <div class="flex items-center space-x-2">
+            <input
+              type="radio"
+              name="selling_plan"
+              value=""
+              id="one-time"
+              {% if product.selling_plan_groups.size == 0 %}
+                checked
+              {% endif %}
+              class="appearance-none size-5 border border-grey-50 rounded-full checked:before:content-[''] checked:before:absolute checked:before:w-[10px] checked:before:h-[10px] checked:before:bg-dark-grey checked:border-dark-grey checked:before:rounded-full checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 relative cursor-pointer"
             >
-              Save
-              {{
-                product.compare_at_price
-                | minus: product.price
-                | times: 100.0
-                | divided_by: product.compare_at_price
-                | round
-              -}}
-              %
-            </span>
-          {% endif %}
-        </span>
-      </label>
+            <span class="ml-2 font-serif">One-time purchase</span>
+          </div>
+          <span class="flex items-center gap-1">
+            {{ product.price | money }}
+            {% if product.compare_at_price > product.price %}
+              <span
+                class="rounded-[5px] px-[5px] py-[3px] bg-[#eaf4d1] font-medium text-[12px] leading-[100%]"
+                style="
+                  color: white;
+                  background-color: {{ product.metafields.tvo.label_color | default: '#C53E12' }};
+                "
+              >
+                Save
+                {{
+                  product.compare_at_price
+                  | minus: product.price
+                  | times: 100.0
+                  | divided_by: product.compare_at_price
+                  | round
+                -}}
+                %
+              </span>
+            {% endif %}
+          </span>
+        </label>
       {% endunless %}
     </div>
   {% endif %}
@@ -366,7 +366,7 @@
     <button
       type="submit"
       name="add"
-      class="w-full bg-dark-grey text-white uppercase font-sans tracking-[0.15em] text-sm p-5 rounded-[6px]"
+      class="w-full {% if product.available %} bg-dark-grey text-white {% else %} bg-[#c5c5c5] text-[#737373] cursor-not-allowed {% endif %} uppercase font-sans tracking-[0.15em] text-sm p-5 rounded-[6px]"
       {% unless product.available %}
         disabled
       {% endunless %}
