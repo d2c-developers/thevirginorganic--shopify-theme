@@ -25,19 +25,10 @@
               "new_window": false
             }
           },
-          "announcement_qCHwAY": {
-            "type": "announcement",
-            "disabled": true,
-            "settings": {
-              "message": "Almost Sold Out - Buy Two Bottles, Get One Free",
-              "link": "shopify://products/coratina",
-              "new_window": false
-            }
-          },
           "announcement_wbtXfC": {
             "type": "announcement",
             "settings": {
-              "message": "Free Shipping on Orders Over $98",
+              "message": "Free Shipping on 2 or More Bottles!",
               "link": "shopify://products/coratina",
               "new_window": false
             }
@@ -45,7 +36,6 @@
         },
         "block_order": [
           "announcement_P6cJiF",
-          "announcement_qCHwAY",
           "announcement_wbtXfC"
         ],
         "custom_css": [],
