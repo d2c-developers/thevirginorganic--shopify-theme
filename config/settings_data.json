@@ -19,6 +19,7 @@
         "blocks": {
           "announcement_P6cJiF": {
             "type": "announcement",
+            "disabled": true,
             "settings": {
               "message": "Reserve New Hojiblanca on Kickstarter",
               "link": "https://www.kickstarter.com/projects/bernardlaborie/the-virgin-organic-hojiblanca",
@@ -28,7 +29,7 @@
           "announcement_wbtXfC": {
             "type": "announcement",
             "settings": {
-              "message": "Free Shipping on Two or More Bottles!",
+              "message": "SOLD OUT – Thank you for your support",
               "link": "shopify://products/coratina",
               "new_window": false
             }
